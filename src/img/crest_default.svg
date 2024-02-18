@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>crest_default</title>
+    <g id="crest_default" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" x="0" y="0" width="48" height="48"></rect>
+        <path d="M24,4 L8,10 L8,22.18 C8,32.28 14.82,41.7 24,44 C33.18,41.7 40,32.28 40,22.18 L40,10 L24,4 Z M36,22.18 C36,30.18 30.9,37.58 24,39.84 C17.1,37.58 12,30.2 12,22.18 L12,12.78 L24,8.28 L36,12.78 L36,22.18 Z" id="Shape" fill="#6A6F7E" fill-rule="nonzero"></path>
+    </g>
+</svg>
