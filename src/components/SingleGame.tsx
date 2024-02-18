@@ -1,6 +1,14 @@
 import defaultCrest from "../img/crest_default.svg";
 
-export const SingleGame = ({
+export const SingleGame: React.FC<{
+  data: string | number | Date;
+  homeTeam: string;
+  homeTeamLogo: string;
+  awayTeam: string;
+  awayTeamLogo: string;
+  homeGoals: string;
+  awayGoals: string;
+}> = ({
   data,
   homeTeam,
   homeTeamLogo,
@@ -15,7 +23,7 @@ export const SingleGame = ({
     <>
       <div className="w-[150px] text-left" id="time-container">
         {`${gameDate.getDate()}.${gameDate.getMonth()}.${gameDate.getFullYear()} ${gameDate.getHours()}:${
-          gameDate.getUTCMinutes() == "00" ? "00" : gameDate.getUTCMinutes()
+          gameDate.getUTCMinutes() == 0 ? "00" : gameDate.getUTCMinutes()
         }`}
       </div>
       <div className="text-left w-full" id="teams-container">

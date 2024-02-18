@@ -1,5 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchData } from "../../clientApi";
+import { groupBy } from "remeda";
+import { gameType } from "../types";
 
 export const useFetchGamesGroupedByPeriod = () => {
   return useQuery({
@@ -7,7 +9,7 @@ export const useFetchGamesGroupedByPeriod = () => {
     queryFn: () => fetchData("https://jte-edge.b-cdn.net/matches2.json"),
     select: (data) => {
       data.reverse();
-      const groupedData = Object.groupBy(data, (item) => item.Period);
+      const groupedData = groupBy(data, (item: gameType) => item.Period);
       return groupedData;
     },
   });

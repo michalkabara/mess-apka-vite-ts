@@ -44,7 +44,7 @@ export const GamesResults = () => {
           .reverse()
           .map((period) => {
             return (
-              <div className="flex flex-col gap-2">
+              <div key={period} className="flex flex-col gap-2">
                 <div className="text-center">Kolejka {period}</div>
                 {data[period].map((mecz: any, index: number) => (
                   <div

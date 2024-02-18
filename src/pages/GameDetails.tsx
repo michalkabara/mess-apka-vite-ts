@@ -10,7 +10,9 @@ export const GameDetails = () => {
 
   if (error) return <p>An error has occurred {error.message}</p>;
 
-  const selectedGame = data.find((game) => game.MatchId === gameId);
+  const selectedGame = data.find(
+    (game: { MatchId: string }) => game.MatchId === gameId
+  );
 
   const gameDate = new Date(selectedGame.Date);
 
@@ -19,7 +21,7 @@ export const GameDetails = () => {
       <p>
         {gameDate.getDate()}.{gameDate.getMonth()}.{gameDate.getFullYear()}{" "}
         {gameDate.getHours()}:
-        {gameDate.getUTCMinutes() == "00" ? "00" : gameDate.getUTCMinutes()}
+        {gameDate.getUTCMinutes() == 0 ? "00" : gameDate.getUTCMinutes()}
       </p>
 
       <div className="grid grid-cols-3 mt-7 items-start">

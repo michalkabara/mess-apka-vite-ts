@@ -1,10 +1,14 @@
 import defaultCrest from "../img/crest_default.svg";
 import { Link } from "react-router-dom";
-import { TeamForm } from "./TeamForm";
+import { TeamForm } from "../components/TeamForm";
 import { useFetchTeams } from "../customHooks/useFetchTeams";
 import { useFetchGames } from "../customHooks/useFetchGames";
+import { TeamType } from "../types";
 
-export const TeamsGroup = ({ isHeaderVisible = true, filterTeam = "" }) => {
+export const TeamsGroup: React.FC<{
+  isHeaderVisible: boolean;
+  filterTeam?: number | string | null;
+}> = ({ isHeaderVisible = true, filterTeam = "" }) => {
   const { isPending, error, data } = useFetchTeams();
 
   const {
@@ -15,14 +19,14 @@ export const TeamsGroup = ({ isHeaderVisible = true, filterTeam = "" }) => {
 
   if (isPending || areGamesPending) return <p>Loading...</p>;
 
-  if (error || gamesError) return <p>An error has occurred {error.message}</p>;
+  if (error || gamesError) return <p>An error has occurred {error?.message}</p>;
 
   const teamsRenderData = filterTeam
-    ? data.filter((team) => team.TeamId === filterTeam)
+    ? data.filter((team: TeamType) => team.TeamId === filterTeam)
     : data;
 
-  console.log(data);
-  const teamPosition = data.findIndex((team) => team.TeamId === filterTeam) + 1;
+  const teamPosition =
+    data.findIndex((team: TeamType) => team.TeamId === filterTeam) + 1;
 
   return (
     <>
@@ -52,7 +56,7 @@ export const TeamsGroup = ({ isHeaderVisible = true, filterTeam = "" }) => {
           <div className="w-4 flex justify-center">P</div>
           <div className="w-[116px] text-left">Forma</div>
         </div>
-        {teamsRenderData.map((team, index) => (
+        {teamsRenderData.map((team: TeamType, index: number) => (
           <div
             key={team.TeamId}
             className="flex flex-row gap-3 items-center text-xs  hover:bg-zinc-700 rounded-md py-2 px-2 ease-in-out duration-500 justify-between relative"

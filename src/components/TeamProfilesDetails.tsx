@@ -7,7 +7,10 @@ import {
 } from "react-icons/fa6";
 import { IoGlobeOutline } from "react-icons/io5";
 
-export const TeamProfileDetails = ({ teamLogo, teamName }) => {
+export const TeamProfileDetails: React.FC<{
+  teamLogo: string;
+  teamName: string;
+}> = ({ teamLogo, teamName }) => {
   return (
     <div className="league-name pt-4 flex items-start flex-row gap-5">
       {teamLogo ? (

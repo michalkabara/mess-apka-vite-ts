@@ -1,6 +1,10 @@
 import { Tooltip } from "react-tooltip";
+import { gameType } from "../types";
 
-export const TeamForm = ({ teamId, gamesData }) => {
+export const TeamForm: React.FC<{
+  teamId: number;
+  gamesData: gameType[];
+}> = ({ teamId, gamesData }) => {
   const games = gamesData
     .filter((game) => game.HomeTeamId === teamId || game.AwayTeamId === teamId)
     .slice(0, 5);

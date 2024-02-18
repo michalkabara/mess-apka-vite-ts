@@ -1,11 +1,12 @@
 import { useParams, useSearchParams } from "react-router-dom";
-import { SingleGame } from "./SingleGame";
+import { SingleGame } from "../components/SingleGame";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { TeamProfileDetails } from "./TeamProfileDetails";
+import { TeamProfileDetails } from "../components/TeamProfilesDetails";
 import { TeamsGroup } from "./TeamsGroup";
 import { useFetchTeams } from "../customHooks/useFetchTeams";
 import { useFetchGames } from "../customHooks/useFetchGames";
+import { gameType } from "../types";
 
 const tabs = [
   { name: "Tabela" },
@@ -19,14 +20,16 @@ const tabs = [
 
 export const TeamProfile = () => {
   const { teamId } = useParams();
-  const [selectedTab, setSelecteTab] = useState(0);
+  const [selectedTab, setSelecteTab] = useState<number | null>(0);
 
   let [searchParams, setSearchParams] = useSearchParams();
 
   const { isPending, error, data } = useFetchTeams();
 
   useEffect(() => {
-    setSelecteTab(+searchParams.get("page"));
+    const currentPage = searchParams?.get("page");
+    if (!currentPage) return;
+    setSelecteTab(parseInt(currentPage));
   }, []);
 
   const {
@@ -37,19 +40,26 @@ export const TeamProfile = () => {
 
   if (isPending || areGamesPending) return <p>Loading...</p>;
 
-  if (error || gamesError) return <p>An error has occurred {error.message}</p>;
+  if (error || gamesError) return <p>An error has occurred {error?.message}</p>;
 
-  const teamData = data.find((team) => team.TeamId === teamId);
+  const teamData = data.find(
+    (team: { TeamId: string }) => team.TeamId === teamId
+  );
   const teamName = teamData.TeamName;
 
   const teamGames = gamesData.filter(
-    (game) => game.HomeTeamName === teamName || game.AwayTeamName === teamName
+    (game: { HomeTeamName: string; AwayTeamName: string }) =>
+      game.HomeTeamName === teamName || game.AwayTeamName === teamName
   );
 
-  const homeGames = gamesData.filter((game) => game.HomeTeamName === teamName);
-  const awayGames = gamesData.filter((game) => game.AwayTeamName === teamName);
+  const homeGames = gamesData.filter(
+    (game: gameType) => game.HomeTeamName === teamName
+  );
+  const awayGames = gamesData.filter(
+    (game: gameType) => game.AwayTeamName === teamName
+  );
 
-  const selectTab = (selectedIndex) => {
+  const selectTab = (selectedIndex: number) => {
     setSelecteTab(selectedIndex);
   };
 
@@ -95,7 +105,7 @@ export const TeamProfile = () => {
             selectedTab === 1 ? "flex" : "hidden"
           }`}
         >
-          {teamGames?.map((mecz, index) => (
+          {teamGames?.map((mecz: gameType, index: number) => (
             <Link
               to={`/game/${mecz.MatchId}`}
               key={`${mecz.MatchId}-${index}`}
@@ -119,7 +129,7 @@ export const TeamProfile = () => {
             selectedTab === 2 ? "flex" : "hidden"
           }`}
         >
-          {homeGames?.map((mecz, index) => (
+          {homeGames?.map((mecz: gameType, index: number) => (
             <Link
               to={`/game/${mecz.MatchId}`}
               key={`${mecz.MatchId}-${index}`}
@@ -143,7 +153,7 @@ export const TeamProfile = () => {
             selectedTab === 3 ? "flex" : "hidden"
           }`}
         >
-          {awayGames?.map((mecz, index) => (
+          {awayGames?.map((mecz: gameType, index: number) => (
             <Link
               to={`/game/${mecz.MatchId}`}
               key={`${mecz.MatchId}-${index}`}
