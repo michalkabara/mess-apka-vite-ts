@@ -6,11 +6,13 @@ import {
   FaSquareInstagram,
 } from "react-icons/fa6";
 import { IoGlobeOutline } from "react-icons/io5";
+import { RiStarSmileLine } from "react-icons/ri";
 
 export const TeamProfileDetails: React.FC<{
   teamLogo: string;
   teamName: string;
-}> = ({ teamLogo, teamName }) => {
+  teamId: string;
+}> = ({ teamLogo, teamName, teamId }) => {
   return (
     <div className="league-name pt-4 flex items-start flex-row gap-5">
       {teamLogo ? (
@@ -19,7 +21,19 @@ export const TeamProfileDetails: React.FC<{
         <img src={defaultCrest} alt="Herb" className="w-20" />
       )}
       <div className="flex flex-col gap-3">
-        <span className="text-lg font-bold uppercase">{teamName}</span>
+        <div className="flex flex-row items-center gap-3">
+          <span className="text-lg font-bold uppercase ">{teamName}</span>
+
+          <button
+            onClick={() => {
+              console.log(teamName);
+              console.log(teamId);
+            }}
+          >
+            <RiStarSmileLine className="text-2xl" />
+          </button>
+        </div>
+
         <div className="text-sm">
           <p>
             <b>Rok założenia:</b> 1982

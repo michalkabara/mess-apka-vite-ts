@@ -6,7 +6,7 @@ import { useFetchGames } from "../customHooks/useFetchGames";
 import { TeamType } from "../types";
 
 export const TeamsGroup: React.FC<{
-  isHeaderVisible: boolean;
+  isHeaderVisible?: boolean;
   filterTeam?: number | string | null;
 }> = ({ isHeaderVisible = true, filterTeam = "" }) => {
   const { isPending, error, data } = useFetchTeams();

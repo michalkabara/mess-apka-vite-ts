@@ -7,8 +7,9 @@ import { TeamsGroup } from "./TeamsGroup";
 import { useFetchTeams } from "../customHooks/useFetchTeams";
 import { useFetchGames } from "../customHooks/useFetchGames";
 import { gameType } from "../types";
+import { TeamPlayers } from "../components/TeamPlayers";
 
-const tabs = [
+const tabs: { name: string }[] = [
   { name: "Tabela" },
   { name: "Wyniki" },
   { name: "Domowe" },
@@ -16,6 +17,106 @@ const tabs = [
   { name: "Statystyki" },
   { name: "Kadra" },
   { name: "Nadchodzące mecze" },
+];
+
+const exampleTeam = [
+  { name: "Daniel", surname: "Bajorek", number: "14", age: "18", mainLeg: "L" },
+  { name: "Marcin", surname: "Bałut", number: "4", age: "18", mainLeg: "L" },
+  { name: "Dominik", surname: "Boda", number: "19", age: "18", mainLeg: "L" },
+  {
+    name: "Bartosz",
+    surname: "Chudoba",
+    number: "11",
+    age: "18",
+    mainLeg: "L",
+  },
+  { name: "Patryk", surname: "Chudoba", number: "6", age: "18", mainLeg: "L" },
+  { name: "Michał", surname: "Gębala", number: "x", age: "18", mainLeg: "L" },
+  {
+    name: "Krzysztof",
+    surname: "Jabłoński",
+    number: "8",
+    age: "18",
+    mainLeg: "L",
+  },
+  { name: "Błażej", surname: "Klesyk", number: "x", age: "18", mainLeg: "L" },
+  { name: "Patryk", surname: "Klich", number: "13", age: "18", mainLeg: "L" },
+  { name: "Michał", surname: "Kloch", number: "x", age: "18", mainLeg: "L" },
+  {
+    name: "Adrian",
+    surname: "Kochniarczyk",
+    number: "7",
+    age: "18",
+    mainLeg: "L",
+  },
+  { name: "Kamil", surname: "Kocik", number: "x", age: "18", mainLeg: "L" },
+  { name: "Sebastian", surname: "Koza", number: "17", age: "18", mainLeg: "L" },
+  {
+    name: "Andrzej",
+    surname: "Krakowski",
+    number: "10",
+    age: "18",
+    mainLeg: "L",
+  },
+  {
+    name: "Miłosz",
+    surname: "Kraszewski",
+    number: "x",
+    age: "18",
+    mainLeg: "L",
+  },
+  {
+    name: "Krzysztof",
+    surname: "Krauze",
+    number: "16",
+    age: "18",
+    mainLeg: "L",
+  },
+  {
+    name: "Przemysław",
+    surname: "Krawiec",
+    number: "18",
+    age: "18",
+    mainLeg: "L",
+  },
+  { name: "Michał", surname: "Łątka", number: "x", age: "18", mainLeg: "L" },
+  {
+    name: "Łukasz",
+    surname: "Lisak",
+    number: "33",
+    isGoalKeeper: true,
+    age: "18",
+    mainLeg: "L",
+  },
+  {
+    name: "Mateusz",
+    surname: "Orłowski",
+    number: "x",
+    age: "18",
+    mainLeg: "L",
+  },
+  {
+    name: "Bartłomiej",
+    surname: "Pociecha",
+    number: "12",
+    age: "18",
+    mainLeg: "L",
+  },
+  {
+    name: "Mateusz",
+    surname: "Reszczyński",
+    number: "3",
+    age: "18",
+    mainLeg: "L",
+  },
+  {
+    name: "Rafał",
+    surname: "Słomski",
+    number: "9",
+    isCaptain: true,
+    age: "18",
+    mainLeg: "L",
+  },
 ];
 
 export const TeamProfile = () => {
@@ -68,6 +169,7 @@ export const TeamProfile = () => {
       <TeamProfileDetails
         teamLogo={teamData?.LogoUrl}
         teamName={teamData?.TeamName}
+        teamId={teamData?.TeamId}
       />
 
       <div className="mt-5">
@@ -170,6 +272,14 @@ export const TeamProfile = () => {
               />
             </Link>
           ))}
+        </div>
+
+        <div
+          className={`mecze mt-5 gap-2 flex-col text-xs ${
+            selectedTab === 5 ? "flex" : "hidden"
+          }`}
+        >
+          <TeamPlayers team={exampleTeam} />
         </div>
       </div>
     </>

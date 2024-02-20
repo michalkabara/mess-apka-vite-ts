@@ -25,3 +25,13 @@ export type TeamType = {
   GoalDifference: number;
   Points: number;
 };
+
+export type TeamPlayersType = {
+  name: string;
+  surname: string;
+  number: string;
+  isGoalKeeper?: boolean;
+  isCaptain?: boolean;
+  age: string;
+  mainLeg: string;
+};
