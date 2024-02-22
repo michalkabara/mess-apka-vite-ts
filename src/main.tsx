@@ -13,6 +13,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
 
+import { FavouriteTeamContextProvider } from "./context/FavouriteTeamsContext";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -46,6 +48,8 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <FavouriteTeamContextProvider>
+      <RouterProvider router={router} />
+    </FavouriteTeamContextProvider>
   </React.StrictMode>
 );

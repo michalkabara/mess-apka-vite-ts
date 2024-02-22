@@ -6,13 +6,29 @@ import {
   FaSquareInstagram,
 } from "react-icons/fa6";
 import { IoGlobeOutline } from "react-icons/io5";
-import { RiStarSmileLine } from "react-icons/ri";
+import { RiStarSmileLine, RiStarSmileFill } from "react-icons/ri";
+import { useFavouriteTeamContext } from "../context/FavouriteTeamsContext";
 
 export const TeamProfileDetails: React.FC<{
   teamLogo: string;
   teamName: string;
   teamId: string;
 }> = ({ teamLogo, teamName, teamId }) => {
+  const { favouriteTeams, addFavouriteTeam, removeFavouriteTeam } =
+    useFavouriteTeamContext();
+
+  const toggleFavouriteTeam = (team: { name: string; id: string }) => {
+    if (favouriteTeams.some((team: { id: string }) => team.id === teamId)) {
+      removeFavouriteTeam(team.id);
+      console.log(team.id);
+      console.log(favouriteTeams);
+    } else {
+      addFavouriteTeam(team);
+      console.log(team.id);
+      console.log(favouriteTeams);
+    }
+  };
+
   return (
     <div className="league-name pt-4 flex items-start flex-row gap-5">
       {teamLogo ? (
@@ -25,12 +41,15 @@ export const TeamProfileDetails: React.FC<{
           <span className="text-lg font-bold uppercase ">{teamName}</span>
 
           <button
-            onClick={() => {
-              console.log(teamName);
-              console.log(teamId);
-            }}
+            onClick={() => toggleFavouriteTeam({ name: teamName, id: teamId })}
           >
-            <RiStarSmileLine className="text-2xl" />
+            {favouriteTeams.some(
+              (item: { id: string }) => item.id === teamId
+            ) ? (
+              <RiStarSmileFill className=" text-2xl text-yellow-500" />
+            ) : (
+              <RiStarSmileLine className="text-2xl " />
+            )}
           </button>
         </div>
 

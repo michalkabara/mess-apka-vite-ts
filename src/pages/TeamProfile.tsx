@@ -10,8 +10,8 @@ import { gameType } from "../types";
 import { TeamPlayers } from "../components/TeamPlayers";
 
 const tabs: { name: string }[] = [
-  { name: "Tabela" },
   { name: "Wyniki" },
+  { name: "Tabela" },
   { name: "Domowe" },
   { name: "Wyjazdowe" },
   { name: "Statystyki" },
@@ -196,7 +196,7 @@ export const TeamProfile = () => {
 
         <div
           className={`mecze mt-5 gap-2 flex-col text-xs ${
-            selectedTab === 0 ? "flex" : "hidden"
+            selectedTab === 1 ? "flex" : "hidden"
           }`}
         >
           <TeamsGroup isHeaderVisible={false} />
@@ -204,7 +204,7 @@ export const TeamProfile = () => {
 
         <div
           className={`mecze mt-5 gap-2 flex-col text-xs ${
-            selectedTab === 1 ? "flex" : "hidden"
+            selectedTab === 0 ? "flex" : "hidden"
           }`}
         >
           {teamGames?.map((mecz: gameType, index: number) => (
