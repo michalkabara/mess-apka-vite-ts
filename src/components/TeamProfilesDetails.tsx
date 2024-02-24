@@ -20,12 +20,8 @@ export const TeamProfileDetails: React.FC<{
   const toggleFavouriteTeam = (team: { name: string; id: string }) => {
     if (favouriteTeams.some((team: { id: string }) => team.id === teamId)) {
       removeFavouriteTeam(team.id);
-      console.log(team.id);
-      console.log(favouriteTeams);
     } else {
       addFavouriteTeam(team);
-      console.log(team.id);
-      console.log(favouriteTeams);
     }
   };
 

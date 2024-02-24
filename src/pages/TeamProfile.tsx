@@ -6,7 +6,7 @@ import { TeamProfileDetails } from "../components/TeamProfilesDetails";
 import { TeamsGroup } from "./TeamsGroup";
 import { useFetchTeams } from "../customHooks/useFetchTeams";
 import { useFetchGames } from "../customHooks/useFetchGames";
-import { gameType } from "../types";
+import { GameType } from "../types";
 import { TeamPlayers } from "../components/TeamPlayers";
 
 const tabs: { name: string }[] = [
@@ -133,19 +133,13 @@ export const TeamProfile = () => {
     setSelecteTab(parseInt(currentPage));
   }, []);
 
-  const {
-    isPending: areGamesPending,
-    error: gamesError,
-    data: gamesData,
-  } = useFetchGames();
+  const { isPending: areGamesPending, error: gamesError, data: gamesData } = useFetchGames();
 
   if (isPending || areGamesPending) return <p>Loading...</p>;
 
   if (error || gamesError) return <p>An error has occurred {error?.message}</p>;
 
-  const teamData = data.find(
-    (team: { TeamId: string }) => team.TeamId === teamId
-  );
+  const teamData = data.find((team: { TeamId: string }) => team.TeamId === teamId);
   const teamName = teamData.TeamName;
 
   const teamGames = gamesData.filter(
@@ -153,12 +147,8 @@ export const TeamProfile = () => {
       game.HomeTeamName === teamName || game.AwayTeamName === teamName
   );
 
-  const homeGames = gamesData.filter(
-    (game: gameType) => game.HomeTeamName === teamName
-  );
-  const awayGames = gamesData.filter(
-    (game: gameType) => game.AwayTeamName === teamName
-  );
+  const homeGames = gamesData.filter((game: GameType) => game.HomeTeamName === teamName);
+  const awayGames = gamesData.filter((game: GameType) => game.AwayTeamName === teamName);
 
   const selectTab = (selectedIndex: number) => {
     setSelecteTab(selectedIndex);
@@ -166,11 +156,7 @@ export const TeamProfile = () => {
 
   return (
     <>
-      <TeamProfileDetails
-        teamLogo={teamData?.LogoUrl}
-        teamName={teamData?.TeamName}
-        teamId={teamData?.TeamId}
-      />
+      <TeamProfileDetails teamLogo={teamData?.LogoUrl} teamName={teamData?.TeamName} teamId={teamData?.TeamId} />
 
       <div className="mt-5">
         <TeamsGroup isHeaderVisible={false} filterTeam={teamId} />
@@ -194,24 +180,16 @@ export const TeamProfile = () => {
           ))}
         </div>
 
-        <div
-          className={`mecze mt-5 gap-2 flex-col text-xs ${
-            selectedTab === 1 ? "flex" : "hidden"
-          }`}
-        >
+        <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 1 ? "flex" : "hidden"}`}>
           <TeamsGroup isHeaderVisible={false} />
         </div>
 
-        <div
-          className={`mecze mt-5 gap-2 flex-col text-xs ${
-            selectedTab === 0 ? "flex" : "hidden"
-          }`}
-        >
-          {teamGames?.map((mecz: gameType, index: number) => (
+        <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 0 ? "flex" : "hidden"}`}>
+          {teamGames?.reverse().map((mecz: GameType, index: number) => (
             <Link
               to={`/game/${mecz.MatchId}`}
               key={`${mecz.MatchId}-${index}`}
-              className="flex flex-row items-center w-full content-between hover:bg-zinc-700 rounded-md py-2 px-3 ease-in-out duration-500 gap-2"
+              className="flex flex-row items-center w-full content-between hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
             >
               <SingleGame
                 data={mecz.Date}
@@ -226,16 +204,12 @@ export const TeamProfile = () => {
           ))}
         </div>
 
-        <div
-          className={`mecze mt-5 gap-2 flex-col text-xs ${
-            selectedTab === 2 ? "flex" : "hidden"
-          }`}
-        >
-          {homeGames?.map((mecz: gameType, index: number) => (
+        <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 2 ? "flex" : "hidden"}`}>
+          {homeGames?.map((mecz: GameType, index: number) => (
             <Link
               to={`/game/${mecz.MatchId}`}
               key={`${mecz.MatchId}-${index}`}
-              className="flex flex-row items-center w-full content-between hover:bg-zinc-700 rounded-md py-2 px-3 ease-in-out duration-500 gap-2"
+              className="flex flex-row items-center w-full content-between hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
             >
               <SingleGame
                 data={mecz.Date}
@@ -250,16 +224,12 @@ export const TeamProfile = () => {
           ))}
         </div>
 
-        <div
-          className={`mecze mt-5 gap-2 flex-col text-xs ${
-            selectedTab === 3 ? "flex" : "hidden"
-          }`}
-        >
-          {awayGames?.map((mecz: gameType, index: number) => (
+        <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 3 ? "flex" : "hidden"}`}>
+          {awayGames?.map((mecz: GameType, index: number) => (
             <Link
               to={`/game/${mecz.MatchId}`}
               key={`${mecz.MatchId}-${index}`}
-              className="flex flex-row items-center w-full content-between hover:bg-zinc-700 rounded-md py-2 px-3 ease-in-out duration-500 gap-2"
+              className="flex flex-row items-center w-full content-between hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
             >
               <SingleGame
                 data={mecz.Date}
@@ -274,11 +244,7 @@ export const TeamProfile = () => {
           ))}
         </div>
 
-        <div
-          className={`mecze mt-5 gap-2 flex-col text-xs ${
-            selectedTab === 5 ? "flex" : "hidden"
-          }`}
-        >
+        <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 5 ? "flex" : "hidden"}`}>
           <TeamPlayers team={exampleTeam} />
         </div>
       </div>

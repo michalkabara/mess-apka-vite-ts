@@ -11,9 +11,7 @@ export type FavouriteTeamsContextType = {
   removeFavouriteTeam: (teamId: string) => void;
 };
 
-const FavouriteTeamsContext = createContext<
-  FavouriteTeamsContextType | undefined
->(undefined);
+const FavouriteTeamsContext = createContext<FavouriteTeamsContextType | undefined>(undefined);
 
 export const FavouriteTeamContextProvider: React.FC<{
   children: React.ReactNode;
@@ -29,9 +27,7 @@ export const FavouriteTeamContextProvider: React.FC<{
   };
 
   return (
-    <FavouriteTeamsContext.Provider
-      value={{ favouriteTeams, addFavouriteTeam, removeFavouriteTeam }}
-    >
+    <FavouriteTeamsContext.Provider value={{ favouriteTeams, addFavouriteTeam, removeFavouriteTeam }}>
       {children}
     </FavouriteTeamsContext.Provider>
   );
@@ -40,9 +36,7 @@ export const FavouriteTeamContextProvider: React.FC<{
 export const useFavouriteTeamContext = () => {
   const context = useContext(FavouriteTeamsContext);
   if (!context) {
-    throw new Error(
-      "you cannot use favouriteContext without favouriteProvider"
-    );
+    throw new Error("you cannot use favouriteTeamsContext without favouriteTeamsProvider");
   }
   return context;
 };

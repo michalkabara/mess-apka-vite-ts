@@ -1,4 +1,4 @@
-export type gameType = {
+export type GameType = {
   HomeTeamId: number;
   Date: Date;
   HomeGoals: string;

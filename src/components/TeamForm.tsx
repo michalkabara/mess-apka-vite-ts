@@ -1,13 +1,14 @@
 import { Tooltip } from "react-tooltip";
-import { gameType } from "../types";
+import { GameType } from "../types";
 
 export const TeamForm: React.FC<{
   teamId: number;
-  gamesData: gameType[];
+  gamesData: GameType[];
 }> = ({ teamId, gamesData }) => {
   const games = gamesData
     .filter((game) => game.HomeTeamId === teamId || game.AwayTeamId === teamId)
-    .slice(0, 5);
+    .slice(0, 5)
+    .reverse();
 
   return (
     <div className="flex flex-row gap-1 relative">
@@ -24,18 +25,17 @@ export const TeamForm: React.FC<{
       {games.map((game) => {
         const gameDate = new Date(game.Date);
 
-        const date = `${gameDate.getDate()}.${gameDate.getMonth()}.${gameDate.getFullYear()}`;
+        const date = `${String(gameDate.getDate()).padStart(2, "0")}.${String(gameDate.getMonth()).padStart(
+          2,
+          "0"
+        )}.${gameDate.getFullYear()}`;
 
         if (game.HomeGoals === game.AwayGoals) {
           return (
             <div key={game.MatchId}>
               <div
                 data-tooltip-id="tie-game"
-                data-tooltip-content={`${date} ${
-                  game.HomeTeamId == teamId
-                    ? game.AwayTeamName
-                    : game.HomeTeamName
-                }`}
+                data-tooltip-content={`${date} ${game.HomeTeamId == teamId ? game.AwayTeamName : game.HomeTeamName}`}
                 data-tooltip-place="top"
                 className="rounded-sm bg-orange-500 text-white w-4 text-center relative flex justify-center"
               >
@@ -54,11 +54,7 @@ export const TeamForm: React.FC<{
             <div key={game.MatchId}>
               <div
                 data-tooltip-id="win-game"
-                data-tooltip-content={`${date} ${
-                  game.HomeTeamId == teamId
-                    ? game.AwayTeamName
-                    : game.HomeTeamName
-                }`}
+                data-tooltip-content={`${date} ${game.HomeTeamId == teamId ? game.AwayTeamName : game.HomeTeamName}`}
                 data-tooltip-place="top"
                 className="rounded-sm bg-green-700 text-white w-4 text-center relative flex justify-center"
               >
@@ -78,11 +74,7 @@ export const TeamForm: React.FC<{
             <div key={game.MatchId}>
               <div
                 data-tooltip-id="lost-game"
-                data-tooltip-content={`${date} ${
-                  game.HomeTeamId == teamId
-                    ? game.AwayTeamName
-                    : game.HomeTeamName
-                }`}
+                data-tooltip-content={`${date} ${game.HomeTeamId == teamId ? game.AwayTeamName : game.HomeTeamName}`}
                 data-tooltip-place="top"
                 className="rounded-sm bg-red-700 text-white w-4 text-center relative flex justify-center"
               >

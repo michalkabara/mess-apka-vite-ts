@@ -17,7 +17,7 @@ function App() {
       </nav>
 
       <div className="flex items-center flex-col">
-        <div className="w-full flex flex-row gap-4 mt-1 max-w-[1280px]">
+        <div className="w-full flex flex-row gap-4 mt-1 p-2 max-w-[1280px]">
           <div className="p-2 w-[140px] text-left min-w-[130px]">
             <Sidebar />
           </div>
