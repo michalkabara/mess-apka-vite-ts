@@ -22,7 +22,7 @@ export const LeagueHeader: React.FC<LegueHeaderType> = ({ leagueName, isActive, 
   };
 
   return (
-    <div className="league-name text-center relative flex bg-zinc-700 rounded-md py-2 px-3 items-center justify-between">
+    <div className="league-name text-center relative flex bg-zinc-100 dark:bg-zinc-700 rounded-md py-2 px-3 items-center justify-between">
       <button onClick={() => toggleFavouriteLeague({ name: leagueName })}>
         {favouriteLeagues.some((league: { name: string }) => league.name === leagueName) ? (
           <RiStarSmileFill className=" size-4 text-yellow-500" />

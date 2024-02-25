@@ -11,31 +11,20 @@ export const TeamsGroup: React.FC<{
 }> = ({ isHeaderVisible = true, filterTeam = "" }) => {
   const { isPending, error, data } = useFetchTeams();
 
-  const {
-    isPending: areGamesPending,
-    error: gamesError,
-    data: gamesData,
-  } = useFetchGames();
+  const { isPending: areGamesPending, error: gamesError, data: gamesData } = useFetchGames();
 
   if (isPending || areGamesPending) return <p>Loading...</p>;
 
   if (error || gamesError) return <p>An error has occurred {error?.message}</p>;
 
-  const teamsRenderData = filterTeam
-    ? data.filter((team: TeamType) => team.TeamId === filterTeam)
-    : data;
+  const teamsRenderData = filterTeam ? data.filter((team: TeamType) => team.TeamId === filterTeam) : data;
 
-  const teamPosition =
-    data.findIndex((team: TeamType) => team.TeamId === filterTeam) + 1;
+  const teamPosition = data.findIndex((team: TeamType) => team.TeamId === filterTeam) + 1;
 
   return (
     <>
       <div className="league-name text-center relative flex justify-center px-3">
-        <span
-          className={`text-md font-bold uppercase ${
-            isHeaderVisible ? "visible" : "hidden"
-          } mb-5`}
-        >
+        <span className={`text-md font-bold uppercase ${isHeaderVisible ? "visible" : "hidden"} mb-5`}>
           Liga Okręgowa Tarnów
         </span>
       </div>
@@ -59,15 +48,10 @@ export const TeamsGroup: React.FC<{
         {teamsRenderData.map((team: TeamType, index: number) => (
           <div
             key={team.TeamId}
-            className="flex flex-row gap-3 items-center text-xs  hover:bg-zinc-700 rounded-md py-2 px-2 ease-in-out duration-500 justify-between relative"
+            className="flex flex-row gap-3 items-center text-xs hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-2 px-2 ease-in-out duration-500 justify-between relative"
           >
-            <div className="w-4 flex justify-center">
-              {filterTeam ? teamPosition : index + 1}.
-            </div>
-            <Link
-              to={`/team/${team.TeamId}`}
-              className="flex flex-row items-center gap-3 w-[220px]"
-            >
+            <div className="w-4 flex justify-center">{filterTeam ? teamPosition : index + 1}.</div>
+            <Link to={`/team/${team.TeamId}`} className="flex flex-row items-center gap-3 w-[220px]">
               {team.LogoUrl ? (
                 <img src={team.LogoUrl} alt={team.TeamName} className="w-5" />
               ) : (

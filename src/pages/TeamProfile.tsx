@@ -172,8 +172,10 @@ export const TeamProfile = () => {
                 setSearchParams(`page=${index}`);
               }}
               className={`${
-                selectedTab === index ? "active bg-slate-700" : "bg-zinc-700"
-              } p-3  rounded-lg hover:bg-zinc-900 transition duration-200 text-xs`}
+                selectedTab === index
+                  ? "active bg-cyan-700 dark:bg-slate-700 text-zinc-100"
+                  : "dark:bg-zinc-700 bg-zinc-100"
+              } p-3  rounded-lg hover:bg-zinc-300 hover:text-zinc-700 dark:hover:bg-zinc-900 transition duration-200 text-xs`}
             >
               {button.name}
             </button>
@@ -189,7 +191,7 @@ export const TeamProfile = () => {
             <Link
               to={`/game/${mecz.MatchId}`}
               key={`${mecz.MatchId}-${index}`}
-              className="flex flex-row items-center w-full content-between hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
+              className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
             >
               <SingleGame
                 data={mecz.Date}
@@ -209,7 +211,7 @@ export const TeamProfile = () => {
             <Link
               to={`/game/${mecz.MatchId}`}
               key={`${mecz.MatchId}-${index}`}
-              className="flex flex-row items-center w-full content-between hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
+              className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
             >
               <SingleGame
                 data={mecz.Date}
@@ -229,7 +231,7 @@ export const TeamProfile = () => {
             <Link
               to={`/game/${mecz.MatchId}`}
               key={`${mecz.MatchId}-${index}`}
-              className="flex flex-row items-center w-full content-between hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
+              className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
             >
               <SingleGame
                 data={mecz.Date}

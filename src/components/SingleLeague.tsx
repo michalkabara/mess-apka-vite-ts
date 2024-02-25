@@ -33,7 +33,7 @@ export const SingleLeague: React.FC<{ subLeague: string; index: number }> = ({ s
                   <div key={`${mecz.MatchId}-${index}`} className="flex flex-col items-center">
                     <Link
                       to={`/game/${mecz.MatchId}`}
-                      className="flex flex-row items-center w-full content-between hover:bg-zinc-700 rounded-md py-1 px-3 ease-in-out duration-500 gap-2"
+                      className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-1 px-3 ease-in-out duration-500 gap-2"
                     >
                       <SingleGame
                         data={mecz.Date}
