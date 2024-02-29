@@ -3,7 +3,7 @@ import { fetchData } from "../../clientApi";
 
 export const useFetchTeams = () => {
   return useQuery({
-    queryKey: ["teamData"],
+    queryKey: ["teamDataOld"],
     queryFn: () => fetchData("https://jte-edge.b-cdn.net/teams.json"),
   });
 };

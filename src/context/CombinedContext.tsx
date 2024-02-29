@@ -8,9 +8,7 @@ export const CombinedContext: React.FC<{
   return (
     <>
       <FavouriteTeamContextProvider>
-        <FavouriteLeaguesContextProvider>
-          {children}
-        </FavouriteLeaguesContextProvider>
+        <FavouriteLeaguesContextProvider>{children}</FavouriteLeaguesContextProvider>
       </FavouriteTeamContextProvider>
     </>
   );

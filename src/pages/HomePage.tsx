@@ -1,29 +1,19 @@
 import { SingleLeague } from "../components/SingleLeague";
+import { useFetchLeagues } from "../customHooks/useFetchLeagues";
+import { League } from "../types";
 
-const leagues = [
-  {
-    leagueName: "Okręgowa",
-    subLeagues: [
-      "Kraków I",
-      "Kraków II",
-      "Kraków III",
-      "Nowy Sącz I",
-      "Nowy Sącz II",
-      "Tarnów I",
-      "Tarnów II",
-      "Wadowice",
-    ],
-  },
-];
+export const HomePage: React.FC = () => {
+  const { isPending, error, data } = useFetchLeagues();
 
-export const HomePage = () => {
+  if (isPending) return <p>Loading...</p>;
+
+  if (error) return <p>An error has occurred {error?.message}</p>;
+
   return (
     <>
-      {leagues.map((league) =>
-        league.subLeagues.map((subleague, index) => (
-          <SingleLeague key={subleague} subLeague={subleague} index={index} />
-        ))
-      )}
+      {data.map((league: League, index: number) => (
+        <SingleLeague key={league.id} leagueId={league.id} subLeague={league.name} index={index} />
+      ))}
     </>
   );
 };

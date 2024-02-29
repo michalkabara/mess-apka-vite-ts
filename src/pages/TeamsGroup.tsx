@@ -1,25 +1,25 @@
 import defaultCrest from "../img/crest_default.svg";
 import { Link } from "react-router-dom";
 import { TeamForm } from "../components/TeamForm";
-import { useFetchTeams } from "../customHooks/useFetchTeams";
-import { useFetchGames } from "../customHooks/useFetchGames";
-import { TeamType } from "../types";
+import { Team } from "../types";
+import { useFetchTeamGames } from "../customHooks/useFetchTeamGames";
+import { useFetchLeagueTeams } from "../customHooks/useFetchLeagueTeams";
 
 export const TeamsGroup: React.FC<{
   isHeaderVisible?: boolean;
-  filterTeam?: number | string | null;
-}> = ({ isHeaderVisible = true, filterTeam = "" }) => {
-  const { isPending, error, data } = useFetchTeams();
+  filterTeamId?: string;
+  leagueId: string;
+}> = ({ isHeaderVisible = true, filterTeamId = "", leagueId }) => {
+  const { isPending, error, data } = useFetchLeagueTeams(leagueId);
+  console.log({ leagueId });
 
-  const { isPending: areGamesPending, error: gamesError, data: gamesData } = useFetchGames();
+  const { isPending: areGamesPending, error: gamesError, data: gamesData } = useFetchTeamGames(filterTeamId);
 
   if (isPending || areGamesPending) return <p>Loading...</p>;
 
   if (error || gamesError) return <p>An error has occurred {error?.message}</p>;
 
-  const teamsRenderData = filterTeam ? data.filter((team: TeamType) => team.TeamId === filterTeam) : data;
-
-  const teamPosition = data.findIndex((team: TeamType) => team.TeamId === filterTeam) + 1;
+  const teamPosition = data.findIndex((team: Team) => team.id === filterTeamId) + 1;
 
   return (
     <>
@@ -45,31 +45,35 @@ export const TeamsGroup: React.FC<{
           <div className="w-4 flex justify-center">P</div>
           <div className="w-[116px] text-left">Forma</div>
         </div>
-        {teamsRenderData.map((team: TeamType, index: number) => (
-          <div
-            key={team.TeamId}
-            className="flex flex-row gap-3 items-center text-xs hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-2 px-2 ease-in-out duration-500 justify-between relative"
-          >
-            <div className="w-4 flex justify-center">{filterTeam ? teamPosition : index + 1}.</div>
-            <Link to={`/team/${team.TeamId}`} className="flex flex-row items-center gap-3 w-[220px]">
-              {team.LogoUrl ? (
-                <img src={team.LogoUrl} alt={team.TeamName} className="w-5" />
-              ) : (
-                <img src={defaultCrest} alt="Herb" className="w-5" />
-              )}
-              <p className="text-left">{team.TeamName}</p>
-            </Link>
-            <div className="w-4 flex justify-center">{team.Played}</div>
+        {data.map((team: Team, index: number) => {
+          console.log(`${team.id} team-id`);
+
+          return (
+            <div
+              key={team.id}
+              className="flex flex-row gap-3 items-center text-xs hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-2 px-2 ease-in-out duration-500 justify-between relative"
+            >
+              <div className="w-4 flex justify-center">{filterTeamId ? teamPosition : index + 1}.</div>
+              <Link to={`/team/${team.id}`} className="flex flex-row items-center gap-3 w-[220px]">
+                {team.logoUrl ? (
+                  <img src={team.logoUrl} alt={team.name} className="w-5" />
+                ) : (
+                  <img src={defaultCrest} alt="Herb" className="w-5" />
+                )}
+                <p className="text-left">{team.name}</p>
+              </Link>
+              {/* <div className="w-4 flex justify-center">{team.Played}</div>
             <div className="w-4 flex justify-center">{team.Won}</div>
             <div className="w-4 flex justify-center">{team.Drawn}</div>
             <div className="w-4 flex justify-center">{team.Lost}</div>
             <div className="w-4 flex justify-center">{team.GoalsFor}</div>
             <div className="w-4 flex justify-center">{team.GoalsAgainst}</div>
             <div className="w-4 flex justify-center">{team.GoalDifference}</div>
-            <div className="w-4 flex justify-center">{team.Points}</div>
-            <TeamForm teamId={team.TeamId} gamesData={gamesData} />
-          </div>
-        ))}
+            <div className="w-4 flex justify-center">{team.Points}</div> */}
+              <TeamForm teamId={team.id} />
+            </div>
+          );
+        })}
       </div>
     </>
   );

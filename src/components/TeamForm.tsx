@@ -1,12 +1,19 @@
 import { Tooltip } from "react-tooltip";
-import { GameType } from "../types";
+import { useFetchTeamGames } from "../customHooks/useFetchTeamGames";
 
 export const TeamForm: React.FC<{
-  teamId: number;
-  gamesData: GameType[];
-}> = ({ teamId, gamesData }) => {
-  const games = gamesData
-    .filter((game) => game.HomeTeamId === teamId || game.AwayTeamId === teamId)
+  teamId: string;
+}> = ({ teamId }) => {
+  const { isPending, error, data } = useFetchTeamGames(teamId);
+
+  if (isPending) return <p>Loading...</p>;
+
+  if (error) return <p>An error has occurred {error?.message}</p>;
+
+  console.log({ teamId });
+
+  const games = data
+    ?.filter((game) => game.homeTeamId === teamId || game.awayTeamId === teamId)
     .slice(0, 5)
     .reverse();
 
@@ -23,19 +30,21 @@ export const TeamForm: React.FC<{
       </div>
 
       {games.map((game) => {
-        const gameDate = new Date(game.Date);
+        const gameDate = new Date(game.date ?? 0);
 
         const date = `${String(gameDate.getDate()).padStart(2, "0")}.${String(gameDate.getMonth()).padStart(
           2,
           "0"
         )}.${gameDate.getFullYear()}`;
 
-        if (game.HomeGoals === game.AwayGoals) {
+        if (game.homeGoals === game.awayGoals) {
           return (
-            <div key={game.MatchId}>
+            <div key={`${game.id}-tie`}>
               <div
                 data-tooltip-id="tie-game"
-                data-tooltip-content={`${date} ${game.HomeTeamId == teamId ? game.AwayTeamName : game.HomeTeamName}`}
+                data-tooltip-content={`${date} ${
+                  game.homeTeamId == teamId ? game.awayTeam?.name : game.homeTeam?.name
+                }`}
                 data-tooltip-place="top"
                 className="rounded-sm bg-orange-500 text-white w-4 text-center relative flex justify-center"
               >
@@ -47,14 +56,16 @@ export const TeamForm: React.FC<{
         }
 
         if (
-          (game.HomeTeamId === teamId && game.HomeGoals > game.AwayGoals) ||
-          (game.AwayTeamId === teamId && game.HomeGoals < game.AwayGoals)
+          (game.homeTeamId === teamId && game.homeGoals! > game.awayGoals!) ||
+          (game.awayTeamId === teamId && game.homeGoals! < game.awayGoals!)
         ) {
           return (
-            <div key={game.MatchId}>
+            <div key={`${game.id}-win`}>
               <div
                 data-tooltip-id="win-game"
-                data-tooltip-content={`${date} ${game.HomeTeamId == teamId ? game.AwayTeamName : game.HomeTeamName}`}
+                data-tooltip-content={`${date} ${
+                  game.homeTeamId == teamId ? game.awayTeam?.name : game.homeTeam?.name
+                }`}
                 data-tooltip-place="top"
                 className="rounded-sm bg-green-700 text-white w-4 text-center relative flex justify-center"
               >
@@ -67,14 +78,16 @@ export const TeamForm: React.FC<{
         }
 
         if (
-          (game.HomeTeamId === teamId && game.HomeGoals < game.AwayGoals) ||
-          (game.AwayTeamId === teamId && game.HomeGoals > game.AwayGoals)
+          (game.homeTeamId === teamId && game.homeGoals! < game.awayGoals!) ||
+          (game.awayTeamId === teamId && game.homeGoals! > game.awayGoals!)
         ) {
           return (
-            <div key={game.MatchId}>
+            <div key={`${game.id}-lose`}>
               <div
                 data-tooltip-id="lost-game"
-                data-tooltip-content={`${date} ${game.HomeTeamId == teamId ? game.AwayTeamName : game.HomeTeamName}`}
+                data-tooltip-content={`${date} ${
+                  game.homeTeamId == teamId ? game.awayTeam?.name : game.homeTeam?.name
+                }`}
                 data-tooltip-place="top"
                 className="rounded-sm bg-red-700 text-white w-4 text-center relative flex justify-center"
               >

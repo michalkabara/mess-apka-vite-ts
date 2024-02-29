@@ -1,15 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchData } from "../../clientApi";
 import { groupBy } from "remeda";
-import { gameType } from "../types";
+import { GameType } from "../types";
 
 export const useFetchGamesGroupedByPeriod = () => {
   return useQuery({
-    queryKey: ["repoData"],
-    queryFn: () => fetchData("https://jte-edge.b-cdn.net/matches2.json"),
+    queryKey: ["gamesGroupedByPeriodsData"],
+    queryFn: () => fetchData("https://api-beta.trybuna.tv/api/League"),
     select: (data) => {
       data.reverse();
-      const groupedData = groupBy(data, (item: gameType) => item.Period);
+      const groupedData = groupBy(data, (item: GameType) => item.Period);
       return groupedData;
     },
   });

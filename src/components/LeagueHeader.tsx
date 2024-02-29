@@ -32,7 +32,7 @@ export const LeagueHeader: React.FC<LegueHeaderType> = ({ leagueName, isActive, 
       </button>
 
       <Link to="/teams">
-        <span className="text-xs uppercase hover:underline">Liga Okręgowa {leagueName}</span>
+        <span className="text-xs uppercase hover:underline">{leagueName}</span>
       </Link>
 
       <IoIosArrowDown

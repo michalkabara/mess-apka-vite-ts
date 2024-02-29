@@ -24,7 +24,7 @@ export const Header: React.FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevSta
       />
 
       <div className="flex flex-row gap-2">
-        <button className="flex flex-row gap-2 items-center bg-zinc-200 dark:bg-zinc-700 py-2 px-3 rounded-lg">
+        <button className="flex flex-row gap-2 items-center  bg-[#ed4535] py-2 px-3 rounded-lg text-zinc-100">
           <span className="text-sm">Login</span>
           <RiUser3Line className="size-4" />
         </button>

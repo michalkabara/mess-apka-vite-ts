@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { TeamProfileDetails } from "../components/TeamProfilesDetails";
 import { TeamsGroup } from "./TeamsGroup";
-import { useFetchTeams } from "../customHooks/useFetchTeams";
-import { useFetchGames } from "../customHooks/useFetchGames";
-import { GameType } from "../types";
+import { useFetchTeamData } from "../customHooks/useFetchTeamData";
+import { useFetchTeamGames } from "../customHooks/useFetchTeamGames";
+import { Game } from "../types";
 import { TeamPlayers } from "../components/TeamPlayers";
+import { SingleTab } from "../components/ui/SingleTab";
 
 const tabs: { name: string }[] = [
   { name: "Wyniki" },
@@ -119,13 +120,11 @@ const exampleTeam = [
   },
 ];
 
-export const TeamProfile = () => {
+export const TeamProfile: React.FC = () => {
   const { teamId } = useParams();
   const [selectedTab, setSelecteTab] = useState<number | null>(0);
 
   let [searchParams, setSearchParams] = useSearchParams();
-
-  const { isPending, error, data } = useFetchTeams();
 
   useEffect(() => {
     const currentPage = searchParams?.get("page");
@@ -133,114 +132,99 @@ export const TeamProfile = () => {
     setSelecteTab(parseInt(currentPage));
   }, []);
 
-  const { isPending: areGamesPending, error: gamesError, data: gamesData } = useFetchGames();
+  const { isPending, error, data } = useFetchTeamData(teamId);
+
+  const { isPending: areGamesPending, error: gamesError, data: gamesData } = useFetchTeamGames(teamId);
 
   if (isPending || areGamesPending) return <p>Loading...</p>;
 
   if (error || gamesError) return <p>An error has occurred {error?.message}</p>;
 
-  const teamData = data.find((team: { TeamId: string }) => team.TeamId === teamId);
-  const teamName = teamData.TeamName;
+  console.log(data?.currentLeague);
 
-  const teamGames = gamesData.filter(
-    (game: { HomeTeamName: string; AwayTeamName: string }) =>
-      game.HomeTeamName === teamName || game.AwayTeamName === teamName
-  );
+  const homeGames = gamesData?.filter((game: Game) => game.homeTeam?.name === data.name);
 
-  const homeGames = gamesData.filter((game: GameType) => game.HomeTeamName === teamName);
-  const awayGames = gamesData.filter((game: GameType) => game.AwayTeamName === teamName);
+  const awayGames = gamesData?.filter((game: Game) => game.awayTeam?.name === data.name);
 
-  const selectTab = (selectedIndex: number) => {
-    setSelecteTab(selectedIndex);
+  const selectTabAndChangeUrl = (index: number) => {
+    setSelecteTab(index);
+    setSearchParams(`page=${index}`);
   };
 
   return (
     <>
-      <TeamProfileDetails teamLogo={teamData?.LogoUrl} teamName={teamData?.TeamName} teamId={teamData?.TeamId} />
+      <TeamProfileDetails teamLogo={data?.logoUrl} teamName={data?.name} teamId={data?.id} />
 
       <div className="mt-5">
-        <TeamsGroup isHeaderVisible={false} filterTeam={teamId} />
+        <TeamsGroup isHeaderVisible={false} filterTeamId={teamId} leagueId={data.currentLeague} />
       </div>
 
       <div className="tabs">
         <div className="flex flex-row gap-3 mt-5">
           {tabs.map((button, index) => (
-            <button
+            <SingleTab
               key={`tab-${index}`}
-              onClick={() => {
-                selectTab(index);
-                setSearchParams(`page=${index}`);
-              }}
-              className={`${
-                selectedTab === index
-                  ? "active bg-cyan-700 dark:bg-slate-700 text-zinc-100"
-                  : "dark:bg-zinc-700 bg-zinc-100"
-              } p-3  rounded-lg hover:bg-zinc-300 hover:text-zinc-700 dark:hover:text-zinc-100 dark:hover:bg-zinc-900 transition duration-200 text-xs`}
-            >
-              {button.name}
-            </button>
+              button={button}
+              index={index}
+              selectTabAndChangeUrl={selectTabAndChangeUrl}
+              selectedTab={selectedTab}
+            />
           ))}
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 1 ? "flex" : "hidden"}`}>
-          <TeamsGroup isHeaderVisible={false} />
+          <TeamsGroup isHeaderVisible={false} leagueId={data.currentLeague} />
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 0 ? "flex" : "hidden"}`}>
-          {teamGames?.reverse().map((mecz: GameType, index: number) => (
+          {gamesData?.reverse().map((mecz: Game, index: number) => (
             <Link
-              to={`/game/${mecz.MatchId}`}
-              key={`${mecz.MatchId}-${index}`}
+              to={`/game/${mecz.id}`}
+              key={`${mecz.id}-${index}`}
               className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
             >
               <SingleGame
-                data={mecz.Date}
-                homeTeam={mecz.HomeTeamName}
-                homeTeamLogo={mecz.HomeTeamLogoUrl}
-                awayTeam={mecz.AwayTeamName}
-                awayTeamLogo={mecz.AwayTeamLogoUrl}
-                homeGoals={mecz.HomeGoals}
-                awayGoals={mecz.AwayGoals}
+                date={mecz.date}
+                homeTeam={mecz.homeTeam}
+                awayTeam={mecz.awayTeam}
+                homeGoals={mecz.homeGoals}
+                awayGoals={mecz.awayGoals}
               />
             </Link>
           ))}
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 2 ? "flex" : "hidden"}`}>
-          {homeGames?.map((mecz: GameType, index: number) => (
+          {homeGames?.map((game: Game, index: number) => (
             <Link
-              to={`/game/${mecz.MatchId}`}
-              key={`${mecz.MatchId}-${index}`}
+              to={`/game/${game.id}`}
+              key={`${game.id}-${index}`}
               className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
             >
               <SingleGame
-                data={mecz.Date}
-                homeTeam={mecz.HomeTeamName}
-                homeTeamLogo={mecz.HomeTeamLogoUrl}
-                awayTeam={mecz.AwayTeamName}
-                awayTeamLogo={mecz.AwayTeamLogoUrl}
-                homeGoals={mecz.HomeGoals}
-                awayGoals={mecz.AwayGoals}
+                date={game.date}
+                homeTeam={game.homeTeam}
+                awayTeam={game.awayTeam}
+                homeGoals={game.homeGoals}
+                awayGoals={game.awayGoals}
               />
             </Link>
           ))}
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 3 ? "flex" : "hidden"}`}>
-          {awayGames?.map((mecz: GameType, index: number) => (
+          {awayGames?.map((game: Game, index: number) => (
             <Link
-              to={`/game/${mecz.MatchId}`}
-              key={`${mecz.MatchId}-${index}`}
+              to={`/game/${game.id}`}
+              key={`${game.id}-${index}`}
               className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
             >
               <SingleGame
-                data={mecz.Date}
-                homeTeam={mecz.HomeTeamName}
-                homeTeamLogo={mecz.HomeTeamLogoUrl}
-                awayTeam={mecz.AwayTeamName}
-                awayTeamLogo={mecz.AwayTeamLogoUrl}
-                homeGoals={mecz.HomeGoals}
-                awayGoals={mecz.AwayGoals}
+                date={game.date}
+                homeTeam={game.homeTeam}
+                awayTeam={game.awayTeam}
+                homeGoals={game.homeGoals}
+                awayGoals={game.awayGoals}
               />
             </Link>
           ))}

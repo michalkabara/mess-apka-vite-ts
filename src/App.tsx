@@ -5,10 +5,18 @@ import { Header } from "./components/Header";
 import { Sidebar } from "./components/Sidebar";
 import { FeaturedGame } from "./components/FeaturedGame";
 import { Outlet } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [isDarkModeOn, setIsDarkModeOn] = useState(false);
+
+  useEffect(() => {
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    if (prefersDark) {
+      setIsDarkModeOn(true);
+    }
+  }, []);
 
   return (
     <div className={`${isDarkModeOn ? "dark" : "bg-zinc-100"} m-auto  dark:bg-zinc-900 relative `}>

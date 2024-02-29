@@ -1,13 +1,17 @@
 import { LeagueHeader } from "./LeagueHeader";
 import { SingleGame } from "./SingleGame";
 import { Link } from "react-router-dom";
-import { useFetchGamesGroupedByPeriod } from "../customHooks/useFetchGamesGroupedByPeriods";
 import { useState } from "react";
+import { useFetchLeagueGames } from "../customHooks/useFetchLeagueGames";
 
-export const SingleLeague: React.FC<{ subLeague: string; index: number }> = ({ subLeague, index }) => {
+export const SingleLeague: React.FC<{ leagueId: string; subLeague: string; index: number }> = ({
+  leagueId,
+  subLeague,
+  index,
+}) => {
   const [isActive, setIsActive] = useState(true);
 
-  const { isPending, error, data } = useFetchGamesGroupedByPeriod();
+  const { isPending, error, data } = useFetchLeagueGames(leagueId);
 
   if (isPending) return <p>Loading...</p>;
 
@@ -22,34 +26,22 @@ export const SingleLeague: React.FC<{ subLeague: string; index: number }> = ({ s
       <LeagueHeader leagueName={subLeague} isActive={isActive} toggleSection={handleToggleSection} />
 
       <div data-section-name={index} className={`mecze mt-2 gap-2 flex flex-col text-xs ${!isActive && "hidden"}`}>
-        {Object.keys(data)
-          .reverse()
-          .slice(0, 1)
-          .map((period) => {
-            return (
-              <div key={period} className="flex flex-col gap-1">
-                <div className="text-center">Kolejka {period}</div>
-                {data[period].reverse().map((mecz: any, index: number) => (
-                  <div key={`${mecz.MatchId}-${index}`} className="flex flex-col items-center">
-                    <Link
-                      to={`/game/${mecz.MatchId}`}
-                      className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-1 px-3 ease-in-out duration-500 gap-2"
-                    >
-                      <SingleGame
-                        data={mecz.Date}
-                        homeTeam={mecz.HomeTeamName}
-                        homeTeamLogo={mecz.HomeTeamLogoUrl}
-                        awayTeam={mecz.AwayTeamName}
-                        awayTeamLogo={mecz.AwayTeamLogoUrl}
-                        homeGoals={mecz.HomeGoals}
-                        awayGoals={mecz.AwayGoals}
-                      />
-                    </Link>
-                  </div>
-                ))}
-              </div>
-            );
-          })}
+        {data.map((game) => (
+          <div key={game.id} className="flex flex-col items-center">
+            <Link
+              to={`/game/${game.id}`}
+              className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-1 px-3 ease-in-out duration-500 gap-2"
+            >
+              <SingleGame
+                date={game.date}
+                homeTeam={game.homeTeam}
+                awayTeam={game.awayTeam}
+                homeGoals={game.homeGoals}
+                awayGoals={game.awayGoals}
+              />
+            </Link>
+          </div>
+        ))}
       </div>
     </div>
   );
