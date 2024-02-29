@@ -21,6 +21,8 @@ export const TeamsGroup: React.FC<{
 
   const teamPosition = data.findIndex((team: Team) => team.id === filterTeamId) + 1;
 
+  const teamsRenderData = filterTeamId ? data.filter((team: Team) => team.id === filterTeamId) : data;
+
   return (
     <>
       <div className="league-name text-center relative flex justify-center px-3">
@@ -45,7 +47,7 @@ export const TeamsGroup: React.FC<{
           <div className="w-4 flex justify-center">P</div>
           <div className="w-[116px] text-left">Forma</div>
         </div>
-        {data.map((team: Team, index: number) => {
+        {teamsRenderData.map((team: Team, index: number) => {
           console.log(`${team.id} team-id`);
 
           return (
