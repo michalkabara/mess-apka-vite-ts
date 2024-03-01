@@ -3,6 +3,7 @@ import { createContext, useContext, useState } from "react";
 //types
 export type FavouriteLeague = {
   name: string;
+  id?: string;
 };
 
 export type FavouriteLeaguesContextType = {

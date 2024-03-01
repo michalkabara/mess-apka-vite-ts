@@ -6,24 +6,18 @@ import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { TeamProfile } from "./pages/TeamProfile";
 import { HomePage } from "./pages/HomePage";
-import { TeamsGroup } from "./pages/TeamsGroup";
+import { LeagueProfile } from "./pages/LeagueProfile";
 import { GameDetails } from "./pages/GameDetails";
+import { CombinedContext } from "./context/CombinedContext";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
 
-// import { FavouriteTeamContextProvider } from "./context/FavouriteTeamsContext";
-import { CombinedContext } from "./context/CombinedContext";
-
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <QueryClientProvider client={queryClient}>
-        <App />
-      </QueryClientProvider>
-    ),
+    element: <App />,
     errorElement: <p>error</p>,
     children: [
       {
@@ -35,8 +29,8 @@ const router = createBrowserRouter([
         element: <GameDetails />,
       },
       {
-        path: "/teams",
-        element: <TeamsGroup />,
+        path: "/league/:leagueId",
+        element: <LeagueProfile />,
       },
       {
         path: "/team/:teamId",
@@ -49,8 +43,10 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
   <React.StrictMode>
-    <CombinedContext>
-      <RouterProvider router={router} />
-    </CombinedContext>
+    <QueryClientProvider client={queryClient}>
+      <CombinedContext>
+        <RouterProvider router={router} />
+      </CombinedContext>
+    </QueryClientProvider>
   </React.StrictMode>
 );

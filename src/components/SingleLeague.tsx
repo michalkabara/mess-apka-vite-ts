@@ -23,7 +23,13 @@ export const SingleLeague: React.FC<{ leagueId: string; subLeague: string; index
 
   return (
     <div className="flex flex-col mb-2 gap-2">
-      <LeagueHeader leagueName={subLeague} isActive={isActive} toggleSection={handleToggleSection} />
+      <LeagueHeader
+        leagueName={subLeague}
+        isActive={isActive}
+        leagueId={leagueId}
+        isLinkEnabled={true}
+        toggleSection={handleToggleSection}
+      />
 
       <div data-section-name={index} className={`mecze mt-2 gap-2 flex flex-col text-xs ${!isActive && "hidden"}`}>
         {data.map((game) => (

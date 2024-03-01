@@ -3,12 +3,13 @@ import { SingleGame } from "../components/SingleGame";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { TeamProfileDetails } from "../components/TeamProfilesDetails";
-import { TeamsGroup } from "./TeamsGroup";
+import { LeagueProfile } from "./LeagueProfile";
 import { useFetchTeamData } from "../customHooks/useFetchTeamData";
 import { useFetchTeamGames } from "../customHooks/useFetchTeamGames";
 import { Game } from "../types";
 import { TeamPlayers } from "../components/TeamPlayers";
 import { SingleTab } from "../components/ui/SingleTab";
+import { TeamGroupPosition } from "../components/TeamGroupPosition";
 
 const tabs: { name: string }[] = [
   { name: "Wyniki" },
@@ -140,8 +141,6 @@ export const TeamProfile: React.FC = () => {
 
   if (error || gamesError) return <p>An error has occurred {error?.message}</p>;
 
-  console.log(data?.currentLeague);
-
   const homeGames = gamesData?.filter((game: Game) => game.homeTeam?.name === data.name);
 
   const awayGames = gamesData?.filter((game: Game) => game.awayTeam?.name === data.name);
@@ -151,12 +150,14 @@ export const TeamProfile: React.FC = () => {
     setSearchParams(`page=${index}`);
   };
 
+  console.log(`current lealgue ${data.currentLeague}`);
+
   return (
     <>
       <TeamProfileDetails teamLogo={data?.logoUrl} teamName={data?.name} teamId={data?.id} />
 
       <div className="mt-5">
-        <TeamsGroup isHeaderVisible={false} filterTeamId={teamId} leagueId={data.currentLeague} />
+        <TeamGroupPosition filterTeamId={data.id} leagueId={data.currentLeague} />
       </div>
 
       <div className="tabs">
@@ -173,7 +174,7 @@ export const TeamProfile: React.FC = () => {
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 1 ? "flex" : "hidden"}`}>
-          <TeamsGroup isHeaderVisible={false} leagueId={data.currentLeague} />
+          <LeagueProfile leagueId={data.currentLeague} />
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 0 ? "flex" : "hidden"}`}>

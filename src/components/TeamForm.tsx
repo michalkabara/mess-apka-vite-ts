@@ -2,15 +2,13 @@ import { Tooltip } from "react-tooltip";
 import { useFetchTeamGames } from "../customHooks/useFetchTeamGames";
 
 export const TeamForm: React.FC<{
-  teamId: string;
+  teamId?: string;
 }> = ({ teamId }) => {
   const { isPending, error, data } = useFetchTeamGames(teamId);
 
   if (isPending) return <p>Loading...</p>;
 
   if (error) return <p>An error has occurred {error?.message}</p>;
-
-  console.log({ teamId });
 
   const games = data
     ?.filter((game) => game.homeTeamId === teamId || game.awayTeamId === teamId)

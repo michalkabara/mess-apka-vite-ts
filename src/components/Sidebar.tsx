@@ -17,9 +17,9 @@ export const Sidebar = () => {
         </div>
 
         <div className="flex flex-col gap-2 text-xs">
-          {favouriteLeagues.map((favLeague: { name: string }) => (
+          {favouriteLeagues.map((favLeague: { name: string; id?: string }) => (
             <div key={favLeague.name} className="flex flex-row gap-2 items-center text-xs justify-between">
-              <Link to={`/league/${favLeague.name}`} className="truncate">
+              <Link to={`/league/${favLeague.id}`} className="truncate">
                 {favLeague.name}
               </Link>
 

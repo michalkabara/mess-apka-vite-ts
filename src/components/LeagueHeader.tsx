@@ -6,14 +6,24 @@ import { Link } from "react-router-dom";
 type LegueHeaderType = {
   leagueName: string;
   subLeagues?: string[];
-  isActive: boolean;
-  toggleSection: () => void;
+  isActive?: boolean;
+  toggleSection?: () => void;
+  leagueId?: string;
+  isLinkEnabled?: boolean;
+  hideArrow?: boolean;
 };
 
-export const LeagueHeader: React.FC<LegueHeaderType> = ({ leagueName, isActive, toggleSection }) => {
+export const LeagueHeader: React.FC<LegueHeaderType> = ({
+  leagueName,
+  isActive,
+  toggleSection,
+  leagueId,
+  isLinkEnabled,
+  hideArrow,
+}) => {
   const { favouriteLeagues, removeFavouriteLeague, addFavouriteLeague } = useFavouriteLeaguesContext();
 
-  const toggleFavouriteLeague = (league: { name: string }) => {
+  const toggleFavouriteLeague = (league: { name: string; id?: string | undefined }) => {
     if (favouriteLeagues.some((league: { name: string }) => league.name === leagueName)) {
       removeFavouriteLeague(league.name);
     } else {
@@ -22,7 +32,11 @@ export const LeagueHeader: React.FC<LegueHeaderType> = ({ leagueName, isActive, 
   };
 
   return (
-    <div className="league-name text-center relative flex bg-zinc-100 dark:bg-zinc-700 rounded-md py-2 px-3 items-center justify-between">
+    <div
+      className={`league-name text-center relative flex bg-zinc-100 ${
+        hideArrow ? "dark:bg-transparent bg-transparent" : "bg-zinc-100 dark:bg-zinc-700"
+      } rounded-md py-2 px-3 items-center justify-center ${hideArrow ? "gap-3" : "justify-between"} w-full`}
+    >
       <button onClick={() => toggleFavouriteLeague({ name: leagueName })}>
         {favouriteLeagues.some((league: { name: string }) => league.name === leagueName) ? (
           <RiStarSmileFill className=" size-4 text-yellow-500" />
@@ -31,14 +45,22 @@ export const LeagueHeader: React.FC<LegueHeaderType> = ({ leagueName, isActive, 
         )}
       </button>
 
-      <Link to="/teams">
-        <span className="text-xs uppercase hover:underline">{leagueName}</span>
-      </Link>
+      {isLinkEnabled ? (
+        <Link to={`/league/${leagueId}`}>
+          <span className="text-xs uppercase hover:underline">{leagueName}</span>
+        </Link>
+      ) : (
+        <p className="text-xs uppercase">{leagueName}</p>
+      )}
 
-      <IoIosArrowDown
-        className={`w-6 toggle-button cursor-pointer ease-in-out duration-500 transition-all ${isActive && "rotate"}`}
-        onClick={toggleSection}
-      />
+      {hideArrow ? (
+        <div></div>
+      ) : (
+        <IoIosArrowDown
+          className={`w-6 toggle-button cursor-pointer ease-in-out duration-500 transition-all ${isActive && "rotate"}`}
+          onClick={toggleSection}
+        />
+      )}
     </div>
   );
 };
