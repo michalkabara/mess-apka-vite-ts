@@ -2,7 +2,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useFetchSingleGame } from "../customHooks/useFetchSIngleGame";
 import { SingleTab } from "../components/ui/SingleTab";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export const GameDetails: React.FC = () => {
   const { gameId } = useParams();
@@ -11,12 +11,6 @@ export const GameDetails: React.FC = () => {
 
   let [searchParams, setSearchParams] = useSearchParams();
   const [selectedTab, setSelecteTab] = useState<number | null>(parseInt(searchParams?.get("page") ?? "0"));
-
-  // useEffect(() => {
-  //   const currentPage = searchParams?.get("page");
-  //   if (!currentPage) return;
-  //   setSelecteTab(parseInt(currentPage));
-  // }, []);
 
   if (isPending) return <p>Loading...</p>;
 
@@ -49,7 +43,7 @@ export const GameDetails: React.FC = () => {
       <div className="grid grid-cols-3 mt-7 items-start">
         <Link to={`/team/${data.homeTeam?.id}`}>
           <div className="flex flex-col text-center text-xs gap-3 items-center">
-            <img src={data.homeTeam?.logoUrl} alt={data.homeTeam?.name} className="w-28" />
+            <img src={data.homeTeam?.logoUrl} alt={data.homeTeam?.name} className="w-28 rounded-md p-1 bg-white" />
             <p>{data.homeTeam?.name}</p>
           </div>
         </Link>
@@ -60,7 +54,7 @@ export const GameDetails: React.FC = () => {
 
         <Link to={`/team/${data.awayTeam?.id}`}>
           <div className="flex flex-col text-center text-xs gap-3 items-center">
-            <img src={data.awayTeam?.logoUrl} alt={data.awayTeam?.name} className="w-28" />
+            <img src={data.awayTeam?.logoUrl} alt={data.awayTeam?.name} className="w-28 rounded-md p-1 bg-white" />
             <p>{data.awayTeam?.name}</p>
           </div>
         </Link>

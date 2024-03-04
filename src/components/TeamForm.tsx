@@ -10,15 +10,12 @@ export const TeamForm: React.FC<{
 
   if (error) return <p>An error has occurred {error?.message}</p>;
 
-  const games = data
-    ?.filter((game) => game.homeTeamId === teamId || game.awayTeamId === teamId)
-    .slice(0, 5)
-    .reverse();
+  const games = data?.filter((game) => game.homeTeamId === teamId || game.awayTeamId === teamId).slice(0, 5);
 
   return (
     <div className="flex flex-row gap-1 relative">
       <div
-        className="rounded-sm bg-gray-400 text-white w-4 text-center"
+        className="rounded-sm bg-gray-400 text-white size-4 text-center leading-tight cursor-default"
         data-tooltip-id="TBA"
         data-tooltip-content="TBA"
         data-tooltip-place="top"
@@ -44,7 +41,7 @@ export const TeamForm: React.FC<{
                   game.homeTeamId == teamId ? game.awayTeam?.name : game.homeTeam?.name
                 }`}
                 data-tooltip-place="top"
-                className="rounded-sm bg-orange-500 text-white w-4 text-center relative flex justify-center"
+                className="rounded-sm bg-orange-500 text-white size-4 text-center relative flex justify-center cursor-default leading-tight"
               >
                 R
               </div>
@@ -65,7 +62,7 @@ export const TeamForm: React.FC<{
                   game.homeTeamId == teamId ? game.awayTeam?.name : game.homeTeam?.name
                 }`}
                 data-tooltip-place="top"
-                className="rounded-sm bg-green-700 text-white w-4 text-center relative flex justify-center"
+                className="rounded-sm bg-green-700 text-white size-4 text-center relative flex justify-center cursor-default leading-tight"
               >
                 W
               </div>
@@ -87,7 +84,7 @@ export const TeamForm: React.FC<{
                   game.homeTeamId == teamId ? game.awayTeam?.name : game.homeTeam?.name
                 }`}
                 data-tooltip-place="top"
-                className="rounded-sm bg-red-700 text-white w-4 text-center relative flex justify-center"
+                className="rounded-sm bg-red-700 text-white size-4 text-center relative flex justify-center cursor-default leading-tight"
               >
                 P
               </div>

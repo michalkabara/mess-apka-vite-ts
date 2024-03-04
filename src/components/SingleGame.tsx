@@ -7,25 +7,28 @@ export const SingleGame: React.FC<Game> = ({ date, homeTeam, awayTeam, homeGoals
   return (
     <>
       <div className="w-[150px] text-left" id="time-container">
-        {`${gameDate.getDate()}.${gameDate.getMonth()}.${gameDate.getFullYear()} ${gameDate.getHours()}:${
+        {`${String(gameDate.getDate()).padStart(2, "0")}.${String(gameDate.getMonth()).padStart(
+          2,
+          "0"
+        )}.${gameDate.getFullYear()} - ${gameDate.getHours()}:${
           gameDate.getUTCMinutes() == 0 ? "00" : gameDate.getUTCMinutes()
         }`}
       </div>
       <div className="text-left w-full" id="teams-container">
         <div className="flex flex-row gap-2 content-start items-center" id="team1-container">
           {homeTeam?.logoUrl ? (
-            <img src={homeTeam.logoUrl} alt={homeTeam.name} className="w-5" />
+            <img src={homeTeam.logoUrl} alt={homeTeam.name} className="w-5 rounded-sm p-[1px] bg-white" />
           ) : (
-            <img src={defaultCrest} alt="Herb" className="w-5" />
+            <img src={defaultCrest} alt="Herb" className="w-5 rounded-sm p-[1px]  bg-white" />
           )}
 
           {homeTeam?.name}
         </div>
         <div className="mt-2 flex flex-row gap-2 item-center" id="team2-container">
           {awayTeam?.logoUrl ? (
-            <img src={awayTeam.logoUrl} alt={awayTeam.name} className="w-5" />
+            <img src={awayTeam.logoUrl} alt={awayTeam.name} className="w-5 rounded-sm p-[1px]  bg-white" />
           ) : (
-            <img src={defaultCrest} alt="Herb" className="w-5" />
+            <img src={defaultCrest} alt="Herb" className="w-5 rounded-sm p-[1px] bg-white" />
           )}
           {awayTeam?.name}
         </div>

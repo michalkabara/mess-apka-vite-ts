@@ -10,6 +10,9 @@ import { Game } from "../types";
 import { TeamPlayers } from "../components/TeamPlayers";
 import { SingleTab } from "../components/ui/SingleTab";
 import { TeamGroupPosition } from "../components/TeamGroupPosition";
+import { HomeGames } from "../components/HomeGames";
+import { AwayGames } from "../components/AwayGames";
+import { UpcomingGames } from "../components/UpcomingGames";
 
 const tabs: { name: string }[] = [
   { name: "Wyniki" },
@@ -145,19 +148,24 @@ export const TeamProfile: React.FC = () => {
 
   const awayGames = gamesData?.filter((game: Game) => game.awayTeam?.name === data.name);
 
+  const upcomingGames = gamesData?.filter((game: Game) => game.isFinished === false);
+
   const selectTabAndChangeUrl = (index: number) => {
     setSelecteTab(index);
     setSearchParams(`page=${index}`);
   };
 
-  console.log(`current lealgue ${data.currentLeague}`);
-
   return (
     <>
-      <TeamProfileDetails teamLogo={data?.logoUrl} teamName={data?.name} teamId={data?.id} />
+      <TeamProfileDetails
+        teamLogo={data?.logoUrl}
+        teamName={data?.name}
+        teamId={data?.id}
+        currentLeague={data.currentLeague}
+      />
 
       <div className="mt-5">
-        <TeamGroupPosition filterTeamId={data.id} leagueId={data.currentLeague} />
+        <TeamGroupPosition filterTeamId={data.id} leagueId={data?.currentLeague} />
       </div>
 
       <div className="tabs">
@@ -196,43 +204,19 @@ export const TeamProfile: React.FC = () => {
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 2 ? "flex" : "hidden"}`}>
-          {homeGames?.map((game: Game, index: number) => (
-            <Link
-              to={`/game/${game.id}`}
-              key={`${game.id}-${index}`}
-              className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
-            >
-              <SingleGame
-                date={game.date}
-                homeTeam={game.homeTeam}
-                awayTeam={game.awayTeam}
-                homeGoals={game.homeGoals}
-                awayGoals={game.awayGoals}
-              />
-            </Link>
-          ))}
+          <HomeGames homeGames={homeGames} />
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 3 ? "flex" : "hidden"}`}>
-          {awayGames?.map((game: Game, index: number) => (
-            <Link
-              to={`/game/${game.id}`}
-              key={`${game.id}-${index}`}
-              className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
-            >
-              <SingleGame
-                date={game.date}
-                homeTeam={game.homeTeam}
-                awayTeam={game.awayTeam}
-                homeGoals={game.homeGoals}
-                awayGoals={game.awayGoals}
-              />
-            </Link>
-          ))}
+          <AwayGames awayGames={awayGames} />
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 5 ? "flex" : "hidden"}`}>
           <TeamPlayers team={exampleTeam} />
+        </div>
+
+        <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 6 ? "flex" : "hidden"}`}>
+          <UpcomingGames upcomingGames={upcomingGames} />
         </div>
       </div>
     </>

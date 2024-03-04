@@ -31,12 +31,12 @@ export const SingleLeague: React.FC<{ leagueId: string; subLeague: string; index
         toggleSection={handleToggleSection}
       />
 
-      <div data-section-name={index} className={`mecze mt-2 gap-2 flex flex-col text-xs ${!isActive && "hidden"}`}>
+      <div data-section-name={index} className={`mecze mt-2 gap-1 flex flex-col text-xs ${!isActive && "hidden"}`}>
         {data.map((game) => (
           <div key={game.id} className="flex flex-col items-center">
             <Link
               to={`/game/${game.id}`}
-              className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-1 px-3 ease-in-out duration-500 gap-2"
+              className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-[5px] px-4 ease-in-out duration-500 gap-2"
             >
               <SingleGame
                 date={game.date}

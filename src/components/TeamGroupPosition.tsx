@@ -30,14 +30,17 @@ export const TeamGroupPosition: React.FC<{
         >
           <div className="w-4 flex justify-center">#</div>
           <div className="w-[220px] text-left">Drużyna</div>
-          <div className="w-4 flex justify-center">M</div>
-          <div className="rounded-full bg-green-700 text-white w-4">W</div>
-          <div className="rounded-full bg-orange-500 text-white w-4">R</div>
-          <div className="rounded-full bg-red-700 text-white w-4">P</div>
-          <div className="w-4 flex justify-center">GF</div>
-          <div className="w-4 flex justify-center">GA</div>
-          <div className="w-4 flex justify-center">GD</div>
-          <div className="w-4 flex justify-center">P</div>
+          <div className="flex flex-row justify-between w-[250px]">
+            <div className="w-4 flex justify-center">M</div>
+            <div className="rounded-full bg-green-700 text-white w-4">W</div>
+            <div className="rounded-full bg-orange-500 text-white w-4">R</div>
+            <div className="rounded-full bg-red-700 text-white w-4">P</div>
+            <div className="w-4 flex justify-center">GF</div>
+            <div className="w-4 flex justify-center">GA</div>
+            <div className="w-4 flex justify-center">GD</div>
+            <div className="w-4 flex justify-center">P</div>
+          </div>
+
           <div className="w-[116px] text-left">Forma</div>
         </div>
 
@@ -48,13 +51,14 @@ export const TeamGroupPosition: React.FC<{
           <div className="w-4 flex justify-center">{teamPosition}.</div>
           <Link to={`/team/${teamData?.id}`} className="flex flex-row items-center gap-3 w-[220px]">
             {teamData?.logoUrl ? (
-              <img src={teamData.logoUrl} alt={teamData.name} className="w-5" />
+              <img src={teamData.logoUrl} alt={teamData.name} className="w-5 rounded-sm p-[1px] bg-white" />
             ) : (
-              <img src={defaultCrest} alt="Herb" className="w-5" />
+              <img src={defaultCrest} alt="Herb" className="w-5 rounded-sm p-[1px] bg-white" />
             )}
             <p className="text-left">{teamData?.name}</p>
           </Link>
-          {/* <div className="w-4 flex justify-center">{team.Played}</div>
+          <div className="flex flex-row justify-between w-[250px]">
+            {/* <div className="w-4 flex justify-center">{team.Played}</div>
             <div className="w-4 flex justify-center">{team.Won}</div>
             <div className="w-4 flex justify-center">{team.Drawn}</div>
             <div className="w-4 flex justify-center">{team.Lost}</div>
@@ -62,6 +66,8 @@ export const TeamGroupPosition: React.FC<{
             <div className="w-4 flex justify-center">{team.GoalsAgainst}</div>
             <div className="w-4 flex justify-center">{team.GoalDifference}</div>
             <div className="w-4 flex justify-center">{team.Points}</div> */}
+          </div>
+
           <TeamForm teamId={teamData?.id} />
         </div>
       </div>
