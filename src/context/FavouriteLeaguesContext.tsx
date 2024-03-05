@@ -1,19 +1,19 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 
 //types
-export type FavouriteLeague = {
+export interface FavouriteLeague {
   name: string;
   id?: string;
-};
+}
 
-export type FavouriteLeaguesContextType = {
+export interface FavouriteLeaguesContextType {
   favouriteLeagues: FavouriteLeague[];
   addFavouriteLeague: (newLeague: FavouriteLeague) => void;
   removeFavouriteLeague: (leagueName: string) => void;
-};
+}
 
 //context
-const FavouriteLeaguesContext = createContext<FavouriteLeaguesContextType | undefined>(undefined);
+export const FavouriteLeaguesContext = createContext<FavouriteLeaguesContextType | undefined>(undefined);
 
 //context provider
 export const FavouriteLeaguesContextProvider: React.FC<{
@@ -34,12 +34,4 @@ export const FavouriteLeaguesContextProvider: React.FC<{
       {children}
     </FavouriteLeaguesContext.Provider>
   );
-};
-
-export const useFavouriteLeaguesContext = () => {
-  const context = useContext(FavouriteLeaguesContext);
-  if (!context) {
-    throw new Error("you cannot use favouriteLeagueContext without favouriteLeagueProvider");
-  }
-  return context;
 };

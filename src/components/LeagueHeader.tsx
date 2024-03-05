@@ -1,9 +1,9 @@
-import { useFavouriteLeaguesContext } from "../context/FavouriteLeaguesContext";
+import { useFavouriteLeaguesContext } from "../customHooks/useFavouriteLeaguesContext";
 import { RiStarSmileFill, RiStarSmileLine } from "react-icons/ri";
 import { IoIosArrowDown } from "react-icons/io";
 import { Link } from "react-router-dom";
 
-type LegueHeaderType = {
+interface LegueHeaderType {
   leagueName: string;
   subLeagues?: string[];
   isActive?: boolean;
@@ -11,7 +11,7 @@ type LegueHeaderType = {
   leagueId?: string;
   isLinkEnabled?: boolean;
   hideArrow?: boolean;
-};
+}
 
 export const LeagueHeader: React.FC<LegueHeaderType> = ({
   leagueName,
@@ -37,7 +37,11 @@ export const LeagueHeader: React.FC<LegueHeaderType> = ({
         hideArrow ? "dark:bg-transparent bg-transparent" : "bg-zinc-100 dark:bg-zinc-700"
       } rounded-md py-2 px-3 items-center justify-center ${hideArrow ? "gap-3" : "justify-between"} w-full`}
     >
-      <button onClick={() => toggleFavouriteLeague({ name: leagueName })}>
+      <button
+        onClick={() => {
+          toggleFavouriteLeague({ name: leagueName });
+        }}
+      >
         {favouriteLeagues.some((league: { name: string }) => league.name === leagueName) ? (
           <RiStarSmileFill className=" size-4 text-yellow-500" />
         ) : (

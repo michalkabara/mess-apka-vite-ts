@@ -17,7 +17,7 @@ export const SingleGame: React.FC<Game> = ({ date, homeTeam, awayTeam, homeGoals
       <div className="text-left w-full" id="teams-container">
         <div className="flex flex-row gap-2 content-start items-center" id="team1-container">
           {homeTeam?.logoUrl ? (
-            <img src={homeTeam.logoUrl} alt={homeTeam.name} className="w-5 rounded-sm p-[1px] bg-white" />
+            <img src={homeTeam.logoUrl} alt={homeTeam.name} className="size-5 rounded-sm p-[1px] bg-white" />
           ) : (
             <img src={defaultCrest} alt="Herb" className="w-5 rounded-sm p-[1px]  bg-white" />
           )}
@@ -26,7 +26,7 @@ export const SingleGame: React.FC<Game> = ({ date, homeTeam, awayTeam, homeGoals
         </div>
         <div className="mt-2 flex flex-row gap-2 item-center" id="team2-container">
           {awayTeam?.logoUrl ? (
-            <img src={awayTeam.logoUrl} alt={awayTeam.name} className="w-5 rounded-sm p-[1px]  bg-white" />
+            <img src={awayTeam.logoUrl} alt={awayTeam.name} className="size-5 rounded-sm p-[1px]  bg-white" />
           ) : (
             <img src={defaultCrest} alt="Herb" className="w-5 rounded-sm p-[1px] bg-white" />
           )}

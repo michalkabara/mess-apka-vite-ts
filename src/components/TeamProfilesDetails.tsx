@@ -2,7 +2,7 @@ import defaultCrest from "../img/crest_default.svg";
 import { FaSquareXTwitter, FaSquareYoutube, FaSquareFacebook, FaSquareInstagram } from "react-icons/fa6";
 import { IoGlobeOutline } from "react-icons/io5";
 import { RiStarSmileLine, RiStarSmileFill } from "react-icons/ri";
-import { useFavouriteTeamContext } from "../context/FavouriteTeamsContext";
+import { useFavouriteTeamContext } from "../customHooks/useFavouriteTeamsContext";
 import { useFetchLeagueData } from "../customHooks/useFetchLeagueData";
 import { Link } from "react-router-dom";
 
@@ -28,8 +28,6 @@ export const TeamProfileDetails: React.FC<{
 
   if (error) return <p>An error has occurred {error.message}</p>;
 
-  console.log({ currentLeague });
-
   return (
     <div className="league-name pt-4 flex items-start flex-row gap-5">
       {teamLogo ? (
@@ -41,7 +39,11 @@ export const TeamProfileDetails: React.FC<{
         <div className="flex flex-row items-center gap-3">
           <span className="text-lg font-bold uppercase ">{teamName}</span>
 
-          <button onClick={() => toggleFavouriteTeam({ name: teamName, id: teamId })}>
+          <button
+            onClick={() => {
+              toggleFavouriteTeam({ name: teamName, id: teamId });
+            }}
+          >
             {favouriteTeams.some((item: { id: string }) => item.id === teamId) ? (
               <RiStarSmileFill className=" text-2xl text-yellow-500" />
             ) : (
@@ -60,7 +62,7 @@ export const TeamProfileDetails: React.FC<{
           <p>
             <b>Rozgrywki:</b>{" "}
             <Link className="hover:underline" to={`/league/${currentLeague}`}>
-              {data?.name}
+              {data.name}
             </Link>
           </p>
           <p>

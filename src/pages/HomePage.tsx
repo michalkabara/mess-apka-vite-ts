@@ -7,7 +7,7 @@ export const HomePage: React.FC = () => {
 
   if (isPending) return <p>Loading...</p>;
 
-  if (error) return <p>An error has occurred {error?.message}</p>;
+  if (error) return <p>An error has occurred {error.message}</p>;
 
   return (
     <>

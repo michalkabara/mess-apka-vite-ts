@@ -10,8 +10,18 @@ export const MobileNavbar: React.FC = () => {
 
   return (
     <div className="flex items-center justify-between w-full relative">
-      <RiStarSmileFill className="size-7" onClick={() => setisSidebarVisible((prev) => !prev)} />
-      <IoMenu className="size-7" onClick={() => setisMenuVisible((prev) => !prev)} />
+      <RiStarSmileFill
+        className="size-7"
+        onClick={() => {
+          setisSidebarVisible((prev) => !prev);
+        }}
+      />
+      <IoMenu
+        className="size-7"
+        onClick={() => {
+          setisMenuVisible((prev) => !prev);
+        }}
+      />
 
       <div
         className={`${

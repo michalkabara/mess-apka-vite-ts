@@ -21,7 +21,7 @@ export const LeagueProfile: React.FC<{
 
   if (isPending || leagueIsPending) return <p>Loading...</p>;
 
-  if (error || leagueError) return <p>An error has occurred {error?.message}</p>;
+  if (error ?? leagueError) return <p>An error has occurred {error?.message}</p>;
 
   return (
     <>

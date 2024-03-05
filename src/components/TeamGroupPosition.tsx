@@ -12,13 +12,11 @@ export const TeamGroupPosition: React.FC<{
 
   if (isPending) return <p>Loading...</p>;
 
-  if (error) return <p>An error has occurred {error?.message}</p>;
+  if (error) return <p>An error has occurred {error.message}</p>;
 
   const teamPosition = data.findIndex((team: Team) => team.id === filterTeamId) + 1;
 
   const teamData = data.find((team: Team) => team.id === filterTeamId);
-
-  console.log({ teamData });
 
   return (
     <>

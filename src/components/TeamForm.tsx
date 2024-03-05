@@ -8,9 +8,9 @@ export const TeamForm: React.FC<{
 
   if (isPending) return <p>Loading...</p>;
 
-  if (error) return <p>An error has occurred {error?.message}</p>;
+  if (error) return <p>An error has occurred {error.message}</p>;
 
-  const games = data?.filter((game) => game.homeTeamId === teamId || game.awayTeamId === teamId).slice(0, 5);
+  const games = data.filter((game) => game.homeTeamId === teamId || game.awayTeamId === teamId).slice(0, 5);
 
   return (
     <div className="flex flex-row gap-1 relative">
@@ -51,8 +51,8 @@ export const TeamForm: React.FC<{
         }
 
         if (
-          (game.homeTeamId === teamId && game.homeGoals! > game.awayGoals!) ||
-          (game.awayTeamId === teamId && game.homeGoals! < game.awayGoals!)
+          (game.homeTeamId === teamId && game.homeGoals > game.awayGoals) ||
+          (game.awayTeamId === teamId && game.homeGoals < game.awayGoals)
         ) {
           return (
             <div key={`${game.id}-win`}>
@@ -73,8 +73,8 @@ export const TeamForm: React.FC<{
         }
 
         if (
-          (game.homeTeamId === teamId && game.homeGoals! < game.awayGoals!) ||
-          (game.awayTeamId === teamId && game.homeGoals! > game.awayGoals!)
+          (game.homeTeamId === teamId && game.homeGoals < game.awayGoals) ||
+          (game.awayTeamId === teamId && game.homeGoals > game.awayGoals)
         ) {
           return (
             <div key={`${game.id}-lose`}>

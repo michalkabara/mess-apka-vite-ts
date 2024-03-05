@@ -1,4 +1,4 @@
-export type TeamPlayersType = {
+export interface TeamPlayersType {
   name: string;
   surname: string;
   number: string;
@@ -6,17 +6,17 @@ export type TeamPlayersType = {
   isCaptain?: boolean;
   age: string;
   mainLeg: string;
-};
-
-export interface League {
-  id: string;
-  parentLeagueId: any;
-  name: string;
-  logoUrl: string;
-  season: string;
-  teams: any;
-  matchResults: any;
 }
+
+// export interface League {
+//   id: string;
+//   parentLeagueId: any;
+//   name: string;
+//   logoUrl: string;
+//   season: string;
+//   teams: any;
+//   matchResults: any;
+// }
 
 export interface Game2 {
   id?: string;
@@ -64,10 +64,10 @@ export interface Team {
 
 export interface League {
   id: string;
-  parentLeagueId: any;
+  parentLeagueId: string;
   name: string;
   logoUrl: string;
   season: string;
-  teams: any;
-  matchResults: any;
+  teams: Team[];
+  matchResults: string;
 }

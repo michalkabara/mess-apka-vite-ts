@@ -5,7 +5,7 @@ import { SingleGame } from "./SingleGame";
 export const UpcomingGames: React.FC<{ upcomingGames: Game[] }> = ({ upcomingGames }) => {
   return (
     <>
-      {upcomingGames?.map((game: Game, index: number) => (
+      {upcomingGames.map((game: Game, index: number) => (
         <Link
           to={`/game/${game.id}`}
           key={`${game.id}-${index}`}

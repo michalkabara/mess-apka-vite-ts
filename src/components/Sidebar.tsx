@@ -1,6 +1,6 @@
 import { RiTeamLine, RiTrophyLine, RiStarSmileFill } from "react-icons/ri";
-import { useFavouriteTeamContext } from "../context/FavouriteTeamsContext";
-import { useFavouriteLeaguesContext } from "../context/FavouriteLeaguesContext";
+import { useFavouriteTeamContext } from "../customHooks/useFavouriteTeamsContext";
+import { useFavouriteLeaguesContext } from "../customHooks/useFavouriteLeaguesContext";
 import { Link } from "react-router-dom";
 
 export const Sidebar = () => {
@@ -25,7 +25,9 @@ export const Sidebar = () => {
 
               <div>
                 <RiStarSmileFill
-                  onClick={() => removeFavouriteLeague(favLeague.name)}
+                  onClick={() => {
+                    removeFavouriteLeague(favLeague.name);
+                  }}
                   className="text-yellow-500 size-4 cursor-pointer"
                 />
               </div>
@@ -48,7 +50,9 @@ export const Sidebar = () => {
 
               <div>
                 <RiStarSmileFill
-                  onClick={() => removeFavouriteTeam(team.id)}
+                  onClick={() => {
+                    removeFavouriteTeam(team.id);
+                  }}
                   className="text-yellow-500 size-4 cursor-pointer"
                 />
               </div>

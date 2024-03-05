@@ -128,13 +128,13 @@ export const TeamProfile: React.FC = () => {
   const { teamId } = useParams();
   const [selectedTab, setSelecteTab] = useState<number | null>(0);
 
-  let [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    const currentPage = searchParams?.get("page");
+    const currentPage = searchParams.get("page");
     if (!currentPage) return;
     setSelecteTab(parseInt(currentPage));
-  }, []);
+  }, [searchParams]);
 
   const { isPending, error, data } = useFetchTeamData(teamId);
 
@@ -142,13 +142,13 @@ export const TeamProfile: React.FC = () => {
 
   if (isPending || areGamesPending) return <p>Loading...</p>;
 
-  if (error || gamesError) return <p>An error has occurred {error?.message}</p>;
+  if (error ?? gamesError) return <p>An error has occurred {error?.message}</p>;
 
-  const homeGames = gamesData?.filter((game: Game) => game.homeTeam?.name === data.name);
+  const homeGames = gamesData.filter((game: Game) => game.homeTeam?.name === data.name);
 
-  const awayGames = gamesData?.filter((game: Game) => game.awayTeam?.name === data.name);
+  const awayGames = gamesData.filter((game: Game) => game.awayTeam?.name === data.name);
 
-  const upcomingGames = gamesData?.filter((game: Game) => game.isFinished === false);
+  const upcomingGames = gamesData.filter((game: Game) => game.isFinished === false);
 
   const selectTabAndChangeUrl = (index: number) => {
     setSelecteTab(index);
@@ -158,18 +158,18 @@ export const TeamProfile: React.FC = () => {
   return (
     <>
       <TeamProfileDetails
-        teamLogo={data?.logoUrl}
-        teamName={data?.name}
-        teamId={data?.id}
+        teamLogo={data.logoUrl}
+        teamName={data.name}
+        teamId={data.id}
         currentLeague={data.currentLeague}
       />
 
       <div className="mt-5">
-        <TeamGroupPosition filterTeamId={data.id} leagueId={data?.currentLeague} />
+        <TeamGroupPosition filterTeamId={data.id} leagueId={data.currentLeague} />
       </div>
 
       <div className="tabs">
-        <div className="flex flex-row gap-3 mt-5">
+        <div className="flex flex-row gap-3 mt-5 max-sm:flex-wrap">
           {tabs.map((button, index) => (
             <SingleTab
               key={`tab-${index}`}
@@ -186,7 +186,7 @@ export const TeamProfile: React.FC = () => {
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 0 ? "flex" : "hidden"}`}>
-          {gamesData?.reverse().map((mecz: Game, index: number) => (
+          {gamesData.reverse().map((mecz: Game, index: number) => (
             <Link
               to={`/game/${mecz.id}`}
               key={`${mecz.id}-${index}`}

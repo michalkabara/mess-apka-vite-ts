@@ -1,17 +1,17 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 
-export type FavouriteTeam = {
+export interface FavouriteTeam {
   name: string;
   id: string;
-};
+}
 
-export type FavouriteTeamsContextType = {
+export interface FavouriteTeamsContextType {
   favouriteTeams: FavouriteTeam[];
   addFavouriteTeam: (newTeam: FavouriteTeam) => void;
   removeFavouriteTeam: (teamId: string) => void;
-};
+}
 
-const FavouriteTeamsContext = createContext<FavouriteTeamsContextType | undefined>(undefined);
+export const FavouriteTeamsContext = createContext<FavouriteTeamsContextType | undefined>(undefined);
 
 export const FavouriteTeamContextProvider: React.FC<{
   children: React.ReactNode;
@@ -31,12 +31,4 @@ export const FavouriteTeamContextProvider: React.FC<{
       {children}
     </FavouriteTeamsContext.Provider>
   );
-};
-
-export const useFavouriteTeamContext = () => {
-  const context = useContext(FavouriteTeamsContext);
-  if (!context) {
-    throw new Error("you cannot use favouriteTeamsContext without favouriteTeamsProvider");
-  }
-  return context;
 };
