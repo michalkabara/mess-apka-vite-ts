@@ -7,6 +7,7 @@ import { FeaturedGame } from "./components/FeaturedGame";
 import { MobileNavbar } from "./components/MobileNavbar";
 import { Outlet, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Footer } from "./components/ui/Footer";
 
 function App() {
   const [isDarkModeOn, setIsDarkModeOn] = useState(false);
@@ -27,15 +28,17 @@ function App() {
         <Header isDarkModeOn={isDarkModeOn} setIsDarkModeOn={setIsDarkModeOn} />
       </header>
 
-      <nav className="mb-2 flex w-full items-center border-b dark:border-zinc-700 border-zinc-300 py-3 px-5 max-w-[1200px]">
-        <div className="max-sm:hidden">
-          <Navbar />
-        </div>
+      <div className="border-b dark:border-zinc-700 border-zinc-300">
+        <nav className=" flex w-full items-center  py-3 px-5 max-w-[1200px] m-auto">
+          <div className="max-sm:hidden">
+            <Navbar />
+          </div>
 
-        <div className="sm:hidden w-full">
-          <MobileNavbar />
-        </div>
-      </nav>
+          <div className="sm:hidden w-full">
+            <MobileNavbar />
+          </div>
+        </nav>
+      </div>
 
       <div className="flex items-center flex-col">
         <div className="w-full flex flex-row gap-4 mt-1 py-2 px-5 max-w-[1200px]">
@@ -55,6 +58,7 @@ function App() {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

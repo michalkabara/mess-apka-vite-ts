@@ -1,22 +1,23 @@
 import defaultCrest from "../img/crest_default.svg";
 import { Link } from "react-router-dom";
 import { TeamForm } from "../components/TeamForm";
-import { Team } from "../types";
-import { useFetchLeagueTeams } from "../customHooks/useFetchLeagueTeams";
+import { LeagueTableEntry } from "../types";
+
+import { useFetchLeagueTable } from "../customHooks/useFetchLeagueTable";
 
 export const TeamGroupPosition: React.FC<{
   filterTeamId: string;
   leagueId: string;
 }> = ({ filterTeamId, leagueId }) => {
-  const { isPending, error, data } = useFetchLeagueTeams(leagueId);
+  const { isPending, error, data } = useFetchLeagueTable(leagueId);
 
   if (isPending) return <p>Loading...</p>;
 
   if (error) return <p>An error has occurred {error.message}</p>;
 
-  const teamPosition = data.findIndex((team: Team) => team.id === filterTeamId) + 1;
+  const teamPosition = data.findIndex((team: LeagueTableEntry) => team.teamId === filterTeamId) + 1;
 
-  const teamData = data.find((team: Team) => team.id === filterTeamId);
+  const teamData = data.find((team: LeagueTableEntry) => team.teamId === filterTeamId);
 
   return (
     <>
@@ -43,30 +44,30 @@ export const TeamGroupPosition: React.FC<{
         </div>
 
         <div
-          key={teamData?.id}
+          key={teamData?.teamId}
           className="flex flex-row gap-3 items-center text-xs hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-2 px-2 ease-in-out duration-500 justify-between relative"
         >
           <div className="w-4 flex justify-center">{teamPosition}.</div>
-          <Link to={`/team/${teamData?.id}`} className="flex flex-row items-center gap-3 w-[220px]">
+          <Link to={`/team/${teamData?.teamId}`} className="flex flex-row items-center gap-3 w-[220px]">
             {teamData?.logoUrl ? (
-              <img src={teamData.logoUrl} alt={teamData.name} className="w-5 rounded-sm p-[1px] bg-white" />
+              <img src={teamData.logoUrl} alt={teamData.teamName} className="w-5 rounded-sm p-[1px] bg-white" />
             ) : (
               <img src={defaultCrest} alt="Herb" className="w-5 rounded-sm p-[1px] bg-white" />
             )}
-            <p className="text-left">{teamData?.name}</p>
+            <p className="text-left">{teamData?.teamName}</p>
           </Link>
           <div className="flex flex-row justify-between w-[250px]">
-            {/* <div className="w-4 flex justify-center">{team.Played}</div>
-            <div className="w-4 flex justify-center">{team.Won}</div>
-            <div className="w-4 flex justify-center">{team.Drawn}</div>
-            <div className="w-4 flex justify-center">{team.Lost}</div>
-            <div className="w-4 flex justify-center">{team.GoalsFor}</div>
-            <div className="w-4 flex justify-center">{team.GoalsAgainst}</div>
-            <div className="w-4 flex justify-center">{team.GoalDifference}</div>
-            <div className="w-4 flex justify-center">{team.Points}</div> */}
+            <div className="w-4 flex justify-center">{teamData?.played}</div>
+            <div className="w-4 flex justify-center">{teamData?.won}</div>
+            <div className="w-4 flex justify-center">{teamData?.drawn}</div>
+            <div className="w-4 flex justify-center">{teamData?.lost}</div>
+            <div className="w-4 flex justify-center">{teamData?.goalsFor}</div>
+            <div className="w-4 flex justify-center">{teamData?.goalsAgainst}</div>
+            <div className="w-4 flex justify-center">{teamData?.goalDifference}</div>
+            <div className="w-4 flex justify-center font-bold">{teamData?.points}</div>
           </div>
 
-          <TeamForm teamId={teamData?.id} />
+          <TeamForm teamId={teamData?.teamId} />
         </div>
       </div>
     </>

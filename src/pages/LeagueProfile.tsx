@@ -1,21 +1,18 @@
 import defaultCrest from "../img/crest_default.svg";
 import { Link } from "react-router-dom";
 import { TeamForm } from "../components/TeamForm";
-import { Team } from "../types";
-import { useFetchLeagueTeams } from "../customHooks/useFetchLeagueTeams";
+import { LeagueTableEntry } from "../types";
+import { useFetchLeagueTable } from "../customHooks/useFetchLeagueTable";
 import { useParams } from "react-router-dom";
 import { useFetchLeagueData } from "../customHooks/useFetchLeagueData";
-
 import { LeagueHeader } from "../components/LeagueHeader";
 
-export const LeagueProfile: React.FC<{
-  leagueId: string;
-}> = ({ leagueId }) => {
+export const LeagueProfile: React.FC<{ leagueId: string | undefined }> = ({ leagueId }) => {
   const { leagueId: routeLeagueId } = useParams();
 
   const checkLeagueId = routeLeagueId ?? leagueId;
 
-  const { isPending, error, data } = useFetchLeagueTeams(checkLeagueId);
+  const { isPending, error, data } = useFetchLeagueTable(checkLeagueId);
 
   const { isPending: leagueIsPending, error: leagueError, data: leagueData } = useFetchLeagueData(checkLeagueId);
 
@@ -26,7 +23,7 @@ export const LeagueProfile: React.FC<{
   return (
     <>
       <div className="league-name flex justify-center mb-2 w-full">
-        <LeagueHeader leagueName={leagueData.name} isLinkEnabled={false} hideArrow={true} />
+        <LeagueHeader leagueName={leagueData.name} isLinkEnabled={false} hideArrow={true} leagueId={checkLeagueId} />
       </div>
       <div className="flex flex-col gap-1">
         <div
@@ -47,32 +44,32 @@ export const LeagueProfile: React.FC<{
           </div>
           <div className="w-[116px] text-left">Forma</div>
         </div>
-        {data.map((team: Team, index: number) => {
+        {data.map((team: LeagueTableEntry, index: number) => {
           return (
             <div
-              key={team.id}
+              key={team.teamId}
               className="flex flex-row gap-3 items-center text-xs hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-2 px-2 ease-in-out duration-500 justify-between relative"
             >
               <div className="w-4 flex justify-center">{index + 1}.</div>
-              <Link to={`/team/${team.id}`} className="flex flex-row items-center gap-3 w-[220px]">
+              <Link to={`/team/${team.teamId}`} className="flex flex-row items-center gap-3 w-[220px]">
                 {team.logoUrl ? (
-                  <img src={team.logoUrl} alt={team.name} className="w-5 rounded-sm p-[1px] bg-white" />
+                  <img src={team.logoUrl} alt={team.teamName} className="w-5 rounded-sm p-[1px] bg-white" />
                 ) : (
                   <img src={defaultCrest} alt="Herb" className="w-5 " />
                 )}
-                <p className="text-left">{team.name}</p>
+                <p className="text-left">{team.teamName}</p>
               </Link>
               <div className="flex flex-row justify-between w-[250px]">
-                {/* <div className="w-4 flex justify-center">{team.Played}</div>
-            <div className="w-4 flex justify-center">{team.Won}</div>
-            <div className="w-4 flex justify-center">{team.Drawn}</div>
-            <div className="w-4 flex justify-center">{team.Lost}</div>
-            <div className="w-4 flex justify-center">{team.GoalsFor}</div>
-            <div className="w-4 flex justify-center">{team.GoalsAgainst}</div>
-            <div className="w-4 flex justify-center">{team.GoalDifference}</div>
-            <div className="w-4 flex justify-center">{team.Points}</div> */}
+                <div className="w-4 flex justify-center">{team.played}</div>
+                <div className="w-4 flex justify-center">{team.won}</div>
+                <div className="w-4 flex justify-center">{team.drawn}</div>
+                <div className="w-4 flex justify-center">{team.lost}</div>
+                <div className="w-4 flex justify-center">{team.goalsFor}</div>
+                <div className="w-4 flex justify-center">{team.goalsAgainst}</div>
+                <div className="w-4 flex justify-center">{team.goalDifference}</div>
+                <div className="w-4 flex justify-center font-bold ">{team.points}</div>
               </div>
-              <TeamForm teamId={team.id} />
+              <TeamForm teamId={team.teamId} />
             </div>
           );
         })}

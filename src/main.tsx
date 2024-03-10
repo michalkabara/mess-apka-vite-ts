@@ -13,6 +13,7 @@ import { CombinedContext } from "./context/CombinedContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LoginPage } from "./pages/LoginPage";
 import { ClerkProvider } from "@clerk/clerk-react";
+import { PlayerProfilePage } from "./pages/PlayerProfilePage";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LoginPage />,
+      },
+      {
+        path: "/player/:playerId",
+        element: <PlayerProfilePage />,
       },
     ],
   },

@@ -33,7 +33,7 @@ export const Header: React.FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevSta
 
       <div className="flex flex-row gap-3 items-center">
         {isSignedIn ? (
-          <UserButton />
+          <UserButton key={user.username} />
         ) : (
           <Link to="/login">
             <button className="flex flex-row gap-2 items-center  bg-[#ed4535] py-2 px-3 rounded-lg text-zinc-100">

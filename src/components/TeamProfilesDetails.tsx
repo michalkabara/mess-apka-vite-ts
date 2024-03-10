@@ -60,7 +60,7 @@ export const TeamProfileDetails: React.FC<{
             <b>Barwy klubu:</b> czarno zielono białe
           </p>
           <p>
-            <b>Rozgrywki:</b>{" "}
+            <b>Rozgrywki: </b>
             <Link className="hover:underline" to={`/league/${currentLeague}`}>
               {data.name}
             </Link>

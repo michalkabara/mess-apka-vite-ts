@@ -2,16 +2,7 @@ import { useFavouriteLeaguesContext } from "../customHooks/useFavouriteLeaguesCo
 import { RiStarSmileFill, RiStarSmileLine } from "react-icons/ri";
 import { IoIosArrowDown } from "react-icons/io";
 import { Link } from "react-router-dom";
-
-interface LegueHeaderType {
-  leagueName: string;
-  subLeagues?: string[];
-  isActive?: boolean;
-  toggleSection?: () => void;
-  leagueId?: string;
-  isLinkEnabled?: boolean;
-  hideArrow?: boolean;
-}
+import { LegueHeaderType } from "../types";
 
 export const LeagueHeader: React.FC<LegueHeaderType> = ({
   leagueName,
@@ -23,7 +14,7 @@ export const LeagueHeader: React.FC<LegueHeaderType> = ({
 }) => {
   const { favouriteLeagues, removeFavouriteLeague, addFavouriteLeague } = useFavouriteLeaguesContext();
 
-  const toggleFavouriteLeague = (league: { name: string; id?: string | undefined }) => {
+  const toggleFavouriteLeague = (league: { name: string; id: string | undefined }) => {
     if (favouriteLeagues.some((league: { name: string }) => league.name === leagueName)) {
       removeFavouriteLeague(league.name);
     } else {
@@ -39,7 +30,7 @@ export const LeagueHeader: React.FC<LegueHeaderType> = ({
     >
       <button
         onClick={() => {
-          toggleFavouriteLeague({ name: leagueName });
+          toggleFavouriteLeague({ name: leagueName, id: leagueId });
         }}
       >
         {favouriteLeagues.some((league: { name: string }) => league.name === leagueName) ? (

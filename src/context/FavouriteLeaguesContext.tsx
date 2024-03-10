@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 //types
 export interface FavouriteLeague {
   name: string;
-  id?: string;
+  id: string | undefined;
 }
 
 export interface FavouriteLeaguesContextType {
