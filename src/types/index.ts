@@ -7,7 +7,6 @@
 //   teams: any;
 //   matchResults: any;
 // }
-
 export interface Game2 {
   id?: string;
   homeTeamId?: string;
@@ -54,12 +53,11 @@ export interface Team {
 
 export interface League {
   id: string;
-  parentLeagueId: string;
+  parentLeagueId: string | null;
   name: string;
-  logoUrl: string;
+  logoUrl: string | null;
   season: string;
-  teams: Team[];
-  matchResults: string;
+  childLeagues: League[];
 }
 
 export interface LeagueTableEntry {
@@ -95,5 +93,6 @@ export interface Player {
   assists: number;
   yellowCards: number;
   redCards: number;
-  teamId: string;
+  roles: number;
+  legPreference: number;
 }

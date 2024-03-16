@@ -47,7 +47,7 @@ function App() {
               <Sidebar />
             </div>
           )}
-          <div className=" w-full bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 rounded-lg p-5 relative">
+          <div className=" w-full bg-zinc-50 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 rounded-lg p-5 relative overflow-auto dark:border-zinc-700 border-[1px]">
             <Outlet />
           </div>
           {pathname !== "/login" && (

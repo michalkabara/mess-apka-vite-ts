@@ -15,6 +15,8 @@ import { LoginPage } from "./pages/LoginPage";
 import { ClerkProvider } from "@clerk/clerk-react";
 import { PlayerProfilePage } from "./pages/PlayerProfilePage";
 
+import { VoivodeshipPage } from "./pages/VoivodeshipPage";
+
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -33,7 +35,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/league/:leagueId",
-        element: <LeagueProfile leagueId={""} />,
+        element: <LeagueProfile />,
       },
       {
         path: "/team/:teamId",
@@ -47,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: "/player/:playerId",
         element: <PlayerProfilePage />,
+      },
+      {
+        path: "/voivode/:voivodeId",
+        element: <VoivodeshipPage />,
       },
     ],
   },

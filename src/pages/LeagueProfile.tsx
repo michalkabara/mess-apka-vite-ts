@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { useFetchLeagueData } from "../customHooks/useFetchLeagueData";
 import { LeagueHeader } from "../components/LeagueHeader";
 
-export const LeagueProfile: React.FC<{ leagueId: string | undefined }> = ({ leagueId }) => {
+export const LeagueProfile: React.FC<{ leagueId?: string | undefined }> = ({ leagueId }) => {
   const { leagueId: routeLeagueId } = useParams();
 
   const checkLeagueId = routeLeagueId ?? leagueId;
@@ -25,13 +25,19 @@ export const LeagueProfile: React.FC<{ leagueId: string | undefined }> = ({ leag
       <div className="league-name flex justify-center mb-2 w-full">
         <LeagueHeader leagueName={leagueData.name} isLinkEnabled={false} hideArrow={true} leagueId={checkLeagueId} />
       </div>
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1 max-sm:overflow-x-scroll ">
         <div
-          className="header flex flex-row text-xs gap-3 py-1 px-2
+          className="header flex flex-row text-xs gap-3 py-1 px-2 max-sm:w-fit
       border-b-[1px] border-zinc-600 pb-2 text-center justify-between"
         >
-          <div className="w-4 flex justify-center">#</div>
-          <div className="w-[220px] text-left">Drużyna</div>
+          <div
+            className="max-sm:w-[170px]
+          w-[220px] flex flex-row left-0 sticky gap-2 dark:bg-zinc-900 bg-zinc-200"
+          >
+            <div className="w-4 flex justify-center">#</div>
+            <div className="text-left ">Drużyna</div>
+          </div>
+
           <div className="flex flex-row justify-between w-[250px]">
             <div className="w-4 flex justify-center">M</div>
             <div className="rounded-full bg-green-700 text-white w-4">W</div>
@@ -42,16 +48,19 @@ export const LeagueProfile: React.FC<{ leagueId: string | undefined }> = ({ leag
             <div className="w-4 flex justify-center">GD</div>
             <div className="w-4 flex justify-center">P</div>
           </div>
-          <div className="w-[116px] text-left">Forma</div>
+          <div className="w-[116px] text-left ">Forma</div>
         </div>
         {data.map((team: LeagueTableEntry, index: number) => {
           return (
             <div
               key={team.teamId}
-              className="flex flex-row gap-3 items-center text-xs hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-2 px-2 ease-in-out duration-500 justify-between relative"
+              className="group flex flex-row gap-3 items-center text-xs hover:bg-zinc-300 max-sm:w-fit dark:hover:bg-zinc-700 rounded-md py-2 px-2 ease-in-out duration-500 justify-between"
             >
-              <div className="w-4 flex justify-center">{index + 1}.</div>
-              <Link to={`/team/${team.teamId}`} className="flex flex-row items-center gap-3 w-[220px]">
+              <Link
+                to={`/team/${team.teamId}`}
+                className="max-sm:w-[170px] flex flex-row items-center gap-3 w-[220px] sticky left-0 dark:bg-zinc-900 dark:group-hover:bg-zinc-700 ease-in-out duration-500 bg-zinc-200 group-hover:bg-zinc-300"
+              >
+                <div className="w-4 flex justify-center ">{index + 1}.</div>
                 {team.logoUrl ? (
                   <img src={team.logoUrl} alt={team.teamName} className="w-5 rounded-sm p-[1px] bg-white" />
                 ) : (
@@ -69,7 +78,9 @@ export const LeagueProfile: React.FC<{ leagueId: string | undefined }> = ({ leag
                 <div className="w-4 flex justify-center">{team.goalDifference}</div>
                 <div className="w-4 flex justify-center font-bold ">{team.points}</div>
               </div>
-              <TeamForm teamId={team.teamId} />
+              <div className="">
+                <TeamForm teamId={team.teamId} />
+              </div>
             </div>
           );
         })}

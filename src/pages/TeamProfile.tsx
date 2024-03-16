@@ -71,7 +71,7 @@ export const TeamProfile: React.FC = () => {
       </div>
 
       <div className="tabs">
-        <div className="flex flex-row gap-3 mt-5 max-sm:flex-wrap">
+        <div className="flex flex-row gap-3 mt-5 flex-wrap w-full">
           {tabs.map((button, index) => (
             <SingleTab
               key={`tab-${index}`}

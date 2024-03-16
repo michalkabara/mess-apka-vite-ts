@@ -1,11 +1,11 @@
-interface TabType {
+interface Tab {
   button: { name: string };
   index: number;
   selectTabAndChangeUrl: (index: number) => void;
   selectedTab: number | null;
 }
 
-export const SingleTab: React.FC<TabType> = ({ button, index, selectTabAndChangeUrl, selectedTab }) => {
+export const SingleTab: React.FC<Tab> = ({ button, index, selectTabAndChangeUrl, selectedTab }) => {
   return (
     <button
       onClick={() => {

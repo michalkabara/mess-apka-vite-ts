@@ -33,7 +33,7 @@ export const SingleGame: React.FC<Game> = ({ date, homeTeam, awayTeam, homeGoals
           {awayTeam?.name}
         </div>
       </div>
-      <div className=" flex flex-col gap-2">
+      <div className="flex flex-col gap-2 w-4 items-end">
         <div>{homeGoals ?? "TBD"}</div>
         <div>{awayGoals ?? "TBD"}</div>
       </div>

@@ -16,6 +16,7 @@ export const TeamPlayers: React.FC<{
       </div>
       {team.map((player) => (
         <Link
+          key={player.id}
           to={`/player/${player.id}`}
           className={`rounded-lg ${
             player.isGoalKeeper
