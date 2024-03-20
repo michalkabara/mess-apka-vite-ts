@@ -1,4 +1,4 @@
-import React from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
@@ -66,7 +66,7 @@ if (!PUBLISHABLE_KEY) {
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
-  <React.StrictMode>
+  <StrictMode>
     <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
       <QueryClientProvider client={queryClient}>
         <CombinedContext>
@@ -74,5 +74,5 @@ root.render(
         </CombinedContext>
       </QueryClientProvider>
     </ClerkProvider>
-  </React.StrictMode>
+  </StrictMode>
 );

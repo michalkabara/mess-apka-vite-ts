@@ -6,13 +6,13 @@ export const SingleGame: React.FC<Game> = ({ date, homeTeam, awayTeam, homeGoals
 
   return (
     <>
-      <div className="w-[150px] text-left" id="time-container">
+      <div className="w-[100px] text-left" id="time-container">
         {`${String(gameDate.getDate()).padStart(2, "0")}.${String(gameDate.getMonth()).padStart(
           2,
           "0"
-        )}.${gameDate.getFullYear()} - ${gameDate.getHours()}:${
-          gameDate.getUTCMinutes() == 0 ? "00" : gameDate.getUTCMinutes()
-        }`}
+        )}.${gameDate.getFullYear()}`}{" "}
+        <br></br>
+        {`${gameDate.getHours()}:${gameDate.getUTCMinutes() == 0 ? "00" : gameDate.getUTCMinutes()}`}
       </div>
       <div className="text-left w-full" id="teams-container">
         <div className="flex flex-row gap-2 content-start items-center" id="team1-container">

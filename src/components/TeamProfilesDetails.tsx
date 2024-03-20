@@ -1,33 +1,16 @@
 import defaultCrest from "../img/crest_default.svg";
 import { FaSquareXTwitter, FaSquareYoutube, FaSquareFacebook, FaSquareInstagram } from "react-icons/fa6";
 import { IoGlobeOutline } from "react-icons/io5";
-import { RiStarSmileLine, RiStarSmileFill } from "react-icons/ri";
-import { useFavouriteTeamContext } from "../customHooks/useFavouriteTeamsContext";
-import { useFetchLeagueData } from "../customHooks/useFetchLeagueData";
 import { Link } from "react-router-dom";
+import { LikeTeamButton } from "./ui/LikeTeamButton";
 
 export const TeamProfileDetails: React.FC<{
   teamLogo: string;
   teamName: string;
   teamId: string;
-  currentLeague: string;
-}> = ({ teamLogo, teamName, teamId, currentLeague }) => {
-  const { favouriteTeams, addFavouriteTeam, removeFavouriteTeam } = useFavouriteTeamContext();
-
-  const toggleFavouriteTeam = (team: { name: string; id: string }) => {
-    if (favouriteTeams.some((team: { id: string }) => team.id === teamId)) {
-      removeFavouriteTeam(team.id);
-    } else {
-      addFavouriteTeam(team);
-    }
-  };
-
-  const { isPending, error, data } = useFetchLeagueData(currentLeague);
-
-  if (isPending) return <p>Loading...</p>;
-
-  if (error) return <p>An error has occurred {error.message}</p>;
-
+  currentLeagueId: string;
+  currentLeagueName: string;
+}> = ({ teamLogo, teamName, teamId, currentLeagueId, currentLeagueName }) => {
   return (
     <div className="league-name pt-4 flex items-start flex-row gap-5">
       {teamLogo ? (
@@ -39,17 +22,7 @@ export const TeamProfileDetails: React.FC<{
         <div className="flex flex-row items-center gap-3">
           <span className="text-lg font-bold uppercase ">{teamName}</span>
 
-          <button
-            onClick={() => {
-              toggleFavouriteTeam({ name: teamName, id: teamId });
-            }}
-          >
-            {favouriteTeams.some((item: { id: string }) => item.id === teamId) ? (
-              <RiStarSmileFill className=" text-2xl text-yellow-500" />
-            ) : (
-              <RiStarSmileLine className="text-2xl " />
-            )}
-          </button>
+          <LikeTeamButton teamName={teamName} teamId={teamId}></LikeTeamButton>
         </div>
 
         <div className="text-sm">
@@ -61,8 +34,8 @@ export const TeamProfileDetails: React.FC<{
           </p>
           <p>
             <b>Rozgrywki: </b>
-            <Link className="hover:underline" to={`/league/${currentLeague}`}>
-              {data.name}
+            <Link className="hover:underline" to={`/league/${currentLeagueId}`}>
+              {currentLeagueName}
             </Link>
           </p>
           <p>

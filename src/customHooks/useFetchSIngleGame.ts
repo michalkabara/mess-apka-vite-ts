@@ -6,5 +6,6 @@ export const useFetchSingleGame = (matchId: string | undefined) => {
   return useQuery<Game>({
     queryKey: ["singleGameData"],
     queryFn: () => fetchData(`https://api-beta.trybuna.tv/api/Match/${matchId}`),
+    enabled: !!matchId,
   });
 };

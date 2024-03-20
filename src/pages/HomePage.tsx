@@ -24,8 +24,10 @@ export const HomePage: React.FC = () => {
               setSelectedLeague(league.id);
             }}
             key={league.id}
-            className={`uppercase text-xs text-center dark:bg-zinc-600 py-2 px-3 rounded-md  ${
-              selectedLeague === league.id ? "dark:bg-cyan-800 dark:hover:bg-cyan-700" : "dark:hover:bg-zinc-500"
+            className={`uppercase text-xs text-center  py-2 px-3 rounded-md  ${
+              selectedLeague === league.id
+                ? "dark:bg-cyan-800 dark:hover:bg-cyan-700"
+                : "dark:hover:bg-zinc-500 dark:bg-zinc-600"
             }`}
           >
             {league.name}
@@ -40,6 +42,3 @@ export const HomePage: React.FC = () => {
     </>
   );
 };
-
-{
-}

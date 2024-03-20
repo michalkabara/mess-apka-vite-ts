@@ -1,5 +1,6 @@
 import { Tooltip } from "react-tooltip";
 import { useFetchTeamGames } from "../customHooks/useFetchTeamGames";
+import { Link } from "react-router-dom";
 
 export const TeamForm: React.FC<{
   teamId?: string;
@@ -34,19 +35,21 @@ export const TeamForm: React.FC<{
 
         if (game.homeGoals === game.awayGoals) {
           return (
-            <div key={`${game.id}-tie`}>
-              <div
-                data-tooltip-id="tie-game"
-                data-tooltip-content={`${date} ${
-                  game.homeTeamId == teamId ? game.awayTeam?.name : game.homeTeam?.name
-                }`}
-                data-tooltip-place="top"
-                className="rounded-sm bg-orange-500 text-white size-4 text-center relative flex justify-center cursor-default leading-tight"
-              >
-                R
+            <Link to={`/game/${game.id}`} key={`${game.id}-win`}>
+              <div>
+                <div
+                  data-tooltip-id="tie-game"
+                  data-tooltip-content={`${date} ${
+                    game.homeTeamId == teamId ? game.awayTeam?.name : game.homeTeam?.name
+                  }`}
+                  data-tooltip-place="top"
+                  className="rounded-sm bg-orange-500 text-white size-4 text-center relative flex justify-center leading-tight"
+                >
+                  R
+                </div>
+                <Tooltip id="tie-game" />
               </div>
-              <Tooltip id="tie-game" />
-            </div>
+            </Link>
           );
         }
 
@@ -55,20 +58,22 @@ export const TeamForm: React.FC<{
           (game.awayTeamId === teamId && game.homeGoals < game.awayGoals)
         ) {
           return (
-            <div key={`${game.id}-win`}>
-              <div
-                data-tooltip-id="win-game"
-                data-tooltip-content={`${date} ${
-                  game.homeTeamId == teamId ? game.awayTeam?.name : game.homeTeam?.name
-                }`}
-                data-tooltip-place="top"
-                className="rounded-sm bg-green-700 text-white size-4 text-center relative flex justify-center cursor-default leading-tight"
-              >
-                W
-              </div>
+            <Link to={`/game/${game.id}`} key={`${game.id}-win`}>
+              <div>
+                <div
+                  data-tooltip-id="win-game"
+                  data-tooltip-content={`${date} ${
+                    game.homeTeamId == teamId ? game.awayTeam?.name : game.homeTeam?.name
+                  }`}
+                  data-tooltip-place="top"
+                  className="rounded-sm bg-green-700 text-white size-4 text-center relative flex justify-center leading-tight"
+                >
+                  W
+                </div>
 
-              <Tooltip id="win-game" />
-            </div>
+                <Tooltip id="win-game" />
+              </div>
+            </Link>
           );
         }
 
@@ -77,19 +82,21 @@ export const TeamForm: React.FC<{
           (game.awayTeamId === teamId && game.homeGoals > game.awayGoals)
         ) {
           return (
-            <div key={`${game.id}-lose`}>
-              <div
-                data-tooltip-id="lost-game"
-                data-tooltip-content={`${date} ${
-                  game.homeTeamId == teamId ? game.awayTeam?.name : game.homeTeam?.name
-                }`}
-                data-tooltip-place="top"
-                className="rounded-sm bg-red-700 text-white size-4 text-center relative flex justify-center cursor-default leading-tight"
-              >
-                P
+            <Link to={`/game/${game.id}`} key={`${game.id}-win`}>
+              <div>
+                <div
+                  data-tooltip-id="lost-game"
+                  data-tooltip-content={`${date} ${
+                    game.homeTeamId == teamId ? game.awayTeam?.name : game.homeTeam?.name
+                  }`}
+                  data-tooltip-place="top"
+                  className="rounded-sm bg-red-700 text-white size-4 text-center relative flex justify-center leading-tight"
+                >
+                  P
+                </div>
+                <Tooltip id="lost-game" />
               </div>
-              <Tooltip id="lost-game" />
-            </div>
+            </Link>
           );
         }
       })}

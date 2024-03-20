@@ -1,89 +1,86 @@
-import defaultCrest from "../img/crest_default.svg";
-import { Link } from "react-router-dom";
-import { TeamForm } from "../components/TeamForm";
-import { LeagueTableEntry } from "../types";
-import { useFetchLeagueTable } from "../customHooks/useFetchLeagueTable";
+import { Link, useSearchParams } from "react-router-dom";
+
 import { useParams } from "react-router-dom";
 import { useFetchLeagueData } from "../customHooks/useFetchLeagueData";
 import { LeagueHeader } from "../components/LeagueHeader";
+import { useFetchLeagueGames } from "../customHooks/useFetchLeagueGames";
+import { SingleGame } from "../components/SingleGame";
+import { useEffect, useState } from "react";
+import { SingleTab } from "../components/ui/SingleTab";
+import { LeagueRankingTable } from "../components/LeagueRankingTable";
 
 export const LeagueProfile: React.FC<{ leagueId?: string | undefined }> = ({ leagueId }) => {
+  const [selectedTab, setSelecteTab] = useState<number | null>(0);
   const { leagueId: routeLeagueId } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    const currentPage = searchParams.get("page");
+    if (!currentPage) return;
+    setSelecteTab(parseInt(currentPage));
+  }, [searchParams]);
 
   const checkLeagueId = routeLeagueId ?? leagueId;
 
-  const { isPending, error, data } = useFetchLeagueTable(checkLeagueId);
+  const { isPending: gamesArePending, error: gamesError, data: gamesData } = useFetchLeagueGames(checkLeagueId);
 
   const { isPending: leagueIsPending, error: leagueError, data: leagueData } = useFetchLeagueData(checkLeagueId);
 
-  if (isPending || leagueIsPending) return <p>Loading...</p>;
+  if (leagueIsPending || gamesArePending) return <p>Loading...</p>;
 
-  if (error ?? leagueError) return <p>An error has occurred {error?.message}</p>;
+  if (leagueError ?? gamesError) return <p>An error has occurred {gamesError?.message}</p>;
+
+  const tabs: { name: string }[] = [{ name: "Tabela" }, { name: "Wyniki" }, { name: "Nadchodzące mecze" }];
+
+  const selectTabAndChangeUrl = (index: number) => {
+    setSelecteTab(index);
+    setSearchParams(`page=${index}`);
+  };
 
   return (
     <>
       <div className="league-name flex justify-center mb-2 w-full">
         <LeagueHeader leagueName={leagueData.name} isLinkEnabled={false} hideArrow={true} leagueId={checkLeagueId} />
       </div>
-      <div className="flex flex-col gap-1 max-sm:overflow-x-scroll ">
-        <div
-          className="header flex flex-row text-xs gap-3 py-1 px-2 max-sm:w-fit
-      border-b-[1px] border-zinc-600 pb-2 text-center justify-between"
-        >
-          <div
-            className="max-sm:w-[170px]
-          w-[220px] flex flex-row left-0 sticky gap-2 dark:bg-zinc-900 bg-zinc-200"
-          >
-            <div className="w-4 flex justify-center">#</div>
-            <div className="text-left ">Drużyna</div>
-          </div>
-
-          <div className="flex flex-row justify-between w-[250px]">
-            <div className="w-4 flex justify-center">M</div>
-            <div className="rounded-full bg-green-700 text-white w-4">W</div>
-            <div className="rounded-full bg-orange-500 text-white w-4">R</div>
-            <div className="rounded-full bg-red-700 text-white w-4">P</div>
-            <div className="w-4 flex justify-center">GF</div>
-            <div className="w-4 flex justify-center">GA</div>
-            <div className="w-4 flex justify-center">GD</div>
-            <div className="w-4 flex justify-center">P</div>
-          </div>
-          <div className="w-[116px] text-left ">Forma</div>
+      <div className="tabs">
+        <div className="flex flex-row gap-3 mt-5 flex-wrap w-full mb-5">
+          {tabs.map((button, index) => (
+            <SingleTab
+              key={`tab-${index}`}
+              button={button}
+              index={index}
+              selectTabAndChangeUrl={selectTabAndChangeUrl}
+              selectedTab={selectedTab}
+            />
+          ))}
         </div>
-        {data.map((team: LeagueTableEntry, index: number) => {
-          return (
-            <div
-              key={team.teamId}
-              className="group flex flex-row gap-3 items-center text-xs hover:bg-zinc-300 max-sm:w-fit dark:hover:bg-zinc-700 rounded-md py-2 px-2 ease-in-out duration-500 justify-between"
-            >
+
+        <div className={`mecze mt-2 gap-1 flex flex-col text-xs ${selectedTab === 0 ? "flex" : "hidden"}`}>
+          <LeagueRankingTable
+            leagueName={leagueData.name}
+            leagueId={checkLeagueId}
+            isHeaderShown={false}
+          ></LeagueRankingTable>
+        </div>
+
+        <div className={`mecze mt-2 gap-1 flex flex-col text-xs ${selectedTab === 1 ? "flex" : "hidden"}`}>
+          {gamesData.map((game) => (
+            <div key={game.id} className="flex flex-col items-center">
               <Link
-                to={`/team/${team.teamId}`}
-                className="max-sm:w-[170px] flex flex-row items-center gap-3 w-[220px] sticky left-0 dark:bg-zinc-900 dark:group-hover:bg-zinc-700 ease-in-out duration-500 bg-zinc-200 group-hover:bg-zinc-300"
+                to={`/game/${game.id}`}
+                className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-[5px] px-4 ease-in-out duration-500 gap-2"
               >
-                <div className="w-4 flex justify-center ">{index + 1}.</div>
-                {team.logoUrl ? (
-                  <img src={team.logoUrl} alt={team.teamName} className="w-5 rounded-sm p-[1px] bg-white" />
-                ) : (
-                  <img src={defaultCrest} alt="Herb" className="w-5 " />
-                )}
-                <p className="text-left">{team.teamName}</p>
+                <SingleGame
+                  date={game.date}
+                  homeTeam={game.homeTeam}
+                  awayTeam={game.awayTeam}
+                  homeGoals={game.homeGoals}
+                  awayGoals={game.awayGoals}
+                />
               </Link>
-              <div className="flex flex-row justify-between w-[250px]">
-                <div className="w-4 flex justify-center">{team.played}</div>
-                <div className="w-4 flex justify-center">{team.won}</div>
-                <div className="w-4 flex justify-center">{team.drawn}</div>
-                <div className="w-4 flex justify-center">{team.lost}</div>
-                <div className="w-4 flex justify-center">{team.goalsFor}</div>
-                <div className="w-4 flex justify-center">{team.goalsAgainst}</div>
-                <div className="w-4 flex justify-center">{team.goalDifference}</div>
-                <div className="w-4 flex justify-center font-bold ">{team.points}</div>
-              </div>
-              <div className="">
-                <TeamForm teamId={team.teamId} />
-              </div>
             </div>
-          );
-        })}
+          ))}
+        </div>
       </div>
     </>
   );

@@ -2,6 +2,7 @@ import { RiTeamLine, RiTrophyLine, RiStarSmileFill } from "react-icons/ri";
 import { useFavouriteTeamContext } from "../customHooks/useFavouriteTeamsContext";
 import { useFavouriteLeaguesContext } from "../customHooks/useFavouriteLeaguesContext";
 import { Link } from "react-router-dom";
+import { FaRegNewspaper } from "react-icons/fa6";
 
 export const Sidebar = () => {
   const { favouriteTeams, removeFavouriteTeam } = useFavouriteTeamContext();
@@ -11,6 +12,10 @@ export const Sidebar = () => {
   return (
     <div className="text-zinc-900 dark:text-white text-sm flex flex-col gap-4">
       <div>
+        <div className="flex flex-row gap-2 items-center">
+          <h3 className="font-bold mb-2">News</h3>
+          <FaRegNewspaper className="-translate-y-1" />
+        </div>
         <div className="flex flex-row gap-2 items-center">
           <h3 className="font-bold mb-2">Moje Ligi</h3>
           <RiTrophyLine className="-translate-y-1" />

@@ -3,7 +3,6 @@ import { SingleGame } from "../components/SingleGame";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { TeamProfileDetails } from "../components/TeamProfilesDetails";
-import { LeagueProfile } from "./LeagueProfile";
 import { useFetchTeamData } from "../customHooks/useFetchTeamData";
 import { useFetchTeamGames } from "../customHooks/useFetchTeamGames";
 import { Game } from "../types";
@@ -14,6 +13,8 @@ import { HomeGames } from "../components/HomeGames";
 import { AwayGames } from "../components/AwayGames";
 import { UpcomingGames } from "../components/UpcomingGames";
 import { useFecthTeamPlayers } from "../customHooks/useFetchTeamPlayers";
+import { LeagueRankingTable } from "../components/LeagueRankingTable";
+import { useFetchLeagueData } from "../customHooks/useFetchLeagueData";
 
 const tabs: { name: string }[] = [
   { name: "Wyniki" },
@@ -39,12 +40,18 @@ export const TeamProfile: React.FC = () => {
 
   const { isPending, error, data } = useFetchTeamData(teamId);
 
+  const {
+    isPending: isLeagueDataPending,
+    error: leagueDataError,
+    data: leagueData,
+  } = useFetchLeagueData(data?.currentLeague);
+
   const { isPending: areGamesPending, error: gamesError, data: gamesData } = useFetchTeamGames(teamId);
   const { isPending: arePlayersPending, error: playersError, data: playersData } = useFecthTeamPlayers(teamId);
 
-  if (isPending || areGamesPending || arePlayersPending) return <p>Loading...</p>;
+  if (isPending || areGamesPending || arePlayersPending || isLeagueDataPending) return <p>Loading...</p>;
 
-  if (error ?? gamesError ?? playersError) return <p>An error has occurred {error?.message}</p>;
+  if (error ?? gamesError ?? playersError ?? leagueDataError) return <p>An error has occurred {error?.message}</p>;
 
   const homeGames = gamesData.filter((game: Game) => game.homeTeam?.name === data.name);
 
@@ -63,7 +70,8 @@ export const TeamProfile: React.FC = () => {
         teamLogo={data.logoUrl}
         teamName={data.name}
         teamId={data.id}
-        currentLeague={data.currentLeague}
+        currentLeagueId={data.currentLeague}
+        currentLeagueName={leagueData.name}
       />
 
       <div className="mt-5">
@@ -84,7 +92,7 @@ export const TeamProfile: React.FC = () => {
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 1 ? "flex" : "hidden"}`}>
-          <LeagueProfile leagueId={data.currentLeague} />
+          <LeagueRankingTable leagueName={leagueData.name} leagueId={data.currentLeague}></LeagueRankingTable>
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 0 ? "flex" : "hidden"}`}>

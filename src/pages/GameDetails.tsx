@@ -4,11 +4,14 @@ import { useFetchSingleGame } from "../customHooks/useFetchSIngleGame";
 import { SingleTab } from "../components/ui/SingleTab";
 import { useState } from "react";
 import { GameDetailsEntry } from "../components/ui/GameDetailsEntry";
-import { useFetchTeamGames } from "../customHooks/useFetchTeamGames";
+
 import { Game } from "../types";
 import { SingleGame } from "../components/SingleGame";
 import { GameDetailsTeams } from "../components/GameDetailsTeams";
 import { LeagueProfile } from "./LeagueProfile";
+import { useQuery } from "@tanstack/react-query";
+import { fetchData } from "../../clientApi";
+import { LikeTeamButton } from "../components/ui/LikeTeamButton";
 
 export const GameDetails: React.FC = () => {
   const { gameId } = useParams();
@@ -17,7 +20,37 @@ export const GameDetails: React.FC = () => {
 
   const leagueId = data?.leagueId;
 
-  const { isPending: areGamesPending, error: gamesError, data: gamesData } = useFetchTeamGames(data?.homeTeam?.id);
+  // const {
+  //   isPending: areHomeTeamGamesPending,
+  //   error: HomeTeamGamesError,
+  //   data: HomeTeamGamesData,
+  // } = useFetchTeamGames(data?.homeTeam?.id);
+
+  // const {
+  //   isPending: areAwayTeamGamesPending,
+  //   error: AwayTeanGamesError,
+  //   data: AwayTeamGamesData,
+  // } = useFetchTeamGames(data?.awayTeam?.id);
+
+  const {
+    isPending: areHomeTeamGamesPending,
+    error: HomeTeamGamesError,
+    data: HomeTeamGamesData,
+  } = useQuery<Game[]>({
+    queryKey: ["HomeTeamGamesData", data?.homeTeam?.id],
+    queryFn: () => fetchData(`https://api-beta.trybuna.tv/api/Match/team/${data?.homeTeam?.id}`),
+    enabled: !!data?.homeTeam?.id,
+  });
+
+  const {
+    isPending: areAwayTeamGamesPending,
+    error: AwayTeanGamesError,
+    data: AwayTeamGamesData,
+  } = useQuery<Game[]>({
+    queryKey: ["AwayTeamGamesData", data?.awayTeam?.id],
+    queryFn: () => fetchData(`https://api-beta.trybuna.tv/api/Match/team/${data?.awayTeam?.id}`),
+    enabled: !!data?.awayTeam?.id,
+  });
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -25,23 +58,17 @@ export const GameDetails: React.FC = () => {
 
   const [selectedSecondTab, setSelecteSecondTab] = useState<number | null>(parseInt(searchParams.get("tab") ?? "0"));
 
-  if (isPending || areGamesPending) return <p>Loading...</p>;
+  if (isPending || areHomeTeamGamesPending || areAwayTeamGamesPending) return <p>Loading...</p>;
 
-  if (error ?? gamesError) return <p>An error has occurred {error?.message}</p>;
+  if (error ?? HomeTeamGamesError ?? AwayTeanGamesError) return <p>An error has occurred {error?.message}</p>;
 
   const gameDate = new Date(data.date ?? 0);
 
-  const homeVsAwayTeam = gamesData.filter((game: Game) => game.awayTeam?.name === data.awayTeam?.name);
+  const awayVsHomeTeam = AwayTeamGamesData.filter((game: Game) => game.awayTeam?.name === data.awayTeam?.name);
 
-  // const awayVsHomeTeam = gamesData.filter((game: Game) => game.homeTeam?.name === data.homeTeam?.name);
+  const homeVsAwayTeam = HomeTeamGamesData.filter((game: Game) => game.homeTeam?.name === data.homeTeam?.name);
 
-  const tabs: { name: string }[] = [
-    { name: "Mecz" },
-    { name: "H2H" },
-    { name: "Tabela" },
-    { name: "Składy" },
-    { name: "Ogółem" },
-  ];
+  const tabs: { name: string }[] = [{ name: "Mecz" }, { name: "H2H" }, { name: "Tabela" }, { name: "Składy" }];
 
   const tabs2: { name: string }[] = [
     { name: `${data.homeTeam?.name} u siebie` },
@@ -65,7 +92,10 @@ export const GameDetails: React.FC = () => {
         {gameDate.getUTCMinutes() == 0 ? "00" : gameDate.getUTCMinutes()}
       </p>
 
-      <div className="grid gap-1 md:gap-5 grid-cols-3 mt-7 items-start">
+      <div className="flex flex-row gap-1 md:gap-5  mt-7 items-center">
+        <div className="-translate-y-2">
+          <LikeTeamButton teamId={data.homeTeam?.id} teamName={data.homeTeam?.name}></LikeTeamButton>
+        </div>
         <Link to={`/team/${data.homeTeam?.id}`}>
           <div className="flex flex-col text-center text-xs gap-3 items-center">
             <img src={data.homeTeam?.logoUrl} alt={data.homeTeam?.name} className="w-28 rounded-md p-1 bg-white" />
@@ -83,6 +113,9 @@ export const GameDetails: React.FC = () => {
             <p>{data.awayTeam?.name}</p>
           </div>
         </Link>
+        <div className="-translate-y-2">
+          <LikeTeamButton teamId={data.awayTeam?.id} teamName={data.awayTeam?.name}></LikeTeamButton>
+        </div>
       </div>
 
       <div className="tabs w-full">
@@ -158,7 +191,21 @@ export const GameDetails: React.FC = () => {
             ))}
           </div>
           <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedSecondTab === 1 ? "flex" : "hidden"}`}>
-            <p>test away vs home</p>
+            {awayVsHomeTeam.reverse().map((mecz: Game, index: number) => (
+              <Link
+                to={`/game/${mecz.id}`}
+                key={`${mecz.id}-${index}`}
+                className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
+              >
+                <SingleGame
+                  date={mecz.date}
+                  homeTeam={mecz.homeTeam}
+                  awayTeam={mecz.awayTeam}
+                  homeGoals={mecz.homeGoals}
+                  awayGoals={mecz.awayGoals}
+                />
+              </Link>
+            ))}
           </div>
         </div>
 
