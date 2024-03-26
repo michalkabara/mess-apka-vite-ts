@@ -2,7 +2,7 @@ import { SingleLeague } from "../components/SingleLeague";
 import { useFetchLeagues } from "../customHooks/useFetchLeagues";
 import { useEffect, useState } from "react";
 import { League } from "../types";
-import { FavouriteLeaguesContext } from "../context/FavouriteLeaguesContext";
+
 import { HomePageBlog } from "../components/HomePageBlog";
 
 export const HomePage: React.FC = () => {

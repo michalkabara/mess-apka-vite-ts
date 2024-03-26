@@ -44,7 +44,7 @@ export const SingleLeague: React.FC<{ leagueId: string; subLeague: string; index
         data-section-name={index}
         className={`mecze mt-2 gap-1 flex flex-col text-xs min-h-[660px] relative ${!isActive && "hidden"}`}
       >
-        {data.data.map((game) => (
+        {data?.data.map((game) => (
           <div key={game.id} className="flex flex-col items-center ">
             <Link
               to={`/game/${game.id}`}
