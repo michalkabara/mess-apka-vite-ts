@@ -1,32 +1,17 @@
 import { Link } from "react-router-dom";
 import defaultPlayer from "../img/default_player.png";
-import { useFecthTeamPlayers } from "../customHooks/useFetchTeamPlayers";
+import { Player } from "../types";
 
-export const GameDetailsTeams: React.FC<{ homeTeamId: string | undefined; awayTeamId: string | undefined }> = ({
-  homeTeamId,
-  awayTeamId,
-}) => {
-  const {
-    isPending: homePlayersPending,
-    error: homePlayersError,
-    data: homePlayersData,
-  } = useFecthTeamPlayers(homeTeamId);
-  const {
-    isPending: awayPlayersPending,
-    error: awayPlayersError,
-    data: awayPlayersData,
-  } = useFecthTeamPlayers(awayTeamId);
-
-  if (homePlayersPending || awayPlayersPending) return <p>Loading...</p>;
-
-  if (homePlayersError ?? awayPlayersError) return <p>An error has occurred {homePlayersError?.message}</p>;
-
+export const GameDetailsTeams: React.FC<{
+  homeTeamPlayers: Player[] | undefined;
+  awayTeamPlayers: Player[] | undefined;
+}> = ({ homeTeamPlayers, awayTeamPlayers }) => {
   return (
-    <div className="w-full mt-5 text-sm">
+    <div className="w-full mt-5 text-sm flex flex-col items-center">
       <h3 className="text-center uppercase text-xs">sklady wyjsciowe</h3>
-      <div className="mt-5 flex flex-row w-full justify-center gap-4 md:gap-10">
+      <div className="mt-5 flex flex-row gap-4 md:gap-10">
         <div className="flex flex-col text-right border-1 border-zinc-200 gap-2 ">
-          {homePlayersData.map((player) => (
+          {homeTeamPlayers?.map((player) => (
             <Link key={player.id} to={`/player/${player.id}`}>
               <div className="flex flex-row gap-2 justify-end items-center">
                 <p>{player.name}</p>
@@ -37,7 +22,7 @@ export const GameDetailsTeams: React.FC<{ homeTeamId: string | undefined; awayTe
         </div>
         <div className="w-1 border-3 border-zinc-700 border-s-[1px]"></div>
         <div className="flex flex-col text-left gap-2">
-          {awayPlayersData.map((player) => (
+          {awayTeamPlayers?.map((player) => (
             <Link key={player.id} to={`/player/${player.id}`}>
               <div className="flex flex-row gap-2 justify-start items-center">
                 <img className="size-5" src={defaultPlayer} alt={player.name} />

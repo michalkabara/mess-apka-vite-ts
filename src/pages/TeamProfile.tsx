@@ -53,11 +53,11 @@ export const TeamProfile: React.FC = () => {
 
   if (error ?? gamesError ?? playersError ?? leagueDataError) return <p>An error has occurred {error?.message}</p>;
 
-  const homeGames = gamesData.filter((game: Game) => game.homeTeam?.name === data.name);
+  const homeGames = gamesData.data.filter((game: Game) => game.homeTeam?.name === data.name);
 
-  const awayGames = gamesData.filter((game: Game) => game.awayTeam?.name === data.name);
+  const awayGames = gamesData.data.filter((game: Game) => game.awayTeam?.name === data.name);
 
-  const upcomingGames = gamesData.filter((game: Game) => game.isFinished === false);
+  const upcomingGames = gamesData.data.filter((game: Game) => game.isFinished === false);
 
   const selectTabAndChangeUrl = (index: number) => {
     setSelecteTab(index);
@@ -96,7 +96,7 @@ export const TeamProfile: React.FC = () => {
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 0 ? "flex" : "hidden"}`}>
-          {gamesData.reverse().map((mecz: Game, index: number) => (
+          {gamesData.data.reverse().map((mecz: Game, index: number) => (
             <Link
               to={`/game/${mecz.id}`}
               key={`${mecz.id}-${index}`}
@@ -119,6 +119,20 @@ export const TeamProfile: React.FC = () => {
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 3 ? "flex" : "hidden"}`}>
           <AwayGames awayGames={awayGames} />
+        </div>
+
+        <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 4 ? "flex" : "hidden"}`}>
+          <div className="flex flex-row gap-2 items-center">
+            <div className="flex flex-col w-[40%] gap-2">
+              <p>Wygrane: 2</p>
+              <div className={`w-full h-2 bg-green-500 rounded-full`}></div>
+            </div>
+
+            <div className="flex flex-col items-end w-[60%] gap-2">
+              <p>Przegrane: 2</p>
+              <div className={`w-full h-2 bg-red-500 rounded-full`}></div>
+            </div>
+          </div>
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 5 ? "flex" : "hidden"}`}>

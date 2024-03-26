@@ -10,11 +10,11 @@ export const Sidebar = () => {
   const { favouriteLeagues, removeFavouriteLeague } = useFavouriteLeaguesContext();
 
   return (
-    <div className="text-zinc-900 dark:text-white text-sm flex flex-col gap-4">
+    <div className="text-zinc-900 dark:text-white text-sm flex flex-col gap-4 sticky top-2">
       <div>
-        <div className="flex flex-row gap-2 items-center">
-          <h3 className="font-bold mb-2">News</h3>
-          <FaRegNewspaper className="-translate-y-1" />
+        <div className="flex flex-row gap-2 items-center bg-[#ed4535] hover:bg-[#d63c2e] rounded-md px-2 py-1 mb-2 cursor-pointer transition-colors ease-in-out text-zinc-100">
+          <h3 className="font-bold ">News</h3>
+          <FaRegNewspaper className="" />
         </div>
         <div className="flex flex-row gap-2 items-center">
           <h3 className="font-bold mb-2">Moje Ligi</h3>
@@ -24,7 +24,7 @@ export const Sidebar = () => {
         <div className="flex flex-col gap-2 text-xs">
           {favouriteLeagues.map((favLeague: { name: string; id?: string }) => (
             <div key={favLeague.name} className="flex flex-row gap-2 items-center text-xs justify-between">
-              <Link to={`/league/${favLeague.id}`} className="truncate">
+              <Link to={`/league/${favLeague.id}`} className="truncate capitalize">
                 {favLeague.name}
               </Link>
 

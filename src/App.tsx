@@ -30,7 +30,7 @@ function App() {
 
       <div className="border-b dark:border-zinc-700 border-zinc-300">
         <nav className=" flex w-full items-center  py-3 px-5 max-w-[1200px] m-auto">
-          <div className="max-sm:hidden">
+          <div className="max-sm:hidden relative">
             <Navbar />
           </div>
 
@@ -47,7 +47,7 @@ function App() {
               <Sidebar />
             </div>
           )}
-          <div className="w-full flex flex-col gap-2">
+          <div className="w-full flex flex-col gap-2 min-h-[calc(100vh-425px)]">
             <div className="text-sm">Breadcurmbs</div>
             <div className=" bg-zinc-50 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 rounded-lg p-5 relative overflow-auto dark:border-zinc-700 border-[1px]">
               <Outlet />

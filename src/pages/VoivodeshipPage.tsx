@@ -30,7 +30,7 @@ export const VoivodeshipPage: React.FC = () => {
                 : "dark:hover:bg-zinc-500 dark:bg-zinc-600"
             }`}
           >
-            {league.name}
+            {league.name.split("-")[0]}
           </button>
         ))}
       </div>

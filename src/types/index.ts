@@ -21,6 +21,8 @@ export interface Game2 {
   outcome?: number;
   awayTeam: Team;
   homeTeam: Team;
+  homePlayers: Player[];
+  awayPlayers: Player[];
 }
 
 export type Game = Partial<Game2>;
@@ -34,7 +36,10 @@ export interface Player {
   assists: number;
   yellowCards: number;
   redCards: number;
-  teamId: string;
+  roles: string;
+  legPreference: string;
+  lastName: string;
+  firstName: string;
 }
 
 export interface Team {
@@ -93,6 +98,14 @@ export interface Player {
   assists: number;
   yellowCards: number;
   redCards: number;
-  roles: number;
-  legPreference: number;
+  roles: string;
+  legPreference: string;
+}
+
+export interface PagedResponse<T> {
+  data: T[];
+  pageIndex: number;
+  pageSize: number;
+  pageCount: number;
+  totalCount: number;
 }

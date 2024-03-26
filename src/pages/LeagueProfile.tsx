@@ -64,7 +64,7 @@ export const LeagueProfile: React.FC<{ leagueId?: string | undefined }> = ({ lea
         </div>
 
         <div className={`mecze mt-2 gap-1 flex flex-col text-xs ${selectedTab === 1 ? "flex" : "hidden"}`}>
-          {gamesData.map((game) => (
+          {gamesData.data.map((game) => (
             <div key={game.id} className="flex flex-col items-center">
               <Link
                 to={`/game/${game.id}`}

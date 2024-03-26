@@ -1,24 +1,39 @@
 import { SingleLeague } from "../components/SingleLeague";
 import { useFetchLeagues } from "../customHooks/useFetchLeagues";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { League } from "../types";
+import { FavouriteLeaguesContext } from "../context/FavouriteLeaguesContext";
+import { HomePageBlog } from "../components/HomePageBlog";
 
 export const HomePage: React.FC = () => {
+  const [filteredData, setFilteredData] = useState<League[] | undefined>();
+  const [defaultVoivode, setDefaultVoivode] = useState<League | undefined>();
+  const [selectedLeague, setSelectedLeague] = useState<string | undefined>("");
+
+  // const favouriteLeagues = useContext(FavouriteLeaguesContext);
+
   const { isPending, error, data } = useFetchLeagues();
 
-  const [selectedLeague, setSelectedLeague] = useState("");
+  useEffect(() => {
+    setDefaultVoivode(data?.[5]);
+    const filterVoivode = defaultVoivode?.childLeagues.find((league) => league.id === selectedLeague);
+    setFilteredData(filterVoivode);
+    // setSelectedLeague(defaultVoivode?.childLeagues[0].id);
+  }, [data, defaultVoivode?.childLeagues, selectedLeague]);
 
   if (isPending) return <p>Loading...</p>;
 
   if (error) return <p>An error has occurred {error.message}</p>;
 
-  const child = data[0];
-
-  const filteredData = child.childLeagues.find((league) => league.id === selectedLeague);
+  // const child = data[0];
+  // const filteredData = child.childLeagues.find((league) => league.id === selectedLeague);
 
   return (
     <>
-      <div className="flex flex-row w-full gap-3">
-        {child.childLeagues.map((league) => (
+      <HomePageBlog></HomePageBlog>
+      <hr className="mt-5 border-zinc-600"></hr>
+      <div className="flex flex-row w-full gap-3 mt-5">
+        {defaultVoivode?.childLeagues.map((league) => (
           <button
             onClick={() => {
               setSelectedLeague(league.id);
@@ -30,7 +45,7 @@ export const HomePage: React.FC = () => {
                 : "dark:hover:bg-zinc-500 dark:bg-zinc-600"
             }`}
           >
-            {league.name}
+            {league.name.split("-")[0]}
           </button>
         ))}
       </div>

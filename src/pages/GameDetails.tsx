@@ -5,7 +5,7 @@ import { SingleTab } from "../components/ui/SingleTab";
 import { useState } from "react";
 import { GameDetailsEntry } from "../components/ui/GameDetailsEntry";
 
-import { Game } from "../types";
+import { Game, PagedResponse } from "../types";
 import { SingleGame } from "../components/SingleGame";
 import { GameDetailsTeams } from "../components/GameDetailsTeams";
 import { LeagueProfile } from "./LeagueProfile";
@@ -36,7 +36,7 @@ export const GameDetails: React.FC = () => {
     isPending: areHomeTeamGamesPending,
     error: HomeTeamGamesError,
     data: HomeTeamGamesData,
-  } = useQuery<Game[]>({
+  } = useQuery<PagedResponse<Game>>({
     queryKey: ["HomeTeamGamesData", data?.homeTeam?.id],
     queryFn: () => fetchData(`https://api-beta.trybuna.tv/api/Match/team/${data?.homeTeam?.id}`),
     enabled: !!data?.homeTeam?.id,
@@ -46,7 +46,7 @@ export const GameDetails: React.FC = () => {
     isPending: areAwayTeamGamesPending,
     error: AwayTeanGamesError,
     data: AwayTeamGamesData,
-  } = useQuery<Game[]>({
+  } = useQuery<PagedResponse<Game>>({
     queryKey: ["AwayTeamGamesData", data?.awayTeam?.id],
     queryFn: () => fetchData(`https://api-beta.trybuna.tv/api/Match/team/${data?.awayTeam?.id}`),
     enabled: !!data?.awayTeam?.id,
@@ -64,9 +64,9 @@ export const GameDetails: React.FC = () => {
 
   const gameDate = new Date(data.date ?? 0);
 
-  const awayVsHomeTeam = AwayTeamGamesData.filter((game: Game) => game.awayTeam?.name === data.awayTeam?.name);
+  const awayVsHomeTeam = AwayTeamGamesData.data.filter((game: Game) => game.awayTeam?.name === data.awayTeam?.name);
 
-  const homeVsAwayTeam = HomeTeamGamesData.filter((game: Game) => game.homeTeam?.name === data.homeTeam?.name);
+  const homeVsAwayTeam = HomeTeamGamesData.data.filter((game: Game) => game.homeTeam?.name === data.homeTeam?.name);
 
   const tabs: { name: string }[] = [{ name: "Mecz" }, { name: "H2H" }, { name: "Tabela" }, { name: "Składy" }];
 
@@ -210,7 +210,7 @@ export const GameDetails: React.FC = () => {
         </div>
 
         <div className={` ${selectedTab === 3 ? "initial" : "hidden"}`}>
-          <GameDetailsTeams awayTeamId={data.awayTeamId} homeTeamId={data.homeTeamId} />
+          <GameDetailsTeams awayTeamPlayers={data.awayPlayers} homeTeamPlayers={data.homePlayers} />
         </div>
       </div>
     </div>

@@ -11,7 +11,7 @@ export const TeamForm: React.FC<{
 
   if (error) return <p>An error has occurred {error.message}</p>;
 
-  const games = data.filter((game) => game.homeTeamId === teamId || game.awayTeamId === teamId).slice(0, 5);
+  const games = data.data.filter((game) => game.homeTeamId === teamId || game.awayTeamId === teamId).slice(0, 5);
 
   return (
     <div className="flex flex-row gap-1 relative">
