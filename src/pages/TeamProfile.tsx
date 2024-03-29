@@ -59,6 +59,14 @@ export const TeamProfile: React.FC = () => {
 
   const upcomingGames = gamesData.data.filter((game: Game) => game.isFinished === false);
 
+  const teamWins = gamesData.data.filter((game) => game.winnerId === teamId).length;
+
+  const teamLoses = gamesData.data.filter((game) => game.winnerId !== teamId).length;
+
+  const teamWinsPercent = (teamWins / (teamWins + teamLoses)) * 100;
+
+  const teamLosesPercent = (teamLoses / (teamWins + teamLoses)) * 100;
+
   const selectTabAndChangeUrl = (index: number) => {
     setSelecteTab(index);
     setSearchParams(`page=${index}`);
@@ -123,13 +131,13 @@ export const TeamProfile: React.FC = () => {
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 4 ? "flex" : "hidden"}`}>
           <div className="flex flex-row gap-2 items-center">
-            <div className="flex flex-col w-[40%] gap-2">
-              <p>Wygrane: 2</p>
+            <div className={`flex flex-col gap-2`} style={{ width: teamWinsPercent + "%" }}>
+              <p>Wygrane: {teamWins}</p>
               <div className={`w-full h-2 bg-green-500 rounded-full`}></div>
             </div>
 
-            <div className="flex flex-col items-end w-[60%] gap-2">
-              <p>Przegrane: 2</p>
+            <div className={`flex flex-col items-end gap-2`} style={{ width: teamLosesPercent + "%" }}>
+              <p>Przegrane: {teamLoses}</p>
               <div className={`w-full h-2 bg-red-500 rounded-full`}></div>
             </div>
           </div>

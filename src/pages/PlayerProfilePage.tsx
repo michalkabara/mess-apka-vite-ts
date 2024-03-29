@@ -1,18 +1,32 @@
 import defaultPlayer from "../img/default_player.png";
 import { useFetchPlayerData } from "../customHooks/useFetchPlayerData";
 import { useFetchTeamData } from "../customHooks/useFetchTeamData";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useFetchTeamGames } from "../customHooks/useFetchTeamGames";
+import { SingleGame } from "../components/SingleGame";
 
 export const PlayerProfilePage: React.FC = () => {
   const { playerId } = useParams();
 
   const { isPending, error, data } = useFetchPlayerData(playerId);
 
+  console.log(data);
+
   const { isPending: isTeamPending, error: teamError, data: teamData } = useFetchTeamData(data?.teamId);
 
-  if (isPending || isTeamPending) return <p>Loading...</p>;
+  const { isPending: isTeamGamesPending, error: teamGamesError, data: teamGamesData } = useFetchTeamGames(data?.teamId);
 
-  if (error ?? teamError) return <p>An error has occurred {error?.message}</p>;
+  if (isPending || isTeamPending || isTeamGamesPending) return <p>Loading...</p>;
+
+  if (error ?? teamError ?? teamGamesError) return <p>An error has occurred {error?.message}</p>;
+
+  // const playerGames = teamGamesData.data.filter(
+  //   (game) =>
+  //     game.homePlayers?.some((player) => player.id === playerId) ??
+  //     game.awayPlayers?.some((player) => player.id === playerId)
+  // );
+
+  // console.log(playerGames);
 
   return (
     <>
@@ -99,6 +113,23 @@ export const PlayerProfilePage: React.FC = () => {
       </div>
       <div>
         <h2 className="text-xs uppercase py-3 border-b-[1px] border-zinc-600">Ostatnie mecze</h2>
+
+        {/* {playerGames.map((game) => (
+          <div key={game.id} className="flex flex-col items-center">
+            <Link
+              to={`/game/${game.id}`}
+              className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-[5px] px-4 ease-in-out duration-500 gap-2"
+            >
+              <SingleGame
+                date={game.date}
+                homeTeam={game.homeTeam}
+                awayTeam={game.awayTeam}
+                homeGoals={game.homeGoals}
+                awayGoals={game.awayGoals}
+              />
+            </Link>
+          </div>
+        ))} */}
       </div>
     </>
   );

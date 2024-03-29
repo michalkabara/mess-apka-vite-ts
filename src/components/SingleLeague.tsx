@@ -27,7 +27,7 @@ export const SingleLeague: React.FC<{ leagueId: string; subLeague: string; index
   };
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    setCurrentPage(value);
+    setCurrentPage(value - 1);
   };
 
   return (
@@ -66,7 +66,7 @@ export const SingleLeague: React.FC<{ leagueId: string; subLeague: string; index
             count={numberOfPages}
             size="small"
             onChange={handleChange}
-            page={currentPage}
+            page={currentPage + 1}
             sx={{
               button: { color: "#ffffff" },
               ".Mui-selected": { backgroundColor: "rgb(255 255 255 / 16%)!important" },
