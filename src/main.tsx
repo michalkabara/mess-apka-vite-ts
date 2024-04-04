@@ -16,6 +16,7 @@ import { ClerkProvider } from "@clerk/clerk-react";
 import { PlayerProfilePage } from "./pages/PlayerProfilePage";
 
 import { VoivodeshipPage } from "./pages/VoivodeshipPage";
+import { BlogPost } from "./components/ui/BlogPost";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "/voivode/:voivodeId",
         element: <VoivodeshipPage />,
+      },
+      {
+        path: "/post/:postId",
+        element: <BlogPost />,
       },
     ],
   },

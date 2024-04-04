@@ -18,6 +18,7 @@ export const LeagueProfile: React.FC<{ leagueId?: string | undefined }> = ({ lea
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [upcomingGamesCurrentPage, setUpcomingGamesCurrentPage] = useState<number>(0);
   const [numberOfPages, setNumberOfPages] = useState<number>(0);
+  const [upcomingGamesNumberOfPages, setUpcomingGamesNumberOfPages] = useState<number>(0);
 
   const checkLeagueId = routeLeagueId ?? leagueId;
 
@@ -52,9 +53,9 @@ export const LeagueProfile: React.FC<{ leagueId?: string | undefined }> = ({ lea
     setSearchParams(`page=${index}`);
   };
 
-  const upcomingGames = gamesData.data.filter((game) => game.isFinished === false);
+  // const upcomingGames = gamesData.data.filter((game) => game.isFinished === false);
 
-  const upcomingGamesPages = Math.ceil(upcomingGames.length / 10) + 1;
+  // const upcomingGamesPages = Math.ceil(upcomingGames.length / 10) + 1;
 
   return (
     <>
@@ -115,8 +116,8 @@ export const LeagueProfile: React.FC<{ leagueId?: string | undefined }> = ({ lea
           </div>
         </div>
 
-        <div className={` wyniki mt-2 gap-1 flex flex-col text-xs ${selectedTab === 2 ? "flex" : "hidden"}`}>
-          {upcomingGames.map((game) => (
+        {/* <div className={` wyniki mt-2 gap-1 flex flex-col text-xs ${selectedTab === 2 ? "flex" : "hidden"}`}>
+          {upcomingGamesData.data.map((game) => (
             <div key={game.id} className="flex flex-col items-center">
               <Link
                 to={`/game/${game.id}`}
@@ -134,7 +135,7 @@ export const LeagueProfile: React.FC<{ leagueId?: string | undefined }> = ({ lea
           ))}
           <div className="flex justify-center text-gray-50 bg-zinc-800 rounded-md mt-3 p-1  bottom-0 w-full">
             <Pagination
-              count={upcomingGamesPages}
+              count={upcomingGamesNumberOfPages}
               size="small"
               onChange={handleChange}
               page={upcomingGamesCurrentPage + 1}
@@ -146,7 +147,7 @@ export const LeagueProfile: React.FC<{ leagueId?: string | undefined }> = ({ lea
               className="text-white"
             />
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
