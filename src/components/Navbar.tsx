@@ -9,6 +9,8 @@ export const Navbar = () => {
   const dropdownVoivodeButtonRef = useRef(null);
   const comboBoxInputRef = useRef<HTMLInputElement>(null);
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const { isPending, error, data } = useFetchLeagues();
 
   const filteredItems = useMemo(() => {
@@ -19,14 +21,28 @@ export const Navbar = () => {
 
   if (error) return <p>An error has occurred {error.message}</p>;
 
+  const handleMenuItemClick = () => {
+    const elem = document.activeElement as HTMLElement;
+    elem.blur();
+    setIsMenuOpen(false);
+  };
+
+  const handleMenuToggle = () => {
+    setIsMenuOpen((prev) => !prev);
+    comboBoxInputRef.current?.focus();
+  };
+
   return (
-    <div className="dropdown">
+    <div
+      className="dropdown"
+      onBlur={() => {
+        setIsMenuOpen(false);
+      }}
+    >
       <button
         tabIndex={0}
         role="button"
-        onClick={() => {
-          comboBoxInputRef.current?.focus();
-        }}
+        onClick={handleMenuToggle}
         ref={dropdownVoivodeButtonRef}
         className="flex flex-row text-xs items-center gap-2 p-2 bg-zinc-700 rounded-md hover:bg-zinc-600 transition-colors ease-in-out cursor-pointer"
       >
@@ -52,7 +68,7 @@ export const Navbar = () => {
           <Link
             role="button"
             className="hover:bg-zinc-700 transition-colors ease-in-out px-3 py-2 w-full rounded-md text-sm"
-            autoFocus
+            onClick={handleMenuItemClick}
             key={voivodeship.id}
             to={`/voivode/${voivodeship.id}`}
           >

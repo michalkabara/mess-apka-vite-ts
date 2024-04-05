@@ -71,6 +71,8 @@ export const GameDetails: React.FC = () => {
   const tabs: { name: string }[] = [{ name: "Mecz" }, { name: "H2H" }, { name: "Tabela" }, { name: "Składy" }];
 
   const tabs2: { name: string }[] = [
+    { name: `Ogółem` },
+
     { name: `${data.homeTeam?.name} u siebie` },
     { name: `${data.awayTeam?.name} na wyjeździe` },
   ];
@@ -92,24 +94,32 @@ export const GameDetails: React.FC = () => {
         {gameDate.getUTCMinutes() == 0 ? "00" : gameDate.getUTCMinutes()}
       </p>
 
-      <div className="flex flex-row gap-1 md:gap-5  mt-7 items-center">
+      <div className="grid grid-cols-5 gap-1 md:gap-5  mt-7 items-center justify-items-center">
         <div className="-translate-y-2">
           <LikeTeamButton teamId={data.homeTeam?.id} teamName={data.homeTeam?.name}></LikeTeamButton>
         </div>
         <Link to={`/team/${data.homeTeam?.id}`}>
-          <div className="flex flex-col text-center text-xs gap-3 items-center">
-            <img src={data.homeTeam?.logoUrl} alt={data.homeTeam?.name} className="w-28 rounded-md p-1 bg-white" />
+          <div className="flex flex-col text-center text-xs gap-3 items-center ">
+            <img
+              src={data.homeTeam?.logoUrl}
+              alt={data.homeTeam?.name}
+              className="md:size-24 lg:size-28 size-12 rounded-md p-1 bg-white"
+            />
             <p>{data.homeTeam?.name}</p>
           </div>
         </Link>
 
-        <span className="text-center font-bold text-nowrap text-2xl md:text-4xl flex justify-center h-full items-center -translate-y-3">
+        <span className="text-center font-bold text-nowrap sm:text-2xl md:text-4xl flex justify-center h-full items-center -translate-y-3">
           {data.homeGoals} - {data.awayGoals}
         </span>
 
         <Link to={`/team/${data.awayTeam?.id}`}>
           <div className="flex flex-col text-center text-xs gap-3 items-center">
-            <img src={data.awayTeam?.logoUrl} alt={data.awayTeam?.name} className="w-28 rounded-md p-1 bg-white" />
+            <img
+              src={data.awayTeam?.logoUrl}
+              alt={data.awayTeam?.name}
+              className="md:size-24 lg:size-28 size-12 rounded-md p-1 bg-white"
+            />
             <p>{data.awayTeam?.name}</p>
           </div>
         </Link>
@@ -173,7 +183,7 @@ export const GameDetails: React.FC = () => {
               ))}
             </div>
           </div>
-          <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedSecondTab === 0 ? "flex" : "hidden"}`}>
+          <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedSecondTab === 1 ? "flex" : "hidden"}`}>
             {homeVsAwayTeam.reverse().map((mecz: Game, index: number) => (
               <Link
                 to={`/game/${mecz.id}`}
@@ -190,7 +200,7 @@ export const GameDetails: React.FC = () => {
               </Link>
             ))}
           </div>
-          <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedSecondTab === 1 ? "flex" : "hidden"}`}>
+          <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedSecondTab === 2 ? "flex" : "hidden"}`}>
             {awayVsHomeTeam.reverse().map((mecz: Game, index: number) => (
               <Link
                 to={`/game/${mecz.id}`}

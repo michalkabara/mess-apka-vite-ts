@@ -23,8 +23,14 @@ export const FavouriteLeaguesContextProvider: React.FC<{
   const [favouriteLeagues, setfavouriteLeagues] = useState<FavouriteLeague[]>([]);
 
   useEffect(() => {
+    const favLeagues: string | null = localStorage.getItem("favouriteLeagues");
+
+    if (!favLeagues) return;
+
+    const parsedFavLeagues = JSON.parse(favLeagues) as FavouriteLeague[];
+
     if (localStorage.getItem("favouriteTeams")) {
-      setfavouriteLeagues(JSON.parse(localStorage.getItem("favouriteLeagues")));
+      setfavouriteLeagues(parsedFavLeagues);
     }
   }, [setfavouriteLeagues]);
 

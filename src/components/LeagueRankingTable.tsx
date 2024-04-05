@@ -45,6 +45,7 @@ export const LeagueRankingTable: React.FC<{
         </div>
         <div className="w-[116px] text-left ">Forma</div>
       </div>
+
       {data.map((team: LeagueTableEntry, index: number) => {
         return (
           <div
@@ -53,7 +54,7 @@ export const LeagueRankingTable: React.FC<{
           >
             <Link
               to={`/team/${team.teamId}`}
-              className="max-sm:w-[170px] flex flex-row items-center gap-3 w-[220px] sticky left-0 dark:bg-zinc-900 dark:group-hover:bg-zinc-700 ease-in-out duration-500 bg-zinc-200 group-hover:bg-zinc-300"
+              className="max-sm:w-[170px] flex flex-row items-center gap-3 w-[220px] sticky left-0 dark:bg-zinc-900 dark:group-hover:bg-zinc-700 ease-in-out duration-500 bg-zinc-200 group-hover:bg-zinc-300 "
             >
               <div className="w-4 flex justify-center ">{index + 1}.</div>
               {team.logoUrl ? (
