@@ -32,7 +32,7 @@ export const HomePage: React.FC = () => {
     <>
       <HomePageBlog></HomePageBlog>
       <hr className="mt-5 border-zinc-600"></hr>
-      <div className="flex flex-row w-full gap-3 mt-5">
+      <div className="flex flex-row w-full gap-3 mt-5 ">
         {defaultVoivode?.childLeagues.map((league) => (
           <button
             onClick={() => {

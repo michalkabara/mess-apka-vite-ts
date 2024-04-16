@@ -42,7 +42,9 @@ export const SingleLeague: React.FC<{ leagueId: string; subLeague: string; index
       {status !== "success" && <LinearProgress />}
       <div
         data-section-name={index}
-        className={`mecze mt-2 gap-1 flex flex-col text-xs min-h-[660px] relative ${!isActive && "hidden"}`}
+        className={`mecze mt-2 gap-1 flex flex-col text-xs relative transition-all duration-500 ease-in-out ${
+          isActive ? "opacity-100 h-[660px]" : "opacity-0 h-0 pointer-events-none mt-0"
+        }`}
       >
         {data?.data.map((game) => (
           <div key={game.id} className="flex flex-col items-center ">
@@ -61,7 +63,11 @@ export const SingleLeague: React.FC<{ leagueId: string; subLeague: string; index
           </div>
         ))}
 
-        <div className="flex justify-center text-gray-50 bg-zinc-800 rounded-md p-1 absolute bottom-0 w-full">
+        <div
+          className={`flex justify-center text-gray-50 bg-zinc-800 rounded-md p-1 absolute bottom-0 w-full duration-500 ease-in-out ${
+            isActive ? "opacity-100" : "opacity-0 hidden"
+          }`}
+        >
           <Pagination
             count={numberOfPages}
             size="small"

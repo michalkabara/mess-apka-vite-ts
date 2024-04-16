@@ -23,7 +23,7 @@ function App() {
   }, []);
 
   return (
-    <div className={`${isDarkModeOn ? "dark bg-zinc-900" : "bg-zinc-100"} m-auto relative `}>
+    <div className={`${isDarkModeOn ? "dark bg-zinc-900" : "bg-zinc-100"} m-auto relative overflow-auto`}>
       <header className="bg-zinc-300 dark:bg-zinc-800 flex flex-col items-center">
         <Header isDarkModeOn={isDarkModeOn} setIsDarkModeOn={setIsDarkModeOn} />
       </header>
@@ -47,9 +47,9 @@ function App() {
               <Sidebar />
             </div>
           )}
-          <div className="w-full flex flex-col gap-2 min-h-[calc(100vh-425px)]">
+          <div className="w-full flex flex-col gap-2 ">
             <div className="text-sm">Breadcurmbs</div>
-            <div className=" bg-zinc-50 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 rounded-lg p-5 relative overflow-auto dark:border-zinc-700 border-[1px]">
+            <div className=" bg-zinc-50 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 rounded-lg p-5 relative  dark:border-zinc-700 border-[1px]">
               <Outlet />
             </div>
           </div>

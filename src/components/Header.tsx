@@ -1,18 +1,36 @@
 import { Link } from "react-router-dom";
-
 import { LuSun, LuMoon } from "react-icons/lu";
 import { RiUser3Line } from "react-icons/ri";
 import { UserButton, useUser } from "@clerk/clerk-react";
+import { SearchResults } from "./ui/SearchResults";
+import { useState } from "react";
+// import { useFetchTeams } from "../customHooks/useFetchTeams";
 
 export const Header: React.FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevState: boolean) => void }> = ({
   isDarkModeOn,
   setIsDarkModeOn,
 }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const { isSignedIn, user, isLoaded } = useUser();
+
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+
+  // const { isPending, error, data } = useFetchTeams();
+
+  // console.log(data);
+
+  // const filteredItems = useMemo(() => {
+  //   return data?.filter((item) => item.TeamName.toLowerCase().includes(searchQuery.toLocaleLowerCase()));
+  // }, [data, searchQuery]);
+
+  // if (isPending) return <p>Loading...</p>;
+
+  // if (error) return <p>An error has occurred {error.message}</p>;
+
   const toggleDarkMode = () => {
     setIsDarkModeOn(!isDarkModeOn);
   };
-
-  const { isSignedIn, user, isLoaded } = useUser();
 
   if (!isLoaded) {
     // Handle loading state however you like
@@ -25,10 +43,33 @@ export const Header: React.FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevSta
         <span>logo</span>
       </Link>
 
+      <div
+        className={`${
+          isSearchModalOpen ? "opacity-100" : " opacity-0 pointer-events-none"
+        } absolute flex justify-center transition-all duration-300 w-full top-20 z-10 left-[-10px] shadow-lg`}
+      >
+        <SearchResults />
+      </div>
+
       <input
         type="text"
         placeholder="Search"
         className="max-[480px]:hidden border px-2 py-1 rounded-md border-zinc-400 bg-zinc-200 placeholder:text-zinc-800 dark:border-zinc-500 dark:bg-zinc-700 dark:placeholder:text-zinc-200 placeholder:text-sm"
+        onFocus={() => {
+          if (searchQuery) {
+            setIsSearchModalOpen(true);
+          }
+          return;
+        }}
+        onChange={(e) => {
+          setSearchQuery(e.target.value);
+        }}
+        onInput={() => {
+          setIsSearchModalOpen(true);
+        }}
+        onBlur={() => {
+          setIsSearchModalOpen(false);
+        }}
       />
 
       <div className="flex flex-row gap-3 items-center">

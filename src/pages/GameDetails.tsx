@@ -94,9 +94,11 @@ export const GameDetails: React.FC = () => {
         {gameDate.getUTCMinutes() == 0 ? "00" : gameDate.getUTCMinutes()}
       </p>
 
-      <div className="grid grid-cols-5 gap-1 md:gap-5  mt-7 items-center justify-items-center">
-        <div className="-translate-y-2">
-          <LikeTeamButton teamId={data.homeTeam?.id} teamName={data.homeTeam?.name}></LikeTeamButton>
+      <div className="grid grid-cols-5 gap-1 md:gap-5  mt-7 items-start justify-items-center">
+        <div className="translate-y-3 sm:translate-y-10 sm:translate-x-12">
+          {data.homeTeam ? (
+            <LikeTeamButton teamId={data.homeTeam.id} teamName={data.homeTeam.name}></LikeTeamButton>
+          ) : null}
         </div>
         <Link to={`/team/${data.homeTeam?.id}`}>
           <div className="flex flex-col text-center text-xs gap-3 items-center ">
@@ -123,7 +125,7 @@ export const GameDetails: React.FC = () => {
             <p>{data.awayTeam?.name}</p>
           </div>
         </Link>
-        <div className="-translate-y-2">
+        <div className="translate-y-3 sm:translate-y-10 sm:-translate-x-12">
           <LikeTeamButton teamId={data.awayTeam?.id} teamName={data.awayTeam?.name}></LikeTeamButton>
         </div>
       </div>
@@ -149,7 +151,7 @@ export const GameDetails: React.FC = () => {
           <div className="text-xs uppercase bg-zinc-300 dark:bg-zinc-700 opacity rounded-md p-2 mb-3 mt-5">
             <p>1 Połowa</p>
           </div>
-          <div className="flex flex-col w-full justify-between text-sm">
+          <div className="flex flex-col w-full justify-between text-sm px-2">
             <div className="flex flex-col items-start gap-1">
               <GameDetailsEntry type="yellow" time="69" order="left" />
             </div>

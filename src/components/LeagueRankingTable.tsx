@@ -27,7 +27,7 @@ export const LeagueRankingTable: React.FC<{
       >
         <div
           className="max-sm:w-[170px]
-          w-[220px] flex flex-row left-0 sticky gap-2 dark:bg-zinc-900 bg-zinc-200"
+          w-[220px] flex flex-row left-0 sticky gap-2 dark:bg-zinc-900 bg-zinc-200 z-2 max-sm:-translate-x-5 max-sm:pl-5"
         >
           <div className="w-4 flex justify-center">#</div>
           <div className="text-left ">Drużyna</div>
@@ -54,7 +54,7 @@ export const LeagueRankingTable: React.FC<{
           >
             <Link
               to={`/team/${team.teamId}`}
-              className="max-sm:w-[170px] flex flex-row items-center gap-3 w-[220px] sticky left-0 dark:bg-zinc-900 dark:group-hover:bg-zinc-700 ease-in-out duration-500 bg-zinc-200 group-hover:bg-zinc-300 "
+              className="max-sm:w-[170px] flex flex-row items-center gap-3 w-[220px] sticky left-0 dark:bg-zinc-900 dark:group-hover:bg-zinc-700 ease-in-out duration-500 bg-zinc-200 group-hover:bg-zinc-300 max-sm:-translate-x-5 max-sm:pl-5 z-10"
             >
               <div className="w-4 flex justify-center ">{index + 1}.</div>
               {team.logoUrl ? (

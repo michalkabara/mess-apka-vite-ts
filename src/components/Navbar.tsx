@@ -1,25 +1,14 @@
-import { Link } from "react-router-dom";
-import { useFetchLeagues } from "../customHooks/useFetchLeagues";
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef, useEffect } from "react";
 // import { IoMenu } from "react-icons/io5";
 import { GiPoland } from "react-icons/gi";
+import { VoivodeDropdown } from "./VoivodeDropdown";
 
 export const Navbar = () => {
-  const [searchQuery, setSearchQuery] = useState("");
   const dropdownVoivodeButtonRef = useRef(null);
+  const dropdownVoivodeMenuRef = useRef<HTMLInputElement>(null);
   const comboBoxInputRef = useRef<HTMLInputElement>(null);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const { isPending, error, data } = useFetchLeagues();
-
-  const filteredItems = useMemo(() => {
-    return data?.filter((item) => item.name.toLowerCase().includes(searchQuery.toLocaleLowerCase()));
-  }, [data, searchQuery]);
-
-  if (isPending) return <p>Loading...</p>;
-
-  if (error) return <p>An error has occurred {error.message}</p>;
 
   const handleMenuItemClick = () => {
     const elem = document.activeElement as HTMLElement;
@@ -29,16 +18,28 @@ export const Navbar = () => {
 
   const handleMenuToggle = () => {
     setIsMenuOpen((prev) => !prev);
-    comboBoxInputRef.current?.focus();
+    // comboBoxInputRef.current?.focus();
   };
 
-  return (
-    <div
-      className="dropdown"
-      onBlur={() => {
+  useEffect(() => {
+    const handleCloseMenu = (e: MouseEvent) => {
+      if (e.target != dropdownVoivodeButtonRef.current) {
         setIsMenuOpen(false);
-      }}
-    >
+      }
+
+      if (e.target === comboBoxInputRef.current) {
+        setIsMenuOpen(true);
+      }
+    };
+    document.addEventListener("click", handleCloseMenu);
+
+    return () => {
+      document.removeEventListener("click", handleCloseMenu);
+    };
+  }, []);
+
+  return (
+    <>
       <button
         tabIndex={0}
         role="button"
@@ -50,32 +51,11 @@ export const Navbar = () => {
         Wybierz województwo
       </button>
 
-      <div
-        className="absolute bg-zinc-800 flex flex-col z-10 rounded-md mt-2 dropdown-content p-3 gap-1 shadow-lg"
-        tabIndex={0}
-      >
-        <input
-          type="text"
-          className="p-2 rounded-md text-sm mb-2"
-          value={searchQuery}
-          onChange={(e) => {
-            setSearchQuery(e.target.value);
-          }}
-          autoFocus
-          ref={comboBoxInputRef}
-        />
-        {filteredItems?.map((voivodeship) => (
-          <Link
-            role="button"
-            className="hover:bg-zinc-700 transition-colors ease-in-out px-3 py-2 w-full rounded-md text-sm"
-            onClick={handleMenuItemClick}
-            key={voivodeship.id}
-            to={`/voivode/${voivodeship.id}`}
-          >
-            {voivodeship.name}
-          </Link>
-        ))}
-      </div>
-    </div>
+      {isMenuOpen && (
+        <div className="absolute z-20 left-0" ref={dropdownVoivodeMenuRef}>
+          <VoivodeDropdown comboBoxInputRef={comboBoxInputRef} handleMenuItemClick={handleMenuItemClick} />
+        </div>
+      )}
+    </>
   );
 };

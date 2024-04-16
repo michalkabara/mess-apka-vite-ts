@@ -54,7 +54,6 @@ export const LeagueProfile: React.FC<{ leagueId?: string | undefined }> = ({ lea
   };
 
   // const upcomingGames = gamesData.data.filter((game) => game.isFinished === false);
-
   // const upcomingGamesPages = Math.ceil(upcomingGames.length / 10) + 1;
 
   return (
@@ -63,7 +62,7 @@ export const LeagueProfile: React.FC<{ leagueId?: string | undefined }> = ({ lea
         <LeagueHeader leagueName={leagueData.name} isLinkEnabled={false} hideArrow={true} leagueId={checkLeagueId} />
       </div>
       <div className="tabs">
-        <div className="flex flex-row  gap-3 mt-5 flex-wrap w-full mb-5">
+        <div className="flex flex-row gap-3 mt-5 flex-wrap w-full mb-5 justify-center">
           {tabs.map((button, index) => (
             <SingleTab
               key={`tab-${index}`}
