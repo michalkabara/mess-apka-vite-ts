@@ -3,7 +3,7 @@ import { FaYoutube } from "react-icons/fa";
 
 export const Footer = () => {
   return (
-    <>
+    <div>
       <div className="dark:bg-zinc-800 dark:text-zinc-100 bg-zinc-300 text-zinc-800 mt-10 m-auto">
         <div className="max-w-[1200px] w-full m-auto min-h-11 text-sm px-5 py-10 flex flex-row gap-10 flex-wrap sm:flex-nowrap">
           <p>
@@ -33,6 +33,6 @@ export const Footer = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };

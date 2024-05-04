@@ -26,7 +26,7 @@ export const SingleLeague: React.FC<{ leagueId: string; subLeague: string; index
     setIsActive((prev) => !prev);
   };
 
-  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+  const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value - 1);
   };
 
