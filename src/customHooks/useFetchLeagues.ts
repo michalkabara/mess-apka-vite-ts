@@ -4,7 +4,7 @@ import { League } from "../types";
 
 export const useFetchLeagues = () => {
   return useQuery<League[]>({
-    queryKey: ["laegueData"],
+    queryKey: ["leagueDataNew"],
     queryFn: () => fetchData("https://api-beta.trybuna.tv/api/League/new"),
   });
 };

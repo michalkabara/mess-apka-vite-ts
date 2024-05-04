@@ -1,6 +1,7 @@
 import { RefObject, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useFetchLeagues } from "../customHooks/useFetchLeagues";
+import { League } from "../types";
 
 export const VoivodeDropdown: React.FC<{
   comboBoxInputRef: RefObject<HTMLInputElement>;
@@ -11,7 +12,7 @@ export const VoivodeDropdown: React.FC<{
   const { isPending, error, data } = useFetchLeagues();
 
   const filteredItems = useMemo(() => {
-    return data?.filter((item) => item.name.toLowerCase().includes(searchQuery.toLocaleLowerCase()));
+    return data?.filter((item: League) => item.name.toLowerCase().includes(searchQuery.toLocaleLowerCase()));
   }, [data, searchQuery]);
 
   if (isPending) return <p>Loading...</p>;
@@ -34,7 +35,7 @@ export const VoivodeDropdown: React.FC<{
         ref={comboBoxInputRef}
       />
 
-      {filteredItems?.map((voivodeship) => (
+      {filteredItems?.map((voivodeship: League) => (
         <Link
           role="button"
           className="hover:bg-zinc-700 transition-colors ease-in-out px-3 py-2 w-full rounded-md text-sm"

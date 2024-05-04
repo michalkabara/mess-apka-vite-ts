@@ -59,9 +59,9 @@ export const TeamProfile: React.FC = () => {
 
   const upcomingGames = gamesData.data.filter((game: Game) => game.isFinished === false);
 
-  const teamWins = gamesData.data.filter((game) => game.winnerId === teamId).length;
+  const teamWins = gamesData.data.filter((game: Game) => game.winnerId === teamId).length;
 
-  const teamLoses = gamesData.data.filter((game) => game.winnerId !== teamId).length;
+  const teamLoses = gamesData.data.filter((game: Game) => game.winnerId !== teamId).length;
 
   const teamWinsPercent = (teamWins / (teamWins + teamLoses)) * 100;
 
@@ -86,7 +86,7 @@ export const TeamProfile: React.FC = () => {
         <TeamGroupPosition filterTeamId={data.id} leagueId={data.currentLeague} />
       </div>
 
-      <div className="tabs ">
+      <div className="">
         <div className="flex flex-row gap-3 mt-5 flex-wrap w-full">
           {tabs.map((button, index) => (
             <SingleTab
@@ -99,18 +99,22 @@ export const TeamProfile: React.FC = () => {
           ))}
         </div>
 
-        <div
-          className={` mecze mt-5 gap-2 flex-col text-xs overflow-x-scroll ${selectedTab === 1 ? "flex" : "hidden"}`}
-        >
+        <div className={` mecze mt-5 gap-2 flex-col text-xs  ${selectedTab === 1 ? "flex" : "hidden"}`}>
           <LeagueRankingTable leagueName={leagueData.name} leagueId={data.currentLeague}></LeagueRankingTable>
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 0 ? "flex" : "hidden"}`}>
-          {gamesData.data.reverse().map((mecz: Game, index: number) => (
+          {gamesData.data.map((mecz: Game, index: number) => (
             <Link
               to={`/game/${mecz.id}`}
               key={`${mecz.id}-${index}`}
-              className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
+              className={`border-r-[2px]  flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2 ${
+                mecz.winnerId === teamId
+                  ? "border-green-600"
+                  : mecz.homeGoals === mecz.awayGoals
+                  ? "border-orange-400"
+                  : "border-red-600"
+              }`}
             >
               <SingleGame
                 date={mecz.date}

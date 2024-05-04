@@ -1,6 +1,7 @@
 import { Tooltip } from "react-tooltip";
 import { useFetchTeamGames } from "../customHooks/useFetchTeamGames";
 import { Link } from "react-router-dom";
+import { Game } from "../types";
 
 export const TeamForm: React.FC<{
   teamId?: string;
@@ -11,10 +12,12 @@ export const TeamForm: React.FC<{
 
   if (error) return <p>An error has occurred {error.message}</p>;
 
-  const games = data.data.filter((game) => game.homeTeamId === teamId || game.awayTeamId === teamId).slice(0, 5);
+  const games = data.data.slice(0, 5);
+
+  console.log(data);
 
   return (
-    <div className="flex flex-row gap-1 relative">
+    <div className="flex flex-row gap-1 relative sm:min-w-[120px] w-auto justify-end">
       <div
         className="rounded-sm bg-gray-400 text-white size-4 text-center leading-tight cursor-default"
         data-tooltip-id="TBA"
@@ -25,7 +28,9 @@ export const TeamForm: React.FC<{
         <Tooltip id="TBA" />
       </div>
 
-      {games.map((game) => {
+      {games.map((game: Game) => {
+        // console.log(array);
+
         const gameDate = new Date(game.date ?? 0);
 
         const date = `${String(gameDate.getDate()).padStart(2, "0")}.${String(gameDate.getMonth()).padStart(
@@ -53,10 +58,7 @@ export const TeamForm: React.FC<{
           );
         }
 
-        if (
-          (game.homeTeamId === teamId && game.homeGoals > game.awayGoals) ||
-          (game.awayTeamId === teamId && game.homeGoals < game.awayGoals)
-        ) {
+        if (game.winnerId === teamId) {
           return (
             <Link to={`/game/${game.id}`} key={`${game.id}-win`}>
               <div>
@@ -77,10 +79,7 @@ export const TeamForm: React.FC<{
           );
         }
 
-        if (
-          (game.homeTeamId === teamId && game.homeGoals < game.awayGoals) ||
-          (game.awayTeamId === teamId && game.homeGoals > game.awayGoals)
-        ) {
+        if (game.winnerId !== teamId) {
           return (
             <Link to={`/game/${game.id}`} key={`${game.id}-win`}>
               <div>

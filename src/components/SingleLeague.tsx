@@ -12,13 +12,13 @@ export const SingleLeague: React.FC<{ leagueId: string; subLeague: string; index
 }) => {
   const [isActive, setIsActive] = useState(true);
   const [currentPage, setCurrentPage] = useState<number>(0);
-  const [numberOfPages, setNumberOfPages] = useState<number>(0);
+  const [numberOfPages, setNumberOfPages] = useState<number | undefined>(0);
 
   const { error, data, status } = useFetchLeagueGames(leagueId, currentPage);
 
   useEffect(() => {
     setNumberOfPages(data?.pageCount);
-  }, [data?.pageCount]);
+  }, [data]);
 
   if (error) return <p>An error has occurred {error.message}</p>;
 

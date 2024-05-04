@@ -6,11 +6,11 @@ export const SingleGame: React.FC<Game> = ({ date, homeTeam, awayTeam, homeGoals
 
   return (
     <>
-      <div className="w-[100px] text-left" id="time-container">
-        {`${String(gameDate.getDate()).padStart(2, "0")}.${String(gameDate.getMonth()).padStart(
-          2,
-          "0"
-        )}.${gameDate.getFullYear()}`}{" "}
+      <div className=" text-left" id="time-container">
+        {`${String(gameDate.getDate()).padStart(2, "0")}.${String(gameDate.getMonth()).padStart(2, "0")}.${gameDate
+          .getFullYear()
+          .toString()
+          .slice(2)}`}{" "}
         <br></br>
         {`${gameDate.getHours()}:${gameDate.getUTCMinutes() == 0 ? "00" : gameDate.getUTCMinutes()}`}
       </div>
@@ -21,8 +21,7 @@ export const SingleGame: React.FC<Game> = ({ date, homeTeam, awayTeam, homeGoals
           ) : (
             <img src={defaultCrest} alt="Herb" className="w-5 rounded-sm p-[1px]  bg-white" />
           )}
-
-          {homeTeam?.name}
+          <p className="truncate">{homeTeam?.name}</p>
         </div>
         <div className="mt-2 flex flex-row gap-2 item-center" id="team2-container">
           {awayTeam?.logoUrl ? (
@@ -30,7 +29,7 @@ export const SingleGame: React.FC<Game> = ({ date, homeTeam, awayTeam, homeGoals
           ) : (
             <img src={defaultCrest} alt="Herb" className="w-5 rounded-sm p-[1px] bg-white" />
           )}
-          {awayTeam?.name}
+          <p className="truncate">{awayTeam?.name}</p>
         </div>
       </div>
       <div className="flex flex-col gap-2 w-4 items-end">

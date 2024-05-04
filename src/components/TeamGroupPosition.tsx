@@ -23,16 +23,13 @@ export const TeamGroupPosition: React.FC<{
     <>
       <div className="league-name text-center relative flex justify-center px-3"></div>
       <div className="flex flex-col gap-1 max-sm:overflow-x-scroll">
-        <div
-          className="header flex flex-row text-xs gap-3 py-1 px-2 max-sm:w-fit
-          border-b-[1px] border-zinc-600 pb-2 text-center justify-between"
-        >
+        <div className="header flex flex-row text-xs gap-3 py-1 px-2 max-sm:w-fit border-b-[1px] border-zinc-600 pb-2 text-center justify-between">
           <div
-            className="max-sm:w-[170px]
-          w-[220px] flex flex-row left-0 sticky gap-2 dark:bg-zinc-900 bg-zinc-200"
+            className="w-[170px]
+          sm:w-[215px] flex flex-row left-0 sticky gap-2 dark:bg-zinc-900 bg-zinc-200"
           >
             <div className="w-4 flex justify-center">#</div>
-            <div className="w-[220px] text-left">Drużyna</div>
+            <div className="text-left">Drużyna</div>
           </div>
 
           <div className="flex flex-row justify-between w-[250px]">

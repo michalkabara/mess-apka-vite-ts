@@ -12,8 +12,8 @@ export interface Game2 {
   homeTeamId?: string;
   awayTeamId?: string;
   leagueId?: string;
-  homeGoals: number | undefined;
-  awayGoals: number | undefined;
+  homeGoals?: number;
+  awayGoals?: number;
   date: string;
   round?: number;
   winnerId?: string;
@@ -40,6 +40,8 @@ export interface Player {
   legPreference: string;
   lastName: string;
   firstName: string;
+  isGoalKeeper: boolean;
+  isCaptain: boolean;
 }
 
 export interface Team {

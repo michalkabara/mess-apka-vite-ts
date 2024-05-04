@@ -72,7 +72,6 @@ export const GameDetails: React.FC = () => {
 
   const tabs2: { name: string }[] = [
     { name: `Ogółem` },
-
     { name: `${data.homeTeam?.name} u siebie` },
     { name: `${data.awayTeam?.name} na wyjeździe` },
   ];

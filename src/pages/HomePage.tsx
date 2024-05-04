@@ -6,7 +6,7 @@ import { League } from "../types";
 import { HomePageBlog } from "../components/HomePageBlog";
 
 export const HomePage: React.FC = () => {
-  const [filteredData, setFilteredData] = useState<League[] | undefined>();
+  const [filteredData, setFilteredData] = useState<League | undefined>();
   const [defaultVoivode, setDefaultVoivode] = useState<League | undefined>();
   const [selectedLeague, setSelectedLeague] = useState<string | undefined>("");
 
@@ -32,7 +32,7 @@ export const HomePage: React.FC = () => {
     <>
       <HomePageBlog></HomePageBlog>
       <hr className="mt-5 border-zinc-600"></hr>
-      <div className="flex flex-row w-full gap-3 mt-5 ">
+      <div className="flex sm:flex-row w-full gap-3 mt-5 flex-col">
         {defaultVoivode?.childLeagues.map((league) => (
           <button
             onClick={() => {

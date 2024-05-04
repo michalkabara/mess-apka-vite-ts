@@ -4,7 +4,7 @@ import { useFavouriteLeaguesContext } from "../customHooks/useFavouriteLeaguesCo
 import { Link } from "react-router-dom";
 import { FaRegNewspaper } from "react-icons/fa6";
 
-export const Sidebar: React.FC<{ handleMenuItemClick: () => void }> = ({ handleMenuItemClick }) => {
+export const Sidebar: React.FC<{ handleMenuItemClick?: () => void }> = ({ handleMenuItemClick }) => {
   const { favouriteTeams, removeFavouriteTeam } = useFavouriteTeamContext();
 
   const { favouriteLeagues, removeFavouriteLeague } = useFavouriteLeaguesContext();
@@ -47,15 +47,15 @@ export const Sidebar: React.FC<{ handleMenuItemClick: () => void }> = ({ handleM
         </div>
 
         <div className="flex flex-col gap-2">
-          {favouriteTeams.map((team: { name: string; id: string }) => (
+          {favouriteTeams.map((team: { name: string | undefined; id: string | undefined }) => (
             <div key={team.id} className="flex flex-row gap-2 items-center text-xs justify-between">
               <Link to={`/team/${team.id}`} className="truncate" onClick={handleMenuItemClick}>
                 {team.name}
               </Link>
-
               <div>
                 <RiStarSmileFill
                   onClick={() => {
+                    if (!team.id) return;
                     removeFavouriteTeam(team.id);
                   }}
                   className="text-yellow-500 size-4 cursor-pointer"

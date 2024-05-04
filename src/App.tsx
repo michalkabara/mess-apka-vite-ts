@@ -47,9 +47,9 @@ function App() {
               <Sidebar />
             </div>
           )}
-          <div className="w-full flex flex-col gap-2 ">
+          <div className="w-full flex flex-col gap-2 overflow-auto">
             <div className="text-sm">Breadcurmbs</div>
-            <div className=" bg-zinc-50 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 rounded-lg p-5 relative  dark:border-zinc-700 border-[1px]">
+            <div className=" bg-zinc-50 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 rounded-lg sm:p-5 p-2 relative  dark:border-zinc-700 border-[1px] overflow-hidden">
               <Outlet />
             </div>
           </div>

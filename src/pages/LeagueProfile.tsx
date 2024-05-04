@@ -16,9 +16,9 @@ export const LeagueProfile: React.FC<{ leagueId?: string | undefined }> = ({ lea
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [currentPage, setCurrentPage] = useState<number>(0);
-  const [upcomingGamesCurrentPage, setUpcomingGamesCurrentPage] = useState<number>(0);
-  const [numberOfPages, setNumberOfPages] = useState<number>(0);
-  const [upcomingGamesNumberOfPages, setUpcomingGamesNumberOfPages] = useState<number>(0);
+  const [, setUpcomingGamesCurrentPage] = useState(0);
+  const [numberOfPages, setNumberOfPages] = useState(0);
+  // const [upcomingGamesNumberOfPages, setUpcomingGamesNumberOfPages] = useState<number>(0);
 
   const checkLeagueId = routeLeagueId ?? leagueId;
 
@@ -32,9 +32,9 @@ export const LeagueProfile: React.FC<{ leagueId?: string | undefined }> = ({ lea
 
   useEffect(() => {
     const currentTab = searchParams.get("page");
-    if (!currentTab) return;
+    if (!currentTab || !gamesData?.pageCount) return;
     setSelecteTab(parseInt(currentTab));
-    setNumberOfPages(gamesData?.pageCount);
+    setNumberOfPages(gamesData.pageCount);
   }, [searchParams, gamesData?.pageCount]);
 
   if (leagueIsPending || gamesArePending) return <p>Loading...</p>;
@@ -61,7 +61,7 @@ export const LeagueProfile: React.FC<{ leagueId?: string | undefined }> = ({ lea
       <div className="league-name flex justify-center mb-2 w-full">
         <LeagueHeader leagueName={leagueData.name} isLinkEnabled={false} hideArrow={true} leagueId={checkLeagueId} />
       </div>
-      <div className="tabs">
+      <div className="w-full">
         <div className="flex flex-row gap-3 mt-5 flex-wrap w-full mb-5 justify-center">
           {tabs.map((button, index) => (
             <SingleTab
@@ -74,7 +74,11 @@ export const LeagueProfile: React.FC<{ leagueId?: string | undefined }> = ({ lea
           ))}
         </div>
 
-        <div className={`tabela mt-2 gap-1 flex flex-col text-xs ${selectedTab === 0 ? "flex" : "hidden"}`}>
+        <div
+          className={`tabela mt-2 gap-1 flex flex-col text-xs max-sm:overflow-x-scroll ${
+            selectedTab === 0 ? "flex" : "hidden"
+          }`}
+        >
           <LeagueRankingTable
             leagueName={leagueData.name}
             leagueId={checkLeagueId}
@@ -82,12 +86,12 @@ export const LeagueProfile: React.FC<{ leagueId?: string | undefined }> = ({ lea
           ></LeagueRankingTable>
         </div>
 
-        <div className={` wyniki mt-2 gap-1 flex flex-col text-xs ${selectedTab === 1 ? "flex" : "hidden"}`}>
+        <div className={` wyniki mt-2 gap-1 flex flex-col text-xs w-full ${selectedTab === 1 ? "flex" : "hidden"}`}>
           {gamesData.data.map((game) => (
-            <div key={game.id} className="flex flex-col items-center">
+            <div key={game.id} className="flex flex-col items-center w-full">
               <Link
                 to={`/game/${game.id}`}
-                className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-[5px] px-4 ease-in-out duration-500 gap-2"
+                className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-[5px] px-4 ease-in-out duration-500 gap-5"
               >
                 <SingleGame
                   date={game.date}
@@ -99,7 +103,7 @@ export const LeagueProfile: React.FC<{ leagueId?: string | undefined }> = ({ lea
               </Link>
             </div>
           ))}
-          <div className="flex justify-center text-gray-50 bg-zinc-800 rounded-md mt-3 p-1  bottom-0 w-full">
+          <div className="flex justify-center text-gray-50 bg-zinc-800 rounded-md mt-3 p-1 bottom-0 w-full">
             <Pagination
               count={numberOfPages}
               size="small"

@@ -2,7 +2,7 @@ import { RiStarSmileFill } from "react-icons/ri";
 import { IoMenu } from "react-icons/io5";
 import { Sidebar } from "./Sidebar";
 import { VoivodeDropdown } from "./VoivodeDropdown";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 export const MobileNavbar: React.FC = () => {
   const [isFavouritesMenuOpen, setIsFavouritesMenuOpen] = useState(false);
@@ -17,23 +17,6 @@ export const MobileNavbar: React.FC = () => {
     setIsVoivodeMenuOpen(false);
     setIsFavouritesMenuOpen(false);
   };
-
-  useEffect(() => {
-    const handleCloseMenu = (e: MouseEvent) => {
-      if (e.target != dropdownVoivodeButtonRef.current) {
-        setIsMenuOpen(false);
-      }
-
-      if (e.target === comboBoxInputRef.current) {
-        setIsMenuOpen(true);
-      }
-    };
-    document.addEventListener("click", handleCloseMenu);
-
-    return () => {
-      document.removeEventListener("click", handleCloseMenu);
-    };
-  }, []);
 
   return (
     <div className="flex items-center justify-between w-full relative">
