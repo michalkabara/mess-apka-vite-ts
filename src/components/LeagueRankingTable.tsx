@@ -1,8 +1,8 @@
 import { LeagueTableEntry } from "../types";
 import { useFetchLeagueTable } from "../customHooks/useFetchLeagueTable";
 import { LeagueHeader } from "./LeagueHeader";
-import LeagueRankingTableHeader from "./ui/LeagueRankingTableHeader";
-import LeagueRankingTableEntry from "./ui/LeagueRankingTableEntry";
+import { LeagueRankingTableHeader } from "./ui/LeagueRankingTableHeader";
+import { LeagueRankingTableEntry } from "./ui/LeagueRankingTableEntry";
 
 export const LeagueRankingTable: React.FC<{
   leagueId: string | undefined;

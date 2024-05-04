@@ -3,7 +3,7 @@ import { TeamForm } from "../TeamForm";
 import defaultCrest from "../../img/default_player.png";
 import { LeagueTableEntry } from "../../types";
 
-const LeagueRankingTableEntry: React.FC<{ team: LeagueTableEntry; index: number }> = ({ team, index }) => {
+export const LeagueRankingTableEntry: React.FC<{ team: LeagueTableEntry; index: number }> = ({ team, index }) => {
   return (
     <div
       key={team.teamId}
@@ -38,5 +38,3 @@ const LeagueRankingTableEntry: React.FC<{ team: LeagueTableEntry; index: number 
     </div>
   );
 };
-
-export default LeagueRankingTableEntry;
