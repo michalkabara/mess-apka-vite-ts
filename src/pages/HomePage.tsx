@@ -1,11 +1,11 @@
 import { SingleLeague } from "../components/SingleLeague";
 import { useFetchLeagues } from "../customHooks/useFetchLeagues";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { League } from "../types";
 
 import { HomePageBlog } from "../components/HomePageBlog";
 
-export const HomePage: React.FC = () => {
+export const HomePage: FC = () => {
   const [filteredData, setFilteredData] = useState<League | undefined>();
   const [defaultVoivode, setDefaultVoivode] = useState<League | undefined>();
   const [selectedLeague, setSelectedLeague] = useState<string | undefined>("");

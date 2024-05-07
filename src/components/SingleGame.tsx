@@ -1,18 +1,15 @@
+import { FC } from "react";
 import defaultCrest from "../img/crest_default.svg";
-import { Game } from "../types";
+import { PartialGame } from "../types";
+import { DateDisplay } from "./ui/DateDisplay";
 
-export const SingleGame: React.FC<Game> = ({ date, homeTeam, awayTeam, homeGoals, awayGoals }) => {
+export const SingleGame: FC<PartialGame> = ({ date, homeTeam, awayTeam, homeGoals, awayGoals }) => {
   const gameDate = new Date(date ?? 0);
 
   return (
     <>
       <div className=" text-left" id="time-container">
-        {`${String(gameDate.getDate()).padStart(2, "0")}.${String(gameDate.getMonth()).padStart(2, "0")}.${gameDate
-          .getFullYear()
-          .toString()
-          .slice(2)}`}{" "}
-        <br></br>
-        {`${gameDate.getHours()}:${gameDate.getUTCMinutes() == 0 ? "00" : gameDate.getUTCMinutes()}`}
+        <DateDisplay gameDate={gameDate} />
       </div>
       <div className="text-left w-full" id="teams-container">
         <div className="flex flex-row gap-2 content-start items-center" id="team1-container">

@@ -7,7 +7,7 @@
 //   teams: any;
 //   matchResults: any;
 // }
-export interface Game2 {
+export interface Game {
   id?: string;
   homeTeamId?: string;
   awayTeamId?: string;
@@ -19,13 +19,13 @@ export interface Game2 {
   winnerId?: string;
   isFinished?: boolean;
   outcome?: number;
-  awayTeam: Team;
-  homeTeam: Team;
-  homePlayers: Player[];
-  awayPlayers: Player[];
+  awayTeam?: Team;
+  homeTeam?: Team;
+  homePlayers?: Player[];
+  awayPlayers?: Player[];
 }
 
-export type Game = Partial<Game2>;
+export type PartialGame = Partial<Game>;
 
 export interface Player {
   id: string;

@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { SingleGame } from "./SingleGame";
 import { Game } from "../types";
+import { FC } from "react";
 
-export const HomeGames: React.FC<{ homeGames: Game[] }> = ({ homeGames }) => {
+export const HomeGames: FC<{ homeGames: Game[] }> = ({ homeGames }) => {
   return (
     <>
       {homeGames.map((game: Game, index: number) => (

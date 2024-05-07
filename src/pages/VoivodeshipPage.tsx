@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { SingleLeague } from "../components/SingleLeague";
 import { useFetchLeagues } from "../customHooks/useFetchLeagues";
-import { useState } from "react";
+import { FC, useState } from "react";
 
-export const VoivodeshipPage: React.FC = () => {
+export const VoivodeshipPage: FC = () => {
   const { voivodeId } = useParams();
   const [selectedLeagueId, setSelectedLeagueId] = useState("");
   const { isPending, error, data } = useFetchLeagues();

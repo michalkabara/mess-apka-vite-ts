@@ -1,8 +1,9 @@
 import { Game } from "../types";
 import { Link } from "react-router-dom";
 import { SingleGame } from "./SingleGame";
+import { FC } from "react";
 
-export const UpcomingGames: React.FC<{ upcomingGames: Game[] }> = ({ upcomingGames }) => {
+export const UpcomingGames: FC<{ upcomingGames: Game[] }> = ({ upcomingGames }) => {
   return (
     <>
       {upcomingGames.map((game: Game, index: number) => (

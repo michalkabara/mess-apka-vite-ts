@@ -1,9 +1,10 @@
 import { Tooltip } from "react-tooltip";
 import { useFetchTeamGames } from "../customHooks/useFetchTeamGames";
 import { Link } from "react-router-dom";
-import { Game } from "../types";
+import { PartialGame } from "../types";
+import { FC } from "react";
 
-export const TeamForm: React.FC<{
+export const TeamForm: FC<{
   teamId?: string;
 }> = ({ teamId }) => {
   const { isPending, error, data } = useFetchTeamGames(teamId);
@@ -28,7 +29,7 @@ export const TeamForm: React.FC<{
         <Tooltip id="TBA" />
       </div>
 
-      {games.map((game: Game) => {
+      {games.map((game: PartialGame) => {
         // console.log(array);
 
         const gameDate = new Date(game.date ?? 0);

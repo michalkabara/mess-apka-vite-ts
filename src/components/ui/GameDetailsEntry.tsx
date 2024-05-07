@@ -1,8 +1,9 @@
 import { TbRectangleVerticalFilled } from "react-icons/tb";
 import { IoMdFootball } from "react-icons/io";
 import { GoArrowSwitch } from "react-icons/go";
+import { FC } from "react";
 
-export const GameDetailsEntry: React.FC<{
+export const GameDetailsEntry: FC<{
   time: string;
   type: "yellow" | "red" | "swap" | "goal";
   penalty?: boolean;

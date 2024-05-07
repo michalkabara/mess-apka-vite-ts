@@ -3,8 +3,9 @@ import { useFetchLeagueTable } from "../customHooks/useFetchLeagueTable";
 import { LeagueHeader } from "./LeagueHeader";
 import { LeagueRankingTableHeader } from "./ui/LeagueRankingTableHeader";
 import { LeagueRankingTableEntry } from "./ui/LeagueRankingTableEntry";
+import { FC } from "react";
 
-export const LeagueRankingTable: React.FC<{
+export const LeagueRankingTable: FC<{
   leagueId: string | undefined;
   leagueName: string;
   isHeaderShown?: boolean;

@@ -1,3 +1,5 @@
+import { FC } from "react";
+
 interface Tab {
   button: { name: string };
   index: number;
@@ -5,7 +7,7 @@ interface Tab {
   selectedTab: number | null;
 }
 
-export const SingleTab: React.FC<Tab> = ({ button, index, selectTabAndChangeUrl, selectedTab }) => {
+export const SingleTab: FC<Tab> = ({ button, index, selectTabAndChangeUrl, selectedTab }) => {
   return (
     <button
       onClick={() => {

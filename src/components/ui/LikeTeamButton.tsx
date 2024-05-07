@@ -1,13 +1,14 @@
 import { RiStarSmileFill, RiStarSmileLine } from "react-icons/ri";
 import { useFavouriteTeamContext } from "../../customHooks/useFavouriteTeamsContext";
 import { FavouriteTeam } from "../../context/FavouriteTeamsContext";
+import { FC } from "react";
 
 interface ILikeTeamButton {
   teamName?: string;
   teamId?: string;
 }
 
-export const LikeTeamButton: React.FC<ILikeTeamButton> = ({ teamName, teamId }) => {
+export const LikeTeamButton: FC<ILikeTeamButton> = ({ teamName, teamId }) => {
   const { favouriteTeams, addFavouriteTeam, removeFavouriteTeam } = useFavouriteTeamContext();
 
   const toggleFavouriteTeam = (team: FavouriteTeam) => {

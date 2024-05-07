@@ -3,10 +3,10 @@ import { LuSun, LuMoon } from "react-icons/lu";
 import { RiUser3Line } from "react-icons/ri";
 import { UserButton, useUser } from "@clerk/clerk-react";
 import { SearchResults } from "./ui/SearchResults";
-import { useState } from "react";
+import { FC, useState } from "react";
 // import { useFetchTeams } from "../customHooks/useFetchTeams";
 
-export const Header: React.FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevState: boolean) => void }> = ({
+export const Header: FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevState: boolean) => void }> = ({
   isDarkModeOn,
   setIsDarkModeOn,
 }) => {

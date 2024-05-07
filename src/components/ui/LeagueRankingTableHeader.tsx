@@ -1,4 +1,6 @@
-export const LeagueRankingTableHeader: React.FC = () => {
+import { FC } from "react";
+
+export const LeagueRankingTableHeader: FC = () => {
   return (
     <div className="header flex flex-row text-xs gap-3 py-1 px-2 max-sm:w-fit border-b-[1px] border-zinc-600 pb-2 text-center justify-between ">
       <div

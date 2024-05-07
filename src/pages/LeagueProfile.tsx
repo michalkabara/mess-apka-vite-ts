@@ -5,12 +5,13 @@ import { useFetchLeagueData } from "../customHooks/useFetchLeagueData";
 import { LeagueHeader } from "../components/LeagueHeader";
 import { useFetchLeagueGames } from "../customHooks/useFetchLeagueGames";
 import { SingleGame } from "../components/SingleGame";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { SingleTab } from "../components/ui/SingleTab";
 import { LeagueRankingTable } from "../components/LeagueRankingTable";
 import { Pagination } from "@mui/material";
+// import { PartialGame } from "../types";
 
-export const LeagueProfile: React.FC<{ leagueId?: string | undefined }> = ({ leagueId }) => {
+export const LeagueProfile: FC<{ leagueId?: string | undefined }> = ({ leagueId }) => {
   const [selectedTab, setSelecteTab] = useState<number | null>(0);
   const { leagueId: routeLeagueId } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -43,7 +44,7 @@ export const LeagueProfile: React.FC<{ leagueId?: string | undefined }> = ({ lea
 
   const tabs: { name: string }[] = [{ name: "Tabela" }, { name: "Wyniki" }, { name: "Nadchodzące mecze" }];
 
-  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+  const handleChange = (_: React.ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value - 1);
     setUpcomingGamesCurrentPage(value - 1);
   };
@@ -53,7 +54,7 @@ export const LeagueProfile: React.FC<{ leagueId?: string | undefined }> = ({ lea
     setSearchParams(`page=${index}`);
   };
 
-  // const upcomingGames = gamesData.data.filter((game) => game.isFinished === false);
+  // const upcomingGamesData: PartialGame[] = gamesData.data.filter((game) => game.isFinished === false);
   // const upcomingGamesPages = Math.ceil(upcomingGames.length / 10) + 1;
 
   return (
@@ -120,7 +121,7 @@ export const LeagueProfile: React.FC<{ leagueId?: string | undefined }> = ({ lea
         </div>
 
         {/* <div className={` wyniki mt-2 gap-1 flex flex-col text-xs ${selectedTab === 2 ? "flex" : "hidden"}`}>
-          {upcomingGamesData.data.map((game) => (
+          {upcomingGamesData.data.map((game: PartialGame) => (
             <div key={game.id} className="flex flex-col items-center">
               <Link
                 to={`/game/${game.id}`}

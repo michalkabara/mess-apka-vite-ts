@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import { TeamForm } from "../TeamForm";
 import defaultCrest from "../../img/default_player.png";
 import { LeagueTableEntry } from "../../types";
+import { FC } from "react";
 
-export const LeagueRankingTableEntry: React.FC<{ team: LeagueTableEntry; index: number }> = ({ team, index }) => {
+export const LeagueRankingTableEntry: FC<{ team: LeagueTableEntry; index: number }> = ({ team, index }) => {
   return (
     <div
       key={team.teamId}

@@ -3,8 +3,9 @@ import { RiStarSmileFill, RiStarSmileLine } from "react-icons/ri";
 import { IoIosArrowDown } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { LegueHeaderType } from "../types";
+import { FC } from "react";
 
-export const LeagueHeader: React.FC<LegueHeaderType> = ({
+export const LeagueHeader: FC<LegueHeaderType> = ({
   leagueName,
   isActive,
   toggleSection,

@@ -1,16 +1,14 @@
 import defaultPlayer from "../img/default_player.png";
 import { useFetchPlayerData } from "../customHooks/useFetchPlayerData";
 import { useFetchTeamData } from "../customHooks/useFetchTeamData";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useFetchTeamGames } from "../customHooks/useFetchTeamGames";
-import { SingleGame } from "../components/SingleGame";
+import { FC } from "react";
 
-export const PlayerProfilePage: React.FC = () => {
+export const PlayerProfilePage: FC = () => {
   const { playerId } = useParams();
 
   const { isPending, error, data } = useFetchPlayerData(playerId);
-
-  console.log(data);
 
   const { isPending: isTeamPending, error: teamError, data: teamData } = useFetchTeamData(data?.teamId);
 
