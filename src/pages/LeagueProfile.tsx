@@ -1,13 +1,13 @@
 import { Link, useSearchParams } from "react-router-dom";
 
 import { useParams } from "react-router-dom";
-import { useFetchLeagueData } from "../customHooks/useFetchLeagueData";
-import { LeagueHeader } from "../components/LeagueHeader";
-import { useFetchLeagueGames } from "../customHooks/useFetchLeagueGames";
-import { SingleGame } from "../components/SingleGame";
+import { useFetchLeagueData } from "../customHooks/fetchLeagueData/useFetchLeagueData";
+import { LeagueHeader } from "../components/generic/LeagueHeader";
+import { useFetchLeagueGames } from "../customHooks/fetchLeagueData/useFetchLeagueGames";
+import { SingleGame } from "../components/generic/SingleGame";
 import { FC, useEffect, useState } from "react";
 import { SingleTab } from "../components/ui/SingleTab";
-import { LeagueRankingTable } from "../components/LeagueRankingTable";
+import { LeagueRankingTable } from "../components/generic/LeagueRankingTable";
 import { Pagination } from "@mui/material";
 // import { PartialGame } from "../types";
 

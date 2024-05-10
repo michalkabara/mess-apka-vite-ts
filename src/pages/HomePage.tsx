@@ -1,9 +1,9 @@
-import { SingleLeague } from "../components/SingleLeague";
-import { useFetchLeagues } from "../customHooks/useFetchLeagues";
+import { SingleLeague } from "../components/generic/SingleLeague";
+import { useFetchLeagues } from "../customHooks/fetchLeagueData/useFetchLeagues";
 import { FC, useEffect, useState } from "react";
 import { League } from "../types";
 
-import { HomePageBlog } from "../components/HomePageBlog";
+import { HomePageBlog } from "../components/generic/HomePageBlog";
 
 export const HomePage: FC = () => {
   const [filteredData, setFilteredData] = useState<League | undefined>();

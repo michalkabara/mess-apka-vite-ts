@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { TeamForm } from "../TeamForm";
+import { TeamForm } from "../teamProfile/TeamForm";
 import defaultCrest from "../../img/default_player.png";
 import { LeagueTableEntry } from "../../types";
 import { FC } from "react";

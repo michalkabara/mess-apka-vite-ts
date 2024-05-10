@@ -1,10 +1,10 @@
 import "react-tooltip/dist/react-tooltip.css";
 
-import { Navbar } from "./components/Navbar";
-import { Header } from "./components/Header";
-import { Sidebar } from "./components/Sidebar";
-import { FeaturedGame } from "./components/FeaturedGame";
-import { MobileNavbar } from "./components/MobileNavbar";
+import { Navbar } from "./components/generic/Navbar";
+import { Header } from "./components/generic/Header";
+import { Sidebar } from "./components/sidebar/Sidebar";
+import { FeaturedGame } from "./components/generic/FeaturedGame";
+import { MobileNavbar } from "./components/mobile/MobileNavbar";
 import { Outlet, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Footer } from "./components/ui/Footer";

@@ -7,10 +7,10 @@ import { Game, PagedResponse } from "../types";
 import { LeagueProfile } from "./LeagueProfile";
 import { useQuery } from "@tanstack/react-query";
 import { fetchData } from "../../clientApi";
-import { GameDetailsTeams } from "../components/GameDetailsTeams";
-import { GameDetailsPlayers } from "../components/GameDetailsPlayers";
-import { GameDetailsEntries } from "../components/GameDetailsEntries";
-import { GameDetailsHeadToHead } from "../components/GameDetailsHeadToHead";
+import { GameDetailsTeams } from "../components/gameDetails/GameDetailsTeams";
+import { GameDetailsPlayers } from "../components/gameDetails/GameDetailsPlayers";
+import { GameDetailsEntries } from "../components/gameDetails/GameDetailsEntries";
+import { GameDetailsHeadToHead } from "../components/gameDetails/GameDetailsHeadToHead";
 
 import { DateDisplay } from "../components/ui/DateDisplay";
 

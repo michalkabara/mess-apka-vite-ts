@@ -1,8 +1,8 @@
 import defaultPlayer from "../img/default_player.png";
 import { useFetchPlayerData } from "../customHooks/useFetchPlayerData";
-import { useFetchTeamData } from "../customHooks/useFetchTeamData";
+import { useFetchTeamData } from "../customHooks/fetchTeamData/useFetchTeamData";
 import { useParams } from "react-router-dom";
-import { useFetchTeamGames } from "../customHooks/useFetchTeamGames";
+import { useFetchTeamGames } from "../customHooks/fetchTeamData/useFetchTeamGames";
 import { FC } from "react";
 
 export const PlayerProfilePage: FC = () => {

@@ -1,20 +1,20 @@
 import { useParams, useSearchParams } from "react-router-dom";
-import { SingleGame } from "../components/SingleGame";
+import { SingleGame } from "../components/generic/SingleGame";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { TeamProfileDetails } from "../components/TeamProfilesDetails";
-import { useFetchTeamData } from "../customHooks/useFetchTeamData";
-import { useFetchTeamGames } from "../customHooks/useFetchTeamGames";
+import { TeamProfileDetails } from "../components/teamProfile/TeamProfilesDetails";
+import { useFetchTeamData } from "../customHooks/fetchTeamData/useFetchTeamData";
+import { useFetchTeamGames } from "../customHooks/fetchTeamData/useFetchTeamGames";
 import { Game } from "../types";
-import { TeamPlayers } from "../components/TeamPlayers";
+import { TeamPlayers } from "../components/teamProfile/TeamPlayers";
 import { SingleTab } from "../components/ui/SingleTab";
-import { TeamGroupPosition } from "../components/TeamGroupPosition";
-import { HomeGames } from "../components/HomeGames";
-import { AwayGames } from "../components/AwayGames";
-import { UpcomingGames } from "../components/UpcomingGames";
-import { useFecthTeamPlayers } from "../customHooks/useFetchTeamPlayers";
-import { LeagueRankingTable } from "../components/LeagueRankingTable";
-import { useFetchLeagueData } from "../customHooks/useFetchLeagueData";
+import { TeamGroupPosition } from "../components/teamProfile/TeamGroupPosition";
+import { HomeGames } from "../components/teamProfile/HomeGames";
+import { AwayGames } from "../components/teamProfile/AwayGames";
+import { UpcomingGames } from "../components/teamProfile/UpcomingGames";
+import { useFecthTeamPlayers } from "../customHooks/fetchTeamData/useFetchTeamPlayers";
+import { LeagueRankingTable } from "../components/generic/LeagueRankingTable";
+import { useFetchLeagueData } from "../customHooks/fetchLeagueData/useFetchLeagueData";
 
 const tabs: { name: string }[] = [
   { name: "Wyniki" },

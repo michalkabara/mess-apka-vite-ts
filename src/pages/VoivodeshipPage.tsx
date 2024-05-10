@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import { SingleLeague } from "../components/SingleLeague";
-import { useFetchLeagues } from "../customHooks/useFetchLeagues";
+import { SingleLeague } from "../components/generic/SingleLeague";
+import { useFetchLeagues } from "../customHooks/fetchLeagueData/useFetchLeagues";
 import { FC, useState } from "react";
 
 export const VoivodeshipPage: FC = () => {
