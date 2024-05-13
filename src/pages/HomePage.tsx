@@ -30,7 +30,10 @@ export const HomePage: FC = () => {
 
   return (
     <>
-      <HomePageBlog></HomePageBlog>
+      <div className="max-md:hidden">
+        <HomePageBlog></HomePageBlog>
+      </div>
+
       <hr className="mt-5 border-zinc-600"></hr>
       <div className="flex sm:flex-row w-full gap-3 mt-5 flex-col">
         {defaultVoivode?.childLeagues.map((league) => (

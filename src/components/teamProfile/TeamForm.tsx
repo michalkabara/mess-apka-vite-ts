@@ -15,8 +15,6 @@ export const TeamForm: FC<{
 
   const games = data.data.slice(0, 5);
 
-  console.log(data);
-
   return (
     <div className="flex flex-row gap-1 relative sm:min-w-[120px] w-auto justify-end">
       <div

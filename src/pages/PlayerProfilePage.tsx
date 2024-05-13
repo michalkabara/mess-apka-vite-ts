@@ -3,7 +3,9 @@ import { useFetchPlayerData } from "../customHooks/useFetchPlayerData";
 import { useFetchTeamData } from "../customHooks/fetchTeamData/useFetchTeamData";
 import { useParams } from "react-router-dom";
 import { useFetchTeamGames } from "../customHooks/fetchTeamData/useFetchTeamGames";
+import { PlayerStats } from "../components/playerProfile/PlayerStats";
 import { FC } from "react";
+import { PlayerInfo } from "../components/playerProfile/PlayerInfo";
 
 export const PlayerProfilePage: FC = () => {
   const { playerId } = useParams();
@@ -28,24 +30,7 @@ export const PlayerProfilePage: FC = () => {
 
   return (
     <>
-      <div className="flex flex-row text-sm gap-5">
-        <img className="size-36" src={defaultPlayer} alt={data.name} />
-        <div className="flex flex-col gap-1 text-xs">
-          <p className="text-xl font-bold">{data.name}</p>
-          <p>
-            <span className="font-extrabold">Kraj:</span> Polska Flaga
-          </p>
-          <p>
-            <span className="font-extrabold">Wiek:</span> 21
-          </p>
-          <p>
-            <span className="font-extrabold">Klub:</span> {teamData.name}
-          </p>
-          <p>
-            <span className="font-extrabold">Pozycja:</span> {data.roles}
-          </p>
-        </div>
-      </div>
+      <PlayerInfo img={data.photoUrl} name={data.name} roles={data.roles} number={data.number} />
 
       <div>
         <div id="statystyki" className="mt-5">
@@ -69,40 +54,7 @@ export const PlayerProfilePage: FC = () => {
               </select>
             </div>
           </div>
-          <div className="flex flex-row gap-5 justify-between mt-2 bg-zinc-800 px-4 py-3 rounded-lg">
-            <div className="flex flex-col items-center">
-              <p className="text-xs">Występy</p>
-              <span className="text-4xl font-medium">8</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <p className="text-xs">Gole</p>
-              <span className="text-4xl font-medium">0</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <p className="text-xs">Wygrane</p>
-              <span className="text-4xl font-medium">4</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <p className="text-xs">Zremisowane</p>
-              <span className="text-4xl font-medium">1</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <p className="text-xs">Porażki</p>
-              <span className="text-4xl font-medium">3</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <p className="text-xs">Minuty na boisku</p>
-              <span className="text-4xl font-medium">653</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <p className="text-xs">Czerwone kartki</p>
-              <span className="text-4xl font-medium">0</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <p className="text-xs">Żółte kartki</p>
-              <span className="text-4xl font-medium">1</span>
-            </div>
-          </div>
+          <PlayerStats />
         </div>
       </div>
 
