@@ -1,6 +1,5 @@
 import "react-tooltip/dist/react-tooltip.css";
 
-import { Navbar } from "./components/generic/Navbar";
 import { Header } from "./components/generic/Header";
 import { Sidebar } from "./components/sidebar/Sidebar";
 import { FeaturedGame } from "./components/generic/FeaturedGame";
@@ -28,26 +27,22 @@ function App() {
         isDarkModeOn ? "dark bg-zinc-900" : "bg-zinc-100"
       } m-auto relative overflow-auto flex flex-col min-h-[100vh]`}
     >
-      <header className="bg-zinc-300 dark:bg-zinc-800 flex flex-col items-center">
+      <header className="bg-[#ed4535] flex flex-col items-center">
         <Header isDarkModeOn={isDarkModeOn} setIsDarkModeOn={setIsDarkModeOn} />
       </header>
 
       <div className="border-b dark:border-zinc-700 border-zinc-300">
-        <nav className=" flex w-full items-center  py-3 px-5 max-w-[1200px] m-auto">
-          <div className="max-sm:hidden relative">
-            <Navbar />
-          </div>
-
+        <nav className=" flex w-full items-center sm:py-0 py-3 px-5 max-w-[1200px] m-auto">
           <div className="sm:hidden w-full">
             <MobileNavbar />
           </div>
         </nav>
       </div>
 
-      <div className="flex items-center flex-col">
+      <div className="flex items-center flex-col mt-2">
         <div className="w-full flex flex-row gap-4 mt-1 py-2 px-5 max-w-[1200px]">
           {pathname !== "/login" && (
-            <div className="max-sm:hidden w-[140px] text-left min-w-[130px]">
+            <div className="max-sm:hidden w-[190px] text-left min-w-[190px]">
               <Sidebar />
             </div>
           )}

@@ -39,7 +39,7 @@ export const SingleLeague: FC<{ leagueId: string; subLeague: string; index: numb
   };
 
   return (
-    <div className="flex flex-col mb-2 gap-2 ">
+    <div className="flex flex-col mb-1 gap-2 ">
       <div>
         <LeagueHeader
           leagueName={subLeague}
@@ -48,6 +48,24 @@ export const SingleLeague: FC<{ leagueId: string; subLeague: string; index: numb
           isLinkEnabled={true}
           toggleSection={handleToggleSection}
         />
+        <div
+          className={`mt-3 flex justify-center text-gray-50 bg-zinc-800 rounded-md p-1 bottom-0 w-full duration-500 ease-in-out ${
+            isActive ? "opacity-100" : "opacity-0 hidden"
+          }`}
+        >
+          <Pagination
+            count={numberOfPages}
+            size="small"
+            onChange={handleChange}
+            page={currentPage}
+            sx={{
+              button: { color: "#ffffff" },
+              ".Mui-selected": { backgroundColor: "rgb(255 255 255 / 16%)!important" },
+              div: { color: "white" },
+            }}
+            className="text-white"
+          />
+        </div>
         {status !== "success" && <LinearProgress />}
         <div
           className={` grid ease-in-out transition-all duration-500 ${
@@ -75,25 +93,6 @@ export const SingleLeague: FC<{ leagueId: string; subLeague: string; index: numb
                 </Link>
               </div>
             ))}
-
-            <div
-              className={`flex justify-center text-gray-50 bg-zinc-800 rounded-md p-1 bottom-0 w-full duration-500 ease-in-out ${
-                isActive ? "opacity-100" : "opacity-0 hidden"
-              }`}
-            >
-              <Pagination
-                count={numberOfPages}
-                size="small"
-                onChange={handleChange}
-                page={currentPage}
-                sx={{
-                  button: { color: "#ffffff" },
-                  ".Mui-selected": { backgroundColor: "rgb(255 255 255 / 16%)!important" },
-                  div: { color: "white" },
-                }}
-                className="text-white"
-              />
-            </div>
           </div>
         </div>
       </div>

@@ -26,8 +26,8 @@ export const LeagueHeader: FC<LegueHeaderType> = ({
   return (
     <div
       className={`league-name text-center relative flex bg-transparent ${
-        hideArrow ? "dark:bg-transparent bg-transparent" : "bg-zinc-100 dark:bg-zinc-700"
-      } rounded-md py-2 px-3 items-center justify-center ${hideArrow ? "gap-3" : "justify-between"} w-full`}
+        hideArrow ? "dark:bg-transparent bg-transparent" : "bg-zinc-100 dark:bg-zinc-800"
+      } rounded-md py-1 px-3 items-center justify-center ${hideArrow ? "gap-3" : "justify-between"} w-full`}
     >
       <button
         onClick={() => {

@@ -6,19 +6,19 @@ import { League } from "../types";
 import { HomePageBlog } from "../components/generic/HomePageBlog";
 
 export const HomePage: FC = () => {
+  const { isPending, error, data } = useFetchLeagues();
+
   const [filteredData, setFilteredData] = useState<League | undefined>();
   const [defaultVoivode, setDefaultVoivode] = useState<League | undefined>();
   const [selectedLeague, setSelectedLeague] = useState<string | undefined>("");
 
   // const favouriteLeagues = useContext(FavouriteLeaguesContext);
 
-  const { isPending, error, data } = useFetchLeagues();
-
   useEffect(() => {
     setDefaultVoivode(data?.[5]);
     const filterVoivode = defaultVoivode?.childLeagues.find((league) => league.id === selectedLeague);
     setFilteredData(filterVoivode);
-    // setSelectedLeague(defaultVoivode?.childLeagues[0].id);
+    setSelectedLeague(defaultVoivode?.childLeagues[2].id);
   }, [data, defaultVoivode?.childLeagues, selectedLeague]);
 
   if (isPending) return <p>Loading...</p>;
@@ -34,25 +34,25 @@ export const HomePage: FC = () => {
         <HomePageBlog></HomePageBlog>
       </div>
 
-      <hr className="mt-5 border-zinc-600"></hr>
-      <div className="flex sm:flex-row w-full gap-3 mt-5 flex-col">
+      <hr className="mt-4 border-zinc-700"></hr>
+      <div className="flex sm:flex-row w-full gap-3 mt-4 flex-col">
         {defaultVoivode?.childLeagues.map((league) => (
           <button
             onClick={() => {
               setSelectedLeague(league.id);
             }}
             key={league.id}
-            className={`uppercase text-xs text-center  py-2 px-3 rounded-md  ${
+            className={`text-xs font-medium text-center py-2 px-3 rounded-md transition-all duration-300 ${
               selectedLeague === league.id
-                ? "dark:bg-cyan-800 dark:hover:bg-cyan-700"
-                : "dark:hover:bg-zinc-500 dark:bg-zinc-600"
+                ? "dark:bg-[#ed4535] dark:hover:bg-[##d63c2e]"
+                : "dark:hover:bg-zinc-800 dark:bg-zinc-900 dark:border dark:border-zinc-700"
             }`}
           >
             {league.name.split("-")[0]}
           </button>
         ))}
       </div>
-      <div className="mt-5">
+      <div className="mt-3">
         {filteredData?.childLeagues.map((childLeague, index) => (
           <SingleLeague key={childLeague.id} leagueId={childLeague.id} subLeague={childLeague.name} index={index} />
         ))}

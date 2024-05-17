@@ -38,7 +38,7 @@ export const Header: FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevState: bo
   }
 
   return (
-    <div className={`flex items-center justify-between py-3 px-5 text-zinc-800 dark:text-white w-full max-w-[1200px]`}>
+    <div className={`flex items-center justify-between py-2 px-5 text-zinc-800 dark:text-white w-full max-w-[1200px]`}>
       <Link to={""}>
         <span>logo</span>
       </Link>
@@ -46,7 +46,7 @@ export const Header: FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevState: bo
       <div
         className={`${
           isSearchModalOpen ? "opacity-100" : " opacity-0 pointer-events-none"
-        } absolute flex justify-center transition-all duration-300 w-full top-20 z-10 left-[-10px] shadow-lg`}
+        } absolute flex justify-center transition-all duration-300 w-full top-16 z-20 left-[-10px] shadow-lg`}
       >
         <SearchResults />
       </div>
@@ -54,7 +54,7 @@ export const Header: FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevState: bo
       <input
         type="text"
         placeholder="Search"
-        className="max-[480px]:hidden border px-2 py-1 rounded-md border-zinc-400 bg-zinc-200 placeholder:text-zinc-800 dark:border-zinc-500 dark:bg-zinc-700 dark:placeholder:text-zinc-200 placeholder:text-sm"
+        className="max-[480px]:hidden w-4xl border px-2 py-1 rounded-md border-[#ed4535] bg-zinc-200 placeholder:text-zinc-800 dark:border-[#ed4535] dark:bg-[#c53528] dark:placeholder:text-zinc-200 placeholder:text-sm"
         onFocus={() => {
           if (searchQuery) {
             setIsSearchModalOpen(true);

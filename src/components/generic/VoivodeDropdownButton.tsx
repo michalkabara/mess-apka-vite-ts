@@ -1,9 +1,9 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, MouseEventHandler } from "react";
 // import { IoMenu } from "react-icons/io5";
 import { GiPoland } from "react-icons/gi";
 import { VoivodeDropdown } from "./VoivodeDropdown";
 
-export const Navbar = () => {
+export const VoivodeDropdownButton = () => {
   const dropdownVoivodeButtonRef = useRef(null);
   const dropdownVoivodeMenuRef = useRef<HTMLInputElement>(null);
   const comboBoxInputRef = useRef<HTMLInputElement>(null);
@@ -16,13 +16,14 @@ export const Navbar = () => {
     setIsMenuOpen(false);
   };
 
-  const handleMenuToggle = () => {
+  const handleMenuToggle = (e: MouseEventHandler<HTMLButtonElement>) => {
+    e.stopPropagation();
     setIsMenuOpen((prev) => !prev);
     // comboBoxInputRef.current?.focus();
   };
 
   useEffect(() => {
-    const handleCloseMenu = (e: MouseEvent) => {
+    const handleCloseMenu = (e: MouseEventHandler<HTMLButtonElement>) => {
       if (e.target != dropdownVoivodeButtonRef.current) {
         setIsMenuOpen(false);
       }
@@ -45,14 +46,14 @@ export const Navbar = () => {
         role="button"
         onClick={handleMenuToggle}
         ref={dropdownVoivodeButtonRef}
-        className="flex flex-row text-xs items-center gap-2 p-2 bg-zinc-700 rounded-md hover:bg-zinc-600 transition-colors ease-in-out cursor-pointer"
+        className="flex flex-row text-xs items-center gap-2 px-2 py-2 bg-zinc-900 rounded-md hover:bg-zinc-800 transition-colors ease-in-out cursor-pointer border border-zinc-700"
       >
         <GiPoland className="size-4" />
-        Wybierz województwo
+        <span className="truncate">Wybierz województwo</span>
       </button>
 
       {isMenuOpen && (
-        <div className="absolute z-20 left-0" ref={dropdownVoivodeMenuRef}>
+        <div className="absolute z-20 left-0 top-8" ref={dropdownVoivodeMenuRef}>
           <VoivodeDropdown comboBoxInputRef={comboBoxInputRef} handleMenuItemClick={handleMenuItemClick} />
         </div>
       )}

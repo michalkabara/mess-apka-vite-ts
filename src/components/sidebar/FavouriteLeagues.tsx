@@ -9,8 +9,8 @@ export const FavouriteLeagues: FC<{ handleMenuItemClick?: () => void }> = ({ han
   return (
     <>
       <div className="flex flex-row gap-2 items-center">
-        <h3 className="font-bold mb-2">Moje Ligi</h3>
-        <RiTrophyLine className="-translate-y-1" />
+        <h3 className="font-bold">Moje Ligi</h3>
+        <RiTrophyLine />
       </div>
       <div className="flex flex-col gap-2 text-xs">
         {favouriteLeagues.map((favLeague: { name: string; id?: string }) => (
