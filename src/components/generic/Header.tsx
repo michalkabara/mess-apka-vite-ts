@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { LuSun, LuMoon } from "react-icons/lu";
 import { RiUser3Line } from "react-icons/ri";
-import { UserButton, useUser } from "@clerk/clerk-react";
+
 import { SearchResults } from "../ui/SearchResults";
 import { FC, useState } from "react";
 // import { useFetchTeams } from "../customHooks/useFetchTeams";
@@ -11,8 +11,6 @@ export const Header: FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevState: bo
   setIsDarkModeOn,
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
-
-  const { isSignedIn, user, isLoaded } = useUser();
 
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
 
@@ -32,13 +30,10 @@ export const Header: FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevState: bo
     setIsDarkModeOn(!isDarkModeOn);
   };
 
-  if (!isLoaded) {
-    // Handle loading state however you like
-    return null;
-  }
-
   return (
-    <div className={`flex items-center justify-between py-2 px-5 text-zinc-800 dark:text-white w-full max-w-[1200px]`}>
+    <div
+      className={`flex items-center justify-between py-2 px-5 text-zinc-800 dark:text-white gap-7 w-full max-w-[1200px]`}
+    >
       <Link to={""}>
         <span>logo</span>
       </Link>
@@ -54,7 +49,7 @@ export const Header: FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevState: bo
       <input
         type="text"
         placeholder="Search"
-        className="max-[480px]:hidden w-4xl border px-2 py-1 rounded-md border-[#ed4535] bg-zinc-200 placeholder:text-zinc-800 dark:border-[#ed4535] dark:bg-[#c53528] dark:placeholder:text-zinc-200 placeholder:text-sm"
+        className="max-[480px]:hidden border w-[400px] px-2 py-1 rounded-md border-[#ed4535] bg-zinc-200 placeholder:text-zinc-800 dark:border-[#ed4535] dark:bg-[#c53528] dark:placeholder:text-zinc-200 placeholder:text-sm"
         onFocus={() => {
           if (searchQuery) {
             setIsSearchModalOpen(true);
@@ -73,16 +68,12 @@ export const Header: FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevState: bo
       />
 
       <div className="flex flex-row gap-3 items-center">
-        {isSignedIn ? (
-          <UserButton key={user.username} />
-        ) : (
-          <Link to="/login">
-            <button className="flex flex-row gap-2 items-center  bg-[#ed4535] py-2 px-3 rounded-lg text-zinc-100">
-              <span className="text-sm">Login</span>
-              <RiUser3Line className="size-4" />
-            </button>
-          </Link>
-        )}
+        <Link to="/login">
+          <button className="flex flex-row gap-2 items-center  bg-[#ed4535] py-2 px-3 rounded-lg text-zinc-100">
+            <span className="text-sm">Login</span>
+            <RiUser3Line className="size-4" />
+          </button>
+        </Link>
 
         <button
           className="flex flex-row gap-2 items-center bg-zinc-200 dark:bg-zinc-700 justify-center rounded-lg size-9"

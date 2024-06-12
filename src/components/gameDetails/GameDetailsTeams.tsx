@@ -16,13 +16,13 @@ export const GameDetailsTeams: FC<{ data: PartialGame }> = ({ data }) => {
           <img
             src={data.homeTeam?.logoUrl}
             alt={data.homeTeam?.name}
-            className="md:size-24 lg:size-28 size-12 rounded-md p-1 bg-white"
+            className="md:size-20 lg:size-24 size-12 rounded-md p-1 bg-white"
           />
           <p>{data.homeTeam?.name}</p>
         </div>
       </Link>
 
-      <span className="text-center font-bold text-nowrap sm:text-2xl md:text-4xl flex justify-center h-full items-center -translate-y-3">
+      <span className="text-center font-semibold text-nowrap sm:text-2xl md:text-4xl flex justify-center h-full items-center -translate-y-3">
         {data.homeGoals} - {data.awayGoals}
       </span>
 
@@ -31,7 +31,7 @@ export const GameDetailsTeams: FC<{ data: PartialGame }> = ({ data }) => {
           <img
             src={data.awayTeam?.logoUrl}
             alt={data.awayTeam?.name}
-            className="md:size-24 lg:size-28 size-12 rounded-md p-1 bg-white"
+            className="md:size-20 lg:size-24 size-12 rounded-md p-1 bg-white"
           />
           <p>{data.awayTeam?.name}</p>
         </div>

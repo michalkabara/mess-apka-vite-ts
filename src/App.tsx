@@ -56,7 +56,7 @@ function App() {
           {pathname !== "/login" && (
             <div className="w-[400px] flex flex-col gap-3 max-lg:hidden">
               <FeaturedGame />
-              <div className="bg-slate-500 ">reklamy</div>
+              {/* <div className="bg-slate-500 ">reklamy</div> */}
             </div>
           )}
         </div>

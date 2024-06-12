@@ -7,6 +7,27 @@
 //   teams: any;
 //   matchResults: any;
 // }
+
+export enum GameEventType {
+  Unknown,
+  YellowCard,
+  RedCard,
+  SubOut,
+  SubIn,
+  Injury,
+  Goal,
+  OwnGoal,
+  Penalty,
+}
+
+export interface GameEvent {
+  minute: number;
+  additionalTime: number;
+  isHostEvent: boolean;
+  eventType: GameEventType;
+  playerName: string;
+  displayTime: string;
+}
 export interface Game {
   id?: string;
   homeTeamId?: string;
@@ -16,6 +37,7 @@ export interface Game {
   awayGoals?: number;
   date: string;
   round?: number;
+  events: GameEvent[];
   winnerId?: string;
   isFinished?: boolean;
   outcome?: number;

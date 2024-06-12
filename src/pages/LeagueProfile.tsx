@@ -11,7 +11,7 @@ import { LeagueRankingTable } from "../components/generic/LeagueRankingTable";
 import { Pagination } from "@mui/material";
 // import { PartialGame } from "../types";
 
-export const LeagueProfile: FC<{ leagueId?: string | undefined }> = ({ leagueId }) => {
+export const LeagueProfile: FC<{ leagueId: string }> = ({ leagueId }) => {
   const [selectedTab, setSelecteTab] = useState<number | null>(0);
   const { leagueId: routeLeagueId } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -57,13 +57,15 @@ export const LeagueProfile: FC<{ leagueId?: string | undefined }> = ({ leagueId 
   // const upcomingGamesData: PartialGame[] = gamesData.data.filter((game) => game.isFinished === false);
   // const upcomingGamesPages = Math.ceil(upcomingGames.length / 10) + 1;
 
+  // console.log(gamesData);
+
   return (
     <>
       <div className="league-name flex justify-center mb-2 w-full">
         <LeagueHeader leagueName={leagueData.name} isLinkEnabled={false} hideArrow={true} leagueId={checkLeagueId} />
       </div>
       <div className="w-full">
-        <div className="flex flex-row gap-3 mt-5 flex-wrap w-full mb-5 justify-center">
+        <div className="flex flex-row gap-3 my-3 flex-wrap w-full justify-center">
           {tabs.map((button, index) => (
             <SingleTab
               key={`tab-${index}`}
@@ -88,7 +90,7 @@ export const LeagueProfile: FC<{ leagueId?: string | undefined }> = ({ leagueId 
         </div>
 
         <div className={` wyniki mt-2 gap-1 flex flex-col text-xs w-full ${selectedTab === 1 ? "flex" : "hidden"}`}>
-          {gamesData.data.map((game) => (
+          {gamesData.data.data.map((game) => (
             <div key={game.id} className="flex flex-col items-center w-full">
               <Link
                 to={`/game/${game.id}`}

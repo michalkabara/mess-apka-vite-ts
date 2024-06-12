@@ -40,62 +40,64 @@ export const SingleLeague: FC<{ leagueId: string; subLeague: string; index: numb
 
   return (
     <div className="flex flex-col mb-1 gap-2 ">
-      <div>
-        <LeagueHeader
-          leagueName={subLeague}
-          isActive={isActive}
-          leagueId={leagueId}
-          isLinkEnabled={true}
-          toggleSection={handleToggleSection}
-        />
-        <div
-          className={`mt-3 flex justify-center text-gray-50 bg-zinc-800 rounded-md p-1 bottom-0 w-full duration-500 ease-in-out ${
-            isActive ? "opacity-100" : "opacity-0 hidden"
-          }`}
-        >
-          <Pagination
-            count={numberOfPages}
-            size="small"
-            onChange={handleChange}
-            page={currentPage}
-            sx={{
-              button: { color: "#ffffff" },
-              ".Mui-selected": { backgroundColor: "rgb(255 255 255 / 16%)!important" },
-              div: { color: "white" },
-            }}
-            className="text-white"
+      {numberOfPages > 0 && (
+        <div>
+          <LeagueHeader
+            leagueName={subLeague}
+            isActive={isActive}
+            leagueId={leagueId}
+            isLinkEnabled={true}
+            toggleSection={handleToggleSection}
           />
-        </div>
-        {status !== "success" && <LinearProgress />}
-        <div
-          className={` grid ease-in-out transition-all duration-500 ${
-            isActive ? `opacity-100` : "opacity-0 pointer-events-none mt-0"
-          }`}
-          style={isActive ? { gridTemplateRows: "1fr" } : { gridTemplateRows: "0fr" }}
-        >
           <div
-            data-section-name={index}
-            className={`mecze mt-2 flex flex-col gap-1 text-xs relative transition-all duration-500 ease-in-out overflow-hidden`}
+            className={`mt-2 flex justify-center text-gray-50 bg-zinc-800 rounded-md p-1 bottom-0 w-full duration-500 ease-in-out ${
+              isActive ? "opacity-100" : "opacity-0 hidden"
+            }`}
           >
-            {data?.map((game) => (
-              <div key={game.id} className="flex flex-col items-center ">
-                <Link
-                  to={`/game/${game.id}`}
-                  className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-800 rounded-md py-[5px] px-4 ease-in-out duration-500 gap-2"
-                >
-                  <SingleGame
-                    date={game.date}
-                    homeTeam={game.homeTeam}
-                    awayTeam={game.awayTeam}
-                    homeGoals={game.homeGoals}
-                    awayGoals={game.awayGoals}
-                  />
-                </Link>
-              </div>
-            ))}
+            <Pagination
+              count={numberOfPages}
+              size="small"
+              onChange={handleChange}
+              page={currentPage}
+              sx={{
+                button: { color: "#ffffff", fontSize: "12px", height: "24px", width: "24px", minWidth: "22px" },
+                ".Mui-selected": { backgroundColor: "rgb(255 255 255 / 12%)!important" },
+                div: { color: "white" },
+              }}
+              className="text-white"
+            />
+          </div>
+          {status !== "success" && <LinearProgress />}
+          <div
+            className={` grid ease-in-out transition-all duration-500 ${
+              isActive ? `opacity-100 mb-2` : "opacity-0 pointer-events-none mt-0 "
+            }`}
+            style={isActive ? { gridTemplateRows: "1fr" } : { gridTemplateRows: "0fr" }}
+          >
+            <div
+              data-section-name={index}
+              className={`mecze mt-2 flex flex-col gap-1 text-xs relative transition-all duration-500 ease-in-out overflow-hidden`}
+            >
+              {data?.map((game) => (
+                <div key={game.id} className="flex flex-col items-center ">
+                  <Link
+                    to={`/game/${game.id}`}
+                    className="flex flex-row border border-zinc-700 items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-800 rounded-md py-2 px-3 ease-in-out duration-500 gap-2"
+                  >
+                    <SingleGame
+                      date={game.date}
+                      homeTeam={game.homeTeam}
+                      awayTeam={game.awayTeam}
+                      homeGoals={game.homeGoals}
+                      awayGoals={game.awayGoals}
+                    />
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

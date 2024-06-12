@@ -108,13 +108,7 @@ export const TeamProfile: React.FC = () => {
             <Link
               to={`/game/${mecz.id}`}
               key={`${mecz.id}-${index}`}
-              className={`border-r-[2px]  flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2 ${
-                mecz.winnerId === teamId
-                  ? "border-green-600"
-                  : mecz.homeGoals === mecz.awayGoals
-                  ? "border-orange-400"
-                  : "border-red-600"
-              }`}
+              className={` border flex flex-row border-zinc-700 items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-800 rounded-md py-2 px-3 ease-in-out duration-500 gap-2 `}
             >
               <SingleGame
                 date={mecz.date}

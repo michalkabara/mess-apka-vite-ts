@@ -1,29 +1,91 @@
-import { FC } from "react";
-import { GameDetailsEntry } from "../ui/GameDetailsEntry";
+import { useEffect, useState } from "react";
+import { GameEvent, GameEventType } from "../../types";
+import { GameDetailsEntry } from "./GameDetailsEntry";
+import { GameDetailsPlayerSwapEntry } from "./GameDetailsPlayerSwapEntry";
 
-export const GameDetailsEntries: FC = () => {
+export const GameDetailsEntries: React.FC<{ events: GameEvent[] }> = ({ events }) => {
+  console.log({ events });
+
+  const [rearangedEvents, setRearangedEvents] = useState<GameEvent[]>();
+
+  console.log({ rearangedEvents });
+
+  const rearrangeEvents = (events: GameEvent[]) => {
+    for (let i = 0; i < events.length - 1; i++) {
+      if (
+        (events[i]?.eventType === GameEventType.SubOut && events[i + 1]?.eventType === GameEventType.SubOut) ||
+        (events[i]?.eventType === GameEventType.SubIn && events[i + 1]?.eventType === GameEventType.SubIn)
+      ) {
+        let swapIndex = -1;
+
+        for (let j = i + 2; j < events.length; j++) {
+          if (events[j]?.eventType !== GameEventType.SubOut && events[j]?.eventType !== GameEventType.SubIn) {
+            swapIndex = j;
+            break;
+          }
+        }
+
+        if (swapIndex !== -1) {
+          [events[i + 1], events[swapIndex]] = [events[swapIndex], events[i + 1]];
+        } else {
+          for (let j = i - 1; j >= 0; j--) {
+            if (events[j]?.eventType !== GameEventType.SubOut && events[j]?.eventType !== GameEventType.SubIn) {
+              [events[i], events[j]] = [events[j], events[i]];
+              break;
+            }
+          }
+        }
+      }
+    }
+
+    setRearangedEvents(events);
+  };
+
+  useEffect(() => {
+    rearrangeEvents(events);
+  }, [events]);
+
   return (
     <>
-      <div className="text-xs uppercase bg-zinc-300 dark:bg-zinc-700 opacity rounded-md p-2 mb-3 mt-5">
+      <div className="text-xs uppercase bg-zinc-300 dark:bg-zinc-800 opacity rounded-md p-2 my-3">
+        <p>2 Połowa</p>
+      </div>
+      <div className="flex flex-col w-full justify-between text-xs px-2 gap-2">
+        {rearangedEvents?.map((gameEvent: GameEvent, index) => {
+          const nextEvent = rearangedEvents[index + 1];
+          const previousEvent = rearangedEvents[index - 1];
+
+          if (gameEvent.minute > 45) {
+            if (gameEvent.eventType === GameEventType.SubIn || gameEvent.eventType === GameEventType.SubOut) {
+              return (
+                <GameDetailsPlayerSwapEntry
+                  key={gameEvent.displayTime + gameEvent.playerName}
+                  event={gameEvent}
+                  nextEvent={nextEvent}
+                  previousEvent={previousEvent}
+                />
+              );
+            } else {
+              return <GameDetailsEntry key={gameEvent.displayTime + gameEvent.playerName} event={gameEvent} />;
+            }
+          }
+        })}
+      </div>
+      <div className="text-xs uppercase bg-zinc-300 dark:bg-zinc-800 opacity rounded-md p-2 mb-3 mt-5">
         <p>1 Połowa</p>
       </div>
-      <div className="flex flex-col w-full justify-between text-sm px-2">
-        <div className="flex flex-col items-start gap-1">
-          <GameDetailsEntry type="yellow" time="69" order="left" />
-        </div>
-        <div className="flex flex-col items-end gap-1 ">
-          <GameDetailsEntry type="yellow" time="69" order="right" />
-          <GameDetailsEntry type="red" time="69" order="right" />
-          <GameDetailsEntry type="swap" time="69" order="right" />
-        </div>
-        <div className="flex flex-col items-start gap-1">
-          <GameDetailsEntry type="yellow" time="69" order="left" />
-          <GameDetailsEntry type="swap" time="69" order="right" />
-          <GameDetailsEntry type="goal" time="69" order="right" />
-        </div>
-      </div>
-      <div className="text-xs uppercase bg-zinc-300 dark:bg-zinc-700 opacity rounded-md p-2 my-3">
-        <p>2 Połowa</p>
+      <div className="flex flex-col w-full justify-between text-xs px-2 gap-2">
+        {rearangedEvents?.map((gameEvent: GameEvent) => {
+          if (gameEvent.minute <= 45) {
+            if (gameEvent.eventType === GameEventType.SubIn || gameEvent.eventType === GameEventType.SubOut) {
+              return (
+                <GameDetailsPlayerSwapEntry key={gameEvent.displayTime + gameEvent.playerName} event={gameEvent} />
+              );
+            } else {
+              return <GameDetailsEntry key={gameEvent.displayTime + gameEvent.playerName} event={gameEvent} />;
+            }
+          }
+        })}
       </div>
     </>
   );

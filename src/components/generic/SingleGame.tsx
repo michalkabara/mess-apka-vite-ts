@@ -2,6 +2,7 @@ import { FC } from "react";
 import defaultCrest from "../../img/crest_default.svg";
 import { PartialGame } from "../../types";
 import { DateDisplay } from "../ui/DateDisplay";
+import { IoMdTrophy } from "react-icons/io";
 
 export const SingleGame: FC<PartialGame> = ({ date, homeTeam, awayTeam, homeGoals, awayGoals }) => {
   const gameDate = new Date(date ?? 0);
@@ -19,14 +20,16 @@ export const SingleGame: FC<PartialGame> = ({ date, homeTeam, awayTeam, homeGoal
             <img src={defaultCrest} alt="Herb" className="w-5 rounded-sm p-[1px]  bg-white" />
           )}
           <p className="truncate">{homeTeam?.name}</p>
+          {homeGoals > awayGoals && <IoMdTrophy className="text-zinc-600" />}
         </div>
-        <div className="mt-2 flex flex-row gap-2 item-center" id="team2-container">
+        <div className="mt-2 flex flex-row gap-2 items-center" id="team2-container">
           {awayTeam?.logoUrl ? (
             <img src={awayTeam.logoUrl} alt={awayTeam.name} className="size-5 rounded-sm p-[1px]  bg-white" />
           ) : (
             <img src={defaultCrest} alt="Herb" className="w-5 rounded-sm p-[1px] bg-white" />
           )}
           <p className="truncate">{awayTeam?.name}</p>
+          {awayGoals > homeGoals && <IoMdTrophy className="text-zinc-600" />}
         </div>
       </div>
       <div className="flex flex-col gap-2 w-4 items-end">

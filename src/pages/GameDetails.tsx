@@ -92,7 +92,7 @@ export const GameDetails: FC = () => {
         </div>
 
         <div className={` ${selectedTab === 0 ? "initial" : "hidden"}`}>
-          <GameDetailsEntries />
+          <GameDetailsEntries events={data.events} />
         </div>
 
         <div className={`mecze mt-3 gap-2 flex-col text-xs ${selectedTab === 1 ? "flex" : "hidden"}`}>

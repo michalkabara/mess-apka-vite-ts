@@ -25,7 +25,7 @@ export const LeagueRankingTable: FC<{
         <LeagueRankingTableHeader />
 
         {data.map((team: LeagueTableEntry, index: number) => {
-          return <LeagueRankingTableEntry team={team} index={index} />;
+          return <LeagueRankingTableEntry key={team.teamId} team={team} index={index} />;
         })}
       </div>
     </>
