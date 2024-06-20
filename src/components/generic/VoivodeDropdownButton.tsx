@@ -46,7 +46,7 @@ export const VoivodeDropdownButton = () => {
         role="button"
         onClick={handleMenuToggle}
         ref={dropdownVoivodeButtonRef}
-        className="flex flex-row text-xs items-center gap-2 px-2 py-2 bg-zinc-900 rounded-md hover:bg-zinc-800 transition-colors ease-in-out cursor-pointer border border-zinc-700"
+        className="flex flex-row text-xs items-center bg-white gap-2 px-2 py-2 dark:bg-zinc-900 rounded-md dark:hover:bg-zinc-800 transition-colors ease-in-out cursor-pointer border dark:border-zinc-700"
       >
         <GiPoland className="size-4" />
         <span className="truncate">Wybierz województwo</span>

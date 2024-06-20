@@ -50,10 +50,11 @@ export const SingleLeague: FC<{ leagueId: string; subLeague: string; index: numb
             toggleSection={handleToggleSection}
           />
           <div
-            className={`mt-2 flex justify-center text-gray-50 bg-zinc-800 rounded-md p-1 bottom-0 w-full duration-500 ease-in-out ${
+            className={`mt-2 sm:flex-row flex flex-col gap-1 text-gray-50 bg-zinc-800 rounded-md p-1 bottom-0 w-full duration-500 ease-in-out justify-center items-center px-3 relative${
               isActive ? "opacity-100" : "opacity-0 hidden"
             }`}
           >
+            <p className="text-xs sm:absolute left-8">KOLEJKA</p>
             <Pagination
               count={numberOfPages}
               size="small"

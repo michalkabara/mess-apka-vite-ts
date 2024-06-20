@@ -43,7 +43,7 @@ export const VoivodeshipPage: FC = () => {
       </div>
       <div className="mt-5">
         {filteredData?.childLeagues.map((childLeague, index) => {
-          console.log(childLeague);
+          // console.log(childLeague);
 
           return (
             <SingleLeague key={childLeague.id} leagueId={childLeague.id} subLeague={childLeague.name} index={index} />

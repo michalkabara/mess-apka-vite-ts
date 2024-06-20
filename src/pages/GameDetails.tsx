@@ -78,7 +78,7 @@ export const GameDetails: FC = () => {
 
       <GameDetailsTeams data={data} />
 
-      <div className="tabs w-full">
+      <div className="w-full">
         <div className="flex flex-row gap-3 mt-5 flex-wrap justify-center">
           {tabs.map((button, index) => (
             <SingleTab

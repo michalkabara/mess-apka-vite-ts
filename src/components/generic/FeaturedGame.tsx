@@ -6,7 +6,7 @@ import { PiClockCountdownBold } from "react-icons/pi";
 export const FeaturedGame = () => {
   return (
     <div className="bg-zinc-200 dark:bg-zinc-800 rounded-lg p-5 text-zinc-700 dark:text-white flex flex-col items-center gap-5">
-      <h3 className="font-bold">Featured Game</h3>
+      <h3 className="font-bold">Wyróżniony mecz</h3>
       <div className="flex flex-row gap-6 items-start">
         <div className="flex flex-col text-sm items-center gap-2">
           <img src={defaultCrest} alt="" className="w-16" />

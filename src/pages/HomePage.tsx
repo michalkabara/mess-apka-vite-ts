@@ -9,24 +9,29 @@ export const HomePage: FC = () => {
   const { isPending, error, data } = useFetchLeagues();
 
   const [filteredData, setFilteredData] = useState<League | undefined>();
-  const [defaultVoivode, setDefaultVoivode] = useState<League | undefined>();
-  const [selectedLeague, setSelectedLeague] = useState<string | undefined>("");
+  const [defaultVoivode, setDefaultVoivode] = useState<League | undefined>(data?.[5]);
+  const [selectedLeague, setSelectedLeague] = useState<string | undefined>(defaultVoivode?.childLeagues[2].id);
 
   // const favouriteLeagues = useContext(FavouriteLeaguesContext);
 
   useEffect(() => {
-    setDefaultVoivode(data?.[5]);
     const filterVoivode = defaultVoivode?.childLeagues.find((league) => league.id === selectedLeague);
     setFilteredData(filterVoivode);
+    setDefaultVoivode(data?.[5]);
     setSelectedLeague(defaultVoivode?.childLeagues[2].id);
-  }, [data, defaultVoivode?.childLeagues, selectedLeague]);
+  }, [data, selectedLeague, setSelectedLeague]);
 
   if (isPending) return <p>Loading...</p>;
 
   if (error) return <p>An error has occurred {error.message}</p>;
 
-  // const child = data[0];
-  // const filteredData = child.childLeagues.find((league) => league.id === selectedLeague);
+  const childLeaguesOrder = [
+    defaultVoivode?.childLeagues[0],
+    defaultVoivode?.childLeagues[4],
+    defaultVoivode?.childLeagues[3],
+    defaultVoivode?.childLeagues[1],
+    defaultVoivode?.childLeagues[2],
+  ];
 
   return (
     <>
@@ -36,19 +41,19 @@ export const HomePage: FC = () => {
 
       <hr className="mt-4 border-zinc-700"></hr>
       <div className="flex sm:flex-row w-full gap-3 mt-4 flex-col">
-        {defaultVoivode?.childLeagues.map((league) => (
+        {childLeaguesOrder.map((league) => (
           <button
             onClick={() => {
-              setSelectedLeague(league.id);
+              setSelectedLeague(league?.id);
             }}
-            key={league.id}
+            key={league?.id}
             className={`text-xs font-medium text-center py-2 px-3 rounded-md transition-all duration-300 ${
-              selectedLeague === league.id
+              selectedLeague === league?.id
                 ? "dark:bg-[#ed4535] dark:hover:bg-[##d63c2e]"
                 : "dark:hover:bg-zinc-800 dark:bg-zinc-900 dark:border dark:border-zinc-700"
             }`}
           >
-            {league.name.split("-")[0]}
+            {league?.name.split("-")[0]}
           </button>
         ))}
       </div>

@@ -48,7 +48,7 @@ export const Header: FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevState: bo
 
       <input
         type="text"
-        placeholder="Search"
+        placeholder="Szukaj"
         className="max-[480px]:hidden border w-[400px] px-2 py-1 rounded-md border-[#ed4535] bg-zinc-200 placeholder:text-zinc-800 dark:border-[#ed4535] dark:bg-[#c53528] dark:placeholder:text-zinc-200 placeholder:text-sm"
         onFocus={() => {
           if (searchQuery) {
@@ -70,7 +70,7 @@ export const Header: FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevState: bo
       <div className="flex flex-row gap-3 items-center">
         <Link to="/login">
           <button className="flex flex-row gap-2 items-center  bg-[#ed4535] py-2 px-3 rounded-lg text-zinc-100">
-            <span className="text-sm">Login</span>
+            <span className="text-sm">Zaloguj</span>
             <RiUser3Line className="size-4" />
           </button>
         </Link>

@@ -22,7 +22,7 @@ export const VoivodeDropdown: FC<{
 
   return (
     <div
-      className="bg-zinc-800 flex flex-col z-10 rounded-md mt-2 dropdown-content p-2 pb-4 gap-1 shadow-lg w-[190px] min-w-[150px]"
+      className="dark:bg-zinc-800 bg-white flex flex-col z-10 rounded-md mt-2 dropdown-content p-2 pb-4 gap-1 shadow-lg w-[190px] min-w-[150px]"
       tabIndex={0}
     >
       <div className="relative flex flex-row items-center">
@@ -30,7 +30,7 @@ export const VoivodeDropdown: FC<{
 
         <input
           type="text"
-          className="p-2 rounded-md text-xs mb-2 w-full pl-7"
+          className="p-2 rounded-md text-xs mb-2 w-full pl-7 dark:bg-zinc-700 bg-zinc-200"
           value={searchQuery}
           onChange={(e) => {
             setSearchQuery(e.target.value);
@@ -43,7 +43,7 @@ export const VoivodeDropdown: FC<{
       {filteredItems?.map((voivodeship: League) => (
         <Link
           role="button"
-          className="hover:bg-zinc-700 transition-colors ease-in-out w-full rounded-md text-xs p-2"
+          className="hover:dark:bg-zinc-700 hover:bg-zinc-200 transition-colors ease-in-out w-full rounded-md text-xs p-2"
           onClick={handleMenuItemClick}
           key={voivodeship.id}
           to={`/voivode/${voivodeship.id}`}

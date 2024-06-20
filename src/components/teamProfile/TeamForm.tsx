@@ -3,6 +3,8 @@ import { useFetchTeamGames } from "../../customHooks/fetchTeamData/useFetchTeamG
 import { Link } from "react-router-dom";
 import { PartialGame } from "../../types";
 import { FC } from "react";
+import { DateDisplay } from "../ui/DateDisplay";
+import dayjs from "dayjs";
 
 export const TeamForm: FC<{
   teamId?: string;
@@ -15,27 +17,33 @@ export const TeamForm: FC<{
 
   const games = data.data.slice(0, 5);
 
+  const tbdGame = data.data.find((game) => game.isFinished === false);
+  const tbdGameDate = dayjs(tbdGame?.date).format("DD.MM.YYYY HH:mm");
+
   return (
     <div className="flex flex-row gap-1 relative sm:min-w-[120px] w-auto justify-end">
-      <div
-        className="rounded-sm bg-gray-400 text-white size-4 text-center leading-tight cursor-default"
-        data-tooltip-id="TBA"
-        data-tooltip-content="TBA"
-        data-tooltip-place="top"
-      >
-        ?
-        <Tooltip id="TBA" />
-      </div>
+      {tbdGame && (
+        <Link to={`/game/${tbdGame.id}`} key={`${tbdGame.id}-win`}>
+          <div
+            className="rounded-sm bg-gray-400 text-white size-4 text-center leading-tight cursor-pointer"
+            data-tooltip-id="TBA"
+            data-tooltip-content={`${tbdGameDate} ${
+              tbdGame.homeTeamId == teamId ? tbdGame.awayTeam?.name : tbdGame.homeTeam?.name
+            }`}
+            data-tooltip-place="top"
+          >
+            ?
+            <Tooltip id="TBA" />
+          </div>
+        </Link>
+      )}
 
       {games.map((game: PartialGame) => {
         // console.log(array);
 
         const gameDate = new Date(game.date ?? 0);
 
-        const date = `${String(gameDate.getDate()).padStart(2, "0")}.${String(gameDate.getMonth()).padStart(
-          2,
-          "0"
-        )}.${gameDate.getFullYear()}`;
+        const date = dayjs(gameDate).format("DD.MM.YYYY HH:mm");
 
         if (game.homeGoals === game.awayGoals) {
           return (

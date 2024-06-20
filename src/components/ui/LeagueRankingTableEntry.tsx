@@ -8,12 +8,12 @@ export const LeagueRankingTableEntry: FC<{ team: LeagueTableEntry; index: number
   return (
     <div
       key={team.teamId}
-      className="group flex flex-row gap-3 items-center text-xs hover:bg-zinc-300 max-sm:w-fit dark:hover:bg-zinc-700 rounded-md py-2 px-2 ease-in-out duration-500 justify-between"
+      className="group flex flex-row gap-3 items-center text-xs hover:bg-zinc-200 max-sm:w-fit dark:hover:bg-zinc-700 rounded-md py-2 px-2 ease-in-out duration-500 justify-between"
     >
       <Link
         to={`/team/${team.teamId}`}
         className="w-[170px]
-      sm:w-[220px] flex flex-row items-center gap-3 sticky left-0 dark:bg-zinc-900 dark:group-hover:bg-zinc-700 ease-in-out duration-500 bg-zinc-200 group-hover:bg-zinc-300 max-sm:-translate-x-5 max-sm:pl-5 z-10"
+      sm:w-[220px] flex flex-row items-center gap-3 sticky left-0 dark:bg-zinc-900 dark:group-hover:bg-zinc-700 ease-in-out duration-500 bg-zinc-50 group-hover:bg-zinc-200 max-sm:-translate-x-5 max-sm:pl-5 z-10"
       >
         <div className="w-4 flex justify-center">{index + 1}.</div>
         {team.logoUrl ? (
