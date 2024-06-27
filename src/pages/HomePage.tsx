@@ -43,14 +43,14 @@ export const HomePage: FC = () => {
       <div className="flex sm:flex-row w-full gap-3 mt-4 flex-col">
         {childLeaguesOrder.map((league) => (
           <button
+            key={league?.id}
             onClick={() => {
               setSelectedLeague(league?.id);
             }}
-            key={league?.id}
             className={`text-xs font-medium text-center py-2 px-3 rounded-md transition-all duration-300 ${
               selectedLeague === league?.id
-                ? "dark:bg-[#ed4535] dark:hover:bg-[##d63c2e]"
-                : "dark:hover:bg-zinc-800 dark:bg-zinc-900 dark:border dark:border-zinc-700"
+                ? "dark:bg-[#ed4535] dark:hover:bg-[##d63c2e] bg-[#ed4535] text-white"
+                : "dark:hover:bg-zinc-800 dark:bg-zinc-900 dark:border dark:border-zinc-700 border-zinc-300 border hover:bg-zinc-200"
             }`}
           >
             {league?.name.split("-")[0]}

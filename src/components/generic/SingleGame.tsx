@@ -7,6 +7,9 @@ import { IoMdTrophy } from "react-icons/io";
 export const SingleGame: FC<PartialGame> = ({ date, homeTeam, awayTeam, homeGoals, awayGoals }) => {
   const gameDate = new Date(date ?? 0);
 
+  const homeTrophy = awayGoals && homeGoals && homeGoals > awayGoals && <IoMdTrophy className="text-zinc-600" />;
+  const awayTrophy = awayGoals && homeGoals && awayGoals > homeGoals && <IoMdTrophy className="text-zinc-600" />;
+
   return (
     <>
       <div className=" text-left" id="time-container">
@@ -20,7 +23,7 @@ export const SingleGame: FC<PartialGame> = ({ date, homeTeam, awayTeam, homeGoal
             <img src={defaultCrest} alt="Herb" className="w-5 rounded-sm p-[1px]  bg-white" />
           )}
           <p className="truncate">{homeTeam?.name}</p>
-          {homeGoals > awayGoals && <IoMdTrophy className="text-zinc-600" />}
+          {homeTrophy}
         </div>
         <div className="mt-2 flex flex-row gap-2 items-center" id="team2-container">
           {awayTeam?.logoUrl ? (
@@ -29,7 +32,7 @@ export const SingleGame: FC<PartialGame> = ({ date, homeTeam, awayTeam, homeGoal
             <img src={defaultCrest} alt="Herb" className="w-5 rounded-sm p-[1px] bg-white" />
           )}
           <p className="truncate">{awayTeam?.name}</p>
-          {awayGoals > homeGoals && <IoMdTrophy className="text-zinc-600" />}
+          {awayTrophy}
         </div>
       </div>
       <div className="flex flex-col gap-2 w-4 items-end">

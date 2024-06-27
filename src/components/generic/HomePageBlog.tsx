@@ -40,7 +40,7 @@ export const HomePageBlog = () => {
     <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3">
       {posts.slice(1).map((post) => (
         <Link to={`/post/${post.id}`} key={post.id}>
-          <div className="flex flex-col gap-2 bg-zinc-900 border border-zinc-700 hover:bg-zinc-800 p-2 rounded-md cursor-pointer transition-colors ease-in-out ">
+          <div className="flex flex-col gap-2 dark:bg-zinc-900 border dark:border-zinc-700 dark:hover:bg-zinc-800 hover:bg-zinc-200 p-2 rounded-md cursor-pointer transition-colors ease-in-out ">
             <img src={post.imgLink} alt={post.title} className="rounded-md max-h-[100px]" />
             <div className="p-1 mt-1">
               <p className="text-sm font-bold leading-4 line-clamp-2">{post.title}</p>

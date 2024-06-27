@@ -14,12 +14,12 @@ export const GameDetailsPlayerSwapEntry: React.FC<{
             <div className={`flex ${event.isHostEvent ? "flex-row" : "flex-row-reverse"} gap-2 items-center`}>
               <p>{event.displayTime}</p>
               <p className="text-green-600">{event.playerName}</p>
-              <FaArrowRight className="text-green-600" />
+              <FaArrowRight className={`text-green-600 ${event.isHostEvent ? "rotate-180" : ""}`} />
               {nextEvent?.eventType === GameEventType.SubOut && previousEvent?.eventType !== GameEventType.SubOut && (
-                <p className="text-red-500">{nextEvent.playerName} AA</p>
+                <p className="text-zinc-500">{nextEvent.playerName} AA</p>
               )}
               {previousEvent?.eventType === GameEventType.SubOut && (
-                <p className="text-red-500">{previousEvent.playerName} BB</p>
+                <p className="text-zinc-500">{previousEvent.playerName}</p>
               )}
             </div>
           )}

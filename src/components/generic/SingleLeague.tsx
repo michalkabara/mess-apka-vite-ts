@@ -50,7 +50,7 @@ export const SingleLeague: FC<{ leagueId: string; subLeague: string; index: numb
             toggleSection={handleToggleSection}
           />
           <div
-            className={`mt-2 sm:flex-row flex flex-col gap-1 text-gray-50 bg-zinc-800 rounded-md p-1 bottom-0 w-full duration-500 ease-in-out justify-center items-center px-3 relative${
+            className={`mt-2 sm:flex-row flex flex-col gap-1 dark:text-gray-50 dark:bg-zinc-800 rounded-md p-1 bottom-0 w-full duration-500 ease-in-out justify-center items-center px-3 relative${
               isActive ? "opacity-100" : "opacity-0 hidden"
             }`}
           >
@@ -65,7 +65,7 @@ export const SingleLeague: FC<{ leagueId: string; subLeague: string; index: numb
                 ".Mui-selected": { backgroundColor: "rgb(255 255 255 / 12%)!important" },
                 div: { color: "white" },
               }}
-              className="text-white"
+              className="dark:text-white text-zinc-700"
             />
           </div>
           {status !== "success" && <LinearProgress />}
@@ -83,7 +83,7 @@ export const SingleLeague: FC<{ leagueId: string; subLeague: string; index: numb
                 <div key={game.id} className="flex flex-col items-center ">
                   <Link
                     to={`/game/${game.id}`}
-                    className="flex flex-row border border-zinc-700 items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-800 rounded-md py-2 px-3 ease-in-out duration-500 gap-2"
+                    className="flex flex-row border dark:border-zinc-700 items-center w-full content-between hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded-md py-2 px-3 ease-in-out duration-500 gap-2"
                   >
                     <SingleGame
                       date={game.date}

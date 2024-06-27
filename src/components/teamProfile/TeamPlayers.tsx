@@ -24,7 +24,7 @@ export const TeamPlayers: FC<{
               ? "bg-green-600 text-zinc-100 dark:bg-green-800 order-2"
               : player.isCaptain
               ? "bg-yellow-600 text-zinc-100 dark:bg-yellow-700 order-1"
-              : "bg-zinc-100 text-zinc-800 dark:text-zinc-100 dark:bg-zinc-700 order-3"
+              : "bg-zinc-100 text-zinc-800 dark:text-zinc-100 dark:bg-zinc-800 order-3"
           } `}
         >
           <div key={player.id} className={`flex flex-row items-center gap-4 py-2 px-3 rounded-lg`}>

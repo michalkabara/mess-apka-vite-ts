@@ -4,6 +4,7 @@ import { RiUser3Line } from "react-icons/ri";
 
 import { SearchResults } from "../ui/SearchResults";
 import { FC, useState } from "react";
+import trybunaLogo from "../../img/trybuna_tv_logo_white.png";
 // import { useFetchTeams } from "../customHooks/useFetchTeams";
 
 export const Header: FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevState: boolean) => void }> = ({
@@ -35,7 +36,7 @@ export const Header: FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevState: bo
       className={`flex items-center justify-between py-2 px-5 text-zinc-800 dark:text-white gap-7 w-full max-w-[1200px]`}
     >
       <Link to={""}>
-        <span>logo</span>
+        <img src={trybunaLogo} alt="" className="w-32" />
       </Link>
 
       <div
@@ -49,7 +50,7 @@ export const Header: FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevState: bo
       <input
         type="text"
         placeholder="Szukaj"
-        className="max-[480px]:hidden border w-[400px] px-2 py-1 rounded-md border-[#ed4535] bg-zinc-200 placeholder:text-zinc-800 dark:border-[#ed4535] dark:bg-[#c53528] dark:placeholder:text-zinc-200 placeholder:text-sm"
+        className="max-[480px]:hidden border w-[400px] px-2 py-1 rounded-md placeholder:text-white placeholder:text-zinc-800 border-[#ed4535] bg-[#c53528] dark:placeholder:text-zinc-200 placeholder:text-sm"
         onFocus={() => {
           if (searchQuery) {
             setIsSearchModalOpen(true);

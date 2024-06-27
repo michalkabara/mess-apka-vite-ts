@@ -117,16 +117,25 @@ export const TeamProfile: React.FC = () => {
                 homeGoals={mecz.homeGoals}
                 awayGoals={mecz.awayGoals}
               />
+              <span
+                className={`h-[10px] w-[12px] rounded-full ${
+                  mecz.winnerId === teamId
+                    ? "bg-green-500"
+                    : mecz.homeGoals === mecz.awayGoals
+                    ? "bg-orange-400"
+                    : "bg-red-500"
+                }`}
+              ></span>
             </Link>
           ))}
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 2 ? "flex" : "hidden"}`}>
-          <HomeGames homeGames={homeGames} />
+          <HomeGames homeGames={homeGames} homeTeamId={teamId} />
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 3 ? "flex" : "hidden"}`}>
-          <AwayGames awayGames={awayGames} />
+          <AwayGames awayGames={awayGames} homeTeamId={teamId} />
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 4 ? "flex" : "hidden"}`}>

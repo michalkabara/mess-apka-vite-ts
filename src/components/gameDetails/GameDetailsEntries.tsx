@@ -47,7 +47,7 @@ export const GameDetailsEntries: React.FC<{ events: GameEvent[] }> = ({ events }
 
   return (
     <>
-      <div className="text-xs uppercase bg-zinc-300 dark:bg-zinc-800 opacity rounded-md p-2 my-3">
+      <div className="text-xs uppercase bg-zinc-200 dark:bg-zinc-800 opacity rounded-md p-2 my-3">
         <p>2 Połowa</p>
       </div>
       <div className="flex flex-col w-full justify-between text-xs px-2 gap-2">
@@ -71,7 +71,7 @@ export const GameDetailsEntries: React.FC<{ events: GameEvent[] }> = ({ events }
           }
         })}
       </div>
-      <div className="text-xs uppercase bg-zinc-300 dark:bg-zinc-800 opacity rounded-md p-2 mb-3 mt-5">
+      <div className="text-xs uppercase bg-zinc-200 dark:bg-zinc-800 opacity rounded-md p-2 mb-3 mt-5">
         <p>1 Połowa</p>
       </div>
       <div className="flex flex-col w-full justify-between text-xs px-2 gap-2">

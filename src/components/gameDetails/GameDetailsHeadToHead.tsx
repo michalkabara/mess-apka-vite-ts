@@ -62,7 +62,7 @@ export const GameDetailsHeadToHead: FC<{
           <Link
             to={`/game/${mecz.id}`}
             key={`${mecz.id}-${index}`}
-            className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
+            className="flex flex-row items-center w-full content-between border-zinc-200 border dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
           >
             <SingleGame
               date={mecz.date}
@@ -79,7 +79,7 @@ export const GameDetailsHeadToHead: FC<{
           <Link
             to={`/game/${mecz.id}`}
             key={`${mecz.id}-${index}`}
-            className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
+            className="flex flex-row items-center w-full content-between border-zinc-200 border dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
           >
             <SingleGame
               date={mecz.date}
@@ -96,7 +96,7 @@ export const GameDetailsHeadToHead: FC<{
           <Link
             to={`/game/${mecz.id}`}
             key={`${mecz.id}-${index}`}
-            className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
+            className="flex flex-row items-center w-full content-between border-zinc-200 border dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
           >
             <SingleGame
               date={mecz.date}

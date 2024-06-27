@@ -16,7 +16,7 @@ module.exports = {
       "error",
       {
         selector: "ImportDeclaration[source.value='react'] > ImportDefaultSpecifier",
-        message: "Dzbanie kurwa nie importuj reacta",
+        message: "do not import react",
       },
     ],
   },
