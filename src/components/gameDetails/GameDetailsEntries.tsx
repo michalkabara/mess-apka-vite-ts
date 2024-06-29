@@ -4,11 +4,7 @@ import { GameDetailsEntry } from "./GameDetailsEntry";
 import { GameDetailsPlayerSwapEntry } from "./GameDetailsPlayerSwapEntry";
 
 export const GameDetailsEntries: React.FC<{ events: GameEvent[] }> = ({ events }) => {
-  // console.log({ events });
-
   const [rearangedEvents, setRearangedEvents] = useState<GameEvent[]>();
-
-  // console.log({ rearangedEvents });
 
   const rearrangeEvents = (events: GameEvent[]) => {
     for (let i = 0; i < events.length - 1; i++) {

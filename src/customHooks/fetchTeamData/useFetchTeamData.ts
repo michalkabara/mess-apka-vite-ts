@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchData } from "../../../clientApi";
+import { fetchData } from "../../clientApi";
 import { Team } from "../../types";
 
 export const useFetchTeamData = (teamId: string | undefined) => {

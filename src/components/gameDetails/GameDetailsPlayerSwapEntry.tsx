@@ -3,8 +3,8 @@ import { GameEvent, GameEventType } from "../../types";
 
 export const GameDetailsPlayerSwapEntry: React.FC<{
   event: GameEvent;
-  nextEvent: GameEvent | undefined;
-  previousEvent: GameEvent | undefined;
+  nextEvent?: GameEvent;
+  previousEvent?: GameEvent;
 }> = ({ event, nextEvent, previousEvent }) => {
   return (
     <div className={`flex ${event.isHostEvent ? "flex-row" : "flex-row-reverse"} gap-2 items-center`}>
@@ -23,21 +23,6 @@ export const GameDetailsPlayerSwapEntry: React.FC<{
               )}
             </div>
           )}
-
-          {/* {event.eventType === GameEventType.SubOut && nextEvent?.playerName !== event.playerName && (
-            <p className="text-red-500">{event.playerName}</p>
-          )} */}
-
-          {/* {event.eventType === GameEventType.SubOut && nextEvent?.playerName !== event.playerName && (
-            <div className="flex flex-row gap-2 items-center">
-              <p>{event.displayTime}</p>
-              <p className="text-red-500">{event.playerName}</p>
-              <FaArrowRight className="text-red-500" />
-              {nextEvent?.eventType === GameEventType.SubIn && nextEvent.playerName !== event.playerName && (
-                <p className="text-green-600">{nextEvent.playerName}</p>
-              )}
-            </div>
-          )} */}
         </div>
       </div>
     </div>

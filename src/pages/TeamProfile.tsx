@@ -104,30 +104,34 @@ export const TeamProfile: React.FC = () => {
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 0 ? "flex" : "hidden"}`}>
-          {gamesData.data.map((mecz: Game, index: number) => (
-            <Link
-              to={`/game/${mecz.id}`}
-              key={`${mecz.id}-${index}`}
-              className={` border flex flex-row border-zinc-700 items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-800 rounded-md py-2 px-3 ease-in-out duration-500 gap-2 `}
-            >
-              <SingleGame
-                date={mecz.date}
-                homeTeam={mecz.homeTeam}
-                awayTeam={mecz.awayTeam}
-                homeGoals={mecz.homeGoals}
-                awayGoals={mecz.awayGoals}
-              />
-              <span
-                className={`h-[10px] w-[12px] rounded-full ${
-                  mecz.winnerId === teamId
-                    ? "bg-green-500"
-                    : mecz.homeGoals === mecz.awayGoals
-                    ? "bg-orange-400"
-                    : "bg-red-500"
-                }`}
-              ></span>
-            </Link>
-          ))}
+          {gamesData.data.map((mecz: Game, index: number) => {
+            let gameStatus;
+
+            if (mecz.winnerId === teamId) {
+              gameStatus = "bg-green-500";
+            } else if (mecz.homeGoals === mecz.awayGoals) {
+              gameStatus = "bg-orange-400";
+            } else {
+              gameStatus = "bg-red-500";
+            }
+
+            return (
+              <Link
+                to={`/game/${mecz.id}`}
+                key={`${mecz.id}-${index}`}
+                className={` border flex flex-row border-zinc-700 items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-800 rounded-md py-2 px-3 ease-in-out duration-500 gap-2 `}
+              >
+                <SingleGame
+                  date={mecz.date}
+                  homeTeam={mecz.homeTeam}
+                  awayTeam={mecz.awayTeam}
+                  homeGoals={mecz.homeGoals}
+                  awayGoals={mecz.awayGoals}
+                />
+                <span className={`h-[10px] w-[12px] rounded-full ${gameStatus}`}></span>
+              </Link>
+            );
+          })}
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 2 ? "flex" : "hidden"}`}>

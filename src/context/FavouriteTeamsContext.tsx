@@ -1,8 +1,8 @@
 import { createContext, useState, useEffect } from "react";
 
 export interface FavouriteTeam {
-  name: string | undefined;
-  id: string | undefined;
+  name?: string;
+  id?: string;
 }
 
 export interface FavouriteTeamsContextType {

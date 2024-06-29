@@ -11,7 +11,7 @@ export const VoivodeshipPage: FC = () => {
   if (isPending) return <p>Loading...</p>;
   if (error) return <p>An error has occurred {error.message}</p>;
 
-  const voivodeRegions = data.find((voivode) => voivode.id === voivodeId);
+  const voivodeRegions = data?.find((voivode) => voivode.id === voivodeId);
 
   const filteredData = voivodeRegions?.childLeagues.find((league) => league.id === selectedLeagueId);
 
@@ -20,8 +20,6 @@ export const VoivodeshipPage: FC = () => {
       <p className="text-center border-zinc-600 border-b-[1px] pb-3 uppercase text-sm">{voivodeRegions?.name}</p>
       <div className="flex flex-row w-full gap-3 mt-5">
         {voivodeRegions?.childLeagues.map((league: League) => {
-          // console.log(league);
-
           if (league.childLeagues.length > 2) {
             return (
               <button
@@ -43,8 +41,6 @@ export const VoivodeshipPage: FC = () => {
       </div>
       <div className="mt-5">
         {filteredData?.childLeagues.map((childLeague, index) => {
-          // console.log(childLeague);
-
           return (
             <SingleLeague key={childLeague.id} leagueId={childLeague.id} subLeague={childLeague.name} index={index} />
           );

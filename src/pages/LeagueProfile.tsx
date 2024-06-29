@@ -9,9 +9,8 @@ import { FC, useEffect, useState } from "react";
 import { SingleTab } from "../components/ui/SingleTab";
 import { LeagueRankingTable } from "../components/generic/LeagueRankingTable";
 import { Pagination } from "@mui/material";
-// import { PartialGame } from "../types";
 
-export const LeagueProfile: FC<{ leagueId: string | undefined }> = ({ leagueId }) => {
+export const LeagueProfile: FC<{ leagueId?: string }> = ({ leagueId }) => {
   const [selectedTab, setSelecteTab] = useState<number | null>(0);
   const { leagueId: routeLeagueId } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -19,7 +18,6 @@ export const LeagueProfile: FC<{ leagueId: string | undefined }> = ({ leagueId }
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [, setUpcomingGamesCurrentPage] = useState(0);
   const [numberOfPages, setNumberOfPages] = useState(0);
-  // const [upcomingGamesNumberOfPages, setUpcomingGamesNumberOfPages] = useState<number>(0);
 
   const checkLeagueId = routeLeagueId ?? leagueId;
 
@@ -53,11 +51,6 @@ export const LeagueProfile: FC<{ leagueId: string | undefined }> = ({ leagueId }
     setSelecteTab(index);
     setSearchParams(`page=${index}`);
   };
-
-  // const upcomingGamesData: PartialGame[] = gamesData.data.filter((game) => game.isFinished === false);
-  // const upcomingGamesPages = Math.ceil(upcomingGames.length / 10) + 1;
-
-  // console.log(gamesData);
 
   return (
     <>

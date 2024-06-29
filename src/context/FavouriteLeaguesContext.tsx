@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from "react";
 
 //types
 export interface FavouriteLeague {
-  name: string;
+  name?: string;
   id: string | undefined;
 }
 

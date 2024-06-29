@@ -2,7 +2,6 @@ import { LeagueHeader } from "./LeagueHeader";
 import { SingleGame } from "./SingleGame";
 import { Link } from "react-router-dom";
 import { FC, useEffect, useState } from "react";
-// import { useFetchLeagueGames } from "../customHooks/useFetchLeagueGames";
 import { LinearProgress, Pagination } from "@mui/material";
 import { useFetchLeagueRoundCount } from "../../customHooks/fetchLeagueData/useFetchLeagueRoundCount";
 import { useFetchLeagueRoundGames } from "../../customHooks/fetchLeagueData/useFetchLeagueRoundGames";
@@ -15,8 +14,6 @@ export const SingleLeague: FC<{ leagueId: string; subLeague: string; index: numb
   const [isActive, setIsActive] = useState(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [numberOfPages, setNumberOfPages] = useState<number | undefined>(0);
-
-  // const { error, data, status } = useFetchLeagueGames(leagueId, currentPage);
 
   const { error, data, status } = useFetchLeagueRoundGames(leagueId, currentPage);
 

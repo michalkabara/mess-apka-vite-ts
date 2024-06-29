@@ -8,30 +8,29 @@ import { HomePageBlog } from "../components/generic/HomePageBlog";
 export const HomePage: FC = () => {
   const { isPending, error, data } = useFetchLeagues();
 
-  const [filteredData, setFilteredData] = useState<League | undefined>();
-  const [defaultVoivode, setDefaultVoivode] = useState<League | undefined>(data?.[5]);
-  const [selectedLeague, setSelectedLeague] = useState<string | undefined>(defaultVoivode?.childLeagues[2].id);
-
-  // const favouriteLeagues = useContext(FavouriteLeaguesContext);
+  const [selectedLeague, setSelectedLeagpue] = useState<League | undefined>();
 
   useEffect(() => {
-    const filterVoivode = defaultVoivode?.childLeagues.find((league) => league.id === selectedLeague);
-    setFilteredData(filterVoivode);
-    setDefaultVoivode(data?.[5]);
-    setSelectedLeague(defaultVoivode?.childLeagues[2].id);
-  }, [data, selectedLeague, setSelectedLeague]);
+    setSelectedLeagpue(data?.[5].childLeagues[2]);
+  }, []);
 
   if (isPending) return <p>Loading...</p>;
-
   if (error) return <p>An error has occurred {error.message}</p>;
 
+  let filterVoivode: League | undefined;
+
   const childLeaguesOrder = [
-    defaultVoivode?.childLeagues[0],
-    defaultVoivode?.childLeagues[4],
-    defaultVoivode?.childLeagues[3],
-    defaultVoivode?.childLeagues[1],
-    defaultVoivode?.childLeagues[2],
+    data?.[5].childLeagues[0],
+    data?.[5].childLeagues[4],
+    data?.[5].childLeagues[3],
+    data?.[5].childLeagues[1],
+    data?.[5].childLeagues[2],
   ];
+
+  const handleChangeChildLeague = (id: string | undefined) => {
+    filterVoivode = data?.[5].childLeagues.find((league) => league.id === id);
+    setSelectedLeagpue(filterVoivode);
+  };
 
   return (
     <>
@@ -44,11 +43,9 @@ export const HomePage: FC = () => {
         {childLeaguesOrder.map((league) => (
           <button
             key={league?.id}
-            onClick={() => {
-              setSelectedLeague(league?.id);
-            }}
+            onClick={() => handleChangeChildLeague(league?.id)}
             className={`text-xs font-medium text-center py-2 px-3 rounded-md transition-all duration-300 ${
-              selectedLeague === league?.id
+              selectedLeague?.id === league?.id
                 ? "dark:bg-[#ed4535] dark:hover:bg-[##d63c2e] bg-[#ed4535] text-white"
                 : "dark:hover:bg-zinc-800 dark:bg-zinc-900 dark:border dark:border-zinc-700 border-zinc-300 border hover:bg-zinc-200"
             }`}
@@ -58,7 +55,7 @@ export const HomePage: FC = () => {
         ))}
       </div>
       <div className="mt-3">
-        {filteredData?.childLeagues.map((childLeague, index) => (
+        {selectedLeague?.childLeagues.map((childLeague, index) => (
           <SingleLeague key={childLeague.id} leagueId={childLeague.id} subLeague={childLeague.name} index={index} />
         ))}
       </div>

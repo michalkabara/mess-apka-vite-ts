@@ -6,7 +6,7 @@ import { FC, useState } from "react";
 import { Game, PagedResponse } from "../types";
 import { LeagueProfile } from "./LeagueProfile";
 import { useQuery } from "@tanstack/react-query";
-import { fetchData } from "../../clientApi";
+import { fetchData } from "../clientApi";
 import { GameDetailsTeams } from "../components/gameDetails/GameDetailsTeams";
 import { GameDetailsPlayers } from "../components/gameDetails/GameDetailsPlayers";
 import { GameDetailsEntries } from "../components/gameDetails/GameDetailsEntries";
@@ -20,18 +20,6 @@ export const GameDetails: FC = () => {
   const { isPending, error, data } = useFetchSingleGame(gameId);
 
   const leagueId = data?.leagueId;
-
-  // const {
-  //   isPending: areHomeTeamGamesPending,
-  //   error: HomeTeamGamesError,
-  //   data: HomeTeamGamesData,
-  // } = useFetchTeamGames(data?.homeTeam?.id);
-
-  // const {
-  //   isPending: areAwayTeamGamesPending,
-  //   error: AwayTeanGamesError,
-  //   data: AwayTeamGamesData,
-  // } = useFetchTeamGames(data?.awayTeam?.id);
 
   const {
     isPending: areHomeTeamGamesPending,

@@ -5,7 +5,6 @@ import { RiUser3Line } from "react-icons/ri";
 import { SearchResults } from "../ui/SearchResults";
 import { FC, useState } from "react";
 import trybunaLogo from "../../img/trybuna_tv_logo_white.png";
-// import { useFetchTeams } from "../customHooks/useFetchTeams";
 
 export const Header: FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevState: boolean) => void }> = ({
   isDarkModeOn,
@@ -14,18 +13,6 @@ export const Header: FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevState: bo
   const [searchQuery, setSearchQuery] = useState("");
 
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
-
-  // const { isPending, error, data } = useFetchTeams();
-
-  // console.log(data);
-
-  // const filteredItems = useMemo(() => {
-  //   return data?.filter((item) => item.TeamName.toLowerCase().includes(searchQuery.toLocaleLowerCase()));
-  // }, [data, searchQuery]);
-
-  // if (isPending) return <p>Loading...</p>;
-
-  // if (error) return <p>An error has occurred {error.message}</p>;
 
   const toggleDarkMode = () => {
     setIsDarkModeOn(!isDarkModeOn);
@@ -50,7 +37,7 @@ export const Header: FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevState: bo
       <input
         type="text"
         placeholder="Szukaj"
-        className="max-[480px]:hidden border w-[400px] px-2 py-1 rounded-md placeholder:text-white placeholder:text-zinc-800 border-[#ed4535] bg-[#c53528] dark:placeholder:text-zinc-200 placeholder:text-sm"
+        className="max-[480px]:hidden border w-[400px] px-2 py-1 rounded-md placeholder:text-white  border-[#ed4535] bg-[#c53528] dark:placeholder:text-zinc-200 placeholder:text-sm"
         onFocus={() => {
           if (searchQuery) {
             setIsSearchModalOpen(true);

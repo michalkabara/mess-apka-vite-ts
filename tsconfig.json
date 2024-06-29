@@ -24,6 +24,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true
   },
-  "include": ["src", "tests/NewsButton.test.tsx", "vite.config.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src", "tests/NewsButton.test.tsx", "vite.config.ts"]
 }

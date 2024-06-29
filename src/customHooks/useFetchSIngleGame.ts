@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchData } from "../../clientApi";
+import { fetchData } from "../clientApi";
 import { Game } from "../types";
 
 export const useFetchSingleGame = (matchId: string | undefined) => {
