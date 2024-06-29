@@ -7,7 +7,7 @@ import { PlayerStats } from "../components/playerProfile/PlayerStats";
 import { FC } from "react";
 import { PlayerInfo } from "../components/playerProfile/PlayerInfo";
 
-export const PlayerProfilePage: FC = () => {
+export const PlayerProfile: FC = () => {
   const { playerId } = useParams();
 
   const { isPending, error, data } = useFetchPlayerData(playerId);

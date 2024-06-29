@@ -2,7 +2,7 @@ import { TbLogin2 } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
 
-export const LoginPage = () => {
+export const Login = () => {
   const inputStyle =
     "border px-2 py-1 rounded-md border-zinc-400 bg-zinc-200 placeholder:text-zinc-800 dark:border-zinc-500 dark:bg-zinc-700 dark:placeholder:text-zinc-200 placeholder:text-sm";
 

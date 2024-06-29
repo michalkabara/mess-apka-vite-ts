@@ -4,7 +4,7 @@ import { useFetchLeagues } from "../customHooks/fetchLeagueData/useFetchLeagues"
 import { FC, useState } from "react";
 import { League } from "../types";
 
-export const VoivodeshipPage: FC = () => {
+export const VoivodeshipProfile: FC = () => {
   const { voivodeId } = useParams();
   const [selectedLeagueId, setSelectedLeagueId] = useState("");
   const { isPending, error, data } = useFetchLeagues();

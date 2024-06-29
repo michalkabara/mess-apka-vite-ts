@@ -4,10 +4,10 @@ import { TeamProfile } from "./pages/TeamProfile";
 import { HomePage } from "./pages/HomePage";
 import { LeagueProfile } from "./pages/LeagueProfile";
 import { GameDetails } from "./pages/GameDetails";
-import { LoginPage } from "./pages/LoginPage";
-import { PlayerProfilePage } from "./pages/PlayerProfilePage";
-import { VoivodeshipPage } from "./pages/VoivodeshipPage";
 import { BlogPost } from "./components/ui/BlogPost";
+import { VoivodeshipProfile } from "./pages/VoivodeshipProfile";
+import { PlayerProfile } from "./pages/PlayerProfile";
+import { Login } from "./pages/Login";
 
 export const router = createBrowserRouter([
   {
@@ -33,15 +33,15 @@ export const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <LoginPage />,
+        element: <Login />,
       },
       {
         path: "/player/:playerId",
-        element: <PlayerProfilePage />,
+        element: <PlayerProfile />,
       },
       {
         path: "/voivode/:voivodeId",
-        element: <VoivodeshipPage />,
+        element: <VoivodeshipProfile />,
       },
       {
         path: "/post/:postId",
