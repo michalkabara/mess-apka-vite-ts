@@ -50,9 +50,9 @@ export const GameDetailsHeadToHead: React.FC<{
           {tabs2.map((button, index) => (
             <SingleTab
               key={button.name}
-              button={button}
+              buttonText={button.name}
               index={index}
-              selectTabAndChangeUrl={selectSecondTabAndChangeUrl}
+              onClick={() => selectSecondTabAndChangeUrl(index)}
               selectedTab={selectedSecondTab}
             />
           ))}
@@ -63,7 +63,7 @@ export const GameDetailsHeadToHead: React.FC<{
           <Link
             to={`/game/${mecz.id}`}
             key={`${mecz.id}-${index}`}
-            className="flex flex-row items-center w-full content-between border-zinc-200 border dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
+            className="flex flex-row border dark:border-zinc-700 items-center w-full content-between hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded-md py-2 px-3 ease-in-out duration-500 gap-2"
           >
             <SingleGame
               date={mecz.date}
@@ -80,7 +80,7 @@ export const GameDetailsHeadToHead: React.FC<{
           <Link
             to={`/game/${mecz.id}`}
             key={`${mecz.id}-${index}`}
-            className="flex flex-row items-center w-full content-between border-zinc-200 border dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
+            className="flex flex-row border dark:border-zinc-700 items-center w-full content-between hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded-md py-2 px-3 ease-in-out duration-500 gap-2"
           >
             <SingleGame
               date={mecz.date}
@@ -97,7 +97,7 @@ export const GameDetailsHeadToHead: React.FC<{
           <Link
             to={`/game/${mecz.id}`}
             key={`${mecz.id}-${index}`}
-            className="flex flex-row items-center w-full content-between border-zinc-200 border dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded-md py-1 px-2 ease-in-out duration-500 gap-2"
+            className="flex flex-row border dark:border-zinc-700 items-center w-full content-between hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded-md py-2 px-3 ease-in-out duration-500 gap-2"
           >
             <SingleGame
               date={mecz.date}

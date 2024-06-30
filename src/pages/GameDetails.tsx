@@ -71,9 +71,9 @@ export const GameDetails: FC = () => {
           {tabs.map((button, index) => (
             <SingleTab
               key={button.name}
-              button={button}
+              buttonText={button.name}
               index={index}
-              selectTabAndChangeUrl={selectTabAndChangeUrl}
+              onClick={() => selectTabAndChangeUrl(index)}
               selectedTab={selectedTab}
             />
           ))}

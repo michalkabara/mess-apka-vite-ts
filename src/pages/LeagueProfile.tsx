@@ -61,9 +61,9 @@ export const LeagueProfile: FC<{ leagueId?: string }> = ({ leagueId }) => {
           {tabs.map((button, index) => (
             <SingleTab
               key={`tab-${index}`}
-              button={button}
+              buttonText={button.name}
               index={index}
-              selectTabAndChangeUrl={selectTabAndChangeUrl}
+              onClick={() => selectTabAndChangeUrl(index)}
               selectedTab={selectedTab}
             />
           ))}
@@ -82,7 +82,7 @@ export const LeagueProfile: FC<{ leagueId?: string }> = ({ leagueId }) => {
             <div key={game.id} className="flex flex-col items-center ">
               <Link
                 to={`/game/${game.id}`}
-                className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-[5px] px-4 ease-in-out duration-500 gap-5"
+                className="flex flex-row border dark:border-zinc-700 items-center w-full content-between hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded-md py-2 px-3 ease-in-out duration-500 gap-2"
               >
                 <SingleGame
                   date={game.date}
