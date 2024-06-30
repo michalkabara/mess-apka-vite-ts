@@ -1,10 +1,11 @@
-import { FC, useState } from "react";
+import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { SingleGame } from "../generic/SingleGame";
-import { SingleTab } from "../ui/SingleTab";
-import { PartialGame, PagedResponse } from "../../types";
+import { SingleGame } from "../ui/SingleGame";
+import { SingleTab } from "../generic/SingleTab";
+import { PartialGame } from "../../types/gameTypes";
+import { PagedResponse } from "../../types";
 
-export const GameDetailsHeadToHead: FC<{
+export const GameDetailsHeadToHead: React.FC<{
   HomeTeamGamesData: PagedResponse<PartialGame>;
   AwayTeamGamesData: PagedResponse<PartialGame>;
   data: PartialGame;

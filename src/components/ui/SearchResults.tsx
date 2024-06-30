@@ -1,6 +1,4 @@
-import { FC } from "react";
-
-export const SearchResults: FC = ({}) => {
+export const SearchResults: React.FC = ({}) => {
   const handleMenuItemClick = () => {
     const elem = document.activeElement as HTMLElement;
     elem.blur();

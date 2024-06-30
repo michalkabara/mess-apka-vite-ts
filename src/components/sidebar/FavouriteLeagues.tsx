@@ -1,9 +1,8 @@
 import { RiStarSmileFill, RiTrophyLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useFavouriteLeaguesContext } from "../../customHooks/useFavouriteLeaguesContext";
-import { FC } from "react";
 
-export const FavouriteLeagues: FC<{ handleMenuItemClick?: () => void }> = ({ handleMenuItemClick }) => {
+export const FavouriteLeagues: React.FC<{ handleMenuItemClick?: () => void }> = ({ handleMenuItemClick }) => {
   const { favouriteLeagues, removeFavouriteLeague } = useFavouriteLeaguesContext();
 
   return (

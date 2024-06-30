@@ -1,11 +1,9 @@
-import { LeagueTableEntry } from "../../types";
-
+import { LeagueTableEntry } from "../../types/leagueTypes";
 import { useFetchLeagueTable } from "../../customHooks/fetchLeagueData/useFetchLeagueTable";
 import { LeagueRankingTableHeader } from "../ui/LeagueRankingTableHeader";
 import { LeagueRankingTableEntry } from "../ui/LeagueRankingTableEntry";
-import { FC } from "react";
 
-export const TeamGroupPosition: FC<{
+export const TeamGroupPosition: React.FC<{
   filterTeamId: string;
   leagueId: string;
 }> = ({ filterTeamId, leagueId }) => {

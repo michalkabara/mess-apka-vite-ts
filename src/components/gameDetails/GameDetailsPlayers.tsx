@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import defaultPlayer from "../../img/default_player.png";
 import { Player } from "../../types";
-import { FC } from "react";
 
-export const GameDetailsPlayers: FC<{
+export const GameDetailsPlayers: React.FC<{
   homeTeamPlayers: Player[] | undefined;
   awayTeamPlayers: Player[] | undefined;
 }> = ({ homeTeamPlayers, awayTeamPlayers }) => {

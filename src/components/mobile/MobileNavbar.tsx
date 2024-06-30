@@ -1,10 +1,10 @@
 import { RiStarSmileFill } from "react-icons/ri";
 import { IoMenu } from "react-icons/io5";
 import { Sidebar } from "../sidebar/Sidebar";
-import { VoivodeDropdown } from "../generic/VoivodeDropdown";
-import { FC, useRef, useState } from "react";
+import { VoivodeDropdown } from "../sidebar/VoivodeDropdown";
+import { useRef, useState } from "react";
 
-export const MobileNavbar: FC = () => {
+export const MobileNavbar: React.FC = () => {
   const [isFavouritesMenuOpen, setIsFavouritesMenuOpen] = useState(false);
 
   const [isVoivodesMenuOpen, setIsVoivodeMenuOpen] = useState(false);

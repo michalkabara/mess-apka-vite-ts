@@ -1,8 +1,7 @@
-import { FC } from "react";
 import defaultPlayer from "../../img/default_player.png";
 import { Player } from "../../types";
 
-export const PlayerInfo: FC<Player> = ({ photoUrl, name, roles, country = "Poland", age = "21", number }) => {
+export const PlayerInfo: React.FC<Player> = ({ photoUrl, name, roles, country = "Poland", age = "21", number }) => {
   return (
     <div className="flex flex-row text-sm gap-5">
       <img className="size-36" src={photoUrl || defaultPlayer} alt={name} />

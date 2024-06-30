@@ -2,10 +2,9 @@ import { useFavouriteLeaguesContext } from "../../customHooks/useFavouriteLeague
 import { RiStarSmileFill, RiStarSmileLine } from "react-icons/ri";
 import { IoIosArrowDown } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { LegueHeaderType } from "../../types";
-import { FC } from "react";
+import { LegueHeaderType } from "../../types/leagueTypes";
 
-export const LeagueHeader: FC<LegueHeaderType> = ({
+export const LeagueHeader: React.FC<LegueHeaderType> = ({
   leagueName,
   isActive,
   toggleSection,

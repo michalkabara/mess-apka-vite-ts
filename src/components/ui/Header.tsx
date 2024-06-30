@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
 import { LuSun, LuMoon } from "react-icons/lu";
 import { RiUser3Line } from "react-icons/ri";
-
 import { SearchResults } from "../ui/SearchResults";
-import { FC, useState } from "react";
+import { useState } from "react";
 import trybunaLogo from "../../img/trybuna_tv_logo_white.png";
 
-export const Header: FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevState: boolean) => void }> = ({
+export const Header: React.FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevState: boolean) => void }> = ({
   isDarkModeOn,
   setIsDarkModeOn,
 }) => {

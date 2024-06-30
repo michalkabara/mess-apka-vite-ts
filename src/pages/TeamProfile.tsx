@@ -1,19 +1,19 @@
 import { useParams, useSearchParams } from "react-router-dom";
-import { SingleGame } from "../components/generic/SingleGame";
+import { SingleGame } from "../components/ui/SingleGame";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { TeamProfileDetails } from "../components/teamProfile/TeamProfilesDetails";
 import { useFetchTeamData } from "../customHooks/fetchTeamData/useFetchTeamData";
 import { useFetchTeamGames } from "../customHooks/fetchTeamData/useFetchTeamGames";
-import { Game } from "../types";
+import { Game } from "../types/gameTypes";
 import { TeamPlayers } from "../components/teamProfile/TeamPlayers";
-import { SingleTab } from "../components/ui/SingleTab";
+import { SingleTab } from "../components/generic/SingleTab";
 import { TeamGroupPosition } from "../components/teamProfile/TeamGroupPosition";
 import { HomeGames } from "../components/teamProfile/HomeGames";
 import { AwayGames } from "../components/teamProfile/AwayGames";
 import { UpcomingGames } from "../components/teamProfile/UpcomingGames";
 import { useFecthTeamPlayers } from "../customHooks/fetchTeamData/useFetchTeamPlayers";
-import { LeagueRankingTable } from "../components/generic/LeagueRankingTable";
+import { LeagueRankingTable } from "../components/ui/LeagueRankingTable";
 import { useFetchLeagueData } from "../customHooks/fetchLeagueData/useFetchLeagueData";
 
 const tabs: { name: string }[] = [
@@ -28,7 +28,7 @@ const tabs: { name: string }[] = [
 
 export const TeamProfile: React.FC = () => {
   const { teamId } = useParams();
-  const [selectedTab, setSelecteTab] = useState<number | null>(0);
+  const [selectedTab, setSelecteTab] = useState<number>(0);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -91,9 +91,9 @@ export const TeamProfile: React.FC = () => {
           {tabs.map((button, index) => (
             <SingleTab
               key={`tab-${index}`}
-              button={button}
+              buttonText={button.name}
               index={index}
-              selectTabAndChangeUrl={selectTabAndChangeUrl}
+              onClick={() => selectTabAndChangeUrl(index)}
               selectedTab={selectedTab}
             />
           ))}

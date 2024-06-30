@@ -1,12 +1,12 @@
 import { LeagueHeader } from "./LeagueHeader";
-import { SingleGame } from "./SingleGame";
+import { SingleGame } from "../ui/SingleGame";
 import { Link } from "react-router-dom";
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { LinearProgress, Pagination } from "@mui/material";
 import { useFetchLeagueRoundCount } from "../../customHooks/fetchLeagueData/useFetchLeagueRoundCount";
 import { useFetchLeagueRoundGames } from "../../customHooks/fetchLeagueData/useFetchLeagueRoundGames";
 
-export const SingleLeague: FC<{ leagueId: string; subLeague: string; index: number }> = ({
+export const SingleLeague: React.FC<{ leagueId: string; subLeague: string; index: number }> = ({
   leagueId,
   subLeague,
   index,

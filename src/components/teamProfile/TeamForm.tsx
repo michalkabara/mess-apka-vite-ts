@@ -1,12 +1,10 @@
 import { Tooltip } from "react-tooltip";
 import { useFetchTeamGames } from "../../customHooks/fetchTeamData/useFetchTeamGames";
 import { Link } from "react-router-dom";
-import { PartialGame } from "../../types";
-import { FC } from "react";
-
+import { PartialGame } from "../../types/gameTypes";
 import dayjs from "dayjs";
 
-export const TeamForm: FC<{
+export const TeamForm: React.FC<{
   teamId?: string;
 }> = ({ teamId }) => {
   const { isPending, error, data } = useFetchTeamGames(teamId);

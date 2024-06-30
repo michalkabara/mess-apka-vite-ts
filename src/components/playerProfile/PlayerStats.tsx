@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { PlayerStatsSingleStat } from "./PlayerStatsSingleStat";
 
 const labels = [
@@ -12,7 +11,7 @@ const labels = [
   { title: "Żółte kartki", value: "1" },
 ];
 
-export const PlayerStats: FC = () => {
+export const PlayerStats: React.FC = () => {
   return (
     <div className="flex flex-row gap-5 justify-between mt-2 bg-zinc-800 px-4 py-3 rounded-lg">
       {labels.map((label) => (

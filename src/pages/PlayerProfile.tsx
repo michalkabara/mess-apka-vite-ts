@@ -1,4 +1,3 @@
-import defaultPlayer from "../img/default_player.png";
 import { useFetchPlayerData } from "../customHooks/useFetchPlayerData";
 import { useFetchTeamData } from "../customHooks/fetchTeamData/useFetchTeamData";
 import { useParams } from "react-router-dom";

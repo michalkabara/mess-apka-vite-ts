@@ -3,9 +3,8 @@ import { FaSquareXTwitter, FaSquareYoutube, FaSquareFacebook, FaSquareInstagram 
 import { IoGlobeOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { LikeTeamButton } from "../ui/LikeTeamButton";
-import { FC } from "react";
 
-export const TeamProfileDetails: FC<{
+export const TeamProfileDetails: React.FC<{
   teamLogo: string;
   teamName: string;
   teamId: string;

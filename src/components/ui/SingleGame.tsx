@@ -1,14 +1,23 @@
-import { FC } from "react";
 import defaultCrest from "../../img/crest_default.svg";
-import { PartialGame } from "../../types";
-import { DateDisplay } from "../ui/DateDisplay";
+import { PartialGame } from "../../types/gameTypes";
+import { DateDisplay } from "./DateDisplay";
 import { IoMdTrophy } from "react-icons/io";
 
-export const SingleGame: FC<PartialGame> = ({ date, homeTeam, awayTeam, homeGoals, awayGoals }) => {
+export const SingleGame: React.FC<PartialGame> = ({ date, homeTeam, awayTeam, homeGoals, awayGoals }) => {
   const gameDate = new Date(date ?? 0);
 
-  const homeTrophy = awayGoals && homeGoals && homeGoals > awayGoals && <IoMdTrophy className="text-zinc-600" />;
-  const awayTrophy = awayGoals && homeGoals && awayGoals > homeGoals && <IoMdTrophy className="text-zinc-600" />;
+  let homeTrophy;
+  let awayTrophy;
+
+  //awayGoals && awayGoals >= 0 && homeGoals && homeGoals >= 0
+
+  if ((homeGoals ?? 0) > (awayGoals ?? 0)) {
+    homeTrophy = <IoMdTrophy className="text-zinc-600" />;
+  }
+
+  if ((awayGoals ?? 0) > (homeGoals ?? 0)) {
+    awayTrophy = <IoMdTrophy className="text-zinc-600" />;
+  }
 
   return (
     <>
@@ -31,7 +40,7 @@ export const SingleGame: FC<PartialGame> = ({ date, homeTeam, awayTeam, homeGoal
           ) : (
             <img src={defaultCrest} alt="Herb" className="w-5 rounded-sm p-[1px] bg-white" />
           )}
-          <p className="truncate">{awayTeam?.name}</p>
+          <p className="truncate ">{awayTeam?.name}</p>
           {awayTrophy}
         </div>
       </div>

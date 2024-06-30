@@ -1,4 +1,4 @@
-import { VoivodeDropdownButton } from "../generic/VoivodeDropdownButton";
+import { VoivodeDropdownButton } from "./VoivodeDropdownButton";
 import { NewsButton } from "../ui/NewsButton";
 import { FavouriteLeagues } from "./FavouriteLeagues";
 import { FavouriteTeams } from "./FavouriteTeams";

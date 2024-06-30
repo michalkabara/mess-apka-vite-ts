@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import defaultPlayer from "../../img/default_player.png";
 import { Player } from "../../types";
-import { FC } from "react";
 
-export const TeamPlayers: FC<{
+export const TeamPlayers: React.FC<{
   team: Player[];
 }> = ({ team }) => {
   return (
@@ -23,8 +22,8 @@ export const TeamPlayers: FC<{
             player.isGoalKeeper
               ? "bg-green-600 text-zinc-100 dark:bg-green-800 order-2"
               : player.isCaptain
-              ? "bg-yellow-600 text-zinc-100 dark:bg-yellow-700 order-1"
-              : "bg-zinc-100 text-zinc-800 dark:text-zinc-100 dark:bg-zinc-800 order-3"
+                ? "bg-yellow-600 text-zinc-100 dark:bg-yellow-700 order-1"
+                : "bg-zinc-100 text-zinc-800 dark:text-zinc-100 dark:bg-zinc-800 order-3"
           } `}
         >
           <div key={player.id} className={`flex flex-row items-center gap-4 py-2 px-3 rounded-lg`}>

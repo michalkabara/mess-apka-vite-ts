@@ -1,7 +1,7 @@
 import { TbRectangleVerticalFilled } from "react-icons/tb";
 import { IoMdFootball } from "react-icons/io";
 // import { GoArrowSwitch } from "react-icons/go";
-import { GameEvent, GameEventType } from "../../types";
+import { GameEvent, GameEventType } from "../../types/gameTypes";
 
 export const GameDetailsEntry: React.FC<{ event: GameEvent }> = ({ event }) => {
   return (

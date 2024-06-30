@@ -1,6 +1,5 @@
 import { FaArrowRight } from "react-icons/fa6";
-import { GameEvent, GameEventType } from "../../types";
-
+import { GameEvent, GameEventType } from "../../types/gameTypes";
 export const GameDetailsPlayerSwapEntry: React.FC<{
   event: GameEvent;
   nextEvent?: GameEvent;

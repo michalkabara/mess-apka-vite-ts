@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GameEvent, GameEventType } from "../../types";
+import { GameEvent, GameEventType } from "../../types/gameTypes";
 import { GameDetailsEntry } from "./GameDetailsEntry";
 import { GameDetailsPlayerSwapEntry } from "./GameDetailsPlayerSwapEntry";
 

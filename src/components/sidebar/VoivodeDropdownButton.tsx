@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect, MouseEventHandler } from "react";
-// import { IoMenu } from "react-icons/io5";
 import { GiPoland } from "react-icons/gi";
 import { VoivodeDropdown } from "./VoivodeDropdown";
 
@@ -19,7 +18,6 @@ export const VoivodeDropdownButton = () => {
   const handleMenuToggle = (e: MouseEventHandler<HTMLButtonElement>) => {
     e.stopPropagation();
     setIsMenuOpen((prev) => !prev);
-    // comboBoxInputRef.current?.focus();
   };
 
   useEffect(() => {

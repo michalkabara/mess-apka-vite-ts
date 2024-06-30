@@ -1,6 +1,6 @@
 import { useParams, useSearchParams } from "react-router-dom";
 import { useFetchSingleGame } from "../customHooks/useFetchSIngleGame";
-import { SingleTab } from "../components/ui/SingleTab";
+import { SingleTab } from "../components/generic/SingleTab";
 import { FC, useState } from "react";
 
 import { Game, PagedResponse } from "../types";

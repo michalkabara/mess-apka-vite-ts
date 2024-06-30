@@ -1,8 +1,8 @@
 import "react-tooltip/dist/react-tooltip.css";
 
-import { Header } from "./components/generic/Header";
+import { Header } from "./components/ui/Header";
 import { Sidebar } from "./components/sidebar/Sidebar";
-import { FeaturedGame } from "./components/generic/FeaturedGame";
+import { FeaturedGame } from "./components/ui/FeaturedGame";
 import { MobileNavbar } from "./components/mobile/MobileNavbar";
 import { Outlet, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";

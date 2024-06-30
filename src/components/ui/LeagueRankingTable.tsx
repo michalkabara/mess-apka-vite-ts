@@ -1,11 +1,10 @@
-import { LeagueTableEntry } from "../../types";
+import { LeagueTableEntry } from "../../types/leagueTypes";
 import { useFetchLeagueTable } from "../../customHooks/fetchLeagueData/useFetchLeagueTable";
-import { LeagueHeader } from "./LeagueHeader";
-import { LeagueRankingTableHeader } from "../ui/LeagueRankingTableHeader";
-import { LeagueRankingTableEntry } from "../ui/LeagueRankingTableEntry";
-import { FC } from "react";
+import { LeagueHeader } from "../generic/LeagueHeader";
+import { LeagueRankingTableHeader } from "./LeagueRankingTableHeader";
+import { LeagueRankingTableEntry } from "./LeagueRankingTableEntry";
 
-export const LeagueRankingTable: FC<{
+export const LeagueRankingTable: React.FC<{
   leagueId: string | undefined;
   leagueName: string;
   isHeaderShown?: boolean;

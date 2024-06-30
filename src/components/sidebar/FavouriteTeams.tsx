@@ -1,9 +1,8 @@
 import { RiStarSmileFill, RiTeamLine } from "react-icons/ri";
 import { useFavouriteTeamContext } from "../../customHooks/useFavouriteTeamsContext";
 import { Link } from "react-router-dom";
-import { FC } from "react";
 
-export const FavouriteTeams: FC<{ handleMenuItemClick?: () => void }> = ({ handleMenuItemClick }) => {
+export const FavouriteTeams: React.FC<{ handleMenuItemClick?: () => void }> = ({ handleMenuItemClick }) => {
   const { favouriteTeams, removeFavouriteTeam } = useFavouriteTeamContext();
 
   return (

@@ -1,6 +1,4 @@
-import { FC } from "react";
-
-export const BlogPost: FC<{ postImg: string; postTitle: string; postText: string }> = ({
+export const BlogPost: React.FC<{ postImg?: string; postTitle?: string; postText?: string }> = ({
   postImg,
   postTitle,
   postText,

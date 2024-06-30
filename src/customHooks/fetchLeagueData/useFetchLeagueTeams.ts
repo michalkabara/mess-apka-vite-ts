@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchData } from "../../clientApi";
-import { Team } from "../../types";
+import { Team } from "../../types/teamTypes";
 
 export const useFetchLeagueTeams = (leagueId: string) => {
   return useQuery<Team[]>({

@@ -1,10 +1,10 @@
-import { FC, RefObject, useMemo, useState } from "react";
+import { RefObject, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useFetchLeagues } from "../../customHooks/fetchLeagueData/useFetchLeagues";
-import { League } from "../../types";
+import { League } from "../../types/leagueTypes";
 import { IoSearch } from "react-icons/io5";
 
-export const VoivodeDropdown: FC<{
+export const VoivodeDropdown: React.FC<{
   comboBoxInputRef: RefObject<HTMLInputElement>;
   handleMenuItemClick: () => void;
 }> = ({ comboBoxInputRef, handleMenuItemClick }) => {

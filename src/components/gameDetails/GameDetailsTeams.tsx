@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import { LikeTeamButton } from "../ui/LikeTeamButton";
-import { PartialGame } from "../../types";
-import { FC } from "react";
+import { PartialGame } from "../../types/gameTypes";
 
-export const GameDetailsTeams: FC<{ data: PartialGame }> = ({ data }) => {
+export const GameDetailsTeams: React.FC<{ data: PartialGame }> = ({ data }) => {
   return (
     <div className="grid grid-cols-5 gap-1 md:gap-5  mt-7 items-start justify-items-center">
       <div className="translate-y-3 sm:translate-y-10 sm:translate-x-12">

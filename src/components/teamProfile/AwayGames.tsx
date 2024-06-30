@@ -1,9 +1,8 @@
-import { Game } from "../../types";
+import { Game } from "../../types/gameTypes";
 import { Link } from "react-router-dom";
-import { SingleGame } from "../generic/SingleGame";
-import { FC } from "react";
+import { SingleGame } from "../ui/SingleGame";
 
-export const AwayGames: FC<{ awayGames: Game[]; homeTeamId?: string }> = ({ awayGames, homeTeamId }) => {
+export const AwayGames: React.FC<{ awayGames: Game[]; homeTeamId?: string }> = ({ awayGames, homeTeamId }) => {
   return (
     <>
       {awayGames.map(({ id, ...props }, index: number) => (
@@ -18,8 +17,8 @@ export const AwayGames: FC<{ awayGames: Game[]; homeTeamId?: string }> = ({ away
               props.winnerId === homeTeamId
                 ? "bg-green-500"
                 : props.homeGoals === props.awayGoals
-                ? "bg-orange-400"
-                : "bg-red-500"
+                  ? "bg-orange-400"
+                  : "bg-red-500"
             }`}
           ></span>
         </Link>
