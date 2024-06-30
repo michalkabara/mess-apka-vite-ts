@@ -12,9 +12,9 @@ export const GameDetailsHeadToHead: React.FC<{
 }> = ({ HomeTeamGamesData, AwayTeamGamesData, data }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [selectedTab] = useState<number | null>(parseInt(searchParams.get("page") ?? "0"));
+  const [selectedTab] = useState<number>(parseInt(searchParams.get("page") ?? "0"));
 
-  const [selectedSecondTab, setSelecteSecondTab] = useState<number | null>(parseInt(searchParams.get("tab") ?? "0"));
+  const [selectedSecondTab, setSelecteSecondTab] = useState<number>(parseInt(searchParams.get("tab") ?? "0"));
 
   const awayVsHomeTeam = AwayTeamGamesData.data.filter(
     (game: PartialGame) => game.awayTeam?.name === data.awayTeam?.name

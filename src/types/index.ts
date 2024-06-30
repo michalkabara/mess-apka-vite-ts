@@ -1,3 +1,5 @@
+import { Team } from "./teamTypes";
+
 export interface Player {
   id: string;
   name: string;
@@ -9,6 +11,9 @@ export interface Player {
   redCards: number;
   roles: string;
   legPreference: string;
+  team: Team;
+  lastName: string;
+  firstName: string;
 }
 
 export interface PagedResponse<T> {

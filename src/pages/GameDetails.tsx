@@ -43,7 +43,7 @@ export const GameDetails: FC = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [selectedTab, setSelecteTab] = useState<number | null>(parseInt(searchParams.get("page") ?? "0"));
+  const [selectedTab, setSelecteTab] = useState<number>(parseInt(searchParams.get("page") ?? "0"));
 
   if (isPending || areHomeTeamGamesPending || areAwayTeamGamesPending) return <p>Loading...</p>;
 

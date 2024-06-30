@@ -12,11 +12,11 @@ export const SingleGame: React.FC<PartialGame> = ({ date, homeTeam, awayTeam, ho
   //awayGoals && awayGoals >= 0 && homeGoals && homeGoals >= 0
 
   if ((homeGoals ?? 0) > (awayGoals ?? 0)) {
-    homeTrophy = <IoMdTrophy className="text-zinc-600" />;
+    homeTrophy = <IoMdTrophy className="text-amber-400" />;
   }
 
   if ((awayGoals ?? 0) > (homeGoals ?? 0)) {
-    awayTrophy = <IoMdTrophy className="text-zinc-600" />;
+    awayTrophy = <IoMdTrophy className="text-amber-400" />;
   }
 
   return (

@@ -15,7 +15,7 @@ export const PlayerStats: React.FC = () => {
   return (
     <div className="flex flex-row gap-5 justify-between mt-2 bg-zinc-800 px-4 py-3 rounded-lg">
       {labels.map((label) => (
-        <PlayerStatsSingleStat title={label.title} value={label.value} />
+        <PlayerStatsSingleStat title={label.title} value={label.value} key={label.title} />
       ))}
     </div>
   );

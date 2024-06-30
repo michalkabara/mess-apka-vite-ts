@@ -21,7 +21,7 @@ export const PlayerProfile: FC = () => {
 
   return (
     <>
-      <PlayerInfo photoUrl={data.photoUrl} name={data.name} roles={data.roles} number={data.number} />
+      <PlayerInfo photoUrl={data.photoUrl} name={data.name} roles={data.roles} number={data.number} team={data.team} />
 
       <div>
         <div id="statystyki" className="mt-5">

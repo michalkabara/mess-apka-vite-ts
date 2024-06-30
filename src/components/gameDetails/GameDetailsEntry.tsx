@@ -2,6 +2,7 @@ import { TbRectangleVerticalFilled } from "react-icons/tb";
 import { IoMdFootball } from "react-icons/io";
 // import { GoArrowSwitch } from "react-icons/go";
 import { GameEvent, GameEventType } from "../../types/gameTypes";
+import { Link } from "react-router-dom";
 
 export const GameDetailsEntry: React.FC<{ event: GameEvent }> = ({ event }) => {
   return (
@@ -18,7 +19,9 @@ export const GameDetailsEntry: React.FC<{ event: GameEvent }> = ({ event }) => {
           </div>
         )}
       </div>
-      <p>{event.playerName}</p>
+      <Link to={`/player/${event.playerId}`} className="hover:underline">
+        {event.playerName}
+      </Link>
     </div>
   );
 };

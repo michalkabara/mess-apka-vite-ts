@@ -6,8 +6,8 @@ export const SearchResults: React.FC = ({}) => {
   };
 
   return (
-    <div className="p-3 rounded-md bg-zinc-700 w-[550px]">
-      <p className="mt-2 text-center text-sm opacity-60">Search results:</p>
+    <div className="p-3 rounded-md bg-zinc-800 w-[550px]">
+      <p className="mt-2 text-center text-sm opacity-60">Wyniki wyszukiwania:</p>
 
       <div onClick={handleMenuItemClick} className="text-sm my-1 hover:bg-zinc-800 p-2  rounded-md cursor-pointer">
         <span className={`text-green-400`}>drużyna: </span>

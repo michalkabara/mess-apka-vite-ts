@@ -19,6 +19,7 @@ export interface GameEvent {
   isHostEvent: boolean;
   eventType: GameEventType;
   playerName: string;
+  playerId: string;
   displayTime: string;
 }
 export interface Game {
