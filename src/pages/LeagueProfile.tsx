@@ -2,21 +2,22 @@ import { Link, useSearchParams } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useFetchLeagueData } from "../customHooks/fetchLeagueData/useFetchLeagueData";
 import { LeagueHeader } from "../components/generic/LeagueHeader";
-import { useFetchLeagueGames } from "../customHooks/fetchLeagueData/useFetchLeagueGames";
 import { SingleGame } from "../components/ui/SingleGame";
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { SingleTab } from "../components/generic/SingleTab";
 import { LeagueRankingTable } from "../components/ui/LeagueRankingTable";
 import { Pagination } from "@mui/material";
+import { useFetchLeagueRoundCount } from "../customHooks/fetchLeagueData/useFetchLeagueRoundCount";
+import { useFetchLeagueRoundGames } from "../customHooks/fetchLeagueData/useFetchLeagueRoundGames";
 
-export const LeagueProfile: FC<{ leagueId?: string }> = ({ leagueId }) => {
+export const LeagueProfile: React.FC<{ leagueId?: string }> = ({ leagueId }) => {
   const [selectedTab, setSelecteTab] = useState<number | null>(0);
   const { leagueId: routeLeagueId } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [, setUpcomingGamesCurrentPage] = useState(0);
-  const [numberOfPages, setNumberOfPages] = useState(0);
+  const [numberOfPages, setNumberOfPages] = useState<number | undefined>(0);
 
   const checkLeagueId = routeLeagueId ?? leagueId;
 
@@ -24,26 +25,31 @@ export const LeagueProfile: FC<{ leagueId?: string }> = ({ leagueId }) => {
     isPending: gamesArePending,
     error: gamesError,
     data: gamesData,
-  } = useFetchLeagueGames(checkLeagueId, currentPage);
+  } = useFetchLeagueRoundGames(checkLeagueId, currentPage);
 
   const { isPending: leagueIsPending, error: leagueError, data: leagueData } = useFetchLeagueData(checkLeagueId);
 
+  const {
+    isPending: leagueRoundCountIsPending,
+    error: leagueRoundCountError,
+    data: leagueRoundCountData,
+  } = useFetchLeagueRoundCount(checkLeagueId);
+
   useEffect(() => {
     const currentTab = searchParams.get("page");
-    if (!currentTab || !gamesData?.pageCount) return;
     setSelecteTab(parseInt(currentTab));
-    setNumberOfPages(gamesData.pageCount);
-  }, [searchParams, gamesData?.pageCount]);
+    setNumberOfPages(leagueRoundCountData);
+  }, [leagueRoundCountData]);
 
-  if (leagueIsPending || gamesArePending) return <p>Loading...</p>;
+  if (leagueIsPending || gamesArePending || leagueRoundCountIsPending) return <p>Loading...</p>;
 
-  if (leagueError ?? gamesError) return <p>An error has occurred {gamesError?.message}</p>;
+  if (leagueError ?? gamesError ?? leagueRoundCountError)
+    return <p>An error has occurred {leagueRoundCountError?.message}</p>;
 
   const tabs: { name: string }[] = [{ name: "Tabela" }, { name: "Wyniki" }, { name: "Nadchodzące mecze" }];
 
-  const handleChange = (_: React.ChangeEvent<unknown>, value: number) => {
-    setCurrentPage(value - 1);
-    setUpcomingGamesCurrentPage(value - 1);
+  const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
+    setCurrentPage(value);
   };
 
   const selectTabAndChangeUrl = (index: number) => {
@@ -78,7 +84,29 @@ export const LeagueProfile: FC<{ leagueId?: string }> = ({ leagueId }) => {
         </div>
 
         <div className={` wyniki mt-2 gap-1 flex flex-col text-xs  ${selectedTab === 1 ? "flex" : "hidden"}`}>
-          {gamesData.data.data.map((game) => (
+          <div className="mt-2 sm:flex-row flex flex-col gap-1 dark:text-gray-50 dark:bg-zinc-800 rounded-md p-1 bottom-0 w-full duration-500 ease-in-out justify-center items-center px-3 relative">
+            <p className="text-xs sm:absolute left-3">KOLEJKA</p>
+            <Pagination
+              count={numberOfPages}
+              size="small"
+              onChange={handleChange}
+              page={currentPage}
+              sx={{
+                button: {
+                  color: "#ffffff",
+                  fontSize: "12px",
+                  height: "24px",
+                  width: "24px",
+                  minWidth: "22px",
+                  paddingTop: "3px",
+                },
+                ".Mui-selected": { backgroundColor: "rgb(255 255 255 / 12%)!important" },
+                div: { color: "white" },
+              }}
+              className="dark:text-white text-zinc-700"
+            />
+          </div>
+          {gamesData.map((game) => (
             <div key={game.id} className="flex flex-col items-center ">
               <Link
                 to={`/game/${game.id}`}
@@ -94,20 +122,6 @@ export const LeagueProfile: FC<{ leagueId?: string }> = ({ leagueId }) => {
               </Link>
             </div>
           ))}
-          <div className="flex justify-center text-gray-50 bg-zinc-800 rounded-md mt-3 p-1 bottom-0 w-full">
-            <Pagination
-              count={numberOfPages}
-              size="small"
-              onChange={handleChange}
-              page={currentPage + 1}
-              sx={{
-                button: { color: "#ffffff" },
-                ".Mui-selected": { backgroundColor: "rgb(255 255 255 / 16%)!important" },
-                div: { color: "white" },
-              }}
-              className="text-white"
-            />
-          </div>
         </div>
 
         {/* <div className={` wyniki mt-2 gap-1 flex flex-col text-xs ${selectedTab === 2 ? "flex" : "hidden"}`}>

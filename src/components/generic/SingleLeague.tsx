@@ -58,7 +58,14 @@ export const SingleLeague: React.FC<{ leagueId: string; subLeague: string; index
               onChange={handleChange}
               page={currentPage}
               sx={{
-                button: { color: "#ffffff", fontSize: "12px", height: "24px", width: "24px", minWidth: "22px" },
+                button: {
+                  color: "#ffffff",
+                  fontSize: "12px",
+                  height: "24px",
+                  width: "24px",
+                  minWidth: "22px",
+                  paddingTop: "3px",
+                },
                 ".Mui-selected": { backgroundColor: "rgb(255 255 255 / 12%)!important" },
                 div: { color: "white" },
               }}
