@@ -6,22 +6,32 @@ Website where you can browse results of the football games from lower leagues in
 #Installation
 
 Clone the repository:
-`git clone https://github.com/michalkabara/mess-apka-vite-ts.git`
+
+```
+git clone https://github.com/michalkabara/mess-apka-vite-ts.git
+```
 
 Navigate to the project directory:
 
-`cd mess-apka-vite-ts`
+```
+cd mess-apka-vite-ts
+```
+
 Install dependencies:
 
-`npm install
+```
+npm install
 or
-yarn install`
+yarn install
+```
 
 #Usage
 Running the Development Server
 
 To start the development server, run:
 
-`npm run dev
+```
+npm run dev
 or
-yarn dev`
+yarn dev
+```
