@@ -1,6 +1,7 @@
 Website where you can browse results of the football games from lower leagues in Poland
 
 **Technologies used:** TypeScript, React, Tailwind
+
 **Libraries used:** Vite, React Router, Tanstack Query
 
 #Installation
@@ -26,6 +27,7 @@ yarn install
 ```
 
 #Usage
+
 Running the Development Server
 
 To start the development server, run:
