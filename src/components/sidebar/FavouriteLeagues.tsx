@@ -11,8 +11,8 @@ export const FavouriteLeagues: React.FC<{ handleMenuItemClick?: () => void }> = 
         <h3 className="font-bold">Moje Ligi</h3>
         <RiTrophyLine />
       </div>
-      <div className="flex flex-col gap-2 text-xs">
-        {favouriteLeagues.map((favLeague: { name: string; id?: string }) => (
+      <div className="flex flex-col gap-3 text-xs font-light">
+        {favouriteLeagues.map((favLeague) => (
           <div key={favLeague.name} className="flex flex-row gap-2 items-center text-xs justify-between">
             <Link to={`/league/${favLeague.id}`} className="truncate capitalize" onClick={handleMenuItemClick}>
               {favLeague.name}

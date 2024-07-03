@@ -13,8 +13,8 @@ export const FavouriteTeams: React.FC<{ handleMenuItemClick?: () => void }> = ({
           <RiTeamLine className="-translate-y-1" />
         </div>
 
-        <div className="flex flex-col gap-2">
-          {favouriteTeams.map((team: { name: string | undefined; id: string | undefined }) => (
+        <div className="flex flex-col gap-3 font-light">
+          {favouriteTeams.map((team) => (
             <div key={team.id} className="flex flex-row gap-2 items-center text-xs justify-between">
               <Link to={`/team/${team.id}`} className="truncate" onClick={handleMenuItemClick}>
                 {team.name}

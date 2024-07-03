@@ -14,23 +14,25 @@ export const FeaturedGame = () => {
   const gameDate = new Date(data.date);
 
   return (
-    <div className="bg-zinc-200 dark:bg-zinc-800 rounded-lg p-5 text-zinc-700 dark:text-white flex flex-col items-center gap-5">
+    <div className="bg-zinc-200 dark:bg-zinc-800 bg-opacity-60 dark:bg-opacity-50 rounded-lg p-5 text-zinc-700 dark:text-white flex flex-col items-center gap-5">
       <h3 className="font-bold">Wyróżniony mecz</h3>
-      <div className="flex flex-row gap-6 items-start">
-        <Link to={`/team/${data.homeTeam?.id}`} className="w-1/2">
-          <div className="flex flex-col text-sm items-center gap-2 ">
+
+      <div className="grid grid-cols-3 gap-2 items-center">
+        <Link to={`/team/${data.homeTeam?.id}`} className="">
+          <div className="flex flex-col text-sm items-center gap-2 justify-center">
             <img src={data.homeTeam?.logoUrl} alt="" className="size-16 rounded-md p-1 bg-white" />
             <p className="text-xs text-center">{data.homeTeam?.name}</p>
           </div>
         </Link>
 
-        <span className="h-full flex items-center text-md font-bold text-center whitespace-nowrap">
-          <Link to={`/game/${data.id}`}>
+        <span className="h-full flex items-center justify-center text-md font-semibold text-center whitespace-nowrap ">
+          <Link to={`/game/${data.id}`} className="dark:bg-zinc-900 bg-white py-2 px-4 rounded-3xl">
             {data.homeGoals} : {data.awayGoals}
           </Link>
         </span>
-        <Link to={`/team/${data.awayTeam?.id}`} className="w-1/2">
-          <div className="flex flex-col text-sm items-center gap-2">
+
+        <Link to={`/team/${data.awayTeam?.id}`} className="">
+          <div className="flex flex-col text-sm items-center gap-2 justify-center">
             <img src={data.awayTeam?.logoUrl} alt="" className="size-16 rounded-md p-1 bg-white" />
             <p className="text-xs text-center">{data.awayTeam?.name}</p>
           </div>

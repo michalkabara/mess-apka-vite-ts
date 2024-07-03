@@ -9,8 +9,6 @@ export const SingleGame: React.FC<PartialGame> = ({ date, homeTeam, awayTeam, ho
   let homeTrophy;
   let awayTrophy;
 
-  //awayGoals && awayGoals >= 0 && homeGoals && homeGoals >= 0
-
   if ((homeGoals ?? 0) > (awayGoals ?? 0)) {
     homeTrophy = <IoMdTrophy className="text-amber-400" />;
   }
@@ -44,9 +42,9 @@ export const SingleGame: React.FC<PartialGame> = ({ date, homeTeam, awayTeam, ho
           {awayTrophy}
         </div>
       </div>
-      <div className="flex flex-col gap-2 w-4 items-end">
-        <div>{homeGoals ?? "TBD"}</div>
-        <div>{awayGoals ?? "TBD"}</div>
+      <div className="flex flex-col gap-2 w-4 items-end ">
+        <div className={(homeGoals ?? 0) > (awayGoals ?? 0) ? `font-extrabold` : ``}>{homeGoals ?? "TBD"}</div>
+        <div className={(awayGoals ?? 0) > (homeGoals ?? 0) ? `font-extrabold` : ``}>{awayGoals ?? "TBD"}</div>
       </div>
     </>
   );

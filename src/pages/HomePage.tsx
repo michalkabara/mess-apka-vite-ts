@@ -50,7 +50,7 @@ export const HomePage: FC = () => {
           />
         ))}
       </div>
-      <div className="mt-3">
+      <div className="mt-3 gap-3 flex flex-col">
         {selectedLeague?.childLeagues.map((childLeague, index) => (
           <SingleLeague key={childLeague.id} leagueId={childLeague.id} subLeague={childLeague.name} index={index} />
         ))}
