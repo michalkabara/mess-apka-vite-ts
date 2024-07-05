@@ -11,6 +11,7 @@ export enum GameEventType {
   Goal,
   OwnGoal,
   Penalty,
+  SubInOut,
 }
 
 export interface GameEvent {
@@ -20,6 +21,12 @@ export interface GameEvent {
   eventType: GameEventType;
   playerName: string;
   playerId: string;
+  swapInfo?: {
+    outPlayerName: string;
+    outPlayerId: string;
+    inPlayerName: string;
+    inPlayerId: string;
+  };
   displayTime: string;
 }
 export interface Game {

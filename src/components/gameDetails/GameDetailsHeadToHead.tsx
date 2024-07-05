@@ -2,13 +2,14 @@ import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { SingleGame } from "../ui/SingleGame";
 import { SingleTab } from "../generic/SingleTab";
-import { PartialGame } from "../../types/gameTypes";
+import { Game, PartialGame } from "../../types/gameTypes";
 import { PagedResponse } from "../../types";
+import { GameLink } from "../ui/GameLink";
 
 export const GameDetailsHeadToHead: React.FC<{
-  HomeTeamGamesData: PagedResponse<PartialGame>;
-  AwayTeamGamesData: PagedResponse<PartialGame>;
-  data: PartialGame;
+  HomeTeamGamesData: PagedResponse<Game>;
+  AwayTeamGamesData: PagedResponse<Game>;
+  data: Game;
 }> = ({ HomeTeamGamesData, AwayTeamGamesData, data }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -16,20 +17,16 @@ export const GameDetailsHeadToHead: React.FC<{
 
   const [selectedSecondTab, setSelecteSecondTab] = useState<number>(parseInt(searchParams.get("tab") ?? "0"));
 
-  const awayVsHomeTeam = AwayTeamGamesData.data.filter(
-    (game: PartialGame) => game.awayTeam?.name === data.awayTeam?.name
-  );
+  const awayVsHomeTeam = AwayTeamGamesData.data.filter((game: Game) => game.awayTeam?.name === data.awayTeam?.name);
 
-  const homeVsAwayTeam = HomeTeamGamesData.data.filter(
-    (game: PartialGame) => game.homeTeam?.name === data.homeTeam?.name
-  );
+  const homeVsAwayTeam = HomeTeamGamesData.data.filter((game: Game) => game.homeTeam?.name === data.homeTeam?.name);
 
   const previousHomeHeadToHeadGames = HomeTeamGamesData.data.filter(
-    (game: PartialGame) => game.homeTeam?.name === data.homeTeam?.name && game.awayTeam?.name === data.awayTeam?.name
+    (game: Game) => game.homeTeam?.name === data.homeTeam?.name && game.awayTeam?.name === data.awayTeam?.name
   );
 
   const previousAwayHeadToHeadGames = HomeTeamGamesData.data.filter(
-    (game: PartialGame) => game.homeTeam?.name === data.awayTeam?.name && game.awayTeam?.name === data.homeTeam?.name
+    (game: Game) => game.homeTeam?.name === data.awayTeam?.name && game.awayTeam?.name === data.homeTeam?.name
   );
 
   const tabs2: { name: string }[] = [
@@ -59,54 +56,18 @@ export const GameDetailsHeadToHead: React.FC<{
         </div>
       </div>
       <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedSecondTab === 0 ? "flex" : "hidden"}`}>
-        {[...previousAwayHeadToHeadGames, ...previousHomeHeadToHeadGames].map((mecz: PartialGame, index: number) => (
-          <Link
-            to={`/game/${mecz.id}`}
-            key={`${mecz.id}-${index}`}
-            className="flex flex-row border dark:border-zinc-700 items-center w-full content-between hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded-md py-2 px-3 ease-in-out duration-500 gap-2"
-          >
-            <SingleGame
-              date={mecz.date}
-              homeTeam={mecz.homeTeam}
-              awayTeam={mecz.awayTeam}
-              homeGoals={mecz.homeGoals}
-              awayGoals={mecz.awayGoals}
-            />
-          </Link>
+        {[...previousAwayHeadToHeadGames, ...previousHomeHeadToHeadGames].map((game: Game, index: number) => (
+          <GameLink game={game} index={index} key={game.id} />
         ))}
       </div>
       <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedSecondTab === 1 ? "flex" : "hidden"}`}>
-        {homeVsAwayTeam.reverse().map((mecz: PartialGame, index: number) => (
-          <Link
-            to={`/game/${mecz.id}`}
-            key={`${mecz.id}-${index}`}
-            className="flex flex-row border dark:border-zinc-700 items-center w-full content-between hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded-md py-2 px-3 ease-in-out duration-500 gap-2"
-          >
-            <SingleGame
-              date={mecz.date}
-              homeTeam={mecz.homeTeam}
-              awayTeam={mecz.awayTeam}
-              homeGoals={mecz.homeGoals}
-              awayGoals={mecz.awayGoals}
-            />
-          </Link>
+        {homeVsAwayTeam.reverse().map((game: Game, index: number) => (
+          <GameLink game={game} index={index} key={game.id} />
         ))}
       </div>
       <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedSecondTab === 2 ? "flex" : "hidden"}`}>
-        {awayVsHomeTeam.reverse().map((mecz: PartialGame, index: number) => (
-          <Link
-            to={`/game/${mecz.id}`}
-            key={`${mecz.id}-${index}`}
-            className="flex flex-row border dark:border-zinc-700 items-center w-full content-between hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded-md py-2 px-3 ease-in-out duration-500 gap-2"
-          >
-            <SingleGame
-              date={mecz.date}
-              homeTeam={mecz.homeTeam}
-              awayTeam={mecz.awayTeam}
-              homeGoals={mecz.homeGoals}
-              awayGoals={mecz.awayGoals}
-            />
-          </Link>
+        {awayVsHomeTeam.reverse().map((game: Game, index: number) => (
+          <GameLink game={game} index={index} key={game.id} />
         ))}
       </div>
     </>

@@ -1,6 +1,4 @@
 import { useParams, useSearchParams } from "react-router-dom";
-import { SingleGame } from "../components/ui/SingleGame";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { TeamProfileDetails } from "../components/teamProfile/TeamProfilesDetails";
 import { useFetchTeamData } from "../customHooks/fetchTeamData/useFetchTeamData";
@@ -15,7 +13,7 @@ import { UpcomingGames } from "../components/teamProfile/UpcomingGames";
 import { useFecthTeamPlayers } from "../customHooks/fetchTeamData/useFetchTeamPlayers";
 import { LeagueRankingTable } from "../components/ui/LeagueRankingTable";
 import { useFetchLeagueData } from "../customHooks/fetchLeagueData/useFetchLeagueData";
-import { GameLinkWithOutcome } from "../components/ui/GameLinkWithOutcome";
+import { GameLinkWithOutcomeColor } from "../components/ui/GameLinkWithOutcomeColor";
 
 const tabs: { name: string }[] = [
   { name: "Wyniki" },
@@ -106,7 +104,7 @@ export const TeamProfile: React.FC = () => {
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 0 ? "flex" : "hidden"}`}>
           {gamesData.data.map((game: Game, index: number) => (
-            <GameLinkWithOutcome game={game} index={index} winnerId={teamId} key={game.id} />
+            <GameLinkWithOutcomeColor game={game} index={index} winnerId={teamId} key={game.id} />
           ))}
         </div>
 

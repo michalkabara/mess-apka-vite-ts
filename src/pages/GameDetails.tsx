@@ -3,7 +3,8 @@ import { useFetchSingleGame } from "../customHooks/useFetchSIngleGame";
 import { SingleTab } from "../components/generic/SingleTab";
 import { FC, useState } from "react";
 
-import { Game, PagedResponse } from "../types";
+import { PagedResponse } from "../types";
+import { Game } from "../types/gameTypes";
 import { LeagueProfile } from "./LeagueProfile";
 import { useQuery } from "@tanstack/react-query";
 import { fetchData } from "../clientApi";

@@ -4,7 +4,7 @@ interface Tab {
   buttonText?: string;
   index: number | string | undefined;
   onClick: MouseEventHandler;
-  selectedTab: number | string | undefined;
+  selectedTab?: string | number | null;
 }
 
 export const SingleTab: React.FC<Tab> = ({ buttonText, index, onClick, selectedTab }) => {

@@ -1,11 +1,11 @@
 import { Game } from "../../types/gameTypes";
-import { GameLinkWithOutcome } from "../ui/GameLinkWithOutcome";
+import { GameLinkWithOutcomeColor } from "../ui/GameLinkWithOutcomeColor";
 
 export const HomeGames: React.FC<{ homeGames: Game[]; homeTeamId?: string }> = ({ homeGames, homeTeamId }) => {
   return (
     <>
       {homeGames.map((game: Game, index: number) => (
-        <GameLinkWithOutcome game={game} index={index} winnerId={homeTeamId} key={game.id} />
+        <GameLinkWithOutcomeColor game={game} index={index} winnerId={homeTeamId} key={game.id} />
       ))}
     </>
   );

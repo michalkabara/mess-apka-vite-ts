@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { SingleGame } from "./SingleGame";
 import { Game } from "../../types/gameTypes";
 
-export const GameLinkWithOutcome: React.FC<{ game: Game; winnerId?: string; index: number }> = ({
+export const GameLinkWithOutcomeColor: React.FC<{ game: Game; winnerId?: string; index: number }> = ({
   game,
   winnerId,
   index,

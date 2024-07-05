@@ -1,10 +1,9 @@
 import { LeagueHeader } from "./LeagueHeader";
-import { SingleGame } from "../ui/SingleGame";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { LinearProgress, Pagination } from "@mui/material";
 import { useFetchLeagueRoundCount } from "../../customHooks/fetchLeagueData/useFetchLeagueRoundCount";
 import { useFetchLeagueRoundGames } from "../../customHooks/fetchLeagueData/useFetchLeagueRoundGames";
+import { GameLink } from "../ui/GameLink";
 
 export const SingleLeague: React.FC<{ leagueId: string; subLeague: string; index: number }> = ({
   leagueId,
@@ -84,20 +83,9 @@ export const SingleLeague: React.FC<{ leagueId: string; subLeague: string; index
                 data-section-name={index}
                 className={`mecze mt-2 flex flex-col gap-1 text-xs relative transition-all duration-500 ease-in-out overflow-hidden`}
               >
-                {data?.map((game) => (
+                {data?.map((game, index) => (
                   <div key={game.id} className="flex flex-col items-center ">
-                    <Link
-                      to={`/game/${game.id}`}
-                      className="flex flex-row border dark:border-zinc-700 items-center w-full content-between hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded-md py-3 px-3 ease-in-out duration-500 gap-2"
-                    >
-                      <SingleGame
-                        date={game.date}
-                        homeTeam={game.homeTeam}
-                        awayTeam={game.awayTeam}
-                        homeGoals={game.homeGoals}
-                        awayGoals={game.awayGoals}
-                      />
-                    </Link>
+                    <GameLink game={game} index={index} />
                   </div>
                 ))}
               </div>

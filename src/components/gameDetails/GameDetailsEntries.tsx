@@ -47,18 +47,13 @@ export const GameDetailsEntries: React.FC<{ events: GameEvent[] }> = ({ events }
         <p>2 Połowa</p>
       </div>
       <div className="flex flex-col w-full justify-between text-xs px-2 gap-2">
-        {rearangedEvents?.map((gameEvent: GameEvent, index) => {
-          const nextEvent = rearangedEvents[index + 1];
-          const previousEvent = rearangedEvents[index - 1];
-
+        {rearangedEvents?.map((gameEvent: GameEvent) => {
           if (gameEvent.minute > 45) {
-            if (gameEvent.eventType === GameEventType.SubIn || gameEvent.eventType === GameEventType.SubOut) {
+            if (gameEvent.eventType === GameEventType.SubInOut) {
               return (
                 <GameDetailsPlayerSwapEntry
-                  key={gameEvent.displayTime + gameEvent.playerName}
+                  key={gameEvent.swapInfo?.inPlayerId + gameEvent.swapInfo?.outPlayerId}
                   event={gameEvent}
-                  nextEvent={nextEvent}
-                  previousEvent={previousEvent}
                 />
               );
             } else {
@@ -73,9 +68,12 @@ export const GameDetailsEntries: React.FC<{ events: GameEvent[] }> = ({ events }
       <div className="flex flex-col w-full justify-between text-xs px-2 gap-2">
         {rearangedEvents?.map((gameEvent: GameEvent) => {
           if (gameEvent.minute <= 45) {
-            if (gameEvent.eventType === GameEventType.SubIn || gameEvent.eventType === GameEventType.SubOut) {
+            if (gameEvent.eventType === GameEventType.SubInOut) {
               return (
-                <GameDetailsPlayerSwapEntry key={gameEvent.displayTime + gameEvent.playerName} event={gameEvent} />
+                <GameDetailsPlayerSwapEntry
+                  key={gameEvent.swapInfo?.inPlayerId + gameEvent.swapInfo?.outPlayerId}
+                  event={gameEvent}
+                />
               );
             } else {
               return <GameDetailsEntry key={gameEvent.displayTime + gameEvent.playerName} event={gameEvent} />;

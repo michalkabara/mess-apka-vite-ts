@@ -1,14 +1,15 @@
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useFetchLeagueData } from "../customHooks/fetchLeagueData/useFetchLeagueData";
 import { LeagueHeader } from "../components/generic/LeagueHeader";
-import { SingleGame } from "../components/ui/SingleGame";
 import { useEffect, useState } from "react";
 import { SingleTab } from "../components/generic/SingleTab";
 import { LeagueRankingTable } from "../components/ui/LeagueRankingTable";
 import { Pagination } from "@mui/material";
 import { useFetchLeagueRoundCount } from "../customHooks/fetchLeagueData/useFetchLeagueRoundCount";
 import { useFetchLeagueRoundGames } from "../customHooks/fetchLeagueData/useFetchLeagueRoundGames";
+import { GameLink } from "../components/ui/GameLink";
+import { Game } from "../types/gameTypes";
 
 export const LeagueProfile: React.FC<{ leagueId?: string }> = ({ leagueId }) => {
   const [selectedTab, setSelecteTab] = useState<number | null>(0);
@@ -37,7 +38,9 @@ export const LeagueProfile: React.FC<{ leagueId?: string }> = ({ leagueId }) => 
 
   useEffect(() => {
     const currentTab = searchParams.get("page");
-    setSelecteTab(parseInt(currentTab));
+    if (currentTab) {
+      setSelecteTab(parseInt(currentTab));
+    }
     setNumberOfPages(leagueRoundCountData);
   }, [leagueRoundCountData]);
 
@@ -106,56 +109,44 @@ export const LeagueProfile: React.FC<{ leagueId?: string }> = ({ leagueId }) => 
               className="dark:text-white text-zinc-700"
             />
           </div>
-          {gamesData.map((game) => (
+          {gamesData.map((game, index) => (
             <div key={game.id} className="flex flex-col items-center ">
-              <Link
-                to={`/game/${game.id}`}
-                className="flex flex-row border dark:border-zinc-700 items-center w-full content-between hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded-md py-2 px-3 ease-in-out duration-500 gap-2"
-              >
-                <SingleGame
-                  date={game.date}
-                  homeTeam={game.homeTeam}
-                  awayTeam={game.awayTeam}
-                  homeGoals={game.homeGoals}
-                  awayGoals={game.awayGoals}
-                />
-              </Link>
+              <GameLink game={game} index={index} />
             </div>
           ))}
         </div>
 
-        {/* <div className={` wyniki mt-2 gap-1 flex flex-col text-xs ${selectedTab === 2 ? "flex" : "hidden"}`}>
-          {upcomingGamesData.data.map((game: PartialGame) => (
-            <div key={game.id} className="flex flex-col items-center">
-              <Link
-                to={`/game/${game.id}`}
-                className="flex flex-row items-center w-full content-between hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md py-[5px] px-4 ease-in-out duration-500 gap-2"
-              >
-                <SingleGame
-                  date={game.date}
-                  homeTeam={game.homeTeam}
-                  awayTeam={game.awayTeam}
-                  homeGoals={game.homeGoals}
-                  awayGoals={game.awayGoals}
-                />
-              </Link>
-            </div>
-          ))}
-          <div className="flex justify-center text-gray-50 bg-zinc-800 rounded-md mt-3 p-1  bottom-0 w-full">
+        <div className={` wyniki mt-2 gap-1 flex flex-col text-xs ${selectedTab === 2 ? "flex" : "hidden"}`}>
+          <div className="mt-2 sm:flex-row flex flex-col gap-1 dark:text-gray-50 dark:bg-zinc-800 rounded-md p-1 bottom-0 w-full duration-500 ease-in-out justify-center items-center px-3 relative">
+            <p className="text-xs sm:absolute left-3">KOLEJKA</p>
             <Pagination
-              count={upcomingGamesNumberOfPages}
+              count={numberOfPages}
               size="small"
               onChange={handleChange}
-              page={upcomingGamesCurrentPage + 1}
+              page={currentPage}
               sx={{
-                button: { color: "#ffffff" },
-                ".Mui-selected": { backgroundColor: "rgb(255 255 255 / 16%)!important" },
+                button: {
+                  color: "#ffffff",
+                  fontSize: "12px",
+                  height: "24px",
+                  width: "24px",
+                  minWidth: "22px",
+                  paddingTop: "3px",
+                },
+                ".Mui-selected": { backgroundColor: "rgb(255 255 255 / 12%)!important" },
                 div: { color: "white" },
               }}
-              className="text-white"
+              className="dark:text-white text-zinc-700"
             />
           </div>
-        </div> */}
+          {gamesData
+            .filter((game) => game.isFinished === false)
+            .map((game: Game, index) => (
+              <div key={game.id} className="flex flex-col items-center">
+                <GameLink game={game} index={index} />
+              </div>
+            ))}
+        </div>
       </div>
     </>
   );
