@@ -5,7 +5,7 @@ import { useFetchLeagueRoundCount } from "../../customHooks/fetchLeagueData/useF
 import { useFetchLeagueRoundGames } from "../../customHooks/fetchLeagueData/useFetchLeagueRoundGames";
 import { GameLink } from "../ui/GameLink";
 
-export const SingleLeague: React.FC<{ leagueId: string; subLeague: string; index: number }> = ({
+export const ChildLeague: React.FC<{ leagueId: string; subLeague: string; index: number }> = ({
   leagueId,
   subLeague,
   index,

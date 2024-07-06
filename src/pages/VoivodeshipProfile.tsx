@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { SingleLeague } from "../components/generic/SingleLeague";
+import { ChildLeague } from "../components/generic/ChildLeague";
 import { useFetchLeagues } from "../customHooks/fetchLeagueData/useFetchLeagues";
 import { useEffect, useState } from "react";
 import { League } from "../types/leagueTypes";
@@ -55,7 +55,7 @@ export const VoivodeshipProfile: React.FC = () => {
       <div className="mt-5">
         {filteredData?.childLeagues.map((childLeague, index) => {
           return (
-            <SingleLeague key={childLeague.id} leagueId={childLeague.id} subLeague={childLeague.name} index={index} />
+            <ChildLeague key={childLeague.id} leagueId={childLeague.id} subLeague={childLeague.name} index={index} />
           );
         })}
       </div>
