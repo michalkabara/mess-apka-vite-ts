@@ -9,7 +9,7 @@ import { Pagination } from "@mui/material";
 import { useFetchLeagueRoundCount } from "../customHooks/fetchLeagueData/useFetchLeagueRoundCount";
 import { useFetchLeagueRoundGames } from "../customHooks/fetchLeagueData/useFetchLeagueRoundGames";
 import { GameLink } from "../components/ui/GameLink";
-import { Game } from "../types/gameTypes";
+import { GameLinkSkeleton } from "../components/skeletons/GameLinkSkeleton";
 
 export const LeagueProfile: React.FC<{ leagueId?: string }> = ({ leagueId }) => {
   const [selectedTab, setSelecteTab] = useState<number | null>(0);
@@ -23,9 +23,9 @@ export const LeagueProfile: React.FC<{ leagueId?: string }> = ({ leagueId }) => 
   const checkLeagueId = routeLeagueId ?? leagueId;
 
   const {
-    isPending: gamesArePending,
     error: gamesError,
     data: gamesData,
+    status: gameDataStatus,
   } = useFetchLeagueRoundGames(checkLeagueId, currentPage);
 
   const { isPending: leagueIsPending, error: leagueError, data: leagueData } = useFetchLeagueData(checkLeagueId);
@@ -44,7 +44,7 @@ export const LeagueProfile: React.FC<{ leagueId?: string }> = ({ leagueId }) => 
     setNumberOfPages(leagueRoundCountData);
   }, [leagueRoundCountData]);
 
-  if (leagueIsPending || gamesArePending || leagueRoundCountIsPending) return <p>Loading...</p>;
+  if (leagueIsPending || leagueRoundCountIsPending) return <p>Loading...</p>;
 
   if (leagueError ?? gamesError ?? leagueRoundCountError)
     return <p>An error has occurred {leagueRoundCountError?.message}</p>;
@@ -109,14 +109,27 @@ export const LeagueProfile: React.FC<{ leagueId?: string }> = ({ leagueId }) => 
               className="dark:text-white text-zinc-700"
             />
           </div>
-          {gamesData.map((game, index) => (
+          {gameDataStatus !== "success" && (
+            <div
+              className={`mecze mt-2 flex flex-col gap-1 text-xs relative transition-all duration-500 ease-in-out overflow-hidden`}
+            >
+              <GameLinkSkeleton />
+              <GameLinkSkeleton />
+              <GameLinkSkeleton />
+              <GameLinkSkeleton />
+              <GameLinkSkeleton />
+              <GameLinkSkeleton />
+              <GameLinkSkeleton />
+            </div>
+          )}
+          {gamesData?.map((game, index) => (
             <div key={game.id} className="flex flex-col items-center ">
               <GameLink game={game} index={index} />
             </div>
           ))}
         </div>
 
-        <div className={` wyniki mt-2 gap-1 flex flex-col text-xs ${selectedTab === 2 ? "flex" : "hidden"}`}>
+        {/* <div className={` wyniki mt-2 gap-1 flex flex-col text-xs ${selectedTab === 2 ? "flex" : "hidden"}`}>
           <div className="mt-2 sm:flex-row flex flex-col gap-1 dark:text-gray-50 dark:bg-zinc-800 rounded-md p-1 bottom-0 w-full duration-500 ease-in-out justify-center items-center px-3 relative">
             <p className="text-xs sm:absolute left-3">KOLEJKA</p>
             <Pagination
@@ -146,7 +159,7 @@ export const LeagueProfile: React.FC<{ leagueId?: string }> = ({ leagueId }) => 
                 <GameLink game={game} index={index} />
               </div>
             ))}
-        </div>
+        </div> */}
       </div>
     </>
   );

@@ -49,9 +49,10 @@ export const TeamForm: React.FC<{
               <div>
                 <div
                   data-tooltip-id="tie-game"
-                  data-tooltip-content={`${date} ${
-                    game.homeTeamId == teamId ? game.awayTeam?.name : game.homeTeam?.name
-                  }`}
+                  data-tooltip-html={`<div className="text-center">
+                    <p>${date}</p>
+                    <p>${game.homeTeamId == teamId ? game.awayTeam?.name : game.homeTeam?.name}</p>
+                  </div>`}
                   data-tooltip-place="top"
                   className="rounded-sm bg-orange-500 text-white size-4 text-center relative flex justify-center leading-tight"
                 >
@@ -69,10 +70,11 @@ export const TeamForm: React.FC<{
               <div>
                 <div
                   data-tooltip-id="win-game"
-                  data-tooltip-content={`${date} ${
-                    game.homeTeamId == teamId ? game.awayTeam?.name : game.homeTeam?.name
-                  }`}
                   data-tooltip-place="top"
+                  data-tooltip-html={`<div className="text-center">
+                    <p>${date}</p>
+                    <p>${game.homeTeamId == teamId ? game.awayTeam?.name : game.homeTeam?.name}</p>
+                  </div>`}
                   className="rounded-sm bg-green-700 text-white size-4 text-center relative flex justify-center leading-tight"
                 >
                   W
@@ -90,10 +92,11 @@ export const TeamForm: React.FC<{
               <div>
                 <div
                   data-tooltip-id="lost-game"
-                  data-tooltip-content={`${date} ${
-                    game.homeTeamId == teamId ? game.awayTeam?.name : game.homeTeam?.name
-                  }`}
                   data-tooltip-place="top"
+                  data-tooltip-html={`<div className="text-center">
+                      <p>${date}</p>
+                      <p>${game.homeTeamId == teamId ? game.awayTeam?.name : game.homeTeam?.name}</p>
+                    </div>`}
                   className="rounded-sm bg-red-700 text-white size-4 text-center relative flex justify-center leading-tight"
                 >
                   P

@@ -1,9 +1,10 @@
 import { LeagueHeader } from "./LeagueHeader";
 import { useEffect, useState } from "react";
-import { LinearProgress, Pagination } from "@mui/material";
+import { Pagination } from "@mui/material";
 import { useFetchLeagueRoundCount } from "../../customHooks/fetchLeagueData/useFetchLeagueRoundCount";
 import { useFetchLeagueRoundGames } from "../../customHooks/fetchLeagueData/useFetchLeagueRoundGames";
 import { GameLink } from "../ui/GameLink";
+import { GameLinkSkeleton } from "../skeletons/GameLinkSkeleton";
 
 export const ChildLeague: React.FC<{ leagueId: string; subLeague: string; index: number }> = ({
   leagueId,
@@ -72,7 +73,19 @@ export const ChildLeague: React.FC<{ leagueId: string; subLeague: string; index:
                 className="dark:text-white text-zinc-700"
               />
             </div>
-            {status !== "success" && <LinearProgress />}
+            {status !== "success" && (
+              <div
+                className={`mecze mt-2 flex flex-col gap-1 text-xs relative transition-all duration-500 ease-in-out overflow-hidden`}
+              >
+                <GameLinkSkeleton />
+                <GameLinkSkeleton />
+                <GameLinkSkeleton />
+                <GameLinkSkeleton />
+                <GameLinkSkeleton />
+                <GameLinkSkeleton />
+                <GameLinkSkeleton />
+              </div>
+            )}
             <div
               className={` grid ease-in-out transition-all duration-500 ${
                 isActive ? `opacity-100` : "opacity-0 pointer-events-none mt-0 "
