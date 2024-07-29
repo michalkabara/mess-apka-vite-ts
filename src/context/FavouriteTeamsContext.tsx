@@ -12,7 +12,12 @@ export interface FavouriteTeamsContextType {
   removeFavouriteTeam: (teamId: string) => void;
 }
 
-export const FavouriteTeamsContext = createContext<FavouriteTeamsContextType | undefined>(undefined);
+export const FavouriteTeamsContext = createContext<FavouriteTeamsContextType>({
+  favouriteTeams: [],
+  setfavouriteTeams: () => {},
+  addFavouriteTeam: () => {},
+  removeFavouriteTeam: () => {},
+});
 
 export const FavouriteTeamContextProvider: React.FC<{
   children: React.ReactNode;

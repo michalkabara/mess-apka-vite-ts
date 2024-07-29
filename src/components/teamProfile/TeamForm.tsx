@@ -20,21 +20,20 @@ export const TeamForm: React.FC<{
 
   return (
     <div className="flex flex-row gap-1 relative sm:min-w-[120px] w-auto justify-end">
-      {tbdGame && (
-        <Link to={`/game/${tbdGame.id}`} key={`${tbdGame.id}-win`}>
-          <div
-            className="rounded-sm bg-gray-400 text-white size-4 text-center leading-tight cursor-pointer"
-            data-tooltip-id="TBA"
-            data-tooltip-content={`${tbdGameDate} ${
-              tbdGame.homeTeamId == teamId ? tbdGame.awayTeam?.name : tbdGame.homeTeam?.name
-            }`}
-            data-tooltip-place="top"
-          >
-            ?
-            <Tooltip id="TBA" />
-          </div>
-        </Link>
-      )}
+      <Link>
+        {/* <Link to={`/game/${tbdGame.id}`} key={`${tbdGame.id}-win`}></Link> */}
+        <div
+          className="rounded-sm bg-gray-400 text-white size-4 text-center leading-tight cursor-pointer"
+          data-tooltip-id="TBA"
+          // data-tooltip-content={`${tbdGameDate} ${
+          //   tbdGame.homeTeamId == teamId ? tbdGame.awayTeam?.name : tbdGame.homeTeam?.name
+          // }`}
+          data-tooltip-place="top"
+        >
+          ?
+          <Tooltip id="TBA" />
+        </div>
+      </Link>
 
       {games.map((game: PartialGame) => {
         // console.log(array);

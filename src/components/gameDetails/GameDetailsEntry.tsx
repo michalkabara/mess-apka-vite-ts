@@ -18,7 +18,6 @@ export const GameDetailsEntry: React.FC<{ event: GameEvent }> = ({ event }) => {
     <div className={`flex ${event.isHostEvent ? "flex-row" : "flex-row-reverse"} gap-2 items-center`}>
       <p>{event.displayTime}</p>
       <span>{eventTypeIcon}</span>
-      <p>{event.eventType}</p>
       <Link to={`/player/${event.playerId}`} className="hover:underline">
         {event.playerName}
       </Link>

@@ -7,6 +7,9 @@ import { MobileNavbar } from "./components/mobile/MobileNavbar";
 import { Outlet, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Footer } from "./components/ui/Footer";
+import { HomePageBlog } from "./components/generic/HomePageBlog";
+
+import { HomeSlider } from "./components/ui/HomeSlider";
 
 function App() {
   const [isDarkModeOn, setIsDarkModeOn] = useState(false);
@@ -45,16 +48,17 @@ function App() {
               <Sidebar />
             </div>
           )}
-          <div className="w-full flex flex-col gap-2 overflow-auto ">
-            <div className="text-sm">Breadcurmbs</div>
-            <div className=" bg-zinc-50 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 rounded-lg sm:p-5 p-2 relative  dark:border-zinc-700 border-[1px] overflow-hidden">
+          <div className="w-full flex flex-col gap-4 overflow-auto">
+            {pathname === "/" && <HomeSlider />}
+            <div className=" bg-zinc-200 dark:bg-zinc-800 bg-opacity-60 dark:bg-opacity-50 text-zinc-800 dark:text-zinc-300 rounded-lg sm:p-5 p-2 relative  dark:border-zinc-700 overflow-hidden">
               <Outlet />
             </div>
           </div>
 
           {pathname !== "/login" && (
-            <div className="w-[400px] flex flex-col gap-3 max-lg:hidden">
+            <div className="min-w-[100px] w-[550px] flex flex-col gap-4 max-lg:hidden">
               <FeaturedGame />
+              <HomePageBlog></HomePageBlog>
             </div>
           )}
         </div>

@@ -14,7 +14,12 @@ export interface FavouriteLeaguesContextType {
 }
 
 //context
-export const FavouriteLeaguesContext = createContext<FavouriteLeaguesContextType | undefined>(undefined);
+export const FavouriteLeaguesContext = createContext<FavouriteLeaguesContextType>({
+  favouriteLeagues: [],
+  setfavouriteLeagues: () => {},
+  addFavouriteLeague: () => {},
+  removeFavouriteLeague: () => {},
+});
 
 //context provider
 export const FavouriteLeaguesContextProvider: React.FC<{

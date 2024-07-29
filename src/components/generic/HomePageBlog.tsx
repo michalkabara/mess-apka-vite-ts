@@ -37,14 +37,15 @@ const posts = [
 
 export const HomePageBlog = () => {
   return (
-    <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3">
+    <div className="flex flex-col gap-1 bg-zinc-200 dark:bg-zinc-800 bg-opacity-60 dark:bg-opacity-50 rounded-md overflow-hidden">
       {posts.slice(1).map((post) => (
         <Link to={`/post/${post.id}`} key={post.id}>
-          <div className="flex flex-col gap-2 dark:bg-zinc-900 border dark:border-zinc-700 dark:hover:bg-zinc-800 hover:bg-zinc-200 p-2 rounded-md cursor-pointer transition-colors ease-in-out ">
-            <img src={post.imgLink} alt={post.title} className="rounded-md max-h-[100px]" />
-            <div className="p-1 mt-1">
-              <p className="text-sm font-bold leading-4 line-clamp-2">{post.title}</p>
-              <p className="text-xs  line-clamp-2">{post.teaser}</p>
+          <div className="flex flex-row gap-2 p-3 dark:hover:bg-zinc-800 hover:bg-zinc-200 cursor-pointer transition-colors ease-in-out ">
+            <img src={post.imgLink} alt={post.title} className="rounded-md max-h-[100px] w-[70px]" />
+            <div className="p-1 mt-1 flex flex-col gap-2">
+              <p className="text-xs font-bold leading-4  line-clamp-1">{post.title}</p>
+              {/* <p className="text-xs line-clamp-2">{post.teaser}</p> */}
+              <p className="text-xs line-clamp-2 opacity-75 font-extralight">22 Styczeń 2024</p>
             </div>
           </div>
         </Link>

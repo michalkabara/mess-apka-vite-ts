@@ -39,7 +39,7 @@ export const VoivodeChildLeagues = () => {
         onClick={handleChangeChildLeague}
         selectedLeagueId={selectedLeague?.id}
       />
-      <div className="mt-3 gap-3 flex flex-col">
+      <div className="mt-4 gap-1 flex flex-col">
         {selectedLeague?.childLeagues.map((childLeague, index) => (
           <ChildLeague key={childLeague.id} leagueId={childLeague.id} subLeague={childLeague.name} index={index} />
         ))}

@@ -12,22 +12,26 @@ export const FavouriteLeagues: React.FC<{ handleMenuItemClick?: () => void }> = 
         <RiTrophyLine />
       </div>
       <div className="flex flex-col gap-3 text-xs font-light">
-        {favouriteLeagues.map((favLeague) => (
-          <div key={favLeague.name} className="flex flex-row gap-2 items-center text-xs justify-between">
-            <Link to={`/league/${favLeague.id}`} className="truncate capitalize" onClick={handleMenuItemClick}>
-              {favLeague.name}
-            </Link>
+        {favouriteLeagues.length > 0 ? (
+          favouriteLeagues.map((favLeague) => (
+            <div key={favLeague.name} className="flex flex-row gap-2 items-center text-xs justify-between">
+              <Link to={`/league/${favLeague.id}`} className="truncate capitalize" onClick={handleMenuItemClick}>
+                {favLeague.name}
+              </Link>
 
-            <div>
-              <RiStarSmileFill
-                onClick={() => {
-                  removeFavouriteLeague(favLeague.name);
-                }}
-                className="text-yellow-500 size-4 cursor-pointer"
-              />
+              <div>
+                <RiStarSmileFill
+                  onClick={() => {
+                    removeFavouriteLeague(favLeague.name);
+                  }}
+                  className="text-yellow-500 size-4 cursor-pointer"
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p className="text-xs opacity-70 font-extralight">Dodaj ligę do ulubionych</p>
+        )}
       </div>
     </>
   );

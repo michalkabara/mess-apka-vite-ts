@@ -14,7 +14,7 @@ export const BlogPost: React.FC<{ postImg?: string; postTitle?: string; postText
         alt={postTitle}
       />
       <h1 className="font-bold text-xl">Lorem ipsum dolor sit amet</h1>
-      <p className="text-justify text-sm">
+      <p className="text-justify text-xs leading-5">
         {postText ||
           "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates doloremque cumque, magni praesentium dolor accusantium beatae, minima inventore obcaecati quo est ratione blanditiis autem error eaque rerum omnis culpa repellendus."}
       </p>
