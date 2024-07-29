@@ -5,7 +5,7 @@ export const Footer = () => {
   return (
     <div>
       <div className="dark:bg-zinc-800 dark:text-zinc-100 bg-zinc-300 text-zinc-800 mt-10 m-auto">
-        <div className="max-w-[1200px] w-full m-auto min-h-11 text-sm px-5 py-10 flex flex-row gap-10 flex-wrap sm:flex-nowrap">
+        <div className="max-w-[1200px] w-full m-auto min-h-11 text-xs px-5 py-10 flex flex-row gap-10 flex-wrap sm:flex-nowrap leading-6">
           <p>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid quae reprehenderit blanditiis. Ipsam
             incidunt placeat temporibus nihil accusantium odit ratione quam fuga. Repellat cupiditate aliquam similique,
