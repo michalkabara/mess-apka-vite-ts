@@ -33,7 +33,7 @@ function App() {
         <Header isDarkModeOn={isDarkModeOn} setIsDarkModeOn={setIsDarkModeOn} />
       </header>
 
-      <div className="border-b dark:border-zinc-700 border-zinc-300">
+      <div className="border-b dark:border-zinc-700 border-zinc-300 z-50">
         <nav className=" flex w-full items-center sm:py-0 py-3 px-5 max-w-[1200px] m-auto">
           <div className="sm:hidden w-full">
             <MobileNavbar />

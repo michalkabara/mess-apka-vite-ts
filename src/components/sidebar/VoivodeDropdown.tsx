@@ -22,7 +22,7 @@ export const VoivodeDropdown: React.FC<{
 
   return (
     <div
-      className="dark:bg-zinc-800 bg-white flex flex-col z-10 rounded-md mt-2 dropdown-content p-2 pb-4 gap-1 shadow-lg w-[190px] min-w-[150px]"
+      className="dark:bg-zinc-800 bg-white flex flex-col z-10 rounded-md mt-2 dropdown-content sm:p-2 p-3 pb-4 gap-1 shadow-lg sm:w-[190px] min-w-[150px] w-full"
       tabIndex={0}
     >
       <div className="relative flex flex-row items-center">
