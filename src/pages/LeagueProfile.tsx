@@ -10,6 +10,7 @@ import { useFetchLeagueRoundCount } from "../customHooks/fetchLeagueData/useFetc
 import { useFetchLeagueRoundGames } from "../customHooks/fetchLeagueData/useFetchLeagueRoundGames";
 import { GameLink } from "../components/ui/GameLink";
 import { GameLinkSkeleton } from "../components/skeletons/GameLinkSkeleton";
+import defaultCrest from "../img/crest_default.svg";
 
 export const LeagueProfile: React.FC<{ leagueId?: string }> = ({ leagueId }) => {
   const [selectedTab, setSelecteTab] = useState<number | null>(0);
@@ -62,7 +63,8 @@ export const LeagueProfile: React.FC<{ leagueId?: string }> = ({ leagueId }) => 
 
   return (
     <>
-      <div className=" flex justify-center mb-2 ">
+      <div className=" flex justify-center mb-2 flex-col items-center gap-4 py-4">
+        <img src={defaultCrest} alt="Herb" className="w-20 rounded-md p-1 bg-white" />
         <LeagueHeader leagueName={leagueData.name} isLinkEnabled={false} hideArrow={true} leagueId={checkLeagueId} />
       </div>
       <div className="">

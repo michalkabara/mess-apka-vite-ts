@@ -13,9 +13,9 @@ const labels = [
 
 export const PlayerStats: React.FC = () => {
   return (
-    <div className="flex flex-row gap-5 justify-between mt-2 bg-zinc-800 px-4 py-3 rounded-lg">
+    <div className="grid sm:grid-cols-4 grid-cols-2 gap-2 mt-2 rounded-lg w-full">
       {labels.map((label) => (
-        <PlayerStatsSingleStat title={label.title} value={label.value} key={label.title} />
+        <PlayerStatsSingleStat label={label} />
       ))}
     </div>
   );

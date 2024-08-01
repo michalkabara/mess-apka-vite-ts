@@ -12,24 +12,16 @@ export const PlayerInfo: React.FC<Player> = ({
   team,
 }) => {
   return (
-    <div className="flex flex-row text-sm gap-5">
-      <img className="size-36" src={photoUrl || defaultPlayer} alt={name} />
-      <div className="flex flex-col gap-1 text-xs">
+    <div className="flex flex-col text-sm gap-5 items-center py-4">
+      <img className="size-32" src={photoUrl || defaultPlayer} alt={name} />
+      <div className="flex flex-col gap-2 text-sm items-center">
         <p className="text-xl font-semibold">
           {number} {name}
         </p>
-        {/* <p>
-          <span className="">Kraj:</span> {country}
-        </p>
-        <p>
-          <span className="">Wiek:</span> {age}
-        </p> */}
-        <p>
-          <span className="">Klub:</span> <Link to={`/team/${team.id}`}>{team.name}</Link>
-        </p>
-        {/* <p>
-          <span className="">Pozycja:</span> {roles}
-        </p> */}
+
+        <Link to={`/team/${team.id}`} className="flex flex-row gap-2 items-center">
+          <img src={team.logoUrl} alt={team.name} className="bg-white p-[3px] rounded-md w-auto h-6" /> {team.name}
+        </Link>
       </div>
     </div>
   );

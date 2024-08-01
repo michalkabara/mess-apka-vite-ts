@@ -10,8 +10,6 @@ export const VoivodeChildLeagues = () => {
   const [selectedLeague, setSelectedLeague] = useState<League | undefined>();
   const { favouriteLeagues } = useFavouriteLeaguesContext();
 
-  console.log(favouriteLeagues);
-
   useEffect(() => {
     if (isSuccess) {
       setSelectedLeague(data?.[5].childLeagues[3]);
