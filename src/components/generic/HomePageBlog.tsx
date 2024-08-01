@@ -38,6 +38,7 @@ const posts = [
 export const HomePageBlog = () => {
   return (
     <div className="flex flex-col gap-1 bg-zinc-200 dark:bg-zinc-800 bg-opacity-60 dark:bg-opacity-50 rounded-md overflow-hidden">
+      <p className="text-center pt-4 font-bold">️‍️‍🔥Hot News</p>
       {posts.slice(1).map((post) => (
         <Link to={`/post/${post.id}`} key={post.id}>
           <div className="flex flex-row gap-2 p-3 dark:hover:bg-zinc-800 hover:bg-zinc-200 cursor-pointer transition-colors ease-in-out ">

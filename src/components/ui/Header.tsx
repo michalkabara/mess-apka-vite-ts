@@ -28,7 +28,7 @@ export const Header: React.FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevSta
       <div
         className={`${
           isSearchModalOpen ? "opacity-100" : " opacity-0 pointer-events-none"
-        } absolute flex justify-center transition-all duration-300 w-full top-16 z-20 left-[-10px] shadow-lg`}
+        } absolute flex justify-center transition-all duration-300 w-full top-16 z-50 left-[-10px] shadow-lg`}
       >
         <SearchResults />
       </div>

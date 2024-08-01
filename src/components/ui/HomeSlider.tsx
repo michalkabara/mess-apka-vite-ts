@@ -10,9 +10,11 @@ export const HomeSlider = () => {
           <p className="sm:text-sm text-xs mt-2 font-light">Piłkarskie emocje z Trybuna TV</p>
         </div>
 
-        <button className="text-sm py-2 px-3 rounded-md bg-white text-red-600 flex flex-row items-center gap-2">
-          Zobacz <IoIosArrowForward />
-        </button>
+        <a href="https://trybuna.tv" target="_blank">
+          <button className="text-sm py-2 px-3 rounded-md bg-white text-red-600 flex flex-row items-center gap-2">
+            Zobacz <IoIosArrowForward />
+          </button>
+        </a>
       </div>
       <div className="bg-gradient-to-r from-[#ed4535] sm:from-50% from-20% to-transparent absolute w-[470px] h-[200px] z-10"></div>
       <img className="absolute z-0 object-cover h-full w-full" src={sliderImage} alt="" />
