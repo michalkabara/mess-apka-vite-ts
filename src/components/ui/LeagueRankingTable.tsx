@@ -8,7 +8,8 @@ export const LeagueRankingTable: React.FC<{
   leagueId: string | undefined;
   leagueName: string;
   isHeaderShown?: boolean;
-}> = ({ leagueId, leagueName, isHeaderShown = true }) => {
+  teamId?: string;
+}> = ({ leagueId, leagueName, isHeaderShown = true, teamId }) => {
   const { isPending, error, data } = useFetchLeagueTable(leagueId);
 
   if (isPending) return <p>Loading...</p>;
@@ -24,6 +25,13 @@ export const LeagueRankingTable: React.FC<{
         <LeagueRankingTableHeader />
 
         {data.map((team: LeagueTableEntry, index: number) => {
+          if (teamId === team.teamId) {
+            return (
+              <div className="bg-zinc-700 rounded-md" key={team.teamId}>
+                <LeagueRankingTableEntry team={team} index={index} />
+              </div>
+            );
+          }
           return <LeagueRankingTableEntry key={team.teamId} team={team} index={index} />;
         })}
       </div>

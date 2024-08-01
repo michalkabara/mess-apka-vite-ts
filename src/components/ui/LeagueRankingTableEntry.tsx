@@ -12,7 +12,7 @@ export const LeagueRankingTableEntry: React.FC<{ team: LeagueTableEntry; index: 
       <Link
         to={`/team/${team.teamId}`}
         className="w-[170px]
-      sm:w-[220px] flex flex-row items-center gap-3 sticky left-0 dark:bg-zinc-900 dark:group-hover:bg-zinc-800 ease-in-out duration-500 bg-zinc-50 group-hover:bg-zinc-200 max-sm:-translate-x-5 max-sm:pl-5 z-10"
+      sm:w-[215px] flex flex-row items-center gap-3 sticky left-0 dark:bg-transparent dark:group-hover:bg-zinc-800 ease-in-out duration-500 bg-zinc-50 group-hover:bg-zinc-200 max-sm:-translate-x-5 max-sm:pl-5 z-10"
       >
         <div className="w-4 flex justify-center">{index + 1}.</div>
         {team.logoUrl ? (

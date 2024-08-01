@@ -81,9 +81,9 @@ export const TeamProfile: React.FC = () => {
         currentLeagueName={leagueData.name}
       />
 
-      <div className="mt-5">
+      {/* <div className="mt-5">
         <TeamGroupPosition filterTeamId={data.id} leagueId={data.currentLeague} />
-      </div>
+      </div> */}
 
       <div className="">
         <div className="flex flex-row gap-3 mt-5 flex-wrap w-full">
@@ -99,7 +99,11 @@ export const TeamProfile: React.FC = () => {
         </div>
 
         <div className={` mecze mt-5 gap-2 flex-col text-xs  ${selectedTab === 1 ? "flex" : "hidden"}`}>
-          <LeagueRankingTable leagueName={leagueData.name} leagueId={data.currentLeague}></LeagueRankingTable>
+          <LeagueRankingTable
+            teamId={teamId}
+            leagueName={leagueData.name}
+            leagueId={data.currentLeague}
+          ></LeagueRankingTable>
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 0 ? "flex" : "hidden"}`}>

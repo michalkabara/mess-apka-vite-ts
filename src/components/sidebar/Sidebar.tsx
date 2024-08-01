@@ -7,7 +7,9 @@ export const Sidebar: React.FC<{ handleMenuItemClick?: () => void }> = ({ handle
   return (
     <div className="text-zinc-900 dark:text-white text-sm flex flex-col gap-4 sticky top-2 w-full z-10">
       <div className="flex flex-col gap-3">
-        <VoivodeDropdownButton />
+        <div className="hidden sm:grid">
+          <VoivodeDropdownButton />
+        </div>
 
         <NewsButton />
         <FavouriteLeagues handleMenuItemClick={handleMenuItemClick} />

@@ -20,27 +20,32 @@ export const TeamForm: React.FC<{
 
   return (
     <div className="flex flex-row gap-1 relative sm:min-w-[120px] w-auto justify-end">
-      <Link>
-        {/* <Link to={`/game/${tbdGame.id}`} key={`${tbdGame.id}-win`}></Link> */}
-        <div
-          className="rounded-sm bg-gray-400 text-white size-4 text-center leading-tight cursor-pointer"
-          data-tooltip-id="TBA"
-          // data-tooltip-content={`${tbdGameDate} ${
-          //   tbdGame.homeTeamId == teamId ? tbdGame.awayTeam?.name : tbdGame.homeTeam?.name
-          // }`}
-          data-tooltip-place="top"
-        >
-          ?
-          <Tooltip id="TBA" />
-        </div>
-      </Link>
-
       {games.map((game: PartialGame) => {
         // console.log(array);
 
         const gameDate = new Date(game.date ?? 0);
 
         const date = dayjs(gameDate).format("DD.MM.YYYY HH:mm");
+
+        if (game.isFinished === false) {
+          return (
+            <Link to={`/game/${game.id}`} key={`${game.id}-win`}>
+              {/* <Link to={`/game/${tbdGame.id}`} key={`${tbdGame.id}-win`}></Link> */}
+              <div
+                className="rounded-sm bg-gray-400 text-white size-4 text-center leading-tight cursor-pointer"
+                data-tooltip-id="TBA"
+                data-tooltip-html={`<div className="text-center">
+                  <p>${date}</p>
+                  <p>${game.homeTeamId == teamId ? game.awayTeam?.name : game.homeTeam?.name}</p>
+                </div>`}
+                data-tooltip-place="top"
+              >
+                ?
+                <Tooltip id="TBA" />
+              </div>
+            </Link>
+          );
+        }
 
         if (game.homeGoals === game.awayGoals) {
           return (
