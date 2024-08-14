@@ -1,10 +1,11 @@
 import { LeagueHeader } from "./LeagueHeader";
 import { useEffect, useState } from "react";
-import { Pagination } from "@mui/material";
+// import { Pagination } from "@mui/material";
 import { useFetchLeagueRoundCount } from "../../customHooks/fetchLeagueData/useFetchLeagueRoundCount";
 import { useFetchLeagueRoundGames } from "../../customHooks/fetchLeagueData/useFetchLeagueRoundGames";
 import { GameLink } from "../ui/GameLink";
 import { GameLinkSkeleton } from "../skeletons/GameLinkSkeleton";
+import { Pagination } from "./Pagination";
 
 export const ChildLeague: React.FC<{
   leagueId: string;
@@ -54,7 +55,7 @@ export const ChildLeague: React.FC<{
             }`}
           >
             <p className="text-xs sm:absolute left-9">KOLEJKA</p>
-            <Pagination
+            {/* <Pagination
               count={numberOfPages}
               size="small"
               onChange={handleChange}
@@ -72,7 +73,8 @@ export const ChildLeague: React.FC<{
                 div: { color: "white" },
               }}
               className="dark:text-white text-zinc-700"
-            />
+            /> */}
+            <Pagination numberOfPages={numberOfPages} handleChange={handleChange} currentPage={currentPage} />
           </div>
           {status !== "success" && (
             <div

@@ -25,7 +25,7 @@ export const Header: React.FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevSta
         <img src={trybunaLogo} alt="" className="w-32" />
       </Link>
 
-      <div
+      {/* <div
         className={`${
           isSearchModalOpen ? "opacity-100" : " opacity-0 pointer-events-none"
         } absolute flex justify-center transition-all duration-300 w-full top-16 z-50 left-[-10px] shadow-lg`}
@@ -52,15 +52,15 @@ export const Header: React.FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevSta
         onBlur={() => {
           setIsSearchModalOpen(false);
         }}
-      />
+      /> */}
 
       <div className="flex flex-row gap-3 items-center">
-        <Link to="/login">
+        {/* <Link to="/login">
           <button className="flex flex-row gap-2 items-center  bg-[#ed4535] py-2 px-3 rounded-lg text-zinc-100">
             <span className="text-sm">Zaloguj</span>
             <RiUser3Line className="size-4" />
           </button>
-        </Link>
+        </Link> */}
 
         <button
           className="flex flex-row gap-2 items-center bg-zinc-200 dark:bg-zinc-700 justify-center rounded-lg size-9"
