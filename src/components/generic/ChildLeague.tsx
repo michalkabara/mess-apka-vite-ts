@@ -24,7 +24,6 @@ export const ChildLeague: React.FC<{
 
   useEffect(() => {
     setNumberOfPages(leagueRoundCountData);
-    setCurrentPage(leagueRoundCountData);
   }, [leagueRoundCountData]);
 
   if (isPending) return <p>Loading...</p>;

@@ -14,7 +14,7 @@ export const Pagination: React.FC<{
 
   return (
     <nav>
-      <ul className="list-none flex flex-row-reverse gap-1 text-xs items-center">
+      <ul className="list-none flex gap-1 text-xs items-center">
         {items.map(({ page, type, selected, ...item }, index) => {
           let children = null;
 
@@ -33,13 +33,13 @@ export const Pagination: React.FC<{
           } else if (type === "next") {
             children = (
               <button type="button" {...item} className="flex items-center text-xl">
-                <RxCaretLeft />
+                <RxCaretRight />
               </button>
             );
           } else if (type === "previous") {
             children = (
               <button type="button" {...item} className="flex items-center text-xl">
-                <RxCaretRight />
+                <RxCaretLeft />
               </button>
             );
           } else {

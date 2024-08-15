@@ -10,8 +10,11 @@ export const GameLinkWithOutcomeColor: React.FC<{ game: Game; winnerId?: string;
   let gameOutcome;
 
   if (game.winnerId === winnerId) gameOutcome = "dark:bg-green-600 bg-green-500";
-  else if (game.homeGoals === game.awayGoals) gameOutcome = "dark:bg-orange-500 bg-orange-300";
-  else gameOutcome = "dark:bg-red-800 bg-red-500";
+  else if (game.homeGoals === game.awayGoals && game.homeGoals !== null)
+    gameOutcome = "dark:bg-orange-500 bg-orange-300";
+  else if (game.homeGoals === null && game.awayGoals === null) {
+    gameOutcome = "dark:bg-transparent bg-transparent";
+  } else gameOutcome = "dark:bg-red-800 bg-red-500";
 
   return (
     <Link

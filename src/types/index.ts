@@ -23,3 +23,9 @@ export interface PagedResponse<T> {
   pageCount: number;
   totalCount: number;
 }
+
+export interface SearchResultsResponse {
+  players: { id: string; display: string; season: string | null }[];
+  teams: { id: string; display: string; season: string | null }[];
+  leagues: { id: string; display: string; season: string | null }[];
+}

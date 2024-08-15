@@ -3,13 +3,15 @@ import { useFetchLeagueTable } from "../../customHooks/fetchLeagueData/useFetchL
 import { LeagueHeader } from "../generic/LeagueHeader";
 import { LeagueRankingTableHeader } from "./LeagueRankingTableHeader";
 import { LeagueRankingTableEntry } from "./LeagueRankingTableEntry";
+import { PartialGame } from "../../types/gameTypes";
 
 export const LeagueRankingTable: React.FC<{
   leagueId: string | undefined;
   leagueName: string;
   isHeaderShown?: boolean;
   teamId?: string;
-}> = ({ leagueId, leagueName, isHeaderShown = true, teamId }) => {
+  gameData?: PartialGame;
+}> = ({ leagueId, leagueName, isHeaderShown = true, teamId, gameData }) => {
   const { isPending, error, data } = useFetchLeagueTable(leagueId);
 
   if (isPending) return <p>Loading...</p>;
@@ -25,7 +27,7 @@ export const LeagueRankingTable: React.FC<{
         <LeagueRankingTableHeader />
 
         {data.map((team: LeagueTableEntry, index: number) => {
-          if (teamId === team.teamId) {
+          if (teamId === team.teamId || teamId === gameData?.awayTeamId || teamId === gameData?.homeTeamId) {
             return (
               <div className="bg-zinc-700 rounded-md" key={team.teamId}>
                 <LeagueRankingTableEntry team={team} index={index} />

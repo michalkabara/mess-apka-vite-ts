@@ -26,17 +26,15 @@ export const VoivodeshipProfile: React.FC = () => {
       <p className="text-center border-zinc-600 border-b-[1px] pb-3 uppercase text-sm">{voivodeRegions?.name}</p>
       <div className="flex flex-row w-full gap-3 mt-5">
         {voivodeRegions?.childLeagues.map((league: League) => {
-          if (league.childLeagues.length > 2) {
-            return (
-              <SingleTab
-                buttonText={league.name.split("-")[0]}
-                onClick={() => setSelectedLeagueId(league.id)}
-                key={league.id}
-                selectedTab={selectedLeagueId}
-                index={league.id}
-              />
-            );
-          }
+          return (
+            <SingleTab
+              buttonText={league.name.split("-")[0]}
+              onClick={() => setSelectedLeagueId(league.id)}
+              key={league.id}
+              selectedTab={selectedLeagueId}
+              index={league.id}
+            />
+          );
         })}
       </div>
       <div className="mt-5">

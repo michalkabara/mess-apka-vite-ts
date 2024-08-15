@@ -93,7 +93,7 @@ export const GameDetails: FC = () => {
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 2 ? "flex" : "hidden"}`}>
-          <LeagueProfile leagueId={leagueId} />
+          <LeagueProfile isLogoVisible={false} leagueId={leagueId} gameData={data} />
         </div>
 
         <div className={` ${selectedTab === 3 ? "initial" : "hidden"}`}>

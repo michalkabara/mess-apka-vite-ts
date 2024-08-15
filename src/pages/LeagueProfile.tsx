@@ -11,8 +11,13 @@ import { useFetchLeagueRoundGames } from "../customHooks/fetchLeagueData/useFetc
 import { GameLink } from "../components/ui/GameLink";
 import { GameLinkSkeleton } from "../components/skeletons/GameLinkSkeleton";
 import defaultCrest from "../img/crest_default.svg";
+import { PartialGame } from "../types/gameTypes";
 
-export const LeagueProfile: React.FC<{ leagueId?: string }> = ({ leagueId }) => {
+export const LeagueProfile: React.FC<{ leagueId?: string; isLogoVisible?: boolean; gameData?: PartialGame }> = ({
+  leagueId,
+  isLogoVisible,
+  gameData,
+}) => {
   const [selectedTab, setSelecteTab] = useState<number | null>(0);
   const { leagueId: routeLeagueId } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -64,7 +69,7 @@ export const LeagueProfile: React.FC<{ leagueId?: string }> = ({ leagueId }) => 
   return (
     <>
       <div className=" flex justify-center mb-2 flex-col items-center gap-4 py-4">
-        <img src={defaultCrest} alt="Herb" className="w-20 rounded-md p-1 bg-white" />
+        {isLogoVisible ? <img src={defaultCrest} alt="Herb" className="w-20 rounded-md p-1 bg-white" /> : ""}
         <LeagueHeader leagueName={leagueData.name} isLinkEnabled={false} hideArrow={true} leagueId={checkLeagueId} />
       </div>
       <div className="">
@@ -85,6 +90,7 @@ export const LeagueProfile: React.FC<{ leagueId?: string }> = ({ leagueId }) => 
             leagueName={leagueData.name}
             leagueId={checkLeagueId}
             isHeaderShown={false}
+            gameData={gameData}
           ></LeagueRankingTable>
         </div>
 

@@ -10,7 +10,6 @@ export const Header: React.FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevSta
   setIsDarkModeOn,
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
-
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
 
   const toggleDarkMode = () => {
@@ -25,18 +24,18 @@ export const Header: React.FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevSta
         <img src={trybunaLogo} alt="" className="w-32" />
       </Link>
 
-      {/* <div
+      <div
         className={`${
           isSearchModalOpen ? "opacity-100" : " opacity-0 pointer-events-none"
         } absolute flex justify-center transition-all duration-300 w-full top-16 z-50 left-[-10px] shadow-lg`}
       >
-        <SearchResults />
+        <SearchResults searchQuery={searchQuery} setIsSearchModalOpen={setIsSearchModalOpen} />
       </div>
 
       <input
         type="text"
         placeholder="Szukaj"
-        className="max-[480px]:hidden border w-[400px] px-2 py-1 rounded-md placeholder:text-white  border-[#ed4535] bg-[#c53528] dark:placeholder:text-zinc-200 placeholder:text-sm"
+        className="max-[480px]:hidden border w-[400px] text-xs px-2 py-2 rounded-md placeholder:text-white  border-[#ed4535] bg-[#c53528] dark:placeholder:text-zinc-200 placeholder:text-xs"
         onFocus={() => {
           if (searchQuery) {
             setIsSearchModalOpen(true);
@@ -49,10 +48,8 @@ export const Header: React.FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevSta
         onInput={() => {
           setIsSearchModalOpen(true);
         }}
-        onBlur={() => {
-          setIsSearchModalOpen(false);
-        }}
-      /> */}
+        onMouseDown={() => setIsSearchModalOpen(false)}
+      />
 
       <div className="flex flex-row gap-3 items-center">
         {/* <Link to="/login">
