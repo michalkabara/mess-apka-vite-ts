@@ -1,11 +1,11 @@
 import usePagination from "@mui/material/usePagination/usePagination";
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 
-export const Pagination: React.FC<{ numberOfPages: number; handleChange: () => void; currentPage: number }> = ({
-  numberOfPages,
-  handleChange,
-  currentPage,
-}) => {
+export const Pagination: React.FC<{
+  numberOfPages: number | undefined;
+  handleChange: () => void;
+  currentPage: number;
+}> = ({ numberOfPages, handleChange, currentPage }) => {
   const { items } = usePagination({
     count: numberOfPages,
     onChange: handleChange,
