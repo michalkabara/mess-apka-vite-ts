@@ -46,6 +46,7 @@ const SearchModal: React.FC<ModalType> = ({ open, onClose, setIsSearchModalOpen 
           onChange={(e) => {
             setSearchQuery(e.target.value);
           }}
+          value={searchQuery}
         />
         <button className="text-xl" onClick={() => setIsSearchModalOpen(false)}>
           <IoClose />

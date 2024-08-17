@@ -27,7 +27,7 @@ export const LeagueRankingTable: React.FC<{
         <LeagueRankingTableHeader />
 
         {data.map((team: LeagueTableEntry, index: number) => {
-          if (teamId === team.teamId || teamId === gameData?.awayTeamId || teamId === gameData?.homeTeamId) {
+          if (teamId === team.teamId) {
             return (
               <div className="bg-zinc-700 rounded-md" key={team.teamId}>
                 <LeagueRankingTableEntry team={team} index={index} />
