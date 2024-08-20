@@ -3,6 +3,8 @@ import { LuSun, LuMoon } from "react-icons/lu";
 import { RiUser3Line } from "react-icons/ri";
 import { useState } from "react";
 import trybunaLogo from "../../img/trybuna_tv_logo_white.png";
+import hotscoreLogo from "../../img/hotscore_logo_white.png";
+
 import { IoSearchSharp } from "react-icons/io5";
 import SearchModal from "./SearchModal";
 
@@ -21,7 +23,7 @@ export const Header: React.FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevSta
       className={`flex items-center justify-between py-2 px-5 text-zinc-800 dark:text-white gap-7 w-full max-w-[1200px]`}
     >
       <Link to={""}>
-        <img src={trybunaLogo} alt="" className="w-32" />
+        <img src={hotscoreLogo} alt="" className="w-32" />
       </Link>
 
       <div
