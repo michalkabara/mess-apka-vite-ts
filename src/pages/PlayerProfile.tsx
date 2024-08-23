@@ -5,19 +5,33 @@ import { useFetchTeamGames } from "../customHooks/fetchTeamData/useFetchTeamGame
 import { PlayerStats } from "../components/playerProfile/PlayerStats";
 import { FC } from "react";
 import { PlayerInfo } from "../components/playerProfile/PlayerInfo";
+import { GameLinkWithOutcomeColor } from "../components/ui/GameLinkWithOutcomeColor";
+import { useFetchPlayerGames } from "../customHooks/useFetchPlayerGames";
+import { Game } from "../types/gameTypes";
 
 export const PlayerProfile: FC = () => {
   const { playerId } = useParams();
-
   const { isPending, error, data } = useFetchPlayerData(playerId);
+  // const { isPending: isTeamPending, error: teamError, data: teamData } = useFetchTeamData(data?.team.id);
+  const { isPending: playerGamesPending, error: playerGamesError, data: playerGames } = useFetchPlayerGames(playerId);
+  const { isPending: teamGamesPending, error: teamGamesError, data: teamGamesData } = useFetchTeamGames(data?.team.id);
 
-  const { isPending: isTeamPending, error: teamError, data: teamData } = useFetchTeamData(data?.teamId);
+  if (isPending || playerGamesPending || teamGamesPending) return <p>Loading...</p>;
+  if (error ?? playerGamesError ?? teamGamesError) return <p>An error has occurred {error?.message}</p>;
 
-  const { isPending: isTeamGamesPending, error: teamGamesError, data: teamGamesData } = useFetchTeamGames(data?.teamId);
+  // const playerHomeGames = teamGamesData.data.filter((game) =>
+  //   game.homePlayers?.find((player) => player.name === data.name)
+  // );
 
-  if (isPending || isTeamPending || isTeamGamesPending) return <p>Loading...</p>;
+  // const playerAwayGames = teamGamesData.data.filter((game) =>
+  //   game.awayPlayers?.find((player) => player.name === data.name)
+  // );
 
-  if (error ?? teamError ?? teamGamesError) return <p>An error has occurred {error?.message}</p>;
+  // const playerGames = [...playerHomeGames, ...playerAwayGames].sort((a, b) => {
+  //   let da = new Date(a.date);
+  //   let db = new Date(b.date);
+  //   return db - da;
+  // });
 
   return (
     <>
@@ -54,6 +68,24 @@ export const PlayerProfile: FC = () => {
       </div>
       <div>
         <h2 className="text-xs uppercase py-3 border-b-[1px] border-zinc-600">Ostatnie mecze</h2>
+        <div
+          className={`mecze mt-2 flex flex-col gap-1 text-xs relative transition-all duration-500 ease-in-out overflow-hidden`}
+        >
+          {playerGames
+            .map((game) => {
+              const teamGamesFiltered = teamGamesData.data.find((teamGame: Game) => teamGame.id === game.matchId);
+              console.log(teamGamesFiltered);
+              return teamGamesFiltered;
+            })
+            .map((game, index) => {
+              if (game)
+                return (
+                  <div key={game?.id} className="flex flex-col items-center">
+                    <GameLinkWithOutcomeColor game={game} index={index} winnerId={data?.team.id} />
+                  </div>
+                );
+            })}
+        </div>
       </div>
     </>
   );

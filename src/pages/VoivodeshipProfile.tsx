@@ -17,9 +17,9 @@ export const VoivodeshipProfile: React.FC = () => {
 
   const filteredData = voivodeRegions?.childLeagues.find((league) => league.id === selectedLeagueId);
 
-  useEffect(() => {
-    setSelectedLeagueId(voivodeRegions?.childLeagues[1].id);
-  }, []);
+  // useEffect(() => {
+  //   setSelectedLeagueId(voivodeRegions?.childLeagues[1].id);
+  // }, []);
 
   return (
     <>

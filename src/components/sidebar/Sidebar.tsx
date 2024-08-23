@@ -13,7 +13,9 @@ export const Sidebar: React.FC<{ handleMenuItemClick?: () => void }> = ({ handle
 
         <NewsButton />
         <FavouriteLeagues handleMenuItemClick={handleMenuItemClick} />
-        <FavouriteTeams handleMenuItemClick={handleMenuItemClick} />
+        <div className="mt-3">
+          <FavouriteTeams handleMenuItemClick={handleMenuItemClick} />
+        </div>
       </div>
     </div>
   );

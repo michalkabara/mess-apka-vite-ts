@@ -17,9 +17,7 @@ import { DateDisplay } from "../components/ui/DateDisplay";
 
 export const GameDetails: FC = () => {
   const { gameId } = useParams();
-
   const { isPending, error, data } = useFetchSingleGame(gameId);
-
   const leagueId = data?.leagueId;
 
   const {
@@ -43,15 +41,12 @@ export const GameDetails: FC = () => {
   });
 
   const [searchParams, setSearchParams] = useSearchParams();
-
   const [selectedTab, setSelecteTab] = useState<number>(parseInt(searchParams.get("page") ?? "0"));
 
   if (isPending || areHomeTeamGamesPending || areAwayTeamGamesPending) return <p>Loading...</p>;
-
   if (error ?? HomeTeamGamesError ?? AwayTeanGamesError) return <p>An error has occurred {error?.message}</p>;
 
   const gameDate = new Date(data.date);
-
   const tabs: { name: string }[] = [{ name: "Mecz" }, { name: "H2H" }, { name: "Tabela" }, { name: "Składy" }];
 
   const selectTabAndChangeUrl = (index: number) => {
@@ -61,9 +56,10 @@ export const GameDetails: FC = () => {
 
   return (
     <div className="flex items-center flex-col">
-      <p>
+      <p className="text-sm">
         <DateDisplay gameDate={gameDate} />
       </p>
+      <p className="text-xs mt-2 font-semibold text-white">Kolejka {data.round}</p>
 
       <GameDetailsTeams data={data} />
 

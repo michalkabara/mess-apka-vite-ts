@@ -11,8 +11,6 @@ export const TeamPlayers: React.FC<{
         <div className="w-9"></div>
         <div className="w-32">Imię i Nazwisko</div>
         <div className="w-9 flex justify-center">numer</div>
-        <div className="w-9 flex justify-center">wiek</div>
-        <div className="w-9 flex justify-center">noga</div>
       </div>
       {team.map((player) => (
         <Link
@@ -37,8 +35,6 @@ export const TeamPlayers: React.FC<{
               {player.name}
             </div>
             <div className="w-9 flex justify-center">{player.number}</div>
-            <div className="w-9 flex justify-center">wiek</div>
-            <div className="w-9 flex justify-center">noga</div>
           </div>
         </Link>
       ))}

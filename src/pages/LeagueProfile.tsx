@@ -4,7 +4,7 @@ import { useFetchLeagueData } from "../customHooks/fetchLeagueData/useFetchLeagu
 import { LeagueHeader } from "../components/generic/LeagueHeader";
 import { useEffect, useState } from "react";
 import { SingleTab } from "../components/generic/SingleTab";
-import { LeagueRankingTable } from "../components/ui/LeagueRankingTable";
+import { LeagueRankingTable } from "../components/leagueProfile/LeagueRankingTable";
 import { Pagination } from "@mui/material";
 import { useFetchLeagueRoundCount } from "../customHooks/fetchLeagueData/useFetchLeagueRoundCount";
 import { useFetchLeagueRoundGames } from "../customHooks/fetchLeagueData/useFetchLeagueRoundGames";
@@ -12,10 +12,11 @@ import { GameLink } from "../components/ui/GameLink";
 import { GameLinkSkeleton } from "../components/skeletons/GameLinkSkeleton";
 import defaultCrest from "../img/crest_default.svg";
 import { PartialGame } from "../types/gameTypes";
+import { LeagueStats } from "../components/leagueProfile/LeagueStats";
 
 export const LeagueProfile: React.FC<{ leagueId?: string; isLogoVisible?: boolean; gameData?: PartialGame }> = ({
   leagueId,
-  isLogoVisible,
+  isLogoVisible = true,
   gameData,
 }) => {
   const [selectedTab, setSelecteTab] = useState<number | null>(0);
@@ -55,7 +56,12 @@ export const LeagueProfile: React.FC<{ leagueId?: string; isLogoVisible?: boolea
   if (leagueError ?? gamesError ?? leagueRoundCountError)
     return <p>An error has occurred {leagueRoundCountError?.message}</p>;
 
-  const tabs: { name: string }[] = [{ name: "Tabela" }, { name: "Wyniki" }, { name: "Nadchodzące mecze" }];
+  const tabs: { name: string }[] = [
+    { name: "Tabela" },
+    { name: "Wyniki" },
+    { name: "Statystyki" },
+    { name: "Nadchodzące mecze" },
+  ];
 
   const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value);
@@ -135,6 +141,10 @@ export const LeagueProfile: React.FC<{ leagueId?: string; isLogoVisible?: boolea
               <GameLink game={game} index={index} />
             </div>
           ))}
+        </div>
+
+        <div className={`mt-2 gap-1 flex flex-col text-xs  ${selectedTab === 2 ? "flex" : "hidden"}`}>
+          <LeagueStats leagueId={checkLeagueId} />
         </div>
 
         {/* <div className={` wyniki mt-2 gap-1 flex flex-col text-xs ${selectedTab === 2 ? "flex" : "hidden"}`}>

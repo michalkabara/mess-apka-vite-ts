@@ -39,7 +39,10 @@ export const Header: React.FC<{ isDarkModeOn: boolean; setIsDarkModeOn: (prevSta
             <RiUser3Line className="size-4" />
           </button>
         </Link> */}
-        <button className="text-xs flex flex-row items-center gap-3" onClick={() => setIsSearchModalOpen(true)}>
+        <button
+          className="text-xs flex flex-row items-center gap-3 text-white "
+          onClick={() => setIsSearchModalOpen(true)}
+        >
           <IoSearchSharp className="text-lg" />
           Szukaj
         </button>

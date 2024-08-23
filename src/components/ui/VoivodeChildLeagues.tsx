@@ -21,14 +21,6 @@ export const VoivodeChildLeagues = () => {
 
   let filterVoivode: League | undefined;
 
-  const childLeaguesOrder = [
-    data?.[5].childLeagues[0],
-    data?.[5].childLeagues[4],
-    data?.[5].childLeagues[3],
-    data?.[5].childLeagues[1],
-    data?.[5].childLeagues[2],
-  ];
-
   const handleChangeChildLeague = (id: string | undefined) => {
     filterVoivode = data?.[5].childLeagues.find((league) => league.id === id);
     setSelectedLeague(filterVoivode);
@@ -38,7 +30,7 @@ export const VoivodeChildLeagues = () => {
     <>
       <h3 className="text-center mb-5">{data?.[5]?.name}</h3>
       <VoivodeTabs
-        childLeagues={childLeaguesOrder}
+        childLeagues={data?.[5].childLeagues}
         onClick={handleChangeChildLeague}
         selectedLeagueId={selectedLeague?.id}
       />

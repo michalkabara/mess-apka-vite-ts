@@ -1,3 +1,6 @@
+// const parser = new DOMParser();
+// const parsedLabel = parser.parseFromString(field.label, "text/html");
+
 export const BlogPost: React.FC<{ postImg?: string; postTitle?: string; postText?: string }> = ({
   postImg,
   postTitle,
@@ -13,11 +16,25 @@ export const BlogPost: React.FC<{ postImg?: string; postTitle?: string; postText
         }
         alt={postTitle}
       />
-      <h1 className="font-bold text-xl">Lorem ipsum dolor sit amet</h1>
-      <p className="text-justify text-xs leading-5">
-        {postText ||
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates doloremque cumque, magni praesentium dolor accusantium beatae, minima inventore obcaecati quo est ratione blanditiis autem error eaque rerum omnis culpa repellendus."}
-      </p>
+      <h1 className="font-semibold text-white text-xl">🔥 HotScore ruszył</h1>
+      <div className="text-justify text-xs leading-6">
+        <p>
+          Piłka nożna to nie tylko Ekstraklasa i największe europejskie ligi. Prawdziwe emocje często rozgrywają się na
+          lokalnych boiskach, gdzie drużyny rywalizują o każdy punkt, każdą bramkę i każdy awans. Właśnie z myślą o tych
+          pasjonujących rozgrywkach stworzyliśmy nową platformę, która dostarczy Wam najświeższe informacje prosto z
+          murawy!
+        </p>
+        <p className="mt-4">
+          Dzięki naszej platformie te emocje są teraz na wyciągnięcie ręki. Możesz śledzić wyniki, statystyki, oglądać
+          zdjęcia i wideo oraz dołączyć do grona kibiców, którzy dzielą się swoimi wrażeniami. To doskonały sposób na
+          to, by być na bieżąco z tym, co dzieje się w lokalnym futbolu.
+        </p>
+
+        <p className="mt-4">
+          Nie czekaj – dołącz do nas już dziś i zanurz się w świecie lokalnego futbolu na najwyższym poziomie. Razem
+          kibicujmy drużynom, które z pełnym zaangażowaniem walczą na boiskach niższych lig 🔥
+        </p>
+      </div>
     </div>
   );
 };

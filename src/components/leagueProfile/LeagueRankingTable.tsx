@@ -1,9 +1,10 @@
 import { LeagueTableEntry } from "../../types/leagueTypes";
 import { useFetchLeagueTable } from "../../customHooks/fetchLeagueData/useFetchLeagueTable";
 import { LeagueHeader } from "../generic/LeagueHeader";
+
+import { PartialGame } from "../../types/gameTypes";
 import { LeagueRankingTableHeader } from "./LeagueRankingTableHeader";
 import { LeagueRankingTableEntry } from "./LeagueRankingTableEntry";
-import { PartialGame } from "../../types/gameTypes";
 
 export const LeagueRankingTable: React.FC<{
   leagueId: string | undefined;

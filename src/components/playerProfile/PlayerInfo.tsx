@@ -2,15 +2,7 @@ import { Link } from "react-router-dom";
 import defaultPlayer from "../../img/default_player.png";
 import { Player } from "../../types";
 
-export const PlayerInfo: React.FC<Player> = ({
-  photoUrl,
-  name,
-  roles,
-  country = "Poland",
-  age = "21",
-  number,
-  team,
-}) => {
+export const PlayerInfo: React.FC<Player> = ({ photoUrl, name, number, team }) => {
   return (
     <div className="flex flex-col text-sm gap-5 items-center py-4">
       <img className="size-32" src={photoUrl || defaultPlayer} alt={name} />

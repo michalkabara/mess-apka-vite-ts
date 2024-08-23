@@ -12,6 +12,13 @@ export const GameDetailsEntry: React.FC<{ event: GameEvent }> = ({ event }) => {
     eventTypeIcon = <TbRectangleVerticalFilled className="text-red-600" />;
   } else if (event.eventType === GameEventType.Goal) {
     eventTypeIcon = <IoMdFootball />;
+  } else if (event.eventType === GameEventType.SecondYellowCard) {
+    eventTypeIcon = (
+      <span className="flex">
+        <TbRectangleVerticalFilled className="text-yellow-400" />
+        <TbRectangleVerticalFilled className="text-red-600" />
+      </span>
+    );
   }
 
   return (

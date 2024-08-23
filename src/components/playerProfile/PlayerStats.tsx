@@ -15,7 +15,7 @@ export const PlayerStats: React.FC = () => {
   return (
     <div className="grid sm:grid-cols-4 grid-cols-2 gap-2 mt-2 rounded-lg w-full">
       {labels.map((label) => (
-        <PlayerStatsSingleStat label={label} />
+        <PlayerStatsSingleStat label={label} key={label.title} />
       ))}
     </div>
   );

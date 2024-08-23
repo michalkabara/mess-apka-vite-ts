@@ -12,6 +12,7 @@ export enum GameEventType {
   OwnGoal,
   Penalty,
   SubInOut,
+  SecondYellowCard,
 }
 
 export interface GameEvent {

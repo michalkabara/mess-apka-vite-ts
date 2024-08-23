@@ -30,3 +30,24 @@ export interface LegueHeaderType {
   isLinkEnabled?: boolean;
   hideArrow?: boolean;
 }
+
+export interface LeagueStatPlayer {
+  id: string;
+  name: string;
+  teamId: string;
+  teamName: string;
+  teamLogoUrl: string;
+  value: number;
+}
+
+export interface LeagueStats {
+  leagueId: string;
+  homeWins: number;
+  awayWins: number;
+  draws: number;
+  homeGoals: number;
+  awayGoals: number;
+  topScorers: LeagueStatPlayer[];
+  topYellowCards: LeagueStatPlayer[];
+  topRedCards: LeagueStatPlayer[];
+}
