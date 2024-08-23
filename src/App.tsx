@@ -12,23 +12,24 @@ import { HomePageBlog } from "./components/generic/HomePageBlog";
 import { HomeSlider } from "./components/ui/HomeSlider";
 
 function App() {
-  const [isDarkModeOn, setIsDarkModeOn] = useState(false);
+  const [isDarkModeOn, setIsDarkModeOn] = useState(true);
   const { pathname } = useLocation();
 
   useEffect(() => {
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-    if (prefersDark) {
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
       setIsDarkModeOn(true);
+    } else {
+      document.documentElement.classList.remove("dark");
+      setIsDarkModeOn(false);
     }
   }, []);
 
   return (
-    <div
-      className={`${
-        isDarkModeOn ? "dark bg-zinc-900" : "bg-zinc-100"
-      } m-auto relative overflow-auto flex flex-col min-h-[100vh]`}
-    >
+    <div className={"dark:bg-zinc-900 bg-zinc-100 m-auto relative overflow-auto flex flex-col min-h-[100vh]"}>
       <header className="bg-[#ed4535] flex flex-col items-center">
         <Header isDarkModeOn={isDarkModeOn} setIsDarkModeOn={setIsDarkModeOn} />
       </header>

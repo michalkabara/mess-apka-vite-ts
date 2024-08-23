@@ -34,7 +34,7 @@ const SearchModal: React.FC<ModalType> = ({ open, onClose, setIsSearchModalOpen 
 
   return createPortal(
     <dialog
-      className="modal mt-[15%] md:w-1/3 sm:w-4/5 w-[95%] p-8 rounded-md dark:bg-zinc-800 bg-zinc-100  text-zinc-800 backdrop:bg-black/50"
+      className="modal mt-[5%] md:w-2/4 sm:w-4/5 w-[95%] p-8 rounded-md dark:bg-zinc-800 bg-zinc-100  text-zinc-800 backdrop:bg-black/50"
       ref={dialog}
       onClose={onClose}
     >
@@ -42,13 +42,13 @@ const SearchModal: React.FC<ModalType> = ({ open, onClose, setIsSearchModalOpen 
         <input
           type="text"
           placeholder="Szukaj"
-          className="border w-full text-xs p-3 rounded-md placeholder:text-white dark:placeholder:text-zinc-200 placeholder:text-xs border-zinc-400 bg-zinc-200 dark:border-zinc-600 dark:bg-zinc-800"
+          className="border w-full text-xs p-3 rounded-md placeholder:text-white dark:placeholder:text-white placeholder:text-xs dark:text-white border-zinc-400 bg-zinc-200 dark:border-zinc-600 dark:bg-zinc-800"
           onChange={(e) => {
             setSearchQuery(e.target.value);
           }}
           value={searchQuery}
         />
-        <button className="text-xl" onClick={() => setIsSearchModalOpen(false)}>
+        <button className="text-xl dark:text-white text-zinc-800" onClick={() => setIsSearchModalOpen(false)}>
           <IoClose />
         </button>
       </div>
@@ -60,7 +60,12 @@ const SearchModal: React.FC<ModalType> = ({ open, onClose, setIsSearchModalOpen 
             <span className={`dark:text-green-400 text-green-500 font-semibold`}>Drużyna: </span>
             <div className="flex flex-col gap-3 mt-3 text-xs">
               {data?.teams?.map((team) => (
-                <Link to={`/team/${team.id}`} key={team.id} onClick={handleItemClick}>
+                <Link
+                  className="dark:text-white text-zinc-800"
+                  to={`/team/${team.id}`}
+                  key={team.id}
+                  onClick={handleItemClick}
+                >
                   {team.display} {team?.season}
                 </Link>
               ))}
@@ -75,7 +80,12 @@ const SearchModal: React.FC<ModalType> = ({ open, onClose, setIsSearchModalOpen 
             <span className="text-blue-400">Zawodnik: </span>
             <div className="flex flex-col gap-3 mt-3 text-xs">
               {data?.players?.map((player) => (
-                <Link to={`/player/${player.id}`} key={player.id} onClick={handleItemClick}>
+                <Link
+                  className="dark:text-white text-zinc-800"
+                  to={`/player/${player.id}`}
+                  key={player.id}
+                  onClick={handleItemClick}
+                >
                   {player.display} {player?.season}
                 </Link>
               ))}
@@ -89,7 +99,12 @@ const SearchModal: React.FC<ModalType> = ({ open, onClose, setIsSearchModalOpen 
             <span className="text-orange-400">Liga: </span>
             <div className="flex flex-col gap-3 mt-3 text-xs">
               {data?.leagues?.map((league) => (
-                <Link to={`/league/${league.id}`} key={league.id} onClick={handleItemClick}>
+                <Link
+                  className="dark:text-white text-zinc-800"
+                  to={`/league/${league.id}`}
+                  key={league.id}
+                  onClick={handleItemClick}
+                >
                   {league.display}
                 </Link>
               ))}
