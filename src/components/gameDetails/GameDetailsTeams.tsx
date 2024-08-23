@@ -4,7 +4,7 @@ import { PartialGame } from "../../types/gameTypes";
 
 export const GameDetailsTeams: React.FC<{ data: PartialGame }> = ({ data }) => {
   return (
-    <div className="grid grid-cols-5 gap-1 md:gap-5  mt-7 items-start justify-items-center">
+    <div className="grid grid-cols-5 gap-1 md:gap-5 mt-7 items-start justify-items-center relative">
       <div className="translate-y-3 sm:translate-y-10 sm:translate-x-12">
         {data.homeTeam ? (
           <LikeTeamButton teamId={data.homeTeam.id} teamName={data.homeTeam.name}></LikeTeamButton>
@@ -21,7 +21,7 @@ export const GameDetailsTeams: React.FC<{ data: PartialGame }> = ({ data }) => {
         </div>
       </Link>
 
-      <span className="text-center font-semibold text-nowrap sm:text-2xl md:text-4xl flex justify-center h-full items-center -translate-y-3">
+      <span className="text-center font-semibold text-nowrap sm:text-2xl md:text-4xl m-auto sm:-translate-y-3 -translate-y-5">
         {data.homeGoals} - {data.awayGoals}
       </span>
 
