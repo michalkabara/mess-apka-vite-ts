@@ -34,7 +34,7 @@ const SearchModal: React.FC<ModalType> = ({ open, onClose, setIsSearchModalOpen 
 
   return createPortal(
     <dialog
-      className="modal mt-[5%] md:w-2/4 sm:w-4/5 w-[95%] p-8 rounded-md dark:bg-zinc-800 bg-zinc-100  text-zinc-800 backdrop:bg-black/50"
+      className="modal mt-[5%] lg:w-2/5 md:w-2/3 sm:w-4/5 w-[95%] p-8 rounded-md dark:bg-zinc-800 bg-zinc-100  text-zinc-800 backdrop:bg-black/50"
       ref={dialog}
       onClose={onClose}
     >

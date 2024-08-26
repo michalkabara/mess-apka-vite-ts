@@ -5,7 +5,7 @@ import { LeagueHeader } from "../components/generic/LeagueHeader";
 import { useEffect, useState } from "react";
 import { SingleTab } from "../components/generic/SingleTab";
 import { LeagueRankingTable } from "../components/leagueProfile/LeagueRankingTable";
-import { Pagination } from "@mui/material";
+import { Pagination } from "../components/generic/Pagination";
 import { useFetchLeagueRoundCount } from "../customHooks/fetchLeagueData/useFetchLeagueRoundCount";
 import { useFetchLeagueRoundGames } from "../customHooks/fetchLeagueData/useFetchLeagueRoundGames";
 import { GameLink } from "../components/ui/GameLink";
@@ -101,27 +101,9 @@ export const LeagueProfile: React.FC<{ leagueId?: string; isLogoVisible?: boolea
         </div>
 
         <div className={` wyniki mt-2 gap-1 flex flex-col text-xs  ${selectedTab === 1 ? "flex" : "hidden"}`}>
-          <div className="mt-2 sm:flex-row flex flex-col gap-1 dark:text-gray-50 dark:bg-zinc-800 rounded-md p-1 bottom-0 w-full duration-500 ease-in-out justify-center items-center px-3 relative">
+          <div className="mt-2 sm:flex-row flex flex-col gap-1 dark:text-gray-50 dark:bg-zinc-800 bg-zinc-50 rounded-md p-1 bottom-0 w-full duration-500 ease-in-out justify-center items-center px-3 relative">
             <p className="text-xs sm:absolute left-3">KOLEJKA</p>
-            <Pagination
-              count={numberOfPages}
-              size="small"
-              onChange={handleChange}
-              page={currentPage}
-              sx={{
-                button: {
-                  color: "#ffffff",
-                  fontSize: "12px",
-                  height: "24px",
-                  width: "24px",
-                  minWidth: "22px",
-                  paddingTop: "3px",
-                },
-                ".Mui-selected": { backgroundColor: "rgb(255 255 255 / 12%)!important" },
-                div: { color: "white" },
-              }}
-              className="dark:text-white text-zinc-700"
-            />
+            <Pagination numberOfPages={numberOfPages} handleChange={handleChange} currentPage={currentPage} />
           </div>
           {gameDataStatus !== "success" && (
             <div

@@ -59,7 +59,7 @@ export const GameDetails: FC = () => {
       <p className="text-sm">
         <DateDisplay gameDate={gameDate} />
       </p>
-      <p className="text-xs mt-2 font-semibold text-white">Kolejka {data.round}</p>
+      <p className="text-xs mt-2 font-semibold dark:text-white">Kolejka {data.round}</p>
 
       <GameDetailsTeams data={data} />
 

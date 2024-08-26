@@ -59,7 +59,7 @@ export const PlayerProfile: FC = () => {
               </select>
             </div>
           </div>
-          <PlayerStats />
+          <PlayerStats player={data} />
         </div>
       </div>
 
@@ -74,7 +74,6 @@ export const PlayerProfile: FC = () => {
           {playerGames
             .map((game) => {
               const teamGamesFiltered = teamGamesData.data.find((teamGame: Game) => teamGame.id === game.matchId);
-              console.log(teamGamesFiltered);
               return teamGamesFiltered;
             })
             .map((game, index) => {

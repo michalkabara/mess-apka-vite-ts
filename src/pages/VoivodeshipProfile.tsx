@@ -24,7 +24,7 @@ export const VoivodeshipProfile: React.FC = () => {
   return (
     <>
       <p className="text-center border-zinc-600 border-b-[1px] pb-3 uppercase text-sm">{voivodeRegions?.name}</p>
-      <div className="flex flex-row w-full gap-3 mt-5">
+      <div className="flex sm:flex-row w-full gap-3 mt-5 flex-col">
         {voivodeRegions?.childLeagues.map((league: League) => {
           return (
             <SingleTab

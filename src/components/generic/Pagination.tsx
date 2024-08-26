@@ -24,7 +24,7 @@ export const Pagination: React.FC<{
             children = (
               <button
                 type="button"
-                className={`size-6 ${selected ? "rounded-full bg-zinc-50 bg-opacity-10" : ""}`}
+                className={`size-6 ${selected ? "rounded-full dark:bg-zinc-50/10 bg-zinc-500/15" : ""}`}
                 {...item}
               >
                 {page}
