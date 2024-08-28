@@ -14,7 +14,7 @@ export const FeaturedGame = () => {
   const gameDate = new Date(data.date);
 
   return (
-    <div className="bg-white dark:bg-zinc-800 bg-opacity-60 dark:bg-opacity-50 rounded-lg p-5 text-zinc-700 dark:text-white flex flex-col items-center gap-5">
+    <div className="bg-white dark:bg-zinc-800 dark:bg-opacity-50 rounded-lg p-5 text-zinc-700 dark:text-white flex flex-col items-center gap-5">
       <h3 className="font-bold">Wyróżniony mecz</h3>
 
       <div className="grid grid-cols-3 gap-2 items-start">
