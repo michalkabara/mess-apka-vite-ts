@@ -7,8 +7,6 @@ export const GameDetailsPlayers: React.FC<{
   awayTeamPlayers: Player[] | undefined;
   referees: string[];
 }> = ({ homeTeamPlayers, awayTeamPlayers, referees }) => {
-  console.log(referees);
-
   return (
     <div className="w-full mt-5 flex flex-col items-center text-xs">
       <h3 className="text-center uppercase text-xs">sklady wyjsciowe</h3>
