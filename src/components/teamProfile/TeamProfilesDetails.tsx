@@ -32,7 +32,7 @@ export const TeamProfileDetails: React.FC<{
             </Link>
           </p>
         </div>
-        <div className="flex flex-row gap-2 text-2xl">
+        {/* <div className="flex flex-row gap-2 text-2xl">
           <a href="">
             <FaSquareFacebook />
           </a>
@@ -49,7 +49,7 @@ export const TeamProfileDetails: React.FC<{
           <a href="" rel="nofollow">
             <IoGlobeOutline />
           </a>
-        </div>
+        </div> */}
       </div>
     </div>
   );

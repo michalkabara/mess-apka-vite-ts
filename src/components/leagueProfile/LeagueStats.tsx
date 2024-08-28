@@ -12,10 +12,10 @@ export const LeagueStats: React.FC<{ leagueId: string | undefined }> = ({ league
     <>
       <div className="grid sm:grid-cols-3 grid-cols-2 gap-2 mt-2 w-full">
         <LeagueSingleStat label={{ title: "Wygrane u siebie", value: data?.homeWins }} />
-        <LeagueSingleStat label={{ title: "Gole u siebie", value: data?.homeGoals }} />
-        <LeagueSingleStat label={{ title: "Wygrane na wyjeździe", value: data?.awayWins }} />
-        <LeagueSingleStat label={{ title: "Gole na wyjeździe", value: data?.awayGoals }} />
         <LeagueSingleStat label={{ title: "Remisy", value: data?.draws }} />
+        <LeagueSingleStat label={{ title: "Wygrane na wyjeździe", value: data?.awayWins }} />
+        <LeagueSingleStat label={{ title: "Gole u siebie", value: data?.homeGoals }} />
+        <LeagueSingleStat label={{ title: "Gole na wyjeździe", value: data?.awayGoals }} />
       </div>
 
       <div>

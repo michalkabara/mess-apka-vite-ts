@@ -47,6 +47,12 @@ export interface Game {
   homeTeam?: Team;
   homePlayers?: Player[];
   awayPlayers?: Player[];
+  mainRefereeName: string;
+  assistantRefereeName: string;
+  secondAssistantRefereeName: string;
+  observerName: string;
+  trybunaTvWatchLink: string;
+  stadiumName: string;
 }
 
 export type PartialGame = Partial<Game>;

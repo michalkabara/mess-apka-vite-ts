@@ -13,7 +13,7 @@ const posts = [
 
 export const HomePageBlog = () => {
   return (
-    <div className="flex flex-col gap-1 bg-zinc-200 dark:bg-zinc-800 bg-opacity-60 dark:bg-opacity-50 rounded-md overflow-hidden">
+    <div className="flex flex-col gap-1 bg-white dark:bg-zinc-800 bg-opacity-60 dark:bg-opacity-50 rounded-md overflow-hidden">
       <p className="text-center pt-4 font-bold dark:text-white text-zinc-800">️‍️‍🔥Hot News</p>
       {posts.map((post) => (
         <Link to={`/post/${post.id}`} key={post.id}>

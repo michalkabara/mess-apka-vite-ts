@@ -14,7 +14,7 @@ export const FeaturedGame = () => {
   const gameDate = new Date(data.date);
 
   return (
-    <div className="bg-zinc-200 dark:bg-zinc-800 bg-opacity-60 dark:bg-opacity-50 rounded-lg p-5 text-zinc-700 dark:text-white flex flex-col items-center gap-5">
+    <div className="bg-white dark:bg-zinc-800 bg-opacity-60 dark:bg-opacity-50 rounded-lg p-5 text-zinc-700 dark:text-white flex flex-col items-center gap-5">
       <h3 className="font-bold">Wyróżniony mecz</h3>
 
       <div className="grid grid-cols-3 gap-2 items-start">
@@ -26,7 +26,7 @@ export const FeaturedGame = () => {
         </Link>
 
         <span className="h-full flex items-center justify-center text-md font-semibold text-center whitespace-nowrap ">
-          <Link to={`/game/${data.id}`} className="dark:bg-zinc-900 bg-white py-2 px-4 rounded-3xl">
+          <Link to={`/game/${data.id}`} className="dark:bg-zinc-900 bg-zinc-200 py-2 px-4 rounded-3xl">
             {data.homeGoals ?? "0"} : {data.awayGoals ?? "0"}
           </Link>
         </span>

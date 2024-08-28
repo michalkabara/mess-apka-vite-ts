@@ -54,6 +54,8 @@ export const GameDetails: FC = () => {
     setSearchParams(`page=${index}`);
   };
 
+  const referees = [data.mainRefereeName, data.assistantRefereeName, data.secondAssistantRefereeName];
+
   return (
     <div className="flex items-center flex-col">
       <p className="text-sm">
@@ -93,7 +95,11 @@ export const GameDetails: FC = () => {
         </div>
 
         <div className={` ${selectedTab === 3 ? "initial" : "hidden"}`}>
-          <GameDetailsPlayers awayTeamPlayers={data.awayPlayers} homeTeamPlayers={data.homePlayers} />
+          <GameDetailsPlayers
+            awayTeamPlayers={data.awayPlayers}
+            homeTeamPlayers={data.homePlayers}
+            referees={referees}
+          />
         </div>
       </div>
     </div>

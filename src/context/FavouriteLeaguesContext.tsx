@@ -34,7 +34,7 @@ export const FavouriteLeaguesContextProvider: React.FC<{
 
     const parsedFavLeagues = JSON.parse(favLeagues) as FavouriteLeague[];
 
-    if (localStorage.getItem("favouriteTeams")) {
+    if (localStorage.getItem("favouriteLeagues")) {
       setfavouriteLeagues(parsedFavLeagues);
     }
   }, [setfavouriteLeagues]);

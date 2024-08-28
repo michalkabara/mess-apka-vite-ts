@@ -6,6 +6,7 @@ import { useFetchLeagueRoundGames } from "../../customHooks/fetchLeagueData/useF
 import { GameLink } from "../ui/GameLink";
 import { GameLinkSkeleton } from "../skeletons/GameLinkSkeleton";
 import { Pagination } from "./Pagination";
+import { LeagueHeaderSkeleton } from "../skeletons/LeagueHeaderSkeleton";
 
 export const ChildLeague: React.FC<{
   leagueId: string;
@@ -26,7 +27,7 @@ export const ChildLeague: React.FC<{
     setNumberOfPages(leagueRoundCountData);
   }, [leagueRoundCountData]);
 
-  if (isPending) return <p>Loading...</p>;
+  if (isPending) return <LeagueHeaderSkeleton />;
 
   if (error && leagueRoundCountError) return <p>An error has occurred {error.message}</p>;
 
@@ -50,7 +51,7 @@ export const ChildLeague: React.FC<{
             toggleSection={handleToggleSection}
           />
           <div
-            className={`mt-2 sm:flex-row flex flex-col gap-1 dark:text-gray-50 dark:bg-zinc-800 rounded-md p-1 bottom-0 w-full duration-500 ease-in-out justify-center items-center px-3 relative${
+            className={`mt-2 sm:flex-row flex flex-col gap-1 dark:text-gray-50 dark:bg-zinc-800 bg-zinc-100 rounded-md p-1 bottom-0 w-full duration-500 ease-in-out justify-center items-center px-3 relative${
               isActive ? "opacity-100" : "opacity-0 hidden"
             }`}
           >

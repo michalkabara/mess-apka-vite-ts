@@ -34,7 +34,7 @@ const SearchModal: React.FC<ModalType> = ({ open, onClose, setIsSearchModalOpen 
 
   return createPortal(
     <dialog
-      className="modal mt-[5%] lg:w-2/5 md:w-2/3 sm:w-4/5 w-[95%] p-8 rounded-md dark:bg-zinc-800 bg-zinc-100  text-zinc-800 backdrop:bg-black/50"
+      className="modal mt-[5%] lg:w-2/5 md:w-2/3 sm:w-4/5 w-[95%] p-8 rounded-md dark:bg-zinc-800 bg-zinc-100 text-zinc-800 backdrop:bg-black/50"
       ref={dialog}
       onClose={onClose}
     >
@@ -42,7 +42,7 @@ const SearchModal: React.FC<ModalType> = ({ open, onClose, setIsSearchModalOpen 
         <input
           type="text"
           placeholder="Szukaj"
-          className="border w-full text-xs p-3 rounded-md placeholder:text-white dark:placeholder:text-white placeholder:text-xs dark:text-white border-zinc-400 bg-zinc-200 dark:border-zinc-600 dark:bg-zinc-800"
+          className="border w-full text-xs p-3 rounded-md dark:placeholder:text-white placeholder:text-zinc-800 placeholder:text-xs dark:text-white border-zinc-400 bg-zinc-200 dark:border-zinc-600 dark:bg-zinc-800"
           onChange={(e) => {
             setSearchQuery(e.target.value);
           }}
@@ -53,7 +53,7 @@ const SearchModal: React.FC<ModalType> = ({ open, onClose, setIsSearchModalOpen 
         </button>
       </div>
       <div className="">
-        <p className="mt-5 text-center text-sm opacity-60 font-light">Wyniki wyszukiwania:</p>
+        <p className="mt-5 text-center text-sm opacity-60 font-light dark:text-white">Wyniki wyszukiwania:</p>
         {isPending && searchQuery ? <SearchSkeleton /> : ""}
         {data?.teams.length ? (
           <div className="text-sm my-1 hover:bg-zinc-800 p-2  rounded-md cursor-pointer">

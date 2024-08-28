@@ -13,6 +13,7 @@ import { GameLinkSkeleton } from "../components/skeletons/GameLinkSkeleton";
 import defaultCrest from "../img/crest_default.svg";
 import { PartialGame } from "../types/gameTypes";
 import { LeagueStats } from "../components/leagueProfile/LeagueStats";
+import { useFetchSeasons } from "../customHooks/useFetchSeasons";
 
 export const LeagueProfile: React.FC<{ leagueId?: string; isLogoVisible?: boolean; gameData?: PartialGame }> = ({
   leagueId,
@@ -36,6 +37,7 @@ export const LeagueProfile: React.FC<{ leagueId?: string; isLogoVisible?: boolea
   } = useFetchLeagueRoundGames(checkLeagueId, currentPage);
 
   const { isPending: leagueIsPending, error: leagueError, data: leagueData } = useFetchLeagueData(checkLeagueId);
+  const { isPending: seasonsPending, error: seasonsError, data: seasonsData } = useFetchSeasons();
 
   const {
     isPending: leagueRoundCountIsPending,
@@ -51,9 +53,9 @@ export const LeagueProfile: React.FC<{ leagueId?: string; isLogoVisible?: boolea
     setNumberOfPages(leagueRoundCountData);
   }, [leagueRoundCountData]);
 
-  if (leagueIsPending || leagueRoundCountIsPending) return <p>Loading...</p>;
+  if (leagueIsPending || leagueRoundCountIsPending || seasonsPending) return <p>Loading...</p>;
 
-  if (leagueError ?? gamesError ?? leagueRoundCountError)
+  if (leagueError ?? gamesError ?? leagueRoundCountError ?? seasonsError)
     return <p>An error has occurred {leagueRoundCountError?.message}</p>;
 
   const tabs: { name: string }[] = [
@@ -77,7 +79,20 @@ export const LeagueProfile: React.FC<{ leagueId?: string; isLogoVisible?: boolea
       <div className=" flex justify-center mb-2 flex-col items-center gap-4 py-4">
         {isLogoVisible ? <img src={defaultCrest} alt="Herb" className="w-20 rounded-md p-1 bg-white" /> : ""}
         <LeagueHeader leagueName={leagueData.name} isLinkEnabled={false} hideArrow={true} leagueId={checkLeagueId} />
+        {/* <div className="flex flex-row gap-2 text-xs items-center">
+          <label htmlFor="sezon" className="font-semibold">
+            Sezon
+          </label>
+          <select name="sezon" id="" className="w-max p-1 rounded-md bg-zinc-100 dark:bg-zinc-900">
+            {seasonsData.map((season: string) => (
+              <option key={season} value={season}>
+                {season}
+              </option>
+            ))}
+          </select>
+        </div> */}
       </div>
+
       <div className="">
         <div className="flex flex-row gap-3 my-3 flex-wrap  justify-center">
           {tabs.map((button, index) => (

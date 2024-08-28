@@ -12,7 +12,7 @@ export const VoivodeChildLeagues = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      setSelectedLeague(data?.[5].childLeagues[3]);
+      setSelectedLeague(data?.[5].childLeagues[0]);
     }
   }, [isSuccess, data]);
 

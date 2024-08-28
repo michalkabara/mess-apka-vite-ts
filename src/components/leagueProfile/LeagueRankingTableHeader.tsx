@@ -3,7 +3,7 @@ export const LeagueRankingTableHeader: React.FC = () => {
     <div className="header flex flex-row text-xs gap-3 py-1 px-2 max-sm:w-fit border-b-[1px] border-zinc-600 pb-2 text-center justify-between">
       <div
         className="w-[160px]
-    sm:w-[215px] flex flex-row left-0 sticky gap-2 dark:bg-transparent bg-[#ebebed] z-2 max-sm:-translate-x-5 max-sm:pl-5 dark:bg-[#202022] pr-5"
+    sm:w-[215px] flex flex-row left-0 sticky gap-2 dark:bg-transparent bg-white z-2 max-sm:-translate-x-5 max-sm:pl-5 dark:bg-[#202022] pr-5"
       >
         <div className="w-4 flex justify-center">#</div>
         <div className="text-left ">Drużyna</div>

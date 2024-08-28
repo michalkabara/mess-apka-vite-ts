@@ -1,5 +1,4 @@
 import { useFetchPlayerData } from "../customHooks/useFetchPlayerData";
-import { useFetchTeamData } from "../customHooks/fetchTeamData/useFetchTeamData";
 import { useParams } from "react-router-dom";
 import { useFetchTeamGames } from "../customHooks/fetchTeamData/useFetchTeamGames";
 import { PlayerStats } from "../components/playerProfile/PlayerStats";
@@ -8,6 +7,7 @@ import { PlayerInfo } from "../components/playerProfile/PlayerInfo";
 import { GameLinkWithOutcomeColor } from "../components/ui/GameLinkWithOutcomeColor";
 import { useFetchPlayerGames } from "../customHooks/useFetchPlayerGames";
 import { Game } from "../types/gameTypes";
+import { useFetchSeasons } from "../customHooks/useFetchSeasons";
 
 export const PlayerProfile: FC = () => {
   const { playerId } = useParams();
@@ -15,9 +15,10 @@ export const PlayerProfile: FC = () => {
   // const { isPending: isTeamPending, error: teamError, data: teamData } = useFetchTeamData(data?.team.id);
   const { isPending: playerGamesPending, error: playerGamesError, data: playerGames } = useFetchPlayerGames(playerId);
   const { isPending: teamGamesPending, error: teamGamesError, data: teamGamesData } = useFetchTeamGames(data?.team.id);
+  const { isPending: seasonsPending, error: seasonsError, data: seasonsData } = useFetchSeasons();
 
-  if (isPending || playerGamesPending || teamGamesPending) return <p>Loading...</p>;
-  if (error ?? playerGamesError ?? teamGamesError) return <p>An error has occurred {error?.message}</p>;
+  if (isPending || playerGamesPending || teamGamesPending || seasonsPending) return <p>Loading...</p>;
+  if (error ?? playerGamesError ?? teamGamesError ?? seasonsError) return <p>An error has occurred {error?.message}</p>;
 
   // const playerHomeGames = teamGamesData.data.filter((game) =>
   //   game.homePlayers?.find((player) => player.name === data.name)
@@ -40,13 +41,17 @@ export const PlayerProfile: FC = () => {
       <div>
         <div id="statystyki" className="mt-5">
           <h2 className="text-xs uppercase py-3 border-b-[1px] border-zinc-600">Statystyki</h2>
-          <div className="flex flex-row gap-3 mt-3">
+          {/* <div className="flex flex-row gap-3 mt-3">
             <div className="flex flex-col items-start gap-1">
               <label htmlFor="" className="text-xs">
                 Sezon
               </label>
-              <select name="" id="" className="py-1 px-2 rounded-md text-xs">
-                <option value="">2023/2024</option>
+              <select name="" id="" className="py-1 px-2 rounded-md text-xs bg-zinc-200 dark:bg-zinc-800">
+                {seasonsData.map((season: string) => (
+                  <option key={season} value={season}>
+                    {season}
+                  </option>
+                ))}
               </select>
             </div>
 
@@ -54,11 +59,11 @@ export const PlayerProfile: FC = () => {
               <label htmlFor="" className="text-xs">
                 Liga
               </label>
-              <select name="" id="" className="py-1 px-2 rounded-md text-xs">
+              <select name="" id="" className="py-1 px-2 rounded-md text-xs  bg-zinc-200 dark:bg-zinc-800">
                 <option value="">Klasa okręgowa</option>
               </select>
             </div>
-          </div>
+          </div> */}
           <PlayerStats player={data} />
         </div>
       </div>

@@ -10,7 +10,7 @@ export const HomeSlider = () => {
           <p className="sm:text-sm text-xs mt-2 font-light">Piłkarskie emocje z Trybuna TV</p>
         </div>
 
-        <a href="https://trybuna.tv" target="_blank">
+        <a href="https://www.youtube.com/@TrybunaTV" target="_blank">
           <button className="text-sm py-2 px-3 rounded-md bg-white text-red-600 flex flex-row items-center gap-2">
             Zobacz <IoIosArrowForward />
           </button>

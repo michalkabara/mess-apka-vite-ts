@@ -15,6 +15,7 @@ import { LeagueRankingTable } from "../components/leagueProfile/LeagueRankingTab
 import { useFetchLeagueData } from "../customHooks/fetchLeagueData/useFetchLeagueData";
 import { GameLinkWithOutcomeColor } from "../components/ui/GameLinkWithOutcomeColor";
 import { TeamStats } from "../components/teamProfile/TeamStats";
+import { useFetchSeasons } from "../customHooks/useFetchSeasons";
 
 const tabs: { name: string }[] = [
   { name: "Wyniki" },
@@ -48,10 +49,13 @@ export const TeamProfile: React.FC = () => {
 
   const { isPending: areGamesPending, error: gamesError, data: gamesData } = useFetchTeamGames(teamId);
   const { isPending: arePlayersPending, error: playersError, data: playersData } = useFecthTeamPlayers(teamId);
+  const { isPending: seasonsPending, error: seasonsError, data: seasonsData } = useFetchSeasons();
 
-  if (isPending || areGamesPending || arePlayersPending || isLeagueDataPending) return <p>Loading...</p>;
+  if (isPending || areGamesPending || arePlayersPending || isLeagueDataPending || seasonsPending)
+    return <p>Loading...</p>;
 
-  if (error ?? gamesError ?? playersError ?? leagueDataError) return <p>An error has occurred {error?.message}</p>;
+  if (error ?? gamesError ?? playersError ?? leagueDataError ?? seasonsError)
+    return <p>An error has occurred {error?.message}</p>;
 
   const homeGames = gamesData.data.filter((game: Game) => game.homeTeam?.name === data.name);
   const awayGames = gamesData.data.filter((game: Game) => game.awayTeam?.name === data.name);
@@ -72,12 +76,27 @@ export const TeamProfile: React.FC = () => {
         currentLeagueName={leagueData.name}
       />
 
-      {/* <div className="mt-5">
-        <TeamGroupPosition filterTeamId={data.id} leagueId={data.currentLeague} />
+      {/* <div className="flex justify-center">
+        <div className="flex flex-row gap-2 text-xs items-center ">
+          <label htmlFor="sezon" className="font-semibold">
+            Sezon
+          </label>
+          <select name="sezon" id="" className="w-max p-1 rounded-md bg-zinc-200 dark:bg-zinc-800">
+            {seasonsData.map((season: string) => (
+              <option key={season} value={season}>
+                {season}
+              </option>
+            ))}
+          </select>
+        </div>
       </div> */}
 
+      <div className="mt-5">
+        <TeamGroupPosition filterTeamId={data.id} leagueId={data.currentLeague} />
+      </div>
+
       <div className="">
-        <div className="flex flex-row gap-3 mt-5 flex-wrap w-full">
+        <div className="flex flex-row gap-3 mt-5 flex-wrap w-full justify-center">
           {tabs.map((button, index) => (
             <SingleTab
               key={`tab-${index}`}

@@ -51,7 +51,7 @@ function App() {
           )}
           <div className="w-full flex flex-col gap-4 overflow-auto">
             {pathname === "/" && <HomeSlider />}
-            <div className=" bg-zinc-200 dark:bg-zinc-800 bg-opacity-60 dark:bg-opacity-50 text-zinc-800 dark:text-zinc-300 rounded-lg sm:p-5 p-2 relative  dark:border-zinc-700 overflow-hidden">
+            <div className=" bg-white dark:bg-zinc-800 dark:bg-opacity-50 text-zinc-800 dark:text-zinc-300 rounded-lg sm:p-5 p-2 relative  dark:border-zinc-700 overflow-hidden">
               <Outlet />
             </div>
           </div>

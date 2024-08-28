@@ -7,7 +7,7 @@ export const VoivodeTabs: React.FC<{
   selectedLeagueId: string | undefined;
 }> = ({ childLeagues, onClick, selectedLeagueId }) => {
   return (
-    <div className="flex sm:flex-row w-full gap-3 flex-col">
+    <div className="flex sm:flex-row w-full gap-3 flex-col justify-center">
       {childLeagues?.map((league) => (
         <SingleTab
           key={league?.id}
