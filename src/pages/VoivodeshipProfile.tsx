@@ -25,6 +25,7 @@ export const VoivodeshipProfile: React.FC = () => {
   return (
     <>
       <PageTitle title={`HotScore - ${voivodeRegions?.name}`} />
+      <img src={voivodeRegions?.logoUrl} alt="" className="size-32 m-auto mb-5" />
       <p className="text-center border-zinc-600 border-b-[1px] pb-3 uppercase text-sm">{voivodeRegions?.name}</p>
       <div className="flex sm:flex-row w-full gap-3 mt-5 flex-col justify-center">
         {voivodeRegions?.childLeagues.map((league: League) => {

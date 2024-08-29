@@ -43,12 +43,12 @@ export const VoivodeDropdown: React.FC<{
       {filteredItems?.map((voivodeship: League) => (
         <Link
           role="button"
-          className="hover:dark:bg-zinc-700 hover:bg-zinc-200 transition-colors ease-in-out w-full rounded-md text-xs p-2"
+          className="hover:dark:bg-zinc-700 hover:bg-zinc-200 transition-colors ease-in-out w-full rounded-md text-xs p-2 flex flex-row gap-2"
           onClick={handleMenuItemClick}
           key={voivodeship.id}
           to={`/voivode/${voivodeship.id}`}
         >
-          {voivodeship.name}
+          <img src={voivodeship.logoUrl} alt={voivodeship.name} className="size-4" /> {voivodeship.name}
         </Link>
       ))}
     </div>

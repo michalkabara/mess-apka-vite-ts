@@ -39,9 +39,11 @@ export const HomePage: React.FC = () => {
               <button
                 key={voivode.id}
                 onClick={() => handleSelectDefaultVoivode(voivode.id)}
-                className="text-xs p-2 border rounded-md hover:bg-zinc-100 transition-colors dark:border-zinc-700 dark:hover:bg-zinc-800"
+                className="text-xs p-2 border rounded-md hover:bg-zinc-100 transition-colors dark:border-zinc-700 dark:hover:bg-zinc-800 flex flex-row gap-2
+                
+                "
               >
-                {voivode.name}
+                <img src={voivode.logoUrl} alt={voivode.name} className="size-4" /> {voivode.name}
               </button>
             ))}
           </div>
