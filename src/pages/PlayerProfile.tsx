@@ -8,6 +8,7 @@ import { GameLinkWithOutcomeColor } from "../components/ui/GameLinkWithOutcomeCo
 import { useFetchPlayerGames } from "../customHooks/useFetchPlayerGames";
 import { Game } from "../types/gameTypes";
 import { useFetchSeasons } from "../customHooks/useFetchSeasons";
+import PageTitle from "../components/generic/PageTitle";
 
 export const PlayerProfile: FC = () => {
   const { playerId } = useParams();
@@ -36,6 +37,8 @@ export const PlayerProfile: FC = () => {
 
   return (
     <>
+      <PageTitle title={`HotScore - ${data.name}`} />
+
       <PlayerInfo photoUrl={data.photoUrl} name={data.name} roles={data.roles} number={data.number} team={data.team} />
 
       <div>

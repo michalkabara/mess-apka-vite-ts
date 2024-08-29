@@ -1,6 +1,8 @@
 // const parser = new DOMParser();
 // const parsedLabel = parser.parseFromString(field.label, "text/html");
 
+import PageTitle from "../generic/PageTitle";
+
 export const BlogPost: React.FC<{ postImg?: string; postTitle?: string; postText?: string }> = ({
   postImg,
   postTitle,
@@ -8,6 +10,8 @@ export const BlogPost: React.FC<{ postImg?: string; postTitle?: string; postText
 }) => {
   return (
     <div className="flex flex-col gap-5">
+      <PageTitle title={`HotScore - 🔥 HotScore ruszył`} />
+
       <img
         className="w-full h-56 rounded-xl object-cover"
         src={

@@ -5,14 +5,16 @@ import { VoivodeTabs } from "./VoivodeTabs";
 import { ChildLeague } from "../generic/ChildLeague";
 import { useFavouriteLeaguesContext } from "../../customHooks/useFavouriteLeaguesContext";
 
-export const VoivodeChildLeagues = () => {
+export const VoivodeChildLeagues: React.FC<{ defualtVoivodeId: string }> = ({ defualtVoivodeId }) => {
   const { isPending, isSuccess, error, data } = useFetchLeagues();
   const [selectedLeague, setSelectedLeague] = useState<League | undefined>();
   const { favouriteLeagues } = useFavouriteLeaguesContext();
 
+  const voivodeRegions = data?.find((voivode) => voivode.id === defualtVoivodeId);
+
   useEffect(() => {
     if (isSuccess) {
-      setSelectedLeague(data?.[5].childLeagues[0]);
+      setSelectedLeague(voivodeRegions?.childLeagues[0]);
     }
   }, [isSuccess, data]);
 
@@ -22,15 +24,15 @@ export const VoivodeChildLeagues = () => {
   let filterVoivode: League | undefined;
 
   const handleChangeChildLeague = (id: string | undefined) => {
-    filterVoivode = data?.[5].childLeagues.find((league) => league.id === id);
+    filterVoivode = voivodeRegions?.childLeagues.find((league) => league.id === id);
     setSelectedLeague(filterVoivode);
   };
 
   return (
     <>
-      <h3 className="text-center mb-5">{data?.[5]?.name}</h3>
+      <h3 className="text-center mb-5">{voivodeRegions?.name}</h3>
       <VoivodeTabs
-        childLeagues={data?.[5].childLeagues}
+        childLeagues={voivodeRegions?.childLeagues}
         onClick={handleChangeChildLeague}
         selectedLeagueId={selectedLeague?.id}
       />

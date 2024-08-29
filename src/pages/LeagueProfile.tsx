@@ -14,12 +14,14 @@ import defaultCrest from "../img/crest_default.svg";
 import { PartialGame } from "../types/gameTypes";
 import { LeagueStats } from "../components/leagueProfile/LeagueStats";
 import { useFetchSeasons } from "../customHooks/useFetchSeasons";
+import PageTitle from "../components/generic/PageTitle";
 
-export const LeagueProfile: React.FC<{ leagueId?: string; isLogoVisible?: boolean; gameData?: PartialGame }> = ({
-  leagueId,
-  isLogoVisible = true,
-  gameData,
-}) => {
+export const LeagueProfile: React.FC<{
+  leagueId?: string;
+  isLogoVisible?: boolean;
+  gameData?: PartialGame;
+  changePageTitle?: boolean;
+}> = ({ leagueId, isLogoVisible = true, gameData, changePageTitle = true }) => {
   const [selectedTab, setSelecteTab] = useState<number | null>(0);
   const { leagueId: routeLeagueId } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -76,6 +78,8 @@ export const LeagueProfile: React.FC<{ leagueId?: string; isLogoVisible?: boolea
 
   return (
     <>
+      {changePageTitle ? <PageTitle title={`HotScore - ${leagueData.name}`} /> : ""}
+
       <div className=" flex justify-center mb-2 flex-col items-center gap-4 py-4">
         {isLogoVisible ? <img src={defaultCrest} alt="Herb" className="w-20 rounded-md p-1 bg-white" /> : ""}
         <LeagueHeader leagueName={leagueData.name} isLinkEnabled={false} hideArrow={true} leagueId={checkLeagueId} />

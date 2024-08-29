@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
 import { ChildLeague } from "../components/generic/ChildLeague";
 import { useFetchLeagues } from "../customHooks/fetchLeagueData/useFetchLeagues";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { League } from "../types/leagueTypes";
 import { SingleTab } from "../components/generic/SingleTab";
+import PageTitle from "../components/generic/PageTitle";
 
 export const VoivodeshipProfile: React.FC = () => {
   const { voivodeId } = useParams();
@@ -23,8 +24,9 @@ export const VoivodeshipProfile: React.FC = () => {
 
   return (
     <>
+      <PageTitle title={`HotScore - ${voivodeRegions?.name}`} />
       <p className="text-center border-zinc-600 border-b-[1px] pb-3 uppercase text-sm">{voivodeRegions?.name}</p>
-      <div className="flex sm:flex-row w-full gap-3 mt-5 flex-col">
+      <div className="flex sm:flex-row w-full gap-3 mt-5 flex-col justify-center">
         {voivodeRegions?.childLeagues.map((league: League) => {
           return (
             <SingleTab

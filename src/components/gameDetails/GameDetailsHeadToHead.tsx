@@ -17,9 +17,13 @@ export const GameDetailsHeadToHead: React.FC<{
 
   const [selectedSecondTab, setSelecteSecondTab] = useState<number>(parseInt(searchParams.get("tab") ?? "0"));
 
-  const awayVsHomeTeam = AwayTeamGamesData.data.filter((game: Game) => game.awayTeam?.name === data.awayTeam?.name);
+  const awayVsHomeTeam = AwayTeamGamesData.data
+    .filter((game: Game) => game.awayTeam?.name === data.awayTeam?.name)
+    .filter((game) => game.isFinished === true);
 
-  const homeVsAwayTeam = HomeTeamGamesData.data.filter((game: Game) => game.homeTeam?.name === data.homeTeam?.name);
+  const homeVsAwayTeam = HomeTeamGamesData.data
+    .filter((game: Game) => game.homeTeam?.name === data.homeTeam?.name)
+    .filter((game) => game.isFinished === true);
 
   const previousHomeHeadToHeadGames = HomeTeamGamesData.data.filter(
     (game: Game) => game.homeTeam?.name === data.homeTeam?.name && game.awayTeam?.name === data.awayTeam?.name

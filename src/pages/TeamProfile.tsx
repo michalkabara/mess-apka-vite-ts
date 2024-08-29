@@ -16,6 +16,7 @@ import { useFetchLeagueData } from "../customHooks/fetchLeagueData/useFetchLeagu
 import { GameLinkWithOutcomeColor } from "../components/ui/GameLinkWithOutcomeColor";
 import { TeamStats } from "../components/teamProfile/TeamStats";
 import { useFetchSeasons } from "../customHooks/useFetchSeasons";
+import PageTitle from "../components/generic/PageTitle";
 
 const tabs: { name: string }[] = [
   { name: "Wyniki" },
@@ -68,6 +69,8 @@ export const TeamProfile: React.FC = () => {
 
   return (
     <>
+      <PageTitle title={`HotScore - ${data.name}`} />
+
       <TeamProfileDetails
         teamLogo={data.logoUrl}
         teamName={data.name}
@@ -117,9 +120,11 @@ export const TeamProfile: React.FC = () => {
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 0 ? "flex" : "hidden"}`}>
-          {gamesData.data.map((game: Game, index: number) => (
-            <GameLinkWithOutcomeColor game={game} index={index} winnerId={teamId} key={game.id} />
-          ))}
+          {gamesData.data
+            .filter((game) => game.isFinished === true)
+            .map((game: Game, index: number) => (
+              <GameLinkWithOutcomeColor game={game} index={index} winnerId={teamId} key={game.id} />
+            ))}
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 2 ? "flex" : "hidden"}`}>
