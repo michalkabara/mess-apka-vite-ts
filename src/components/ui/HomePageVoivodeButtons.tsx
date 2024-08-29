@@ -11,7 +11,7 @@ export const HomePageVoivodeButtons: React.FC<{ handleSelectDefaultVoivode: (id:
   return (
     <div className="flex flex-col items-center gap-5 py-5">
       <p className="text-center">Wybierz wojewodztwo</p>
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid sm:grid-cols-3 grid-cols-1 gap-2 w-full">
         {data?.map((voivode) => (
           <button
             key={voivode.id}
