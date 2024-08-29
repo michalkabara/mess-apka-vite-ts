@@ -30,7 +30,9 @@ export const VoivodeChildLeagues: React.FC<{ defualtVoivodeId: string }> = ({ de
 
   return (
     <>
-      <h3 className="text-center mb-5">{voivodeRegions?.name}</h3>
+      <h3 className="text-center mb-5 flex items-center gap-2 justify-center">
+        <img src={voivodeRegions?.logoUrl} alt={voivodeRegions?.name} className="size-5" /> {voivodeRegions?.name}
+      </h3>
       <VoivodeTabs
         childLeagues={voivodeRegions?.childLeagues}
         onClick={handleChangeChildLeague}

@@ -2,7 +2,7 @@ export interface League {
   id: string;
   parentLeagueId: string | null;
   name: string;
-  logoUrl: string | null;
+  logoUrl: string;
   season: string;
   childLeagues: League[];
 }
