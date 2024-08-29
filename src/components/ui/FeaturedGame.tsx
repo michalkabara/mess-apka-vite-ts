@@ -26,7 +26,7 @@ export const FeaturedGame = () => {
         </Link>
 
         <span className="h-full flex items-center justify-center text-md font-semibold text-center whitespace-nowrap ">
-          <Link to={`/game/${data.id}`} className="dark:bg-zinc-900 bg-zinc-200 py-2 px-4 rounded-3xl">
+          <Link to={`/game/${data.id}`} className="dark:bg-zinc-900 bg-zinc-200 py-2 px-4 rounded-3xl" reloadDocument>
             {data.homeGoals ?? "0"} : {data.awayGoals ?? "0"}
           </Link>
         </span>

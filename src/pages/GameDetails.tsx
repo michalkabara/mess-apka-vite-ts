@@ -2,7 +2,6 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { useFetchSingleGame } from "../customHooks/useFetchSIngleGame";
 import { SingleTab } from "../components/generic/SingleTab";
 import { FC, useState } from "react";
-
 import { PagedResponse } from "../types";
 import { Game } from "../types/gameTypes";
 import { LeagueProfile } from "./LeagueProfile";
@@ -12,8 +11,9 @@ import { GameDetailsTeams } from "../components/gameDetails/GameDetailsTeams";
 import { GameDetailsPlayers } from "../components/gameDetails/GameDetailsPlayers";
 import { GameDetailsEntries } from "../components/gameDetails/GameDetailsEntries";
 import { GameDetailsHeadToHead } from "../components/gameDetails/GameDetailsHeadToHead";
-
 import { DateDisplay } from "../components/ui/DateDisplay";
+import PageTitle from "../components/generic/PageTitle";
+import dayjs from "dayjs";
 
 export const GameDetails: FC = () => {
   const { gameId } = useParams();
@@ -47,7 +47,8 @@ export const GameDetails: FC = () => {
   if (error ?? HomeTeamGamesError ?? AwayTeanGamesError) return <p>An error has occurred {error?.message}</p>;
 
   const gameDate = new Date(data.date);
-  const tabs: { name: string }[] = [{ name: "Mecz" }, { name: "H2H" }, { name: "Tabela" }, { name: "Składy" }];
+  const tabs: { name: string }[] = [{ name: "Mecz" }, { name: "Head2Head" }, { name: "Tabela" }, { name: "Składy" }];
+  const titleDate = dayjs(gameDate).format("DD.MM.YYYY HH:mm");
 
   const selectTabAndChangeUrl = (index: number) => {
     setSelecteTab(index);
@@ -58,6 +59,7 @@ export const GameDetails: FC = () => {
 
   return (
     <div className="flex items-center flex-col">
+      <PageTitle title={`HotScore - ${data.homeTeam?.name} - ${data.awayTeam?.name} - ${titleDate}`} />
       <p className="text-sm">
         <DateDisplay gameDate={gameDate} />
       </p>
@@ -91,7 +93,7 @@ export const GameDetails: FC = () => {
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 2 ? "flex" : "hidden"}`}>
-          <LeagueProfile isLogoVisible={false} leagueId={leagueId} gameData={data} />
+          <LeagueProfile isLogoVisible={false} leagueId={leagueId} gameData={data} changePageTitle={false} />
         </div>
 
         <div className={` ${selectedTab === 3 ? "initial" : "hidden"}`}>
