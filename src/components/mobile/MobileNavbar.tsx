@@ -28,13 +28,13 @@ export const MobileNavbar: React.FC = () => {
           setIsVoivodeMenuOpen(false);
         }}
       >
-        <RiStarSmileFill className="size-7 dropdown" />
+        <RiStarSmileFill className="size-7 dropdown text-zinc-800 dark:text-white" />
       </div>
 
       {isFavouritesMenuOpen && (
         <div
           tabIndex={0}
-          className="w-full dropdown-content z-[1] menu items-end gap-4 text-zinc-800 dark:text-zinc-100 text-sm absolute flex-col bg-zinc-800 left-0 top-10 p-5 rounded-lg shadow-lg "
+          className="w-full dropdown-content z-[1] menu items-end gap-4 text-zinc-800 dark:text-zinc-100 text-sm absolute flex-col bg-white dark:bg-zinc-800 left-0 top-10 p-5 rounded-lg shadow-lg "
         >
           <Sidebar handleMenuItemClick={handleMenuItemClick} />
         </div>
@@ -48,7 +48,7 @@ export const MobileNavbar: React.FC = () => {
           setIsFavouritesMenuOpen(false);
         }}
       >
-        <IoMenu className="size-7 dropdown" />
+        <IoMenu className="size-7 dropdown text-zinc-800 dark:text-white" />
       </div>
 
       {isVoivodesMenuOpen && (

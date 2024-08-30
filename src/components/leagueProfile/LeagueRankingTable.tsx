@@ -30,8 +30,8 @@ export const LeagueRankingTable: React.FC<{
         {data.map((team: LeagueTableEntry, index: number) => {
           if (teamId === team.teamId) {
             return (
-              <div className="bg-zinc-700 rounded-md" key={team.teamId}>
-                <LeagueRankingTableEntry team={team} index={index} />
+              <div className="dark:bg-zinc-800 bg-zinc-100 rounded-md" key={team.teamId}>
+                <LeagueRankingTableEntry team={team} index={index} teamId={teamId} />
               </div>
             );
           }

@@ -29,7 +29,7 @@ export const SingleGame: React.FC<PartialGame> = ({ date, homeTeam, awayTeam, ho
           ) : (
             <img src={defaultCrest} alt="Herb" className="w-5 rounded-sm p-[1px]  bg-white" />
           )}
-          <p className="truncate">{homeTeam?.name}</p>
+          <p className="truncate w-max sm:max-w-fit max-w-24">{homeTeam?.name}</p>
           {homeTrophy}
         </div>
         <div className="mt-2 flex flex-row gap-2 items-center" id="team2-container">
@@ -38,11 +38,11 @@ export const SingleGame: React.FC<PartialGame> = ({ date, homeTeam, awayTeam, ho
           ) : (
             <img src={defaultCrest} alt="Herb" className="w-5 rounded-sm p-[1px] bg-white" />
           )}
-          <p className="truncate ">{awayTeam?.name}</p>
+          <p className="truncate w-max sm:max-w-fit max-w-24">{awayTeam?.name}</p>
           {awayTrophy}
         </div>
       </div>
-      <div className="flex flex-col gap-2 w-4 items-end ">
+      <div className="flex flex-col gap-2 w-4 items-end">
         <div className={(homeGoals ?? 0) > (awayGoals ?? 0) ? `font-extrabold` : ``}>{homeGoals ?? "TBD"}</div>
         <div className={(awayGoals ?? 0) > (homeGoals ?? 0) ? `font-extrabold` : ``}>{awayGoals ?? "TBD"}</div>
       </div>

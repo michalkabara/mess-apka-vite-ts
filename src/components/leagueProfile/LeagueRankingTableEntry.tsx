@@ -3,7 +3,11 @@ import { TeamForm } from "../teamProfile/TeamForm";
 import defaultCrest from "../../img/default_player.png";
 import { LeagueTableEntry } from "../../types/leagueTypes";
 
-export const LeagueRankingTableEntry: React.FC<{ team: LeagueTableEntry; index: number }> = ({ team, index }) => {
+export const LeagueRankingTableEntry: React.FC<{ team: LeagueTableEntry; index: number; teamId?: string }> = ({
+  team,
+  index,
+  teamId,
+}) => {
   return (
     <div
       key={team.teamId}
@@ -11,8 +15,8 @@ export const LeagueRankingTableEntry: React.FC<{ team: LeagueTableEntry; index: 
     >
       <Link
         to={`/team/${team.teamId}`}
-        className="w-[160px]
-      sm:w-[215px] flex flex-row items-center gap-3 sticky left-0 dark:bg-transparent dark:group-hover:bg-zinc-800 ease-in-out duration-500 bg-white group-hover:bg-zinc-200 max-sm:-translate-x-5 max-sm:pl-5 z-10 dark:bg-[#202022] pr-5"
+        className={`w-[160px]
+      sm:w-[215px] flex flex-row items-center gap-3 sticky left-0 dark:group-hover:bg-zinc-800 ease-in-out duration-500 group-hover:bg-zinc-200 max-sm:-translate-x-5 max-sm:pl-5 z-10 dark:bg-[#202022] pr-5 ${team.teamId === teamId ? "bg-zinc-100 dark:bg-zinc-800" : "bg-white"}`}
       >
         <div className="w-4 flex justify-center">{index + 1}.</div>
         {team.logoUrl ? (

@@ -5,7 +5,7 @@ import { TbRectangleVerticalFilled, TbPlayFootball } from "react-icons/tb";
 
 export const PlayerStats: React.FC<{ player: Player }> = ({ player }) => {
   return (
-    <div className="grid sm:grid-cols-4 grid-cols-2 gap-2 mt-2 rounded-lg w-full">
+    <div className="grid  grid-cols-2 gap-2 mt-2 rounded-lg w-full">
       <PlayerStatsSingleStat value={player?.goals}>
         <div className="flex flex-row gap-1 items-center">
           <p>Bramki</p> <IoMdFootball />

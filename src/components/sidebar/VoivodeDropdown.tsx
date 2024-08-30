@@ -26,11 +26,11 @@ export const VoivodeDropdown: React.FC<{
       tabIndex={0}
     >
       <div className="relative flex flex-row items-center">
-        <IoSearch className="absolute -translate-y-1 translate-x-2" />
+        <IoSearch className="absolute -translate-y-1 translate-x-2 text-zinc-800 dark:text-white" />
 
         <input
           type="text"
-          className="p-2 rounded-md text-xs mb-2 w-full pl-7 dark:bg-zinc-700 bg-zinc-200"
+          className="p-2 rounded-md text-xs mb-2 w-full pl-7 dark:bg-zinc-700 bg-zinc-200 text-zinc-800 dark:text-white"
           value={searchQuery}
           onChange={(e) => {
             setSearchQuery(e.target.value);
@@ -43,7 +43,7 @@ export const VoivodeDropdown: React.FC<{
       {filteredItems?.map((voivodeship: League) => (
         <Link
           role="button"
-          className="hover:dark:bg-zinc-700 hover:bg-zinc-200 transition-colors ease-in-out w-full rounded-md text-xs p-2 flex flex-row gap-2"
+          className="hover:dark:bg-zinc-700 hover:bg-zinc-200 transition-colors ease-in-out w-full rounded-md text-xs p-2 flex flex-row gap-2 dark:text-white text-zinc-800"
           onClick={handleMenuItemClick}
           key={voivodeship.id}
           to={`/voivode/${voivodeship.id}`}

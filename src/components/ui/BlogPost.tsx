@@ -2,6 +2,7 @@
 // const parsedLabel = parser.parseFromString(field.label, "text/html");
 
 import PageTitle from "../generic/PageTitle";
+import post1Img from "../../img/post1.jpg";
 
 export const BlogPost: React.FC<{ postImg?: string; postTitle?: string; postText?: string }> = ({
   postImg,
@@ -12,14 +13,7 @@ export const BlogPost: React.FC<{ postImg?: string; postTitle?: string; postText
     <div className="flex flex-col gap-5">
       <PageTitle title={`HotScore - 🔥 HotScore ruszył`} />
 
-      <img
-        className="w-full h-56 rounded-xl object-cover"
-        src={
-          postImg ||
-          "https://img.freepik.com/free-photo/soccer-player-action-stadium_1150-14598.jpg?ga=GA1.1.911811244.1711136200&"
-        }
-        alt={postTitle}
-      />
+      <img className="w-full h-56 rounded-xl object-cover" src={postImg || post1Img} alt={postTitle} />
       <h1 className="font-semibold text-white text-xl">🔥 HotScore ruszył</h1>
       <div className="text-justify text-xs leading-6">
         <p>

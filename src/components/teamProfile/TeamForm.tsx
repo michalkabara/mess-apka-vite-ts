@@ -58,7 +58,7 @@ export const TeamForm: React.FC<{
                     <p>${game.homeTeamId == teamId ? game.awayTeam?.name : game.homeTeam?.name}</p>
                   </div>`}
                   data-tooltip-place="top"
-                  className="rounded-sm bg-orange-500 text-white size-4 text-center relative flex justify-center leading-tight"
+                  className="rounded-sm bg-orange-400 text-white size-4 text-center relative flex justify-center leading-tight"
                 >
                   R
                 </div>
