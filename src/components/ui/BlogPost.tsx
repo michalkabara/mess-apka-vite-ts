@@ -14,7 +14,12 @@ export const BlogPost: React.FC<{ postImg?: string; postTitle?: string; postText
       <PageTitle title={`HotScore - 🔥 HotScore ruszył`} />
 
       <img className="w-full h-56 rounded-xl object-cover" src={postImg || post1Img} alt={postTitle} />
-      <h1 className="font-semibold text-white text-xl">🔥 HotScore ruszył</h1>
+      <h1
+        className="font-semibold dark:text-white text-zinc-800
+       text-xl"
+      >
+        🔥 HotScore ruszył
+      </h1>
       <div className="text-justify text-xs leading-6">
         <p>
           Piłka nożna to nie tylko Ekstraklasa i największe europejskie ligi. Prawdziwe emocje często rozgrywają się na
