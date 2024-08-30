@@ -2,6 +2,7 @@ import { VoivodeDropdownButton } from "./VoivodeDropdownButton";
 import { NewsButton } from "../ui/NewsButton";
 import { FavouriteLeagues } from "./FavouriteLeagues";
 import { FavouriteTeams } from "./FavouriteTeams";
+import { Link } from "react-router-dom";
 
 export const Sidebar: React.FC<{ handleMenuItemClick?: () => void }> = ({ handleMenuItemClick }) => {
   return (
@@ -11,7 +12,9 @@ export const Sidebar: React.FC<{ handleMenuItemClick?: () => void }> = ({ handle
           <VoivodeDropdownButton />
         </div>
 
-        <NewsButton />
+        <Link to="/blog">
+          <NewsButton />
+        </Link>
         <FavouriteLeagues handleMenuItemClick={handleMenuItemClick} />
         <div className="mt-3">
           <FavouriteTeams handleMenuItemClick={handleMenuItemClick} />
