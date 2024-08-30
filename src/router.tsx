@@ -8,6 +8,7 @@ import { BlogPost } from "./components/ui/BlogPost";
 import { VoivodeshipProfile } from "./pages/VoivodeshipProfile";
 import { PlayerProfile } from "./pages/PlayerProfile";
 import { Login } from "./pages/Login";
+import { Blog } from "./pages/Blog";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: "/voivode/:voivodeId",
         element: <VoivodeshipProfile />,
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
       },
       {
         path: "/post/:postId",
