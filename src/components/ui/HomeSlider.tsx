@@ -1,9 +1,11 @@
 import { Carousel } from "flowbite-react";
-import sliderImage from "../../img/slider1.jpg";
-import sliderImage2 from "../../img/slider2.jpg";
+import sliderImage from "../../img/slider/slider1.jpg";
+import sliderImage2 from "../../img/slider/slider2.jpg";
+import sliderImage1 from "../../img/slider/slider3.jpg";
 
 import { IoIosArrowForward } from "react-icons/io";
 import type { CustomFlowbiteTheme } from "flowbite-react";
+import { Link } from "react-router-dom";
 
 export const HomeSlider = () => {
   const customTheme: CustomFlowbiteTheme["carousel"] = {
@@ -27,6 +29,23 @@ export const HomeSlider = () => {
   return (
     <div className="h-[180px]">
       <Carousel slideInterval={10000} pauseOnHover theme={customTheme}>
+        <div className="py-6 h-[180px] flex-col items-start gap-3 justify-center rounded-md relative overflow-hidden bg-transparent flex duration-700 ease-in-out">
+          <div className="z-20 pl-10 flex flex-col gap-4 items-start sm:w-2/3 w-full">
+            <div>
+              <h2 className="sm:text-2xl text-xl font-semibold">🔥HotScore ruszył!</h2>
+              <p data-tooltip-class-name="sm:text-sm text-xs mt-2 font-light">Piłka nożna to nie tylko Ekstraklasa</p>
+            </div>
+
+            <Link to="/post/1236">
+              <button className="text-sm py-2 px-3 rounded-md bg-white text-[#899443] flex flex-row items-center gap-2">
+                Czytaj dalej
+                <IoIosArrowForward />
+              </button>
+            </Link>
+          </div>
+          <div className="bg-gradient-to-r from-[#899443] sm:from-30% from-20% to-transparent absolute w-[470px] h-[200px] z-10"></div>
+          <img className="absolute z-0 object-cover h-full w-full" src={sliderImage1} alt="" />
+        </div>
         <div className="py-6 h-[180px] flex-col items-start gap-3 justify-center rounded-md relative overflow-hidden bg-transparent flex duration-700 ease-in-out">
           <div className="z-20 pl-10 flex flex-col gap-4 items-start sm:w-2/3 w-full">
             <div>
