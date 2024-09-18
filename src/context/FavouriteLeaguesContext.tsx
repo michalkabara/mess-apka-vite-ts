@@ -54,7 +54,12 @@ export const FavouriteLeaguesContextProvider: React.FC<{
 
   return (
     <FavouriteLeaguesContext.Provider
-      value={{ favouriteLeagues, setfavouriteLeagues, addFavouriteLeague, removeFavouriteLeague }}
+      value={{
+        favouriteLeagues,
+        setfavouriteLeagues,
+        addFavouriteLeague,
+        removeFavouriteLeague,
+      }}
     >
       {children}
     </FavouriteLeaguesContext.Provider>

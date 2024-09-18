@@ -11,7 +11,7 @@ export const VoivodeshipProfile: React.FC = () => {
   const { voivodeId } = useParams();
   const [selectedLeagueId, setSelectedLeagueId] = useState("");
   const { isPending, error, data } = useFetchLeagues();
-  const { defualtVoivodeId, handleSelectDefaultVoivode } = useContext(DefaultVoivodeContex);
+  const { defualtVoivode, handleSelectDefaultVoivode } = useContext(DefaultVoivodeContex);
 
   if (isPending) return <p>Loading...</p>;
   if (error) return <p>An error has occurred {error.message}</p>;
@@ -30,12 +30,12 @@ export const VoivodeshipProfile: React.FC = () => {
       <img src={voivodeRegions?.logoUrl} alt="" className="size-32 m-auto mb-5" />
       <div className="flex flex-row items-center gap-3 border-b-[1px] pb-3 justify-center border-zinc-600 ">
         <p className="text-center  uppercase text-sm">{voivodeRegions?.name}</p>
-        {defualtVoivodeId === voivodeId ? (
+        {defualtVoivode.id === voivodeId ? (
           ""
         ) : (
           <button
             className=" border-zinc-600 dark:hover:bg-zinc-800 text-xs p-2 border rounded-md hover:bg-zinc-100 transition duration-200"
-            onClick={() => handleSelectDefaultVoivode(voivodeId)}
+            onClick={() => handleSelectDefaultVoivode(voivodeId, voivodeRegions?.name)}
           >
             Ustaw jako domyślne
           </button>

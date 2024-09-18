@@ -1,29 +1,29 @@
 import { createContext, useState } from "react";
 
 export interface DefaultVoivodeContexType {
-  defualtVoivodeId: string;
-  handleSelectDefaultVoivode: (id: string) => void;
-  setDefaultVoivodeId: (id: string) => void;
+  defualtVoivode: { id: string; name: string };
+  handleSelectDefaultVoivode: (id: string, name: string) => void;
+  setDefaultVoivode: ({ id: string, name: string }) => void;
 }
 
 export const DefaultVoivodeContex = createContext<DefaultVoivodeContexType>({
-  defualtVoivodeId: "",
+  defualtVoivode: { id: "", name: "" },
   handleSelectDefaultVoivode: () => {},
-  setDefaultVoivodeId: () => {},
+  setDefaultVoivode: () => {},
 });
 
 export const DefaultVoivodeContextProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
-  const [defualtVoivodeId, setDefaultVoivodeId] = useState("");
+  const [defualtVoivode, setDefaultVoivode] = useState({ id: "", name: "" });
 
-  const handleSelectDefaultVoivode = (id: string) => {
-    localStorage.setItem("defaultVoivode", JSON.stringify(id));
-    setDefaultVoivodeId(id);
+  const handleSelectDefaultVoivode = (id: string, name: string) => {
+    localStorage.setItem("defaultVoivode", JSON.stringify({ id, name }));
+    setDefaultVoivode({ id, name });
   };
 
   return (
-    <DefaultVoivodeContex.Provider value={{ defualtVoivodeId, handleSelectDefaultVoivode, setDefaultVoivodeId }}>
+    <DefaultVoivodeContex.Provider value={{ defualtVoivode, handleSelectDefaultVoivode, setDefaultVoivode }}>
       {children}
     </DefaultVoivodeContex.Provider>
   );
