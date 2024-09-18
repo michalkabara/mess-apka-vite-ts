@@ -46,13 +46,15 @@ export const HomePage: React.FC = () => {
             selectedTab={selectedTab}
           />
         )}
-        <SingleTab
-          key={`tab-${1}`}
-          buttonText={defualtVoivode.name}
-          index={1}
-          onClick={() => selectTabAndChangeUrl(1)}
-          selectedTab={selectedTab}
-        />
+        {defualtVoivode && (
+          <SingleTab
+            key={`tab-${1}`}
+            buttonText={defualtVoivode.name}
+            index={1}
+            onClick={() => selectTabAndChangeUrl(1)}
+            selectedTab={selectedTab}
+          />
+        )}
       </div>
 
       {defualtVoivode.id ? (
