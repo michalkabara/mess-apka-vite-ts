@@ -43,12 +43,25 @@ function App() {
       </div>
 
       <div className="flex items-center flex-col mt-2">
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6504994952505699"
+          crossOrigin="anonymous"
+        ></script>
+
+        <ins
+          className="adsbygoogle"
+          style={{ display: "block" }}
+          data-ad-client="ca-pub-6504994952505699"
+          data-ad-slot="2819549773"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        ></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         <div className="w-full flex flex-row gap-4 mt-1 py-2 px-5 max-w-[1200px]">
-          {pathname !== "/login" && (
-            <div className="max-sm:hidden w-[190px] text-left min-w-[190px]">
-              <Sidebar />
-            </div>
-          )}
+          <div className="max-sm:hidden w-[190px] text-left min-w-[190px]">
+            <Sidebar />
+          </div>
           <div className="w-full flex flex-col gap-4 overflow-auto">
             {pathname === "/" && <HomeSlider />}
             <div className=" bg-white dark:bg-zinc-800 dark:bg-opacity-50 text-zinc-800 dark:text-zinc-300 rounded-lg sm:p-5 p-2 relative  dark:border-zinc-700 overflow-hidden">
@@ -56,12 +69,25 @@ function App() {
             </div>
           </div>
 
-          {pathname !== "/login" && (
-            <div className="min-w-[100px] w-[550px] flex flex-col gap-4 max-lg:hidden">
-              <FeaturedGame />
-              <HomePageBlog></HomePageBlog>
-            </div>
-          )}
+          <div className="min-w-[100px] w-[550px] flex flex-col gap-4 max-lg:hidden">
+            <FeaturedGame />
+            <HomePageBlog></HomePageBlog>
+            <script
+              async
+              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6504994952505699"
+              crossOrigin="anonymous"
+            ></script>
+
+            <ins
+              className="adsbygoogle"
+              style={{ display: "block" }}
+              data-ad-client="ca-pub-6504994952505699"
+              data-ad-slot="6386996367"
+              data-ad-format="auto"
+              data-full-width-responsive="true"
+            ></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          </div>
         </div>
       </div>
       <div className="mt-auto">
