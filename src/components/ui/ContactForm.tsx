@@ -82,6 +82,19 @@ export const ContactForm = () => {
             className="dark:bg-zinc-700 rounded-lg border dark:border-zinc-600 border-zinc-300 text-xs p-3 min-h-24 max-h-36 disabled:opacity-50"
             required
           ></textarea>
+          <p className="text-xs">
+            Strona chroniona przez reCAPTCHA, obowiązuje
+            <a href="https://policies.google.com/privacy" target="_blank" className="text-[#ed4535]">
+              {" "}
+              Polityka prywatności{" "}
+            </a>
+            oraz
+            <a href="https://policies.google.com/terms" target="_blank" className="text-[#ed4535]">
+              {" "}
+              Regulamin{" "}
+            </a>
+            Google
+          </p>
         </div>
         <div className="flex flex-row items-center gap-3 mt-4 justify-between">
           <button className="bg-[#ed4535] py-3 px-4 text-sm rounded-md text-white">Wyślij</button>

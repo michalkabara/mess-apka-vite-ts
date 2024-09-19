@@ -23,3 +23,7 @@
 .rotate {
   transform: rotate(180deg);
 }
+
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
