@@ -19,11 +19,6 @@ export const Sidebar: React.FC<{ handleMenuItemClick?: () => void }> = ({ handle
         <div className="mt-3">
           <FavouriteTeams handleMenuItemClick={handleMenuItemClick} />
         </div>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6504994952505699"
-          crossOrigin="anonymous"
-        ></script>
 
         <ins
           className="adsbygoogle"

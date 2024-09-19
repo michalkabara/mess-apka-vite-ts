@@ -43,12 +43,6 @@ function App() {
       </div>
 
       <div className="flex items-center flex-col mt-2">
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6504994952505699"
-          crossOrigin="anonymous"
-        ></script>
-
         <ins
           className="adsbygoogle"
           style={{ display: "block" }}
@@ -72,11 +66,6 @@ function App() {
           <div className="min-w-[100px] w-[550px] flex flex-col gap-4 max-lg:hidden">
             <FeaturedGame />
             <HomePageBlog></HomePageBlog>
-            <script
-              async
-              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6504994952505699"
-              crossOrigin="anonymous"
-            ></script>
 
             <ins
               className="adsbygoogle"
