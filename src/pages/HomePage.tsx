@@ -12,7 +12,6 @@ export const HomePage: React.FC = () => {
   const { defualtVoivode, setDefaultVoivode, handleSelectDefaultVoivode } = useContext(DefaultVoivodeContex);
   const { favouriteLeagues } = useFavouriteLeaguesContext();
   const [selectedTab, setSelecteTab] = useState<number>(0);
-
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
@@ -37,7 +36,7 @@ export const HomePage: React.FC = () => {
     <>
       <PageTitle title="HotScore" />
       <div className="flex flex-row gap-3 flex-wrap w-full justify-center">
-        {favouriteLeagues.length > 0 && (
+        {favouriteLeagues.length > 0 && defualtVoivode.id ? (
           <SingleTab
             key={`tab-${0}`}
             buttonText="Moje Ligi"
@@ -45,8 +44,10 @@ export const HomePage: React.FC = () => {
             onClick={() => selectTabAndChangeUrl(0)}
             selectedTab={selectedTab}
           />
+        ) : (
+          ""
         )}
-        {defualtVoivode && (
+        {defualtVoivode.id && (
           <SingleTab
             key={`tab-${1}`}
             buttonText={defualtVoivode.name}

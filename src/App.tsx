@@ -45,7 +45,7 @@ function App() {
       <div className="flex items-center flex-col mt-2">
         <ins
           className="adsbygoogle"
-          style={{ display: "block" }}
+          style={{ display: "inline-block", width: "1200px", height: "90px" }}
           data-ad-client="ca-pub-6504994952505699"
           data-ad-slot="2819549773"
           data-ad-format="auto"

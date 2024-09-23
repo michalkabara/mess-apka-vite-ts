@@ -5,7 +5,7 @@ export const HomePageFavouriteLeagues = () => {
   const { favouriteLeagues } = useFavouriteLeaguesContext();
 
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       {favouriteLeagues.map((childLeague, index) => {
         return (
           <ChildLeague

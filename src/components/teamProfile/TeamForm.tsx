@@ -13,14 +13,14 @@ export const TeamForm: React.FC<{
 
   if (error) return <p>An error has occurred {error.message}</p>;
 
-  const games = data.data.slice(0, 5);
+  const games = data.data.slice(4, 9);
 
   const tbdGame = data.data.find((game) => game.isFinished === false);
   const tbdGameDate = dayjs(tbdGame?.date).format("DD.MM.YYYY HH:mm");
 
   return (
     <div className="flex flex-row gap-1 relative sm:min-w-[120px] w-auto justify-end">
-      {games.map((game: PartialGame) => {
+      {games.reverse().map((game: PartialGame) => {
         // console.log(array);
 
         const gameDate = new Date(game.date ?? 0);
