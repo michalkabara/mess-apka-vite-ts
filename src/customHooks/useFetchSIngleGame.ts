@@ -5,7 +5,7 @@ import { Game } from "../types/gameTypes";
 export const useFetchSingleGame = (matchId: string | undefined) => {
   return useQuery<Game>({
     queryKey: ["singleGameData"],
-    queryFn: () => fetchData(`https://api-beta.trybuna.tv/api/Match/${matchId}`),
+    queryFn: () => fetchData(`${import.meta.env.VITE_API_URL}/Match/${matchId}`),
     enabled: !!matchId,
   });
 };

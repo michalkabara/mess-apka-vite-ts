@@ -5,7 +5,7 @@ import { SearchResultsResponse } from "../types";
 export const useFetchSearch = (query: string | undefined) => {
   return useQuery<SearchResultsResponse>({
     queryKey: ["searchData", query],
-    queryFn: () => fetchData(`https://api-beta.trybuna.tv/api/Search/${query}`),
+    queryFn: () => fetchData(`${import.meta.env.VITE_API_URL}/Search/${query}`),
     enabled: !!query,
   });
 };
