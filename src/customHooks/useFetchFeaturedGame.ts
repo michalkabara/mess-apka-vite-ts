@@ -5,6 +5,6 @@ import { Game } from "../types/gameTypes";
 export const useFetchFeaturedGame = () => {
   return useQuery<Game>({
     queryKey: ["featuredGame"],
-    queryFn: () => fetchData(`${import.meta.env.VITE_API_URL}/Match/featured`),
+    queryFn: () => fetchData(`${import.meta.env.VITE_API_URL}/api/Match/featured`),
   });
 };

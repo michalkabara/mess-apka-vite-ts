@@ -6,6 +6,6 @@ import { Game } from "../types/gameTypes";
 export const useFetchPlayerGames = (playerId: string | undefined) => {
   return useQuery<Game[]>({
     queryKey: ["playerGames", playerId],
-    queryFn: () => fetchData(`${import.meta.env.VITE_API_URL}/Player/${playerId}/last-matches`),
+    queryFn: () => fetchData(`${import.meta.env.VITE_API_URL}/api/Player/${playerId}/last-matches`),
   });
 };

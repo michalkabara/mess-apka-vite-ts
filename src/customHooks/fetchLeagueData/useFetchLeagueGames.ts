@@ -8,7 +8,7 @@ export const useFetchLeagueGames = (leagueId: string, page = 0) => {
   return useQuery({
     queryKey: ["leagueGamesData", leagueId, page],
     queryFn: () =>
-      client.GET("/Match/league/{leagueId}/matches", {
+      client.GET("/api/Match/league/{leagueId}/matches", {
         params: {
           path: { leagueId: leagueId },
           query: { page: page },

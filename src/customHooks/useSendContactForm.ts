@@ -18,6 +18,6 @@ const updateData = async (url: string, payload: ContactForm) => {
 
 export const useSendContactForm = () => {
   return useMutation({
-    mutationFn: (data: ContactForm) => updateData(`${import.meta.env.VITE_API_URL}/Contact`, data),
+    mutationFn: (data: ContactForm) => updateData(`${import.meta.env.VITE_API_URL}/api/Contact`, data),
   });
 };
