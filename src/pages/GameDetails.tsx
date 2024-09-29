@@ -26,7 +26,7 @@ export const GameDetails: FC = () => {
     data: HomeTeamGamesData,
   } = useQuery<PagedResponse<Game>>({
     queryKey: ["HomeTeamGamesData", data?.homeTeam?.id],
-    queryFn: () => fetchData(`https://api-beta.trybuna.tv/api/Match/team/${data?.homeTeam?.id}`),
+    queryFn: () => fetchData(`${import.meta.env.VITE_API_URL}/api/Match/team/${data?.homeTeam?.id}`),
     enabled: !!data?.homeTeam?.id,
   });
 
@@ -36,7 +36,7 @@ export const GameDetails: FC = () => {
     data: AwayTeamGamesData,
   } = useQuery<PagedResponse<Game>>({
     queryKey: ["AwayTeamGamesData", data?.awayTeam?.id],
-    queryFn: () => fetchData(`https://api-beta.trybuna.tv/api/Match/team/${data?.awayTeam?.id}`),
+    queryFn: () => fetchData(`${import.meta.env.VITE_API_URL}/api/Match/team/${data?.awayTeam?.id}`),
     enabled: !!data?.awayTeam?.id,
   });
 

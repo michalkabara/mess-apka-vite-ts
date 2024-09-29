@@ -43,15 +43,19 @@ function App() {
       </div>
 
       <div className="flex items-center flex-col mt-2">
-        <ins
-          className="adsbygoogle"
-          style={{ display: "inline-block", width: "1200px", height: "90px" }}
-          data-ad-client="ca-pub-6504994952505699"
-          data-ad-slot="2819549773"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        ></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        <div className="max-h-[80px]">
+          <ins
+            className="adsbygoogle"
+            style={{ display: "block" }}
+            data-ad-client="ca-pub-6504994952505699"
+            data-ad-slot="2819549773"
+            data-ad-format="auto"
+            data-adtest="on"
+            data-full-width-responsive="true"
+          ></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
         <div className="w-full flex flex-row gap-4 mt-1 py-2 px-5 max-w-[1200px]">
           <div className="max-sm:hidden w-[190px] text-left min-w-[190px]">
             <Sidebar />
