@@ -22,12 +22,17 @@ export const GameDetailsEntry: React.FC<{ event: GameEvent }> = ({ event }) => {
   }
 
   return (
-    <div className={`flex ${event.isHostEvent ? "flex-row" : "flex-row-reverse"} gap-2 items-center`}>
+    <div className={`flex ${event.isHostEvent ? "flex-row" : "flex-row-reverse"} gap-4 items-center justify-center`}>
+      <div
+        className={`flex gap-1 items-center flex-1 justify-end ${event.isHostEvent ? "flex-row" : "flex-row-reverse"}`}
+      >
+        <Link to={`/player/${event.playerId}`} className="hover:underline">
+          {event.playerName}
+        </Link>
+        <span>{eventTypeIcon}</span>
+      </div>
       <p>{event.displayTime}</p>
-      <span>{eventTypeIcon}</span>
-      <Link to={`/player/${event.playerId}`} className="hover:underline">
-        {event.playerName}
-      </Link>
+      <div className="flex-1"></div>
     </div>
   );
 };

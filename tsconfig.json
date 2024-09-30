@@ -22,7 +22,11 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true
+    "noUncheckedIndexedAccess": true,
+
+    "paths": {
+      "@img/*": ["./src/img/*"]
+    }
   },
   "include": ["src", "tests/NewsButton.test.tsx", "vite.config.ts"]
 }
