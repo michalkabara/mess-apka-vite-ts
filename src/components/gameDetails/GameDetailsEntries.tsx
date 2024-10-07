@@ -1,20 +1,24 @@
 import { GameEvent, GameEventType } from "../../types/gameTypes";
 import { GameDetailsEntry } from "./GameDetailsEntry";
 import { GameDetailsPlayerSwapEntry } from "./GameDetailsPlayerSwapEntry";
+import { GameTimeline } from "./GameTimeline";
 
 export const GameDetailsEntries: React.FC<{ events: GameEvent[] }> = ({ events }) => {
   return (
     <>
+      <div className="hidden sm:grid">
+        <GameTimeline events={events} />
+      </div>
       <div className="text-xs uppercase bg-zinc-200 dark:bg-zinc-800 opacity rounded-md p-2 mb-3 mt-5">
         <p>1 Połowa</p>
       </div>
-      <div className="flex flex-col w-full justify-between text-xs px-2 gap-3">
+      <div className="flex flex-col w-full justify-between text-xs px-2 gap-4">
         {events?.map((gameEvent: GameEvent) => {
           if (gameEvent.minute <= 45) {
             if (gameEvent.eventType === GameEventType.SubInOut) {
               return (
                 <GameDetailsPlayerSwapEntry
-                  key={gameEvent.swapInfo?.inPlayerId + gameEvent.swapInfo?.outPlayerId}
+                  key={gameEvent?.swapInfo?.inPlayerId + gameEvent.swapInfo?.outPlayerId}
                   event={gameEvent}
                 />
               );
@@ -27,7 +31,7 @@ export const GameDetailsEntries: React.FC<{ events: GameEvent[] }> = ({ events }
       <div className="text-xs uppercase bg-zinc-200 dark:bg-zinc-800 opacity rounded-md p-2 my-3">
         <p>2 Połowa</p>
       </div>
-      <div className="flex flex-col w-full justify-between text-xs px-2 gap-3">
+      <div className="flex flex-col w-full justify-between text-xs px-2 gap-4">
         {events?.map((gameEvent: GameEvent) => {
           if (gameEvent.minute > 45) {
             if (gameEvent.eventType === GameEventType.SubInOut) {
