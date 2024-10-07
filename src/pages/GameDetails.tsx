@@ -14,6 +14,7 @@ import { GameDetailsHeadToHead } from "../components/gameDetails/GameDetailsHead
 import { DateDisplay } from "../components/ui/DateDisplay";
 import PageTitle from "../components/generic/PageTitle";
 import dayjs from "dayjs";
+import { GameDetailsTeamsSkeleton } from "../components/skeletons/GameDetailsTeamsSkeleton";
 
 export const GameDetails: FC = () => {
   const { gameId } = useParams();
@@ -43,7 +44,7 @@ export const GameDetails: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedTab, setSelecteTab] = useState<number>(parseInt(searchParams.get("page") ?? "0"));
 
-  if (isPending || areHomeTeamGamesPending || areAwayTeamGamesPending) return <p>Loading...</p>;
+  if (isPending || areHomeTeamGamesPending || areAwayTeamGamesPending) return <GameDetailsTeamsSkeleton />;
   if (error ?? HomeTeamGamesError ?? AwayTeanGamesError) return <p>An error has occurred {error?.message}</p>;
 
   const gameDate = new Date(data.date);

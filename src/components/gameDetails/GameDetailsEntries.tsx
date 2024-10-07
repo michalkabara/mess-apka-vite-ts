@@ -6,7 +6,9 @@ import { GameTimeline } from "./GameTimeline";
 export const GameDetailsEntries: React.FC<{ events: GameEvent[] }> = ({ events }) => {
   return (
     <>
-      <GameTimeline events={events} />
+      <div className="hidden sm:grid">
+        <GameTimeline events={events} />
+      </div>
       <div className="text-xs uppercase bg-zinc-200 dark:bg-zinc-800 opacity rounded-md p-2 mb-3 mt-5">
         <p>1 Połowa</p>
       </div>
