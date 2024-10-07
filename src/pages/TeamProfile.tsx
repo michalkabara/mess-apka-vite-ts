@@ -17,6 +17,7 @@ import { GameLinkWithOutcomeColor } from "../components/ui/GameLinkWithOutcomeCo
 import { TeamStats } from "../components/teamProfile/TeamStats";
 import { useFetchSeasons } from "../customHooks/useFetchSeasons";
 import PageTitle from "../components/generic/PageTitle";
+import { TeamProfileDetailsSkeleton } from "../components/skeletons/TeamProfileDetailsSkeleton";
 
 const tabs: { name: string }[] = [
   { name: "Wyniki" },
@@ -53,7 +54,7 @@ export const TeamProfile: React.FC = () => {
   const { isPending: seasonsPending, error: seasonsError, data: seasonsData } = useFetchSeasons();
 
   if (isPending || areGamesPending || arePlayersPending || isLeagueDataPending || seasonsPending)
-    return <p>Loading...</p>;
+    return <TeamProfileDetailsSkeleton />;
 
   if (error ?? gamesError ?? playersError ?? leagueDataError ?? seasonsError)
     return <p>An error has occurred {error?.message}</p>;
