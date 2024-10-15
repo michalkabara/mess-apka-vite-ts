@@ -1,5 +1,7 @@
 Website where you can browse results of the football games from lower leagues in Poland
 
+**Live version** https://hotscore.pl
+
 **Technologies used:** TypeScript, React, Tailwind
 
 **Libraries used:** Vite, React Router, Tanstack Query
