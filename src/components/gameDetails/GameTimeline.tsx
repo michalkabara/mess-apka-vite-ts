@@ -29,6 +29,8 @@ export const GameTimeline: React.FC<{ events: GameEvent[] }> = ({ events }) => {
                   eventTypeIcon = <TbRectangleVerticalFilled className="text-red-600" />;
                 } else if (event.eventType === GameEventType.Goal) {
                   eventTypeIcon = <IoMdFootball />;
+                } else if (event.eventType === GameEventType.OwnGoal) {
+                  eventTypeIcon = <IoMdFootball className="text-red-600" />;
                 } else if (event.eventType === GameEventType.SecondYellowCard) {
                   eventTypeIcon = (
                     <span className="flex">
@@ -42,8 +44,9 @@ export const GameTimeline: React.FC<{ events: GameEvent[] }> = ({ events }) => {
                     key={event.displayTime + event.playerName + event.eventType}
                     data-tooltip-id="game-event"
                     data-tooltip-place="top"
-                    data-tooltip-html={`<div style="font-size:0.8em;background">
+                    data-tooltip-html={`<div style="font-size:0.8em; text-align:center">
                   <p>${event.displayTime} ${event.playerName}</p>
+                  ${event.eventType === GameEventType.OwnGoal ? `<p>bramka samobójcza</p>` : ""}
                 </div>`}
                     className={`dark:bg-[#202022] bg-white px-1 size-[22px] items-center z-10 flex`}
                   >

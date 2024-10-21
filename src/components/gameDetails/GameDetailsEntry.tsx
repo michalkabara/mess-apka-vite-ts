@@ -13,6 +13,8 @@ export const GameDetailsEntry: React.FC<{ event: GameEvent }> = ({ event }) => {
     eventTypeIcon = <TbRectangleVerticalFilled className="text-red-600" />;
   } else if (event.eventType === GameEventType.Goal) {
     eventTypeIcon = <IoMdFootball />;
+  } else if (event.eventType === GameEventType.OwnGoal) {
+    eventTypeIcon = <IoMdFootball className="text-red-600" />;
   } else if (event.eventType === GameEventType.SecondYellowCard) {
     eventTypeIcon = (
       <span className="flex size-[14px]">
@@ -26,12 +28,16 @@ export const GameDetailsEntry: React.FC<{ event: GameEvent }> = ({ event }) => {
       <div
         className={`flex gap-1 items-center flex-1 justify-end ${event.isHostEvent ? "flex-row" : "flex-row-reverse"}`}
       >
-        <Link
-          to={`/player/${event.playerId}`}
-          className={`hover:underline w-auto ${event.isHostEvent ? "text-right" : "text-left"}`}
-        >
-          {event.playerName}
-        </Link>
+        <div>
+          <Link
+            to={`/player/${event.playerId}`}
+            className={`hover:underline w-auto ${event.isHostEvent ? "text-right" : "text-left"}`}
+          >
+            {event.playerName}
+          </Link>
+          {event.eventType === GameEventType.OwnGoal ? <p className="text-xs text-zinc-500">Bramka samobójcza</p> : ""}
+        </div>
+
         <span>{eventTypeIcon}</span>
       </div>
       <p>{event.displayTime}</p>
