@@ -14,14 +14,16 @@ export const GameTimeline: React.FC<{ events: GameEvent[] }> = ({ events }) => {
         <div className="grid relative w-full py-3  items-center grid-cols-[repeat(45,1fr)]">
           {Object.keys(groupedEvents).map((minute, index) => {
             return (
-              <div key={`${minute}${index}`} className="z-10 flex flex-row" style={{ gridColumnStart: minute }}>
+              <div key={`${minute}-${index}`} className="z-10 flex flex-row" style={{ gridColumnStart: minute }}>
                 {groupedEvents[parseInt(minute)]
                   ?.filter(
                     (event) =>
                       event.minute + event.additionalTime <= firstHalfDurationDisplay ||
                       event.minute + event.additionalTime <= 45
                   )
-                  .map((event) => <GameTimelineEvent event={event} />)}
+                  .map((event, index) => (
+                    <GameTimelineEvent key={`${index}-${event.minute}-${event.playerId}`} event={event} />
+                  ))}
               </div>
             );
           })}
@@ -34,10 +36,12 @@ export const GameTimeline: React.FC<{ events: GameEvent[] }> = ({ events }) => {
         <div className="grid relative w-full py-3  items-center grid-cols-[repeat(45,1fr)] ">
           {Object.keys(groupedEvents).map((minute, index) => {
             return (
-              <div key={`${minute}${index}`} className="z-10 flex flex-row" style={{ gridColumnStart: +minute - 45 }}>
+              <div key={`${minute}-${index}`} className="z-10 flex flex-row" style={{ gridColumnStart: +minute - 45 }}>
                 {groupedEvents[parseInt(minute)]
                   ?.filter((event) => event.minute > 45)
-                  .map((event) => <GameTimelineEvent event={event} />)}
+                  .map((event) => (
+                    <GameTimelineEvent key={`${index}-${event.minute}-${event.playerId}`} event={event} />
+                  ))}
               </div>
             );
           })}
