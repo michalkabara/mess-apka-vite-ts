@@ -18,6 +18,7 @@ import { TeamStats } from "../components/teamProfile/TeamStats";
 import { useFetchSeasons } from "../customHooks/useFetchSeasons";
 import PageTitle from "../components/generic/PageTitle";
 import { TeamProfileDetailsSkeleton } from "../components/skeletons/TeamProfileDetailsSkeleton";
+import { useFetchTeamLastGames } from "../customHooks/fetchTeamData/useFetchTeamLastGames";
 
 const tabs: { name: string }[] = [
   { name: "Wyniki" },
@@ -49,7 +50,7 @@ export const TeamProfile: React.FC = () => {
     data: leagueData,
   } = useFetchLeagueData(data?.currentLeague);
 
-  const { isPending: areGamesPending, error: gamesError, data: gamesData } = useFetchTeamGames(teamId);
+  const { isPending: areGamesPending, error: gamesError, data: gamesData } = useFetchTeamLastGames(teamId, 15);
   const { isPending: arePlayersPending, error: playersError, data: playersData } = useFecthTeamPlayers(teamId);
   const { isPending: seasonsPending, error: seasonsError, data: seasonsData } = useFetchSeasons();
 
@@ -59,9 +60,9 @@ export const TeamProfile: React.FC = () => {
   if (error ?? gamesError ?? playersError ?? leagueDataError ?? seasonsError)
     return <p>An error has occurred {error?.message}</p>;
 
-  const homeGames = gamesData.data.filter((game: Game) => game.homeTeam?.name === data.name);
-  const awayGames = gamesData.data.filter((game: Game) => game.awayTeam?.name === data.name);
-  const upcomingGames = gamesData.data.filter((game: Game) => game.isFinished === false);
+  const homeGames = gamesData.filter((game: Game) => game.homeTeam?.name === data.name);
+  const awayGames = gamesData.filter((game: Game) => game.awayTeam?.name === data.name);
+  const upcomingGames = gamesData.filter((game: Game) => game.isFinished === false);
 
   const selectTabAndChangeUrl = (index: number) => {
     setSelecteTab(index);
@@ -121,8 +122,9 @@ export const TeamProfile: React.FC = () => {
         </div>
 
         <div className={`mecze mt-5 gap-2 flex-col text-xs ${selectedTab === 0 ? "flex" : "hidden"}`}>
-          {gamesData.data
+          {gamesData
             .filter((game) => game.isFinished === true)
+            .reverse()
             .map((game: Game, index: number) => (
               <GameLinkWithOutcomeColor game={game} index={index} winnerId={teamId} key={game.id} />
             ))}
