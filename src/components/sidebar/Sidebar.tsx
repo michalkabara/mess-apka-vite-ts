@@ -3,6 +3,7 @@ import { NewsButton } from "../ui/NewsButton";
 import { FavouriteLeagues } from "./FavouriteLeagues";
 import { FavouriteTeams } from "./FavouriteTeams";
 import { Link } from "react-router-dom";
+import GoogleAd from "../generic/GoogleAd";
 
 export const Sidebar: React.FC<{ handleMenuItemClick?: () => void }> = ({ handleMenuItemClick }) => {
   return (
@@ -20,15 +21,9 @@ export const Sidebar: React.FC<{ handleMenuItemClick?: () => void }> = ({ handle
           <FavouriteTeams handleMenuItemClick={handleMenuItemClick} />
         </div>
 
-        <ins
-          className="adsbygoogle"
-          style={{ display: "block" }}
-          data-ad-client="ca-pub-6504994952505699"
-          data-ad-slot="9628500701"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        ></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        <div className="mt-5">
+          <GoogleAd dataAdSlot="9628500701" />
+        </div>
       </div>
     </div>
   );
