@@ -10,6 +10,7 @@ import { Footer } from "./components/ui/Footer";
 import { HomePageBlog } from "./components/generic/HomePageBlog";
 
 import { HomeSlider } from "./components/ui/HomeSlider";
+import GoogleAd from "./components/generic/GoogleAd";
 
 function App() {
   const [isDarkModeOn, setIsDarkModeOn] = useState(true);
@@ -34,8 +35,14 @@ function App() {
         <Header isDarkModeOn={isDarkModeOn} setIsDarkModeOn={setIsDarkModeOn} />
       </header>
 
+      <div className="w-full flex justify-center">
+        <div className="max-w-[1200px] max-h-[100px] px-5">
+          <GoogleAd dataAdSlot="2819549773" />
+        </div>
+      </div>
+
       <div className="border-b dark:border-zinc-700 border-zinc-300 z-50">
-        <nav className=" flex w-full items-center sm:py-0 py-3 px-5 max-w-[1200px] m-auto">
+        <nav className=" flex w-full items-center sm:py-0 py-3 px-5  m-auto">
           <div className="sm:hidden w-full">
             <MobileNavbar />
           </div>
@@ -43,19 +50,6 @@ function App() {
       </div>
 
       <div className="flex items-center flex-col mt-2">
-        <div className="max-h-[80px]">
-          <ins
-            className="adsbygoogle"
-            style={{ display: "block" }}
-            data-ad-client="ca-pub-6504994952505699"
-            data-ad-slot="2819549773"
-            data-ad-format="auto"
-            data-adtest="on"
-            data-full-width-responsive="true"
-          ></ins>
-          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-
         <div className="w-full flex flex-row gap-4 mt-1 py-2 px-5 max-w-[1200px]">
           <div className="max-sm:hidden w-[190px] text-left min-w-[190px]">
             <Sidebar />
@@ -71,15 +65,7 @@ function App() {
             <FeaturedGame />
             <HomePageBlog></HomePageBlog>
 
-            <ins
-              className="adsbygoogle"
-              style={{ display: "block" }}
-              data-ad-client="ca-pub-6504994952505699"
-              data-ad-slot="6386996367"
-              data-ad-format="auto"
-              data-full-width-responsive="true"
-            ></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            <GoogleAd dataAdSlot="6386996367" />
           </div>
         </div>
       </div>
