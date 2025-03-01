@@ -35,8 +35,8 @@ function App() {
         <Header isDarkModeOn={isDarkModeOn} setIsDarkModeOn={setIsDarkModeOn} />
       </header>
 
-      <div className="w-full flex justify-center">
-        <div className="max-w-[1200px] max-h-[100px] px-5">
+      <div className=" w-full grid max-h-[100px]">
+        <div className="max-w-[1200px] m-auto h-full w-full px-5">
           <GoogleAd dataAdSlot="2819549773" />
         </div>
       </div>
@@ -65,7 +65,9 @@ function App() {
             <FeaturedGame />
             <HomePageBlog></HomePageBlog>
 
-            <GoogleAd dataAdSlot="6386996367" />
+            <div>
+              <GoogleAd dataAdSlot="6386996367" />
+            </div>
           </div>
         </div>
       </div>
