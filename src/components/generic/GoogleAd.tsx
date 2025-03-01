@@ -11,7 +11,7 @@ const GoogleAd: React.FC<{ dataAdSlot: string }> = ({ dataAdSlot }) => {
     <>
       <ins
         className="adsbygoogle"
-        style={{ display: "block" }}
+        style={{ display: "block", margin: "auto" }}
         data-ad-client={`ca-pub-${import.meta.env.VITE_GOOGLE_CLIENT_ID}`}
         data-ad-slot={dataAdSlot}
         data-ad-format="auto"
