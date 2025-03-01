@@ -25,7 +25,7 @@ export const VoivodeDropdown: React.FC<{
       className="dark:bg-zinc-800 bg-white flex flex-col z-10 rounded-md mt-2 dropdown-content sm:p-2 p-3 pb-4 gap-1 shadow-lg sm:w-[190px] min-w-[150px] w-full"
       tabIndex={0}
     >
-      <div className="relative flex flex-row items-center">
+      {/* <div className="relative flex flex-row items-center">
         <IoSearch className="absolute -translate-y-1 translate-x-2 text-zinc-800 dark:text-white" />
 
         <input
@@ -38,19 +38,21 @@ export const VoivodeDropdown: React.FC<{
           autoFocus
           ref={comboBoxInputRef}
         />
-      </div>
+      </div> */}
 
-      {filteredItems?.map((voivodeship: League) => (
-        <Link
-          role="button"
-          className="hover:dark:bg-zinc-700 hover:bg-zinc-200 transition-colors ease-in-out w-full rounded-md text-xs p-2 flex flex-row gap-2 dark:text-white text-zinc-800"
-          onClick={handleMenuItemClick}
-          key={voivodeship.id}
-          to={`/voivode/${voivodeship.id}`}
-        >
-          <img src={voivodeship.logoUrl} alt={voivodeship.name} className="size-4" /> {voivodeship.name}
-        </Link>
-      ))}
+      {filteredItems
+        ?.filter((voivode) => voivode.name === "Małopolskie" || voivode.name === "Podkarpackie")
+        .map((voivodeship: League) => (
+          <Link
+            role="button"
+            className="hover:dark:bg-zinc-700 hover:bg-zinc-200 transition-colors ease-in-out w-full rounded-md text-xs p-2 flex flex-row gap-2 dark:text-white text-zinc-800"
+            onClick={handleMenuItemClick}
+            key={voivodeship.id}
+            to={`/voivode/${voivodeship.id}`}
+          >
+            <img src={voivodeship.logoUrl} alt={voivodeship.name} className="size-4" /> {voivodeship.name}
+          </Link>
+        ))}
     </div>
   );
 };
