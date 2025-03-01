@@ -12,7 +12,7 @@ const GoogleAd: React.FC<{ dataAdSlot: string }> = ({ dataAdSlot }) => {
       <ins
         className="adsbygoogle"
         style={{ display: "block" }}
-        data-ad-client="ca-pub-6504994952505699"
+        data-ad-client={`ca-pub-${import.meta.env.VITE_GOOGLE_CLIENT_ID}`}
         data-ad-slot={dataAdSlot}
         data-ad-format="auto"
         data-full-width-responsive="true"
